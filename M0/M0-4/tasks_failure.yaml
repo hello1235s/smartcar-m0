@@ -1,0 +1,7 @@
+timeout: 5
+tasks:
+  - {name: FailedSensor, duration: 0.02, success_rate: 0, dependencies: []}
+  - {name: NeedsSensor, duration: 0.02, success_rate: 1, dependencies: [FailedSensor]}
+  - {name: Independent, duration: 0.02, success_rate: 1, dependencies: []}
+  - {name: FinishIndependent, duration: 0.02, success_rate: 1, dependencies: [Independent]}
+  - {name: Join, duration: 0.02, success_rate: 1, dependencies: [NeedsSensor, FinishIndependent]}

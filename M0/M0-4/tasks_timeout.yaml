@@ -1,0 +1,7 @@
+timeout: 0.2
+tasks:
+  - {name: LongTask, duration: 20, success_rate: 1, dependencies: []}
+  - {name: A, duration: 0.02, success_rate: 1, dependencies: [LongTask]}
+  - {name: B, duration: 0.02, success_rate: 1, dependencies: [LongTask]}
+  - {name: C, duration: 0.02, success_rate: 1, dependencies: [A]}
+  - {name: D, duration: 0.02, success_rate: 1, dependencies: [B, C]}

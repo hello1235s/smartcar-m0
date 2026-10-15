@@ -1,0 +1,58 @@
+{
+  "timeout": false,
+  "total_duration": 0.15556105599989678,
+  "timeout_seconds": 5.0,
+  "seed": 42,
+  "execution_order": [
+    "FailedSensor",
+    "Independent",
+    "FinishIndependent"
+  ],
+  "tasks": [
+    {
+      "name": "FailedSensor",
+      "status": "SKIPPED",
+      "attempts": 3,
+      "duration": 0.09377578400062703,
+      "started_at": 1792057342.6175027,
+      "ended_at": 1792057342.7114763,
+      "reason": "首次执行及两次重试均失败"
+    },
+    {
+      "name": "NeedsSensor",
+      "status": "SKIPPED",
+      "attempts": 0,
+      "duration": 0.0,
+      "started_at": null,
+      "ended_at": null,
+      "reason": "前置任务未成功：FailedSensor"
+    },
+    {
+      "name": "Independent",
+      "status": "SUCCESS",
+      "attempts": 1,
+      "duration": 0.03012161200012997,
+      "started_at": 1792057342.7114942,
+      "ended_at": 1792057342.7416284,
+      "reason": "执行成功"
+    },
+    {
+      "name": "FinishIndependent",
+      "status": "SUCCESS",
+      "attempts": 1,
+      "duration": 0.031241647000115336,
+      "started_at": 1792057342.7417092,
+      "ended_at": 1792057342.7729616,
+      "reason": "执行成功"
+    },
+    {
+      "name": "Join",
+      "status": "SKIPPED",
+      "attempts": 0,
+      "duration": 0.0,
+      "started_at": null,
+      "ended_at": null,
+      "reason": "前置任务未成功：NeedsSensor"
+    }
+  ]
+}
