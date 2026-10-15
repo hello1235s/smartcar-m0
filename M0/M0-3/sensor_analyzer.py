@@ -13,7 +13,7 @@ sensor_analyzer.py  —— 上一届学长留下的"能用"的脚本
     4. 把清洗后的数据保存为 cleaned_data.csv
     5. 打印一份统计摘要
 
-现状：跑不通 / 跑出来数不对。就交给你了。
+当前版本：已逐步修复，排查证据与问题报告见 README 和 Git 历史。
 """
 
 import argparse
