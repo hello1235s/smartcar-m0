@@ -1,4 +1,5 @@
 import sys
+import subprocess
 from pathlib import Path
 
 import numpy as np
@@ -51,3 +52,37 @@ def test_invalid_config_returns_error(tmp_path, capsys, content):
     config.write_text(content)
     assert main(['--config', str(config)]) != 0
     assert 'Traceback' not in capsys.readouterr().err
+
+
+def test_cli_resolves_csv_from_config_directory(tmp_path):
+    inputs = tmp_path / 'inputs'
+    inputs.mkdir()
+    (inputs / 'new.csv').write_text('left,right\n10,30\n20,20\n30,10\n')
+    (inputs / 'new.yaml').write_text('input_csv: new.csv\ncolumns: {x: left, y: right}\n')
+    script = Path(__file__).resolve().parents[1] / 'corr_tool.py'
+    for config in ('inputs/new.yaml', str(inputs / 'new.yaml')):
+        run = subprocess.run([sys.executable, str(script), '--config', config],
+                             cwd=tmp_path, text=True, capture_output=True)
+        assert run.returncode == 0, run.stderr
+        assert 'r = -1' in run.stdout
+        assert 'n = 3' in run.stdout
+
+
+def test_cli_missing_file_exits_nonzero_without_traceback(tmp_path):
+    script = Path(__file__).resolve().parents[1] / 'corr_tool.py'
+    run = subprocess.run([sys.executable, str(script), '--config', 'not-found.yaml'],
+                         cwd=tmp_path, text=True, capture_output=True)
+    assert run.returncode != 0
+    assert '错误' in run.stderr and 'Traceback' not in run.stderr
+
+
+def test_import_does_not_read_files_or_print(tmp_path):
+    folder = Path(__file__).resolve().parents[1]
+    run = subprocess.run([sys.executable, '-c',
+                          f'import sys; sys.path.insert(0, {str(folder)!r}); import corr_tool'],
+                         cwd=tmp_path, text=True, capture_output=True)
+    assert run.returncode == 0 and run.stdout == '' and run.stderr == ''
+
+
+def test_large_numbers_avoid_original_product_overflow():
+    assert pearson([1e150, 2e150, 3e150], [6e150, 4e150, 2e150]) == pytest.approx(-1.0)
