@@ -1,0 +1,57 @@
+FF.F                                                                     [100%]
+=================================== FAILURES ===================================
+_____________________ test_known_correlation[xs0-ys0-1.0] ______________________
+
+xs = [1, 2, 3], ys = [2, 4, 6], expected = 1.0
+
+    @pytest.mark.parametrize("xs,ys,expected", [
+        ([1, 2, 3], [2, 4, 6], 1.0),
+        ([1, 2, 3], [6, 4, 2], -1.0),
+        ([1, 0, -1, 0], [0, 1, 0, -1], 0.0),
+    ])
+    def test_known_correlation(xs, ys, expected):
+>       assert pearson(xs, ys) == pytest.approx(expected, abs=1e-12)
+E       assert 0.25 == 1.0 ± 1.0e-12
+E         
+E         comparison failed
+E         Obtained: 0.25
+E         Expected: 1.0 ± 1.0e-12
+
+M0/M0-2/tests/test_corr.py:17: AssertionError
+_____________________ test_known_correlation[xs1-ys1--1.0] _____________________
+
+xs = [1, 2, 3], ys = [6, 4, 2], expected = -1.0
+
+    @pytest.mark.parametrize("xs,ys,expected", [
+        ([1, 2, 3], [2, 4, 6], 1.0),
+        ([1, 2, 3], [6, 4, 2], -1.0),
+        ([1, 0, -1, 0], [0, 1, 0, -1], 0.0),
+    ])
+    def test_known_correlation(xs, ys, expected):
+>       assert pearson(xs, ys) == pytest.approx(expected, abs=1e-12)
+E       assert -0.25 == -1.0 ± 1.0e-12
+E         
+E         comparison failed
+E         Obtained: -0.25
+E         Expected: -1.0 ± 1.0e-12
+
+M0/M0-2/tests/test_corr.py:17: AssertionError
+_______________________ test_matches_numpy_for_new_data ________________________
+
+    def test_matches_numpy_for_new_data():
+        rng = np.random.default_rng(20261015)
+        xs = rng.normal(5, 20, 257)
+        ys = 0.3 * xs + rng.normal(0, 10, 257)
+>       assert pearson(list(xs), list(ys)) == pytest.approx(np.corrcoef(xs, ys)[0, 1], abs=1e-6)
+E       assert np.float64(1....686057519e-05) == 0.580909188414734 ± 1.0e-06
+E         
+E         comparison failed
+E         Obtained: 1.0886586686057519e-05
+E         Expected: 0.580909188414734 ± 1.0e-06
+
+M0/M0-2/tests/test_corr.py:24: AssertionError
+=========================== short test summary info ============================
+FAILED M0/M0-2/tests/test_corr.py::test_known_correlation[xs0-ys0-1.0] - asse...
+FAILED M0/M0-2/tests/test_corr.py::test_known_correlation[xs1-ys1--1.0] - ass...
+FAILED M0/M0-2/tests/test_corr.py::test_matches_numpy_for_new_data - assert n...
+3 failed, 1 passed in 0.16s

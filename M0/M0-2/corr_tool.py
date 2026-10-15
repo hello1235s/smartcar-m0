@@ -3,20 +3,23 @@
 
 import argparse
 import csv
+import math
 from pathlib import Path
 
 import yaml
 
 
 def pearson(xs, ys):
-    """核心计算单独封装；本次重构先保留原始公式，下一步验证修正。"""
+    """手写中心化公式，以 hypot 避免平方和乘积溢出。"""
     n = len(xs)
-    mean_x, mean_y = sum(xs) / n, sum(ys) / n
+    mean_x = math.fsum(x / n for x in xs)
+    mean_y = math.fsum(y / n for y in ys)
     dx = [x - mean_x for x in xs]
     dy = [y - mean_y for y in ys]
-    return sum(a * b for a, b in zip(dx, dy)) / (
-        sum(a * a for a in dx) * sum(b * b for b in dy)
-    )
+    scale_x, scale_y = math.hypot(*dx), math.hypot(*dy)
+    return max(-1.0, min(1.0, math.fsum(
+        (a / scale_x) * (b / scale_y) for a, b in zip(dx, dy)
+    )))
 
 
 def read_columns(path, x_column, y_column):
