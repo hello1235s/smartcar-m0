@@ -1,0 +1,42 @@
+........................................................................ [ 83%]
+..............                                                           [100%]
+86 passed in 0.96s
+n = 40
+mean_x = 49.437825
+mean_y = 43.310725
+r = 0.563474725452
+=== 传感器数据分析 ===
+共读取 60 条数据
+均值 mean = 50.4315366667
+标准差 std = 18.5032794933
+清洗后剩余 57 条；剔除 3 条
+已保存到 M0/M0-3/cleaned_data.csv
+[32m[SUCCESS][0m Init 第 1 次尝试成功
+[32m[SUCCESS][0m Navigate 第 1 次尝试成功
+[32m[SUCCESS][0m DetectQR 第 1 次尝试成功
+[32m[SUCCESS][0m AvoidObstacle 第 1 次尝试成功
+[32m[SUCCESS][0m Grasp 第 1 次尝试成功
+[32m[SUCCESS][0m Place 第 1 次尝试成功
+[32m[SUCCESS][0m ReturnHome 第 1 次尝试成功
+报告已保存到 M0/M0-4/report.json
+[FAILED] FailedSensor 第 1 次尝试失败
+[RETRY] FailedSensor 准备第 2 次尝试
+[FAILED] FailedSensor 第 2 次尝试失败
+[RETRY] FailedSensor 准备第 3 次尝试
+[FAILED] FailedSensor 第 3 次尝试失败
+[SKIPPED] FailedSensor: 重试耗尽
+[SUCCESS] Independent 第 1 次尝试成功
+[SKIPPED] NeedsSensor: 前置任务未成功：FailedSensor
+[SUCCESS] FinishIndependent 第 1 次尝试成功
+[SKIPPED] Join: 前置任务未成功：NeedsSensor
+报告已保存到 evidence/m04_failure_report.json
+[TIMEOUT] 达到全局时限 0.2 秒，终止剩余任务
+报告已保存到 evidence/m04_timeout_report.json
+M0/M0-1/check_env.sh: 行 13: $'\r': 未找到命令
+M0/M0-1/check_env.sh: 第 14 行： set: -: 无效的选项
+set: 用法： set [--abefhkmnptuvxBCHP] [-o 选项名] [--] [参数 ...]
+M0/M0-1/check_env.sh: 行 15: $'\r': 未找到命令
+M0/M0-1/check_env.sh: 行 18: $'\r': 未找到命令
+M0/M0-1/check_env.sh: 行 22: $'\r': 未找到命令
+M0/M0-1/check_env.sh: 行 28: 未预期的记号 "$'{\r'" 附近有语法错误
+M0/M0-1/check_env.sh: 行 28: `hint() {'

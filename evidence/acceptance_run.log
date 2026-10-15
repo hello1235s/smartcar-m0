@@ -1,0 +1,105 @@
+........................................................................ [ 83%]
+..............                                                           [100%]
+86 passed in 0.90s
+n = 40
+mean_x = 49.437825
+mean_y = 43.310725
+r = 0.563474725452
+=== 传感器数据分析 ===
+共读取 60 条数据
+均值 mean = 50.4315366667
+标准差 std = 18.5032794933
+清洗后剩余 57 条；剔除 3 条
+已保存到 M0/M0-3/cleaned_data.csv
+[32m[SUCCESS][0m Init 第 1 次尝试成功
+[32m[SUCCESS][0m Navigate 第 1 次尝试成功
+[32m[SUCCESS][0m DetectQR 第 1 次尝试成功
+[32m[SUCCESS][0m AvoidObstacle 第 1 次尝试成功
+[32m[SUCCESS][0m Grasp 第 1 次尝试成功
+[32m[SUCCESS][0m Place 第 1 次尝试成功
+[32m[SUCCESS][0m ReturnHome 第 1 次尝试成功
+报告已保存到 M0/M0-4/report.json
+[FAILED] FailedSensor 第 1 次尝试失败
+[RETRY] FailedSensor 准备第 2 次尝试
+[FAILED] FailedSensor 第 2 次尝试失败
+[RETRY] FailedSensor 准备第 3 次尝试
+[FAILED] FailedSensor 第 3 次尝试失败
+[SKIPPED] FailedSensor: 重试耗尽
+[SUCCESS] Independent 第 1 次尝试成功
+[SKIPPED] NeedsSensor: 前置任务未成功：FailedSensor
+[SUCCESS] FinishIndependent 第 1 次尝试成功
+[SKIPPED] Join: 前置任务未成功：NeedsSensor
+报告已保存到 evidence/m04_failure_report.json
+[TIMEOUT] 达到全局时限 0.2 秒，终止剩余任务
+报告已保存到 evidence/m04_timeout_report.json
+==============================================================
+  M0-1 开发环境验收  (2026-10-15 17:42:23)
+==============================================================
+
+--- 1. 操作系统 ---
+       发行版: Ubuntu 22.04.5 LTS
+[32m[PASS][0m Ubuntu 22.04
+
+--- 2. 运行形态（物理机 / WSL2 / 虚拟机 三选一） ---
+[32m[PASS][0m 运行在虚拟机: vmware
+
+--- 3. 系统信息 ---
+       内核: 6.8.0-138-generic
+       架构: x86_64
+
+--- 4. Shell 与基础工具 ---
+[32m[PASS][0m bash -> /usr/bin/bash
+[32m[PASS][0m git -> /usr/bin/git
+[32m[PASS][0m gcc -> /usr/bin/gcc
+[32m[PASS][0m g++ -> /usr/bin/g++
+[32m[PASS][0m make -> /usr/bin/make
+[32m[PASS][0m cmake -> /usr/bin/cmake
+
+--- 5. Python 环境 ---
+[32m[PASS][0m python3: Python 3.10.12 (/home/ubuntu2204/smartcar-m0/.venv/bin/python3)
+[32m[PASS][0m Python 版本 >= 3.10
+[32m[PASS][0m pip 可用: pip 26.2.1
+
+--- 6. Python 虚拟环境 (uv 或 conda) ---
+[32m[PASS][0m uv: uv 0.13.1 (x86_64-unknown-linux-gnu)
+[32m[PASS][0m 当前处于虚拟环境: /home/ubuntu2204/smartcar-m0/.venv
+
+--- 7. ROS2 Humble ---
+[32m[PASS][0m 发现 /opt/ros/humble/setup.bash
+[32m[PASS][0m source 后 ros2 命令可用
+       ros2: unknown
+[32m[PASS][0m 已将 ROS 环境写入 shell 配置
+
+--- 8. Git 配置 ---
+[32m[PASS][0m user.name = 张驰
+[32m[PASS][0m user.email = 3544516607@qq.com
+       最近一次提交签名: 张驰 <3544516607@qq.com>
+
+--- 9. VS Code ---
+[32m[PASS][0m code: 1.142.0
+[32m[PASS][0m 插件已装: ms-python.python
+[32m[PASS][0m 插件已装: ms-vscode.cpptools
+[32m[PASS][0m 插件已装: ms-vscode-remote.remote-wsl
+[32m[PASS][0m 插件已装: ms-vscode-remote.remote-ssh
+
+--- 10. 远程登录能力 ---
+[32m[PASS][0m ssh 可用
+[32m[PASS][0m scp 可用
+[32m[PASS][0m ssh-keygen 可用
+[32m[PASS][0m rsync 可用
+[32m[PASS][0m 已生成 SSH 公钥
+[32m[PASS][0m ~/.ssh/known_hosts 非空（有连接过远程主机的痕迹）
+
+--- 11. 仓库结构 ---
+[32m[PASS][0m 发现 git 仓库: /home/ubuntu2204/smartcar-m0
+       提交总数: 13
+[32m[PASS][0m 提交次数 >= 3（满足多次提交要求）
+[32m[PASS][0m 存在按模块划分的目录（1 个）
+
+==============================================================
+  汇总: [32mPASS=32[0m  [31mFAIL=0[0m  [33mWARN=0[0m
+==============================================================
+  环境验收: 通过（WARN 项请现场向考官说明）
+  下一步: 登录开发板完成 M0-2
+
+ALL LOCAL ACCEPTANCE CHECKS PASSED
