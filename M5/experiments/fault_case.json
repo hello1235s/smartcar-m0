@@ -1,0 +1,100 @@
+{
+  "run": "/home/ubuntu2204/smartcar-advanced/M5/runs/20261117_000752_782558517",
+  "paused_on_real_ROS_fault": true,
+  "report": {
+    "task_id": "20261117_000752_782558517",
+    "result": "SUCCESS",
+    "total_elapsed_s": 6.897876192000695,
+    "steps": [
+      {
+        "name": "wait_start",
+        "status": "SUCCESS",
+        "elapsed_s": 0.01307072499912465,
+        "retries": 0,
+        "degraded": false,
+        "error": null
+      },
+      {
+        "name": "navigate_to_scan",
+        "status": "SUCCESS",
+        "elapsed_s": 4.8534590039998875,
+        "retries": 0,
+        "degraded": false,
+        "error": null
+      },
+      {
+        "name": "detect_qr",
+        "status": "SUCCESS",
+        "elapsed_s": 0.010564099000475835,
+        "retries": 0,
+        "degraded": false,
+        "error": null
+      },
+      {
+        "name": "grasp",
+        "status": "SUCCESS",
+        "elapsed_s": 2.005269313998724,
+        "retries": 0,
+        "degraded": false,
+        "error": null
+      },
+      {
+        "name": "battery_check",
+        "status": "SUCCESS",
+        "elapsed_s": 0.007123520001186989,
+        "retries": 0,
+        "degraded": false,
+        "error": null
+      },
+      {
+        "name": "lidar_check",
+        "status": "SUCCESS",
+        "elapsed_s": 0.008365120000235038,
+        "retries": 0,
+        "degraded": false,
+        "error": null
+      },
+      {
+        "name": "parallel_checks",
+        "status": "SUCCESS",
+        "elapsed_s": 0.013986943999043433,
+        "retries": 0,
+        "degraded": false,
+        "error": null
+      }
+    ],
+    "final_context": {
+      "triggered": true,
+      "last_nav_result": {
+        "success": true,
+        "mock": true,
+        "targets": [],
+        "object_pose": null
+      },
+      "target_pose": {
+        "x": 2.1,
+        "y": 0.4,
+        "yaw": 0.0
+      },
+      "target_id": "qr_01",
+      "grasp_result": {
+        "success": true,
+        "mock": true,
+        "targets": [],
+        "object_pose": {
+          "x": 2.1,
+          "y": 0.4,
+          "yaw": 0.0
+        }
+      },
+      "object_pose": {
+        "x": 2.1,
+        "y": 0.4,
+        "yaw": 0.0
+      }
+    },
+    "degraded": true,
+    "backend": "explicit_mock",
+    "retry_budget_remaining": 20
+  }
+}

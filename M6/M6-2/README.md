@@ -13,6 +13,6 @@
 
 所有性能行均跑60秒：VM CPU动态约23.52FPS、QDQ约34.95FPS、QOperator约24.24FPS，FP32参考约24.15FPS。QDQ约1.45倍，**未达到2倍阈值**。不同日期共享VM负载也会影响尾延迟，不将该结果外推为板端速度。
 
-另实际转换并部署到MNN3.2.0 CPU运行时，60秒1549帧、约25.81FPS，和ORT输出CosSim>.99。此为专用运行时功能验证，不冒充Orin TensorRT/DLA。官方转换命令和Python接口见THIRD_PARTY.md。TensorRT等板端后端仍待Orin。
+另实际转换并部署到MNN3.2.0 CPU运行时，按预处理、推理、主机IO和同一NMS的完整口径测得60秒1291帧、约21.50FPS、P95 55.82ms，和ORT输出CosSim>.99。旧的25.81FPS是核心计时，不能与完整链路直接比较。此为专用运行时功能验证，不冒充Orin TensorRT/DLA。官方转换命令和Python接口见THIRD_PARTY.md。TensorRT等板端后端仍待Orin。
 
 eval_map.py接受images/与YOLO格式labels/，按类别、IoU0.50:0.95、101点插值计算AP。缺标注立即拒绝评估，不输出0或伪造mAP。NMS和框反归一化保持浮点，不强行INT8化。

@@ -1,12 +1,13 @@
 {
   "backend": "MNN 3.2.0 CPU on VMware x86_64; NOT an Orin accelerator result",
-  "frames": 1549,
-  "seconds": 60.01517110500026,
+  "timing_scope": "preprocess + CPU inference and host IO + same NMS",
+  "frames": 1291,
+  "seconds": 60.03530369700093,
   "cosine_similarity_vs_ort": 1.0,
   "max_absolute_error": 0.075775146484375,
-  "p50_ms": 39.79696500027785,
-  "p95_ms": 54.39191759942332,
-  "fps": 25.809790067942277,
+  "p50_ms": 46.81881400028942,
+  "p95_ms": 55.82305149982858,
+  "fps": 21.503391062933844,
   "model_bytes": 12689112,
   "map": null
 }

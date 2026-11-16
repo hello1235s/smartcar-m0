@@ -1,0 +1,25 @@
+[WARN] [1794844903.424559841] [smartcar_host_terminal]: Command rejected safely: Audit.append() got multiple values for argument 'action'
+Traceback (most recent call last):
+  File "/home/ubuntu2204/smartcar-advanced/M5/M5-2/host_side/dashboard.py", line 193, in <module>
+    if __name__=='__main__': main()
+  File "/home/ubuntu2204/smartcar-advanced/M5/M5-2/host_side/dashboard.py", line 188, in main
+    try: dashboard.run()
+  File "/home/ubuntu2204/smartcar-advanced/.venv-ros/lib/python3.10/site-packages/uvicorn/server.py", line 86, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/home/ubuntu2204/smartcar-advanced/.venv-ros/lib/python3.10/site-packages/uvicorn/_compat.py", line 60, in asyncio_run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ubuntu2204/smartcar-advanced/.venv-ros/lib/python3.10/site-packages/uvicorn/server.py", line 89, in serve
+    with self.capture_signals():
+  File "/usr/lib/python3.10/contextlib.py", line 142, in __exit__
+    next(self.gen)
+  File "/home/ubuntu2204/smartcar-advanced/.venv-ros/lib/python3.10/site-packages/uvicorn/server.py", line 349, in capture_signals
+    signal.raise_signal(captured_signal)
+KeyboardInterrupt

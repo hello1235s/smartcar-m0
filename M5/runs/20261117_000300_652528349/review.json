@@ -1,0 +1,118 @@
+{
+  "run": "/home/ubuntu2204/smartcar-advanced/M5/runs/20261117_000300_652528349",
+  "result": "SUCCESS",
+  "total_elapsed_s": 6.047550350001984,
+  "steps": [
+    {
+      "name": "wait_start",
+      "status": "SUCCESS",
+      "elapsed_s": 0.0076171370019437745,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "navigate_to_scan",
+      "status": "SUCCESS",
+      "elapsed_s": 4.011892285998329,
+      "retries": 1,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "detect_qr",
+      "status": "SUCCESS",
+      "elapsed_s": 0.007240898001327878,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "grasp",
+      "status": "SUCCESS",
+      "elapsed_s": 2.002490349001164,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "battery_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.006785115001548547,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "lidar_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.008982660001493059,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "parallel_checks",
+      "status": "SUCCESS",
+      "elapsed_s": 0.01683718099957332,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    }
+  ],
+  "metrics": {
+    "perception_hz": {
+      "mean": 4.695949239250206,
+      "max": 10.028288466423401
+    },
+    "confidence": {
+      "mean": 0.8007265306956941,
+      "max": 0.8046974262197067
+    },
+    "cpu_percent": {
+      "mean": 15,
+      "max": 15
+    },
+    "network_rtt_ms": {
+      "mean": 1.0,
+      "max": 1.0
+    },
+    "path_deviation_m": {
+      "mean": 0.02,
+      "max": 0.02
+    },
+    "temperature_c": {
+      "mean": 45,
+      "max": 45
+    },
+    "voltage_v": {
+      "mean": 12.0,
+      "max": 12.0
+    }
+  },
+  "faults": [],
+  "switches": [
+    {
+      "ts_ns": "1794844980880934396",
+      "kind": "model",
+      "old": "\"/home/ubuntu2204/smartcar-advanced/M6/M6-1/models/best_fp32.onnx\"",
+      "new": "\"/home/ubuntu2204/smartcar-advanced/M6/M6-1/models/best_fp32.onnx\"",
+      "user": "web",
+      "experiment": "software_base_000241",
+      "pid": "44390"
+    },
+    {
+      "ts_ns": "1794844980935129773",
+      "kind": "parameters",
+      "old": "{\"nav_speed\": 0.4, \"perception_hz\": 10.0, \"confidence\": 0.25, \"scene\": \"training_mock\"}",
+      "new": "{\"nav_speed\": 0.4, \"perception_hz\": 10.0, \"confidence\": 0.25, \"scene\": \"training_mock\"}",
+      "user": "web",
+      "experiment": "software_base_000241",
+      "pid": "44390"
+    }
+  ],
+  "causal_chains": [],
+  "clock_alignment": "MCAP log_time and FSM ts_ns are wall nanoseconds. ros_ns is stored separately; never directly subtract simulation time from wall time.",
+  "parsed_messages": 129,
+  "review_seconds": 0.007691434999287594
+}

@@ -1,0 +1,147 @@
+{
+  "run": "/home/ubuntu2204/smartcar-advanced/M5/runs/20261117_000341_70258343",
+  "result": "SUCCESS",
+  "total_elapsed_s": 6.864579719000176,
+  "steps": [
+    {
+      "name": "wait_start",
+      "status": "SUCCESS",
+      "elapsed_s": 0.010864022999157896,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "navigate_to_scan",
+      "status": "SUCCESS",
+      "elapsed_s": 4.826432543999545,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "detect_qr",
+      "status": "SUCCESS",
+      "elapsed_s": 0.00930098699973314,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "grasp",
+      "status": "SUCCESS",
+      "elapsed_s": 2.002523604001908,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "battery_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.0087289420007437,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "lidar_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.006897049999679439,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "parallel_checks",
+      "status": "SUCCESS",
+      "elapsed_s": 0.013950429001852171,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    }
+  ],
+  "metrics": {
+    "perception_hz": {
+      "mean": 4.536486018250111,
+      "max": 10.0402577557073
+    },
+    "confidence": {
+      "mean": 0.8071810671816246,
+      "max": 0.8564603224001367
+    },
+    "cpu_percent": {
+      "mean": 15,
+      "max": 15
+    },
+    "network_rtt_ms": {
+      "mean": 1.0,
+      "max": 1.0
+    },
+    "path_deviation_m": {
+      "mean": 0.02,
+      "max": 0.02
+    },
+    "temperature_c": {
+      "mean": 45,
+      "max": 45
+    },
+    "voltage_v": {
+      "mean": 12.0,
+      "max": 12.0
+    }
+  },
+  "faults": [
+    {
+      "duration_s": 67.299682896999,
+      "previous": "ONLINE",
+      "recovered": false,
+      "stamp_wall_ns": 1794845025584375845,
+      "topic": "/perception/detections",
+      "type": "LOST"
+    },
+    {
+      "duration_s": 1.900301596000645,
+      "previous": "LOST",
+      "recovered": false,
+      "stamp_wall_ns": 1794845027484678592,
+      "topic": "/perception/detections",
+      "type": "DEGRADED"
+    },
+    {
+      "duration_s": 0.09966261100271367,
+      "previous": "DEGRADED",
+      "recovered": true,
+      "stamp_wall_ns": 1794845027584342084,
+      "topic": "/perception/detections",
+      "type": "ONLINE"
+    }
+  ],
+  "switches": [
+    {
+      "ts_ns": "1794845021311877895",
+      "kind": "model",
+      "old": "\"/home/ubuntu2204/smartcar-advanced/M6/M6-2/models/static_qdq.onnx\"",
+      "new": "\"/home/ubuntu2204/smartcar-advanced/M6/M6-1/models/best_fp32.onnx\"",
+      "user": "web",
+      "experiment": "manual",
+      "pid": "44390"
+    },
+    {
+      "ts_ns": "1794845021361050138",
+      "kind": "parameters",
+      "old": "{\"nav_speed\": 0.4, \"perception_hz\": 10.0, \"confidence\": 0.25, \"scene\": \"training_mock\"}",
+      "new": "{\"nav_speed\": 0.4, \"perception_hz\": 10.0, \"confidence\": 0.25, \"scene\": \"training_mock\"}",
+      "user": "web",
+      "experiment": "manual",
+      "pid": "44390"
+    }
+  ],
+  "causal_chains": [
+    "LOST on /perception/detections (recorded telemetry) \u2192 manual resume after sensor fault \u2192 handling delay 1.809s; extra navigation cost unmeasured; measured task pause 1.805s",
+    "DEGRADED on /perception/detections (recorded telemetry) \u2192 no causally linked corrective action recorded \u2192 cost unmeasured",
+    "ONLINE on /perception/detections (recorded telemetry) \u2192 no causally linked corrective action recorded \u2192 cost unmeasured"
+  ],
+  "clock_alignment": "MCAP log_time and FSM ts_ns are wall nanoseconds. ros_ns is stored separately; never directly subtract simulation time from wall time.",
+  "parsed_messages": 142,
+  "review_seconds": 0.010958418999507558
+}

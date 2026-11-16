@@ -1,0 +1,374 @@
+{
+  "duration_s": 65.23342512499948,
+  "discovered_topics": [
+    "/hw/resources",
+    "/navigation/quality",
+    "/perception/auto_discovered",
+    "/perception/detections",
+    "/perception/model_state",
+    "/perception/ready",
+    "/perception/targets",
+    "/task/state"
+  ],
+  "metrics_hz": 10.00034508523185,
+  "mean_message_bytes": 1312.5669515669515,
+  "camera_lost_detection_s": 0.6966350999973656,
+  "fault_types": [
+    "DEGRADED",
+    "LOST",
+    "ONLINE",
+    "RESOURCE"
+  ],
+  "estop_continuous_override_blocked": true,
+  "actions": {
+    "start": {
+      "ok": true,
+      "result": {
+        "state": "COUNTDOWN",
+        "remaining_s": 180.0,
+        "start_countdown_s": 2.999994757003151,
+        "penalties": [],
+        "competition_active": true
+      }
+    },
+    "pause": {
+      "ok": true,
+      "result": {
+        "state": "PAUSED",
+        "remaining_s": 179.10263386299994,
+        "start_countdown_s": 0,
+        "penalties": [],
+        "competition_active": true
+      }
+    },
+    "resume": {
+      "ok": true,
+      "result": {
+        "state": "RUNNING",
+        "remaining_s": 179.09913159799908,
+        "start_countdown_s": 0,
+        "penalties": [],
+        "competition_active": true
+      }
+    },
+    "params": {
+      "ok": true,
+      "result": {
+        "nav_speed": 0.25,
+        "perception_hz": 10.0,
+        "confidence": 0.65,
+        "scene": "training_mock"
+      }
+    },
+    "stop": {
+      "ok": true,
+      "result": {
+        "state": "STOPPED",
+        "remaining_s": 174.3823609659994,
+        "start_countdown_s": 0,
+        "penalties": [],
+        "competition_active": false
+      }
+    },
+    "stop_t": 20906.618710664,
+    "reset": {
+      "ok": true,
+      "result": {
+        "manual_clear_requested": true
+      }
+    }
+  },
+  "final_state": {
+    "metrics": {
+      "resources": {
+        "cpu_percent": 15,
+        "network_rtt_ms": 1.0,
+        "path_deviation_m": 0.02,
+        "temperature_c": 45,
+        "voltage_v": 12.0
+      },
+      "stamp_wall_ns": 1794844955641648437,
+      "topics": {
+        "/hw/resources": {
+          "age_s": 0.09383794699897408,
+          "confidence": null,
+          "delay_ms": null,
+          "hz": 5.000226082443055,
+          "loss_rate": null,
+          "state": "ONLINE"
+        },
+        "/navigation/quality": {
+          "age_s": 0.09377055900040432,
+          "confidence": 0.7963776152041061,
+          "delay_ms": 0.8848810666666664,
+          "hz": 10.000980990963315,
+          "loss_rate": 0.0,
+          "state": "ONLINE"
+        },
+        "/perception/auto_discovered": {
+          "age_s": 0.09375040599843487,
+          "confidence": 0.7963776152041061,
+          "delay_ms": 0.9348607999999996,
+          "hz": 10.001359432148616,
+          "loss_rate": 0.0,
+          "state": "ONLINE"
+        },
+        "/perception/detections": {
+          "age_s": 0.027379664999898523,
+          "confidence": 0.7970953179530884,
+          "delay_ms": 0.9229909333333332,
+          "hz": 9.663671222229702,
+          "loss_rate": 0.0,
+          "state": "ONLINE"
+        },
+        "/perception/model_state": {
+          "age_s": 0.5309604699978081,
+          "confidence": null,
+          "delay_ms": null,
+          "hz": 1.0004738824558603,
+          "loss_rate": null,
+          "state": "EVENT"
+        },
+        "/perception/ready": {
+          "age_s": 0.5308961089976947,
+          "confidence": null,
+          "delay_ms": null,
+          "hz": 1.000486594658967,
+          "loss_rate": null,
+          "state": "EVENT"
+        },
+        "/perception/targets": {
+          "age_s": 69.19298090099983,
+          "confidence": null,
+          "delay_ms": null,
+          "hz": 0.0,
+          "loss_rate": null,
+          "state": "EVENT"
+        },
+        "/task/state": {
+          "age_s": 59.69776827299938,
+          "confidence": null,
+          "delay_ms": null,
+          "hz": 0.0,
+          "loss_rate": null,
+          "state": "EVENT"
+        }
+      }
+    },
+    "faults": [
+      {
+        "duration_s": 11.999429553998198,
+        "previous": "ONLINE",
+        "recovered": false,
+        "stamp_wall_ns": 1794844898043634470,
+        "topic": "/perception/detections",
+        "type": "DEGRADED"
+      },
+      {
+        "duration_s": 5.29977194499952,
+        "previous": "DEGRADED",
+        "recovered": false,
+        "stamp_wall_ns": 1794844903343409283,
+        "topic": "/perception/detections",
+        "type": "LOST"
+      },
+      {
+        "duration_s": 2.500184550000995,
+        "previous": "LOST",
+        "recovered": false,
+        "stamp_wall_ns": 1794844905843592131,
+        "topic": "/perception/detections",
+        "type": "DEGRADED"
+      },
+      {
+        "duration_s": 0.09944628499943065,
+        "previous": "DEGRADED",
+        "recovered": true,
+        "stamp_wall_ns": 1794844905943034613,
+        "topic": "/perception/detections",
+        "type": "ONLINE"
+      },
+      {
+        "recovered": false,
+        "resources": {
+          "cpu_percent": 99,
+          "network_rtt_ms": 1.0,
+          "path_deviation_m": 0.02,
+          "temperature_c": 92,
+          "voltage_v": 12.0
+        },
+        "stamp_wall_ns": 1794844915843267717,
+        "type": "RESOURCE"
+      },
+      {
+        "recovered": true,
+        "resources": {
+          "cpu_percent": 15,
+          "network_rtt_ms": 1.0,
+          "path_deviation_m": 0.02,
+          "temperature_c": 45,
+          "voltage_v": 12.0
+        },
+        "stamp_wall_ns": 1794844920842416226,
+        "type": "RESOURCE"
+      }
+    ],
+    "task": {
+      "nodes": {
+        "wait_start": {
+          "ts_ns": 1794844895875632480,
+          "task_id": "20261117_000126_45266389",
+          "name": "wait_start",
+          "status": "SUCCESS",
+          "elapsed_s": 0.010417356999823824,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "navigate_to_scan": {
+          "ts_ns": 1794844900633432238,
+          "task_id": "20261117_000126_45266389",
+          "name": "navigate_to_scan",
+          "status": "SUCCESS",
+          "elapsed_s": 4.75750701799916,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "task": {
+          "ts_ns": 1794844922610992998,
+          "task_id": "20261117_000126_45266389",
+          "name": "task",
+          "status": "ABORTED"
+        },
+        "detect_qr": {
+          "ts_ns": 1794844900640305759,
+          "task_id": "20261117_000126_45266389",
+          "name": "detect_qr",
+          "status": "SUCCESS",
+          "elapsed_s": 0.006585250001080567,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "grasp": {
+          "ts_ns": 1794844902645096927,
+          "task_id": "20261117_000126_45266389",
+          "name": "grasp",
+          "status": "SUCCESS",
+          "elapsed_s": 2.00450280899895,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "parallel_checks": {
+          "ts_ns": 1794844902660737211,
+          "task_id": "20261117_000126_45266389",
+          "name": "parallel_checks",
+          "status": "SUCCESS",
+          "elapsed_s": 0.015396525999676669,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "battery_check": {
+          "ts_ns": 1794844902655307060,
+          "task_id": "20261117_000126_45266389",
+          "name": "battery_check",
+          "status": "SUCCESS",
+          "elapsed_s": 0.009416201999556506,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "lidar_check": {
+          "ts_ns": 1794844902656842974,
+          "task_id": "20261117_000126_45266389",
+          "name": "lidar_check",
+          "status": "SUCCESS",
+          "elapsed_s": 0.010239872000965988,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        }
+      },
+      "current": {
+        "ts_ns": 1794844922610992998,
+        "task_id": "20261117_000126_45266389",
+        "name": "task",
+        "status": "ABORTED"
+      },
+      "context": {
+        "triggered": true,
+        "last_nav_result": {
+          "success": true,
+          "mock": true,
+          "targets": [],
+          "object_pose": null
+        },
+        "target_pose": {
+          "x": 2.1,
+          "y": 0.4,
+          "yaw": 0.0
+        },
+        "target_id": "qr_01",
+        "grasp_result": {
+          "success": true,
+          "mock": true,
+          "targets": [],
+          "object_pose": {
+            "x": 2.1,
+            "y": 0.4,
+            "yaw": 0.0
+          }
+        },
+        "object_pose": {
+          "x": 2.1,
+          "y": 0.4,
+          "yaw": 0.0
+        }
+      }
+    },
+    "ready": true,
+    "referee": {
+      "state": "STOPPED",
+      "remaining_s": 174.3823609659994,
+      "start_countdown_s": 0,
+      "penalties": [],
+      "competition_active": false
+    },
+    "estopped": false,
+    "params": {
+      "nav_speed": 0.25,
+      "perception_hz": 10.0,
+      "confidence": 0.65,
+      "scene": "training_mock"
+    },
+    "pid": 44272,
+    "perception": {
+      "pid": 44271,
+      "model_path": "/home/ubuntu2204/smartcar-advanced/M6/M6-1/models/best_fp32.onnx",
+      "model_sha256": "5f8f2588f4f087931d62d95d86834223e035a0c855c35414872c8f900094e931"
+    },
+    "run": "/home/ubuntu2204/smartcar-advanced/M5/runs/20261117_000126_45266389"
+  },
+  "resources": {
+    "aggregator_cpu": {
+      "mean": 1.2744855967078186,
+      "max": 7.5
+    },
+    "aggregator_rss_mb": {
+      "mean": 22.902022247942387,
+      "max": 22.91796875
+    },
+    "host_cpu": {
+      "mean": 4.032510288065849,
+      "max": 32.0
+    },
+    "host_rss_mb": {
+      "mean": 91.61257394547324,
+      "max": 94.56640625
+    }
+  },
+  "bandwidth_kbytes_s": 13.126122463140314
+}

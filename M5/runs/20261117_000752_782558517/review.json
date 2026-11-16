@@ -1,0 +1,147 @@
+{
+  "run": "/home/ubuntu2204/smartcar-advanced/M5/runs/20261117_000752_782558517",
+  "result": "SUCCESS",
+  "total_elapsed_s": 6.897876192000695,
+  "steps": [
+    {
+      "name": "wait_start",
+      "status": "SUCCESS",
+      "elapsed_s": 0.01307072499912465,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "navigate_to_scan",
+      "status": "SUCCESS",
+      "elapsed_s": 4.8534590039998875,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "detect_qr",
+      "status": "SUCCESS",
+      "elapsed_s": 0.010564099000475835,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "grasp",
+      "status": "SUCCESS",
+      "elapsed_s": 2.005269313998724,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "battery_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.007123520001186989,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "lidar_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.008365120000235038,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "parallel_checks",
+      "status": "SUCCESS",
+      "elapsed_s": 0.013986943999043433,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    }
+  ],
+  "metrics": {
+    "perception_hz": {
+      "mean": 7.6358077677639535,
+      "max": 80.67348418980313
+    },
+    "confidence": {
+      "mean": 0.8060940172038481,
+      "max": 0.8737132829750263
+    },
+    "cpu_percent": {
+      "mean": 15,
+      "max": 15
+    },
+    "network_rtt_ms": {
+      "mean": 1.0,
+      "max": 1.0
+    },
+    "path_deviation_m": {
+      "mean": 0.02,
+      "max": 0.02
+    },
+    "temperature_c": {
+      "mean": 45,
+      "max": 45
+    },
+    "voltage_v": {
+      "mean": 12.0,
+      "max": 12.0
+    }
+  },
+  "faults": [
+    {
+      "duration_s": 5.6997287859994685,
+      "previous": "ONLINE",
+      "recovered": false,
+      "stamp_wall_ns": 1794845277307329693,
+      "topic": "/perception/detections",
+      "type": "LOST"
+    },
+    {
+      "duration_s": 1.9003236290009227,
+      "previous": "LOST",
+      "recovered": false,
+      "stamp_wall_ns": 1794845279207652847,
+      "topic": "/perception/detections",
+      "type": "DEGRADED"
+    },
+    {
+      "duration_s": 0.10187732899794355,
+      "previous": "DEGRADED",
+      "recovered": true,
+      "stamp_wall_ns": 1794845279309530677,
+      "topic": "/perception/detections",
+      "type": "ONLINE"
+    }
+  ],
+  "switches": [
+    {
+      "ts_ns": "1794845273057733136",
+      "kind": "model",
+      "old": "null",
+      "new": "\"/home/ubuntu2204/smartcar-advanced/M6/M6-1/models/best_fp32.onnx\"",
+      "user": "web",
+      "experiment": "manual",
+      "pid": "44755"
+    },
+    {
+      "ts_ns": "1794845273111450678",
+      "kind": "parameters",
+      "old": "{\"nav_speed\": 0.4, \"perception_hz\": 10.0, \"confidence\": 0.25, \"scene\": \"training_mock\"}",
+      "new": "{\"nav_speed\": 0.4, \"perception_hz\": 10.0, \"confidence\": 0.25, \"scene\": \"training_mock\"}",
+      "user": "web",
+      "experiment": "manual",
+      "pid": "44755"
+    }
+  ],
+  "causal_chains": [
+    "LOST on /perception/detections (recorded telemetry) \u2192 pause task and request lidar-only fallback \u2192 handling delay 0.010s; extra navigation cost unmeasured; measured task pause 1.833s",
+    "DEGRADED on /perception/detections (recorded telemetry) \u2192 no causally linked corrective action recorded \u2192 cost unmeasured",
+    "ONLINE on /perception/detections (recorded telemetry) \u2192 no causally linked corrective action recorded \u2192 cost unmeasured"
+  ],
+  "clock_alignment": "MCAP log_time and FSM ts_ns are wall nanoseconds. ros_ns is stored separately; never directly subtract simulation time from wall time.",
+  "parsed_messages": 140,
+  "review_seconds": 0.011426938999647973
+}

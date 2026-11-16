@@ -1,0 +1,1045 @@
+{
+  "created": "2026-11-17 00:08:04",
+  "git_commit": "76b5fd805c90080fd55bd7678547e243275ce332",
+  "hardware": "VMware Ubuntu 22.04 + actual K230 USB; Orin not arrived",
+  "m3_graph": {
+    "edges": 281,
+    "nonlocal_edges_id_gap_gt20": [
+      {
+        "corrected_distance_m": 1.984190191532445,
+        "scan_time_gap_s": 131.42399999999998,
+        "source_id": 0,
+        "target_id": 245
+      },
+      {
+        "corrected_distance_m": 1.5837965555173974,
+        "scan_time_gap_s": 133.024,
+        "source_id": 0,
+        "target_id": 249
+      },
+      {
+        "corrected_distance_m": 1.4831322455848723,
+        "scan_time_gap_s": 133.42399999999998,
+        "source_id": 0,
+        "target_id": 250
+      },
+      {
+        "corrected_distance_m": 1.3875537072312298,
+        "scan_time_gap_s": 133.82399999999998,
+        "source_id": 0,
+        "target_id": 251
+      },
+      {
+        "corrected_distance_m": 1.2823126359350085,
+        "scan_time_gap_s": 134.224,
+        "source_id": 0,
+        "target_id": 252
+      },
+      {
+        "corrected_distance_m": 1.187091083570991,
+        "scan_time_gap_s": 134.624,
+        "source_id": 0,
+        "target_id": 253
+      },
+      {
+        "corrected_distance_m": 1.0817363803430717,
+        "scan_time_gap_s": 135.024,
+        "source_id": 0,
+        "target_id": 254
+      },
+      {
+        "corrected_distance_m": 0.8931581636165624,
+        "scan_time_gap_s": 135.82399999999998,
+        "source_id": 0,
+        "target_id": 255
+      },
+      {
+        "corrected_distance_m": 0.7016161411131141,
+        "scan_time_gap_s": 137.226,
+        "source_id": 0,
+        "target_id": 256
+      },
+      {
+        "corrected_distance_m": 0.5385855262790711,
+        "scan_time_gap_s": 138.626,
+        "source_id": 0,
+        "target_id": 257
+      },
+      {
+        "corrected_distance_m": 0.390481235510175,
+        "scan_time_gap_s": 138.926,
+        "source_id": 1,
+        "target_id": 258
+      },
+      {
+        "corrected_distance_m": 0.3179685677763271,
+        "scan_time_gap_s": 138.824,
+        "source_id": 2,
+        "target_id": 259
+      },
+      {
+        "corrected_distance_m": 0.2525066876720326,
+        "scan_time_gap_s": 139.524,
+        "source_id": 2,
+        "target_id": 260
+      },
+      {
+        "corrected_distance_m": 0.22440124360610356,
+        "scan_time_gap_s": 140.22400000000002,
+        "source_id": 2,
+        "target_id": 261
+      },
+      {
+        "corrected_distance_m": 0.15275799228472053,
+        "scan_time_gap_s": 140.126,
+        "source_id": 3,
+        "target_id": 262
+      },
+      {
+        "corrected_distance_m": 0.14307920548293146,
+        "scan_time_gap_s": 140.826,
+        "source_id": 3,
+        "target_id": 263
+      },
+      {
+        "corrected_distance_m": 0.08208898888539047,
+        "scan_time_gap_s": 141.426,
+        "source_id": 5,
+        "target_id": 264
+      }
+    ],
+    "vertices": 265
+  },
+  "m3_quality": {
+    "resolution_m": 0.05,
+    "wall_points": 190,
+    "wall_fit_slope": 1.7431891554264757e-16,
+    "wall_rms_m": 2.75945351204425e-15,
+    "wall_max_deviation_m": 3.552713678800501e-15,
+    "loop_wall_columns": 190,
+    "loop_wall_double_clusters": 0,
+    "loop_wall_observed_thickness_max_m": 0.05,
+    "ghost_separation_detection_limit_m": 0.1,
+    "gate_free_cells": 19,
+    "gate_measured_free_width_m": 0.9500000000000001,
+    "unknown_fraction": 0.3263442505866748,
+    "method": "Quantities from actual occupancy image. Zero double clusters does not prove sub-grid zero drift."
+  },
+  "m3_dynamic": [
+    {
+      "planner": "A",
+      "attempts": 10,
+      "successes": 8,
+      "success_rate": 0.8,
+      "seconds": 40.0125,
+      "extra_length_m": 0.04706127449939095,
+      "steering_variation_rad_per_m": 0.24654936883359668
+    },
+    {
+      "planner": "B",
+      "attempts": 10,
+      "successes": 3,
+      "success_rate": 0.3,
+      "seconds": 27.766666666666662,
+      "extra_length_m": 0.19900749517149427,
+      "steering_variation_rad_per_m": 0.9529937332901418
+    },
+    {
+      "planner": "B_tuned",
+      "attempts": 10,
+      "successes": 7,
+      "success_rate": 0.7,
+      "seconds": 28.942857142857147,
+      "extra_length_m": 0.07419592185876946,
+      "steering_variation_rad_per_m": 0.4296945414768246
+    }
+  ],
+  "m5_resources": {
+    "duration_s": 65.23342512499948,
+    "discovered_topics": [
+      "/hw/resources",
+      "/navigation/quality",
+      "/perception/auto_discovered",
+      "/perception/detections",
+      "/perception/model_state",
+      "/perception/ready",
+      "/perception/targets",
+      "/task/state"
+    ],
+    "metrics_hz": 10.00034508523185,
+    "mean_message_bytes": 1312.5669515669515,
+    "camera_lost_detection_s": 0.6966350999973656,
+    "fault_types": [
+      "DEGRADED",
+      "LOST",
+      "ONLINE",
+      "RESOURCE"
+    ],
+    "estop_continuous_override_blocked": true,
+    "actions": {
+      "start": {
+        "ok": true,
+        "result": {
+          "state": "COUNTDOWN",
+          "remaining_s": 180.0,
+          "start_countdown_s": 2.999994757003151,
+          "penalties": [],
+          "competition_active": true
+        }
+      },
+      "pause": {
+        "ok": true,
+        "result": {
+          "state": "PAUSED",
+          "remaining_s": 179.10263386299994,
+          "start_countdown_s": 0,
+          "penalties": [],
+          "competition_active": true
+        }
+      },
+      "resume": {
+        "ok": true,
+        "result": {
+          "state": "RUNNING",
+          "remaining_s": 179.09913159799908,
+          "start_countdown_s": 0,
+          "penalties": [],
+          "competition_active": true
+        }
+      },
+      "params": {
+        "ok": true,
+        "result": {
+          "nav_speed": 0.25,
+          "perception_hz": 10.0,
+          "confidence": 0.65,
+          "scene": "training_mock"
+        }
+      },
+      "stop": {
+        "ok": true,
+        "result": {
+          "state": "STOPPED",
+          "remaining_s": 174.3823609659994,
+          "start_countdown_s": 0,
+          "penalties": [],
+          "competition_active": false
+        }
+      },
+      "stop_t": 20906.618710664,
+      "reset": {
+        "ok": true,
+        "result": {
+          "manual_clear_requested": true
+        }
+      }
+    },
+    "final_state": {
+      "metrics": {
+        "resources": {
+          "cpu_percent": 15,
+          "network_rtt_ms": 1.0,
+          "path_deviation_m": 0.02,
+          "temperature_c": 45,
+          "voltage_v": 12.0
+        },
+        "stamp_wall_ns": 1794844955641648437,
+        "topics": {
+          "/hw/resources": {
+            "age_s": 0.09383794699897408,
+            "confidence": null,
+            "delay_ms": null,
+            "hz": 5.000226082443055,
+            "loss_rate": null,
+            "state": "ONLINE"
+          },
+          "/navigation/quality": {
+            "age_s": 0.09377055900040432,
+            "confidence": 0.7963776152041061,
+            "delay_ms": 0.8848810666666664,
+            "hz": 10.000980990963315,
+            "loss_rate": 0.0,
+            "state": "ONLINE"
+          },
+          "/perception/auto_discovered": {
+            "age_s": 0.09375040599843487,
+            "confidence": 0.7963776152041061,
+            "delay_ms": 0.9348607999999996,
+            "hz": 10.001359432148616,
+            "loss_rate": 0.0,
+            "state": "ONLINE"
+          },
+          "/perception/detections": {
+            "age_s": 0.027379664999898523,
+            "confidence": 0.7970953179530884,
+            "delay_ms": 0.9229909333333332,
+            "hz": 9.663671222229702,
+            "loss_rate": 0.0,
+            "state": "ONLINE"
+          },
+          "/perception/model_state": {
+            "age_s": 0.5309604699978081,
+            "confidence": null,
+            "delay_ms": null,
+            "hz": 1.0004738824558603,
+            "loss_rate": null,
+            "state": "EVENT"
+          },
+          "/perception/ready": {
+            "age_s": 0.5308961089976947,
+            "confidence": null,
+            "delay_ms": null,
+            "hz": 1.000486594658967,
+            "loss_rate": null,
+            "state": "EVENT"
+          },
+          "/perception/targets": {
+            "age_s": 69.19298090099983,
+            "confidence": null,
+            "delay_ms": null,
+            "hz": 0.0,
+            "loss_rate": null,
+            "state": "EVENT"
+          },
+          "/task/state": {
+            "age_s": 59.69776827299938,
+            "confidence": null,
+            "delay_ms": null,
+            "hz": 0.0,
+            "loss_rate": null,
+            "state": "EVENT"
+          }
+        }
+      },
+      "faults": [
+        {
+          "duration_s": 11.999429553998198,
+          "previous": "ONLINE",
+          "recovered": false,
+          "stamp_wall_ns": 1794844898043634470,
+          "topic": "/perception/detections",
+          "type": "DEGRADED"
+        },
+        {
+          "duration_s": 5.29977194499952,
+          "previous": "DEGRADED",
+          "recovered": false,
+          "stamp_wall_ns": 1794844903343409283,
+          "topic": "/perception/detections",
+          "type": "LOST"
+        },
+        {
+          "duration_s": 2.500184550000995,
+          "previous": "LOST",
+          "recovered": false,
+          "stamp_wall_ns": 1794844905843592131,
+          "topic": "/perception/detections",
+          "type": "DEGRADED"
+        },
+        {
+          "duration_s": 0.09944628499943065,
+          "previous": "DEGRADED",
+          "recovered": true,
+          "stamp_wall_ns": 1794844905943034613,
+          "topic": "/perception/detections",
+          "type": "ONLINE"
+        },
+        {
+          "recovered": false,
+          "resources": {
+            "cpu_percent": 99,
+            "network_rtt_ms": 1.0,
+            "path_deviation_m": 0.02,
+            "temperature_c": 92,
+            "voltage_v": 12.0
+          },
+          "stamp_wall_ns": 1794844915843267717,
+          "type": "RESOURCE"
+        },
+        {
+          "recovered": true,
+          "resources": {
+            "cpu_percent": 15,
+            "network_rtt_ms": 1.0,
+            "path_deviation_m": 0.02,
+            "temperature_c": 45,
+            "voltage_v": 12.0
+          },
+          "stamp_wall_ns": 1794844920842416226,
+          "type": "RESOURCE"
+        }
+      ],
+      "task": {
+        "nodes": {
+          "wait_start": {
+            "ts_ns": 1794844895875632480,
+            "task_id": "20261117_000126_45266389",
+            "name": "wait_start",
+            "status": "SUCCESS",
+            "elapsed_s": 0.010417356999823824,
+            "retries": 0,
+            "degraded": false,
+            "error": null
+          },
+          "navigate_to_scan": {
+            "ts_ns": 1794844900633432238,
+            "task_id": "20261117_000126_45266389",
+            "name": "navigate_to_scan",
+            "status": "SUCCESS",
+            "elapsed_s": 4.75750701799916,
+            "retries": 0,
+            "degraded": false,
+            "error": null
+          },
+          "task": {
+            "ts_ns": 1794844922610992998,
+            "task_id": "20261117_000126_45266389",
+            "name": "task",
+            "status": "ABORTED"
+          },
+          "detect_qr": {
+            "ts_ns": 1794844900640305759,
+            "task_id": "20261117_000126_45266389",
+            "name": "detect_qr",
+            "status": "SUCCESS",
+            "elapsed_s": 0.006585250001080567,
+            "retries": 0,
+            "degraded": false,
+            "error": null
+          },
+          "grasp": {
+            "ts_ns": 1794844902645096927,
+            "task_id": "20261117_000126_45266389",
+            "name": "grasp",
+            "status": "SUCCESS",
+            "elapsed_s": 2.00450280899895,
+            "retries": 0,
+            "degraded": false,
+            "error": null
+          },
+          "parallel_checks": {
+            "ts_ns": 1794844902660737211,
+            "task_id": "20261117_000126_45266389",
+            "name": "parallel_checks",
+            "status": "SUCCESS",
+            "elapsed_s": 0.015396525999676669,
+            "retries": 0,
+            "degraded": false,
+            "error": null
+          },
+          "battery_check": {
+            "ts_ns": 1794844902655307060,
+            "task_id": "20261117_000126_45266389",
+            "name": "battery_check",
+            "status": "SUCCESS",
+            "elapsed_s": 0.009416201999556506,
+            "retries": 0,
+            "degraded": false,
+            "error": null
+          },
+          "lidar_check": {
+            "ts_ns": 1794844902656842974,
+            "task_id": "20261117_000126_45266389",
+            "name": "lidar_check",
+            "status": "SUCCESS",
+            "elapsed_s": 0.010239872000965988,
+            "retries": 0,
+            "degraded": false,
+            "error": null
+          }
+        },
+        "current": {
+          "ts_ns": 1794844922610992998,
+          "task_id": "20261117_000126_45266389",
+          "name": "task",
+          "status": "ABORTED"
+        },
+        "context": {
+          "triggered": true,
+          "last_nav_result": {
+            "success": true,
+            "mock": true,
+            "targets": [],
+            "object_pose": null
+          },
+          "target_pose": {
+            "x": 2.1,
+            "y": 0.4,
+            "yaw": 0.0
+          },
+          "target_id": "qr_01",
+          "grasp_result": {
+            "success": true,
+            "mock": true,
+            "targets": [],
+            "object_pose": {
+              "x": 2.1,
+              "y": 0.4,
+              "yaw": 0.0
+            }
+          },
+          "object_pose": {
+            "x": 2.1,
+            "y": 0.4,
+            "yaw": 0.0
+          }
+        }
+      },
+      "ready": true,
+      "referee": {
+        "state": "STOPPED",
+        "remaining_s": 174.3823609659994,
+        "start_countdown_s": 0,
+        "penalties": [],
+        "competition_active": false
+      },
+      "estopped": false,
+      "params": {
+        "nav_speed": 0.25,
+        "perception_hz": 10.0,
+        "confidence": 0.65,
+        "scene": "training_mock"
+      },
+      "pid": 44272,
+      "perception": {
+        "pid": 44271,
+        "model_path": "/home/ubuntu2204/smartcar-advanced/M6/M6-1/models/best_fp32.onnx",
+        "model_sha256": "5f8f2588f4f087931d62d95d86834223e035a0c855c35414872c8f900094e931"
+      },
+      "run": "/home/ubuntu2204/smartcar-advanced/M5/runs/20261117_000126_45266389"
+    },
+    "resources": {
+      "aggregator_cpu": {
+        "mean": 1.2744855967078186,
+        "max": 7.5
+      },
+      "aggregator_rss_mb": {
+        "mean": 22.902022247942387,
+        "max": 22.91796875
+      },
+      "host_cpu": {
+        "mean": 4.032510288065849,
+        "max": 32.0
+      },
+      "host_rss_mb": {
+        "mean": 91.61257394547324,
+        "max": 94.56640625
+      }
+    },
+    "bandwidth_kbytes_s": 13.126122463140314
+  },
+  "m5_formal_runs": 5,
+  "m5_audits_valid": true,
+  "m5_review_max_s": 0.010329794000426773,
+  "m6_cpu": {
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "hardware": "VMware Ubuntu 22.04 CPU; not Orin",
+    "source": "replay of real K230 indoor USB captures",
+    "device": "cpu",
+    "threads": 2,
+    "graph": "all",
+    "frames": 1450,
+    "seconds": 60.03613143700022,
+    "fps": 24.152122485133447,
+    "cold_ms": 44.035078999513644,
+    "warmup_frames": 11,
+    "p50_ms": 41.26337800062174,
+    "p95_ms": 49.219342949527345,
+    "p99_ms": 54.144359660476766,
+    "max_ms": 70.46974100012449,
+    "rss_peak_mb": 118.296875,
+    "cpu_percent_one_core": 200.02954408549482,
+    "model_bytes": 12710241
+  },
+  "m6_live": {
+    "source": "real K230 USB camera, CPU ORT on VMware; not board inference",
+    "rotation_degrees": 180,
+    "completed": true,
+    "received_frames": 406,
+    "wall_span_s": 65.45861251399765,
+    "board_span_s": 64.797,
+    "p95_infer_ms": 74.27946199732105
+  },
+  "m6_quantization": {
+    "calibration": {
+      "files": 120,
+      "unique_hashes": 120,
+      "source": "real K230 USB adjacent indoor frames; NOT race distribution, no labels",
+      "race_qualification": false
+    },
+    "schemes": [
+      {
+        "mode": "dynamic",
+        "status": "PASS_functional_only",
+        "bytes": 3389668,
+        "quantized_ops": {
+          "QuantizeLinear": 0,
+          "DequantizeLinear": 0,
+          "ConvInteger": 64,
+          "QLinearConv": 0,
+          "MatMulInteger": 0
+        },
+        "output_shape": [
+          1,
+          84,
+          2100
+        ]
+      },
+      {
+        "mode": "static_qdq",
+        "status": "PASS_functional_only",
+        "bytes": 3422048,
+        "quantized_ops": {
+          "QuantizeLinear": 123,
+          "DequantizeLinear": 250,
+          "ConvInteger": 0,
+          "QLinearConv": 0,
+          "MatMulInteger": 0
+        },
+        "output_shape": [
+          1,
+          84,
+          2100
+        ]
+      },
+      {
+        "mode": "static_qoperator",
+        "status": "PASS_functional_only",
+        "bytes": 3365413,
+        "quantized_ops": {
+          "QuantizeLinear": 59,
+          "DequantizeLinear": 64,
+          "ConvInteger": 0,
+          "QLinearConv": 64,
+          "MatMulInteger": 0
+        },
+        "output_shape": [
+          1,
+          84,
+          2100
+        ]
+      }
+    ],
+    "map": null,
+    "speedup_qualification": null
+  },
+  "m6_mnn": {
+    "backend": "MNN 3.2.0 CPU on VMware x86_64; NOT an Orin accelerator result",
+    "timing_scope": "preprocess + CPU inference and host IO + same NMS",
+    "frames": 1291,
+    "seconds": 60.03530369700093,
+    "cosine_similarity_vs_ort": 1.0,
+    "max_absolute_error": 0.075775146484375,
+    "p50_ms": 46.81881400028942,
+    "p95_ms": 55.82305149982858,
+    "fps": 21.503391062933844,
+    "model_bytes": 12689112,
+    "map": null
+  },
+  "m6_tuning": {
+    "hardware": "VMware CPU only, not Orin",
+    "baseline": {
+      "threads": 2,
+      "inter_threads": 1,
+      "graph": "all",
+      "mem_pattern": true,
+      "cpu_arena": true,
+      "execution_mode": "sequential"
+    },
+    "tuned_config": {
+      "threads": 2,
+      "inter_threads": 1,
+      "graph": "all",
+      "mem_pattern": true,
+      "cpu_arena": true,
+      "execution_mode": "sequential"
+    },
+    "frames": 1000,
+    "p50_ms": 43.384590000641765,
+    "p95_ms": 48.013598649504274,
+    "p99_ms": 50.17518456948892,
+    "max_ms": 97.20905199901608,
+    "pre_p95_ms": 1.0817217998010162,
+    "core_p95_ms": 46.596795950426895,
+    "post_p95_ms": 0.9006867003336082,
+    "cuda_graph_status": "PENDING real CUDA provider; runtime includes fixed-buffer IOBinding implementation",
+    "unavailable": {
+      "CUDAExecutionProvider": "['AzureExecutionProvider', 'CPUExecutionProvider']",
+      "TensorrtExecutionProvider": "['AzureExecutionProvider', 'CPUExecutionProvider']"
+    },
+    "pass_on_orin": null
+  },
+  "m6_pipeline": {
+    "serial": {
+      "produced": 5441,
+      "inferred": 5441,
+      "consumed": 5441,
+      "seconds": 180.004340382,
+      "fps": 30.22704890589453,
+      "queue_capacity": 4,
+      "queue_wait_s": 0.0,
+      "buffer_addresses": [
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 109787865146496,
+          "output_pointer": 109787860673536
+        }
+      ],
+      "mode": 1,
+      "hardware": "VMware Ubuntu CPU, not Orin",
+      "source": "replay of real K230 USB indoor frames",
+      "p50_ms": 38.40341099930811,
+      "p95_ms": 46.5056339999137,
+      "p99_ms": 49.67613940061713,
+      "rss_peak_mb": 120.8828125,
+      "rss_warm_range_mb": 2.0234375,
+      "cpu_mean_percent": 199.76373779637376,
+      "drops_inside_pipeline": 0
+    },
+    "dual": {
+      "produced": 5111,
+      "inferred": 5111,
+      "consumed": 5111,
+      "seconds": 180.22469120000096,
+      "fps": 28.35904429059703,
+      "queue_capacity": 4,
+      "queue_wait_s": 0.3219543189934484,
+      "buffer_addresses": [
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 97796177926336,
+          "output_pointer": 97796166375104
+        },
+        {
+          "slot": 1,
+          "pre_to_infer_pointer": 97796174603248,
+          "output_pointer": 97796172486544
+        },
+        {
+          "slot": 2,
+          "pre_to_infer_pointer": 97796175832064,
+          "output_pointer": 97796168423312
+        },
+        {
+          "slot": 3,
+          "pre_to_infer_pointer": 97796169128928,
+          "output_pointer": 97796170357744
+        },
+        {
+          "slot": 4,
+          "pre_to_infer_pointer": 97796187183744,
+          "output_pointer": 97796171063360
+        },
+        {
+          "slot": 5,
+          "pre_to_infer_pointer": 97796188412560,
+          "output_pointer": 97796189641376
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 97796177926336,
+          "output_pointer": 97796166375104
+        },
+        {
+          "slot": 1,
+          "pre_to_infer_pointer": 97796174603248,
+          "output_pointer": 97796172486544
+        },
+        {
+          "slot": 2,
+          "pre_to_infer_pointer": 97796175832064,
+          "output_pointer": 97796168423312
+        },
+        {
+          "slot": 3,
+          "pre_to_infer_pointer": 97796169128928,
+          "output_pointer": 97796170357744
+        },
+        {
+          "slot": 4,
+          "pre_to_infer_pointer": 97796187183744,
+          "output_pointer": 97796171063360
+        },
+        {
+          "slot": 5,
+          "pre_to_infer_pointer": 97796188412560,
+          "output_pointer": 97796189641376
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 97796177926336,
+          "output_pointer": 97796166375104
+        },
+        {
+          "slot": 1,
+          "pre_to_infer_pointer": 97796174603248,
+          "output_pointer": 97796172486544
+        },
+        {
+          "slot": 2,
+          "pre_to_infer_pointer": 97796175832064,
+          "output_pointer": 97796168423312
+        },
+        {
+          "slot": 3,
+          "pre_to_infer_pointer": 97796169128928,
+          "output_pointer": 97796170357744
+        },
+        {
+          "slot": 4,
+          "pre_to_infer_pointer": 97796187183744,
+          "output_pointer": 97796171063360
+        },
+        {
+          "slot": 5,
+          "pre_to_infer_pointer": 97796188412560,
+          "output_pointer": 97796189641376
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 97796177926336,
+          "output_pointer": 97796166375104
+        },
+        {
+          "slot": 1,
+          "pre_to_infer_pointer": 97796174603248,
+          "output_pointer": 97796172486544
+        }
+      ],
+      "mode": 2,
+      "hardware": "VMware Ubuntu CPU, not Orin",
+      "source": "replay of real K230 USB indoor frames",
+      "p50_ms": 224.47568899951875,
+      "p95_ms": 263.83635150068585,
+      "p99_ms": 285.45819010068936,
+      "rss_peak_mb": 125.73046875,
+      "rss_warm_range_mb": 1.9375,
+      "cpu_mean_percent": 200.35774058577405,
+      "drops_inside_pipeline": 0
+    },
+    "triple": {
+      "produced": 5659,
+      "inferred": 5659,
+      "consumed": 5659,
+      "seconds": 180.21859520900034,
+      "fps": 31.400755251905228,
+      "queue_capacity": 4,
+      "queue_wait_s": 179.60660894701505,
+      "buffer_addresses": [
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 102903341440064,
+          "output_pointer": 102903335768720
+        },
+        {
+          "slot": 1,
+          "pre_to_infer_pointer": 102903332588896,
+          "output_pointer": 102903342668880
+        },
+        {
+          "slot": 2,
+          "pre_to_infer_pointer": 102903337114448,
+          "output_pointer": 102903340490720
+        },
+        {
+          "slot": 3,
+          "pre_to_infer_pointer": 102903338343264,
+          "output_pointer": 102903329213696
+        },
+        {
+          "slot": 4,
+          "pre_to_infer_pointer": 102903350771200,
+          "output_pointer": 102903333817712
+        },
+        {
+          "slot": 5,
+          "pre_to_infer_pointer": 102903352000016,
+          "output_pointer": 102903353228832
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 102903341440064,
+          "output_pointer": 102903335768720
+        },
+        {
+          "slot": 1,
+          "pre_to_infer_pointer": 102903332588896,
+          "output_pointer": 102903342668880
+        },
+        {
+          "slot": 2,
+          "pre_to_infer_pointer": 102903337114448,
+          "output_pointer": 102903340490720
+        },
+        {
+          "slot": 3,
+          "pre_to_infer_pointer": 102903338343264,
+          "output_pointer": 102903329213696
+        },
+        {
+          "slot": 4,
+          "pre_to_infer_pointer": 102903350771200,
+          "output_pointer": 102903333817712
+        },
+        {
+          "slot": 5,
+          "pre_to_infer_pointer": 102903352000016,
+          "output_pointer": 102903353228832
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 102903341440064,
+          "output_pointer": 102903335768720
+        },
+        {
+          "slot": 1,
+          "pre_to_infer_pointer": 102903332588896,
+          "output_pointer": 102903342668880
+        },
+        {
+          "slot": 2,
+          "pre_to_infer_pointer": 102903337114448,
+          "output_pointer": 102903340490720
+        },
+        {
+          "slot": 3,
+          "pre_to_infer_pointer": 102903338343264,
+          "output_pointer": 102903329213696
+        },
+        {
+          "slot": 4,
+          "pre_to_infer_pointer": 102903350771200,
+          "output_pointer": 102903333817712
+        },
+        {
+          "slot": 5,
+          "pre_to_infer_pointer": 102903352000016,
+          "output_pointer": 102903353228832
+        },
+        {
+          "slot": 0,
+          "pre_to_infer_pointer": 102903341440064,
+          "output_pointer": 102903335768720
+        },
+        {
+          "slot": 1,
+          "pre_to_infer_pointer": 102903332588896,
+          "output_pointer": 102903342668880
+        }
+      ],
+      "mode": 3,
+      "hardware": "VMware Ubuntu CPU, not Orin",
+      "source": "replay of real K230 USB indoor frames",
+      "p50_ms": 209.99842200035346,
+      "p95_ms": 252.9573252988484,
+      "p99_ms": 264.0308899597949,
+      "rss_peak_mb": 126.625,
+      "rss_warm_range_mb": 2.1484375,
+      "cpu_mean_percent": 204.16917712691773,
+      "drops_inside_pipeline": 0
+    }
+  },
+  "m6_pipeline_speedup": 1.0388296703943802,
+  "qualification": {
+    "race_map": null,
+    "orin_cpu_gpu_npu": null,
+    "cuda_graph_full_chain": null,
+    "pipeline_1_6x": false,
+    "int8_2x": false
+  }
+}
