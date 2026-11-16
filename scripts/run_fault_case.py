@@ -21,5 +21,6 @@ mode.publish(String(data='normal')); api('RESUME'); deadline=time.monotonic()+25
 while not (run/'task_report.json').exists() and time.monotonic()<deadline: time.sleep(.2)
 assert (run/'task_report.json').exists(); report=json.loads((run/'task_report.json').read_text()); assert report['degraded'] and report['result']=='SUCCESS'
 api('STOP'); api('SEAL_RUN'); subprocess.run([str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M5/M5-4/quick_review.py'),str(run)],check=True)
+review=json.loads((run/'review.json').read_text()); assert any('pause task and request lidar-only fallback' in c and 'measured task pause' in c for c in review['causal_chains'])
 (ROOT/'M5/experiments/fault_case.json').write_text(json.dumps(dict(run=str(run),paused_on_real_ROS_fault=True,report=report),indent=2)); print('CONTROLLED_FAULT_CASE_PASS',run)
 node.destroy_node(); rclpy.try_shutdown()

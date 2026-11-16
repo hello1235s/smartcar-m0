@@ -40,7 +40,7 @@ def review(run):
     chains=[]
     for fault in faults:
         at=fault.get('stamp_wall_ns',0); cause=str(at)+':'+fault.get('topic',''); later=[x for x in actions if x['payload'].get('cause_id')==cause]
-        action=later[0] if later else None
+        action=next((x for x in later if x['topic']=='/operator/fallback'),None)
         text='%s on %s (recorded telemetry) → %s → %s'%(fault.get('type'),fault.get('topic','resources'),action['payload'].get('action',action['topic']) if action else 'no causally linked corrective action recorded','handling delay %.3fs; extra navigation cost unmeasured'%((action['wall_ns']-at)/1e9) if action else 'cost unmeasured')
         cost=next((x['payload']['pause_duration_s'] for x in later if x['topic']=='/operator/fallback_cost'),None)
         if cost is not None: text+='; measured task pause %.3fs'%cost

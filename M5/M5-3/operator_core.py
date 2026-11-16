@@ -136,7 +136,7 @@ class Operator:
             self.context.degraded=True; self.context.metadata['navigation_mode']='lidar_only_requested'; self.context.metadata['fault_pause']=dict(cause_id=cause,wall_ns=time.time_ns())
         if self.referee.state=='RUNNING': self.command('PAUSE',user='fault_policy')
         event=dict(cause_id=cause,action='pause task and request lidar-only fallback',task_mode='explicit_mock' if self.context else 'no active task',navigation_recovery_time_s=None)
-        self.audit.append('SENSOR_FALLBACK','fault_policy',**event); self.emit('/operator/fallback',event)
+        self.audit.append('SENSOR_FALLBACK','fault_policy',event=event); self.emit('/operator/fallback',event)
 
     def tick(self):
         if self.closed: return
