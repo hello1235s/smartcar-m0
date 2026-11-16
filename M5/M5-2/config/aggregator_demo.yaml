@@ -1,0 +1,4 @@
+dashboard_aggregator:
+  ros__parameters:
+    topic_patterns: ['/perception/*', '/navigation/*', '/control/*', '/hw/*', '/task/state']
+    topic_min_hz_json: '{"/hw/*":1.0,"/task/state":0.0,"/perception/model_state":0.0,"/perception/ready":0.0,"/perception/targets":0.0}'

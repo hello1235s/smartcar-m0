@@ -24,7 +24,7 @@ def api(action,**values):
     data=json.dumps(dict(action=action,**values)).encode(); req=urllib.request.Request('http://127.0.0.1:8081/api/command',data=data,headers={'Content-Type':'application/json'})
     with urllib.request.urlopen(req,timeout=15) as response: return json.load(response)
 try:
-    aggregator=start([str(ROOT/'install_ros/dashboard_tools/lib/dashboard_tools/dashboard_aggregator')],'aggregator')
+    aggregator=start([str(ROOT/'install_ros/dashboard_tools/lib/dashboard_tools/dashboard_aggregator'),'--ros-args','--params-file',str(ROOT/'M5/M5-2/config/aggregator_demo.yaml')],'aggregator')
     bridge=start([str(ROOT/'install_ros/smartcar_training/lib/smartcar_training/control_bridge')],'chassis')
     perception=start([str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M6/M6-1/perception_node.py')],'perception')
     host=start([str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M5/M5-2/host_side/dashboard.py'),'--no-browser'],'host')

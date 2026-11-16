@@ -95,9 +95,11 @@ class Host(Node):
                 future=self.speed.call_async(req); deadline=time.monotonic()+3
                 while not future.done() and time.monotonic()<deadline: time.sleep(.01)
                 if not future.done() or not all(r.successful for r in future.result().results): raise RuntimeError('Chassis rejected speed; parameters unchanged')
-                patterns=['/perception/targets','/perception/model_state','/hw/k230','/task/state','/navigation/*','/control/*'] if data['scene']=='usb_indoor' else ['/perception/detections','/perception/auto_discovered','/perception/model_state','/navigation/*','/control/*','/hw/resources','/task/state']
+                patterns=['/perception/*','/navigation/*','/control/*','/hw/*','/task/state']
+                thresholds={'/hw/*':1.,'/task/state':0.,'/perception/model_state':0.,'/perception/ready':0.}
+                thresholds.update({'/perception/detections':0.,'/perception/auto_discovered':0.,'/hw/resources':0.} if data['scene']=='usb_indoor' else {'/perception/targets':0.,'/hw/k230':0.})
                 if self.patterns.service_is_ready():
-                    req=SetParameters.Request(); req.parameters=[Parameter(name='topic_patterns',value=ParameterValue(type=ParameterType.PARAMETER_STRING_ARRAY,string_array_value=patterns))]
+                    req=SetParameters.Request(); req.parameters=[Parameter(name='topic_patterns',value=ParameterValue(type=ParameterType.PARAMETER_STRING_ARRAY,string_array_value=patterns)),Parameter(name='topic_min_hz_json',value=ParameterValue(type=ParameterType.PARAMETER_STRING,string_value=json.dumps(thresholds)))]
                     result=self.patterns.call_async(req); deadline=time.monotonic()+3
                     while not result.done() and time.monotonic()<deadline: time.sleep(.01)
                     if not result.done() or not all(r.successful for r in result.result().results): raise RuntimeError('Aggregation patterns rejected')
