@@ -1,0 +1,27 @@
+{
+  "excluded_fp32_layers": [
+    "/model.21/cv1/conv/Conv",
+    "/model.22/cv3.1/cv3.1.1/conv/Conv",
+    "/model.22/cv3.2/cv3.2.1/conv/Conv"
+  ],
+  "reason": "Three lowest measured Conv-output cosine similarities, not assumed first/last layers",
+  "tests": [
+    {
+      "file": "camera_00.jpg",
+      "output_cosine_similarity": 0.9985086116890258,
+      "max_absolute_error": 154.08343505859375
+    },
+    {
+      "file": "camera_01.jpg",
+      "output_cosine_similarity": 0.9982692118486989,
+      "max_absolute_error": 163.10556030273438
+    },
+    {
+      "file": "camera_02.jpg",
+      "output_cosine_similarity": 0.9984753217154924,
+      "max_absolute_error": 152.99893188476562
+    }
+  ],
+  "map": null,
+  "map_qualification": "Pending independent labeled race data; no QAT accuracy claim"
+}

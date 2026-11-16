@@ -1,0 +1,63 @@
+{
+  "calibration": {
+    "files": 120,
+    "unique_hashes": 120,
+    "source": "real K230 USB adjacent indoor frames; NOT race distribution, no labels",
+    "race_qualification": false
+  },
+  "schemes": [
+    {
+      "mode": "dynamic",
+      "status": "PASS_functional_only",
+      "bytes": 3389668,
+      "quantized_ops": {
+        "QuantizeLinear": 0,
+        "DequantizeLinear": 0,
+        "ConvInteger": 64,
+        "QLinearConv": 0,
+        "MatMulInteger": 0
+      },
+      "output_shape": [
+        1,
+        84,
+        2100
+      ]
+    },
+    {
+      "mode": "static_qdq",
+      "status": "PASS_functional_only",
+      "bytes": 3422048,
+      "quantized_ops": {
+        "QuantizeLinear": 123,
+        "DequantizeLinear": 250,
+        "ConvInteger": 0,
+        "QLinearConv": 0,
+        "MatMulInteger": 0
+      },
+      "output_shape": [
+        1,
+        84,
+        2100
+      ]
+    },
+    {
+      "mode": "static_qoperator",
+      "status": "PASS_functional_only",
+      "bytes": 3365413,
+      "quantized_ops": {
+        "QuantizeLinear": 59,
+        "DequantizeLinear": 64,
+        "ConvInteger": 0,
+        "QLinearConv": 64,
+        "MatMulInteger": 0
+      },
+      "output_shape": [
+        1,
+        84,
+        2100
+      ]
+    }
+  ],
+  "map": null,
+  "speedup_qualification": null
+}

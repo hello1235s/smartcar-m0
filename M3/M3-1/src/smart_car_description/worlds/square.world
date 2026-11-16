@@ -1,0 +1,6 @@
+<?xml version="1.0"?><sdf version="1.6"><world name="smartcar_training">
+    <physics name="default" type="ode"><max_step_size>0.002</max_step_size><real_time_update_rate>500</real_time_update_rate><ode><solver><type>quick</type><iters>80</iters></solver></ode></physics>
+    <gravity>0 0 -9.81</gravity><light name="sun" type="directional"><cast_shadows>false</cast_shadows><diffuse>0.8 0.8 0.8 1</diffuse><direction>-0.5 -0.5 -1</direction></light>
+    <model name="ground"><static>true</static><link name="plane"><collision name="ground"><geometry><plane><normal>0 0 1</normal><size>40 40</size></plane></geometry></collision><visual name="ground"><geometry><plane><normal>0 0 1</normal><size>40 40</size></plane></geometry></visual></link></model>
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so"><ros><namespace>/gazebo</namespace></ros><update_rate>50</update_rate></plugin>
+    </world></sdf>

@@ -1,0 +1,33 @@
+{
+  "hardware": "VMware CPU only, not Orin",
+  "baseline": {
+    "threads": 2,
+    "inter_threads": 1,
+    "graph": "all",
+    "mem_pattern": true,
+    "cpu_arena": true,
+    "execution_mode": "sequential"
+  },
+  "tuned_config": {
+    "threads": 2,
+    "inter_threads": 1,
+    "graph": "all",
+    "mem_pattern": true,
+    "cpu_arena": true,
+    "execution_mode": "sequential"
+  },
+  "frames": 1000,
+  "p50_ms": 43.384590000641765,
+  "p95_ms": 48.013598649504274,
+  "p99_ms": 50.17518456948892,
+  "max_ms": 97.20905199901608,
+  "pre_p95_ms": 1.0817217998010162,
+  "core_p95_ms": 46.596795950426895,
+  "post_p95_ms": 0.9006867003336082,
+  "cuda_graph_status": "PENDING real CUDA provider; runtime includes fixed-buffer IOBinding implementation",
+  "unavailable": {
+    "CUDAExecutionProvider": "['AzureExecutionProvider', 'CPUExecutionProvider']",
+    "TensorrtExecutionProvider": "['AzureExecutionProvider', 'CPUExecutionProvider']"
+  },
+  "pass_on_orin": null
+}

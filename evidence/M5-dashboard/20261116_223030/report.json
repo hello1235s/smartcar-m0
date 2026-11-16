@@ -1,0 +1,337 @@
+{
+  "duration_s": 65.30129354000019,
+  "discovered_topics": [
+    "/hw/resources",
+    "/navigation/quality",
+    "/perception/auto_discovered",
+    "/perception/detections",
+    "/task/state"
+  ],
+  "metrics_hz": 10.01660090022762,
+  "mean_message_bytes": 904.4659090909091,
+  "camera_lost_detection_s": 0.47544533600012073,
+  "fault_types": [
+    "DEGRADED",
+    "LOST",
+    "ONLINE",
+    "RESOURCE"
+  ],
+  "estop_continuous_override_blocked": true,
+  "actions": {
+    "start": {
+      "ok": true,
+      "result": {
+        "state": "COUNTDOWN",
+        "remaining_s": 180.0,
+        "start_countdown_s": 2.999995422000211,
+        "penalties": []
+      }
+    },
+    "pause": {
+      "ok": true,
+      "result": {
+        "state": "PAUSED",
+        "remaining_s": 179.07993947500108,
+        "start_countdown_s": 0,
+        "penalties": []
+      }
+    },
+    "resume": {
+      "ok": true,
+      "result": {
+        "state": "RUNNING",
+        "remaining_s": 179.07749312700253,
+        "start_countdown_s": 0,
+        "penalties": []
+      }
+    },
+    "params": {
+      "ok": true,
+      "result": {
+        "nav_speed": 0.25,
+        "perception_hz": 10.0,
+        "confidence": 0.65,
+        "scene": "training_mock"
+      }
+    },
+    "stop": {
+      "ok": true,
+      "result": {
+        "state": "STOPPED",
+        "remaining_s": 155.0869733110012,
+        "start_countdown_s": 0,
+        "penalties": []
+      }
+    },
+    "stop_t": 15451.801666451,
+    "reset": {
+      "ok": true,
+      "result": {
+        "manual_clear_requested": true
+      }
+    }
+  },
+  "final_state": {
+    "metrics": {
+      "resources": {
+        "cpu_percent": 15,
+        "network_rtt_ms": 1.0,
+        "path_deviation_m": 0.02,
+        "temperature_c": 45,
+        "voltage_v": 12.0
+      },
+      "stamp_wall_ns": 1794839500931760857,
+      "topics": {
+        "/hw/resources": {
+          "age_s": 0.15288883999892278,
+          "confidence": null,
+          "delay_ms": null,
+          "hz": 5.0024285734674345,
+          "loss_rate": null,
+          "state": "ONLINE"
+        },
+        "/navigation/quality": {
+          "age_s": 0.05047240799831343,
+          "confidence": 0.7963440361751819,
+          "delay_ms": 1.0784085333333335,
+          "hz": 9.989471160488456,
+          "loss_rate": 0.0,
+          "state": "ONLINE"
+        },
+        "/perception/auto_discovered": {
+          "age_s": 0.050375013999655494,
+          "confidence": 0.7963440361751819,
+          "delay_ms": 1.1713749333333332,
+          "hz": 9.991638875639365,
+          "loss_rate": 0.0,
+          "state": "ONLINE"
+        },
+        "/perception/detections": {
+          "age_s": 0.08564948399907735,
+          "confidence": 0.7985932000993637,
+          "delay_ms": 0.9938688000000001,
+          "hz": 9.478299558748077,
+          "loss_rate": 0.0,
+          "state": "ONLINE"
+        },
+        "/task/state": {
+          "age_s": 59.77870550999978,
+          "confidence": null,
+          "delay_ms": null,
+          "hz": 0.0,
+          "loss_rate": null,
+          "state": "EVENT"
+        }
+      }
+    },
+    "faults": [
+      {
+        "duration_s": 11.8023301180001,
+        "previous": "ONLINE",
+        "recovered": false,
+        "stamp_wall_ns": 1794839443051780358,
+        "topic": "/perception/detections",
+        "type": "DEGRADED"
+      },
+      {
+        "duration_s": 5.201382971999919,
+        "previous": "DEGRADED",
+        "recovered": false,
+        "stamp_wall_ns": 1794839448253161618,
+        "topic": "/perception/detections",
+        "type": "LOST"
+      },
+      {
+        "duration_s": 5.703492233998986,
+        "previous": "LOST",
+        "recovered": false,
+        "stamp_wall_ns": 1794839453956654407,
+        "topic": "/perception/detections",
+        "type": "DEGRADED"
+      },
+      {
+        "duration_s": 0.0981887670004653,
+        "previous": "DEGRADED",
+        "recovered": true,
+        "stamp_wall_ns": 1794839454054843095,
+        "topic": "/perception/detections",
+        "type": "ONLINE"
+      },
+      {
+        "recovered": false,
+        "resources": {
+          "cpu_percent": 99,
+          "network_rtt_ms": 1.0,
+          "path_deviation_m": 0.02,
+          "temperature_c": 92,
+          "voltage_v": 12.0
+        },
+        "stamp_wall_ns": 1794839460957457890,
+        "type": "RESOURCE"
+      },
+      {
+        "recovered": true,
+        "resources": {
+          "cpu_percent": 15,
+          "network_rtt_ms": 1.0,
+          "path_deviation_m": 0.02,
+          "temperature_c": 45,
+          "voltage_v": 12.0
+        },
+        "stamp_wall_ns": 1794839466156689563,
+        "type": "RESOURCE"
+      }
+    ],
+    "task": {
+      "nodes": {
+        "wait_start": {
+          "ts_ns": 1794839441021522841,
+          "task_id": "20261116_223031_967843520",
+          "name": "wait_start",
+          "status": "SUCCESS",
+          "elapsed_s": 0.011033658000087598,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "navigate_to_scan": {
+          "ts_ns": 1794839445795924139,
+          "task_id": "20261116_223031_967843520",
+          "name": "navigate_to_scan",
+          "status": "SUCCESS",
+          "elapsed_s": 4.774180112999602,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "task": {
+          "ts_ns": 1794839467784087659,
+          "task_id": "20261116_223031_967843520",
+          "name": "task",
+          "status": "ABORTED"
+        },
+        "detect_qr": {
+          "ts_ns": 1794839445802921598,
+          "task_id": "20261116_223031_967843520",
+          "name": "detect_qr",
+          "status": "SUCCESS",
+          "elapsed_s": 0.0066772230002243305,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "grasp": {
+          "ts_ns": 1794839447808900555,
+          "task_id": "20261116_223031_967843520",
+          "name": "grasp",
+          "status": "SUCCESS",
+          "elapsed_s": 2.005706191999707,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "parallel_checks": {
+          "ts_ns": 1794839447827377001,
+          "task_id": "20261116_223031_967843520",
+          "name": "parallel_checks",
+          "status": "SUCCESS",
+          "elapsed_s": 0.01816338099888526,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "battery_check": {
+          "ts_ns": 1794839447819942241,
+          "task_id": "20261116_223031_967843520",
+          "name": "battery_check",
+          "status": "SUCCESS",
+          "elapsed_s": 0.009040859000378987,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        },
+        "lidar_check": {
+          "ts_ns": 1794839447824669700,
+          "task_id": "20261116_223031_967843520",
+          "name": "lidar_check",
+          "status": "SUCCESS",
+          "elapsed_s": 0.008302644999275799,
+          "retries": 0,
+          "degraded": false,
+          "error": null
+        }
+      },
+      "current": {
+        "ts_ns": 1794839467784087659,
+        "task_id": "20261116_223031_967843520",
+        "name": "task",
+        "status": "ABORTED"
+      },
+      "context": {
+        "triggered": true,
+        "last_nav_result": {
+          "success": true,
+          "mock": true,
+          "targets": [],
+          "object_pose": null
+        },
+        "target_pose": {
+          "x": 2.1,
+          "y": 0.4,
+          "yaw": 0.0
+        },
+        "target_id": "qr_01",
+        "grasp_result": {
+          "success": true,
+          "mock": true,
+          "targets": [],
+          "object_pose": {
+            "x": 2.1,
+            "y": 0.4,
+            "yaw": 0.0
+          }
+        },
+        "object_pose": {
+          "x": 2.1,
+          "y": 0.4,
+          "yaw": 0.0
+        }
+      }
+    },
+    "ready": true,
+    "referee": {
+      "state": "STOPPED",
+      "remaining_s": 155.0869733110012,
+      "start_countdown_s": 0,
+      "penalties": []
+    },
+    "estopped": false,
+    "params": {
+      "nav_speed": 0.25,
+      "perception_hz": 10.0,
+      "confidence": 0.65,
+      "scene": "training_mock"
+    },
+    "pid": 25149,
+    "run": "/home/ubuntu2204/smartcar-advanced/M5/runs/20261116_223031_967843520"
+  },
+  "resources": {
+    "aggregator_cpu": {
+      "mean": 1.3510204081632649,
+      "max": 18.9
+    },
+    "aggregator_rss_mb": {
+      "mean": 22.43270089285714,
+      "max": 22.44921875
+    },
+    "host_cpu": {
+      "mean": 6.565714285714295,
+      "max": 25.2
+    },
+    "host_rss_mb": {
+      "mean": 90.08236607142857,
+      "max": 92.3671875
+    }
+  },
+  "bandwidth_kbytes_s": 9.059674039225195
+}

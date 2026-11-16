@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "file": "hardware/k230/smartcar_usb_20261116_200340/camera_00.jpg",
+      "cosine_similarity": 0.9999998807907104,
+      "max_absolute_error": 0.00290679931640625,
+      "torch_detections": [],
+      "onnx_detections": [],
+      "count_equal": true
+    },
+    {
+      "file": "hardware/k230/smartcar_usb_20261116_200340/camera_01.jpg",
+      "cosine_similarity": 0.9999998807907104,
+      "max_absolute_error": 0.001312255859375,
+      "torch_detections": [],
+      "onnx_detections": [],
+      "count_equal": true
+    },
+    {
+      "file": "hardware/k230/smartcar_usb_20261116_200340/camera_02.jpg",
+      "cosine_similarity": 1.0,
+      "max_absolute_error": 0.001129150390625,
+      "torch_detections": [],
+      "onnx_detections": [],
+      "count_equal": true
+    }
+  ],
+  "dynamic_batch_2_shape": [
+    2,
+    84,
+    2100
+  ],
+  "checker": "PASS",
+  "qualification": "VM functional test only"
+}

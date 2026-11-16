@@ -1,0 +1,123 @@
+source: official Ultralytics YOLOv8n COCO, v8.3.0 asset
+purpose: indoor functional validation; NOT race-trained
+weights_sha256: f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36
+onnx_sha256: 5f8f2588f4f087931d62d95d86834223e035a0c855c35414872c8f900094e931
+input:
+  name: images
+  shape:
+  - batch
+  - 3
+  - 320
+  - 320
+  dtype: float32
+  layout: RGB_NCHW
+  normalization: /255
+  letterbox: 114
+output:
+  name: output0
+  shape:
+  - batch
+  - 84
+  - 2100
+  format: xywh_pixels + 80 class scores; no objectness
+opset: 17
+operators:
+- Add
+- Concat
+- Constant
+- Conv
+- Div
+- Gather
+- MaxPool
+- Mul
+- Reshape
+- Resize
+- Shape
+- Sigmoid
+- Slice
+- Softmax
+- Split
+- Sub
+- Transpose
+- Unsqueeze
+classes:
+  0: person
+  1: bicycle
+  2: car
+  3: motorcycle
+  4: airplane
+  5: bus
+  6: train
+  7: truck
+  8: boat
+  9: traffic light
+  10: fire hydrant
+  11: stop sign
+  12: parking meter
+  13: bench
+  14: bird
+  15: cat
+  16: dog
+  17: horse
+  18: sheep
+  19: cow
+  20: elephant
+  21: bear
+  22: zebra
+  23: giraffe
+  24: backpack
+  25: umbrella
+  26: handbag
+  27: tie
+  28: suitcase
+  29: frisbee
+  30: skis
+  31: snowboard
+  32: sports ball
+  33: kite
+  34: baseball bat
+  35: baseball glove
+  36: skateboard
+  37: surfboard
+  38: tennis racket
+  39: bottle
+  40: wine glass
+  41: cup
+  42: fork
+  43: knife
+  44: spoon
+  45: bowl
+  46: banana
+  47: apple
+  48: sandwich
+  49: orange
+  50: broccoli
+  51: carrot
+  52: hot dog
+  53: pizza
+  54: donut
+  55: cake
+  56: chair
+  57: couch
+  58: potted plant
+  59: bed
+  60: dining table
+  61: toilet
+  62: tv
+  63: laptop
+  64: mouse
+  65: remote
+  66: keyboard
+  67: cell phone
+  68: microwave
+  69: oven
+  70: toaster
+  71: sink
+  72: refrigerator
+  73: book
+  74: clock
+  75: vase
+  76: scissors
+  77: teddy bear
+  78: hair drier
+  79: toothbrush

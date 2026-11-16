@@ -1,0 +1,103 @@
+{
+  "duration_s": 65.03804500700062,
+  "discovered_topics": [],
+  "metrics_hz": 9.995668343849166,
+  "mean_message_bytes": 166.0,
+  "camera_lost_detection_s": null,
+  "fault_types": [],
+  "estop_continuous_override_blocked": true,
+  "actions": {
+    "start": {
+      "ok": true,
+      "result": {
+        "state": "COUNTDOWN",
+        "remaining_s": 180.0,
+        "start_countdown_s": 2.9999967189996823,
+        "penalties": []
+      }
+    },
+    "pause": {
+      "ok": true,
+      "result": {
+        "state": "PAUSED",
+        "remaining_s": 179.08975212599944,
+        "start_countdown_s": 0,
+        "penalties": []
+      }
+    },
+    "resume": {
+      "ok": true,
+      "result": {
+        "state": "RUNNING",
+        "remaining_s": 179.08551587500006,
+        "start_countdown_s": 0,
+        "penalties": []
+      }
+    },
+    "params": {
+      "ok": true,
+      "result": {
+        "nav_speed": 0.25,
+        "perception_hz": 10.0,
+        "confidence": 0.65,
+        "scene": "training_mock"
+      }
+    },
+    "stop": {
+      "ok": true,
+      "result": {
+        "state": "STOPPED",
+        "remaining_s": 179.08975212599944,
+        "start_countdown_s": 0,
+        "penalties": []
+      }
+    },
+    "stop_t": 12539.699900406,
+    "reset": {
+      "ok": true,
+      "result": {
+        "manual_clear_requested": true
+      }
+    }
+  },
+  "final_state": {
+    "metrics": {},
+    "faults": [],
+    "task": {},
+    "ready": true,
+    "referee": {
+      "state": "STOPPED",
+      "remaining_s": 179.08975212599944,
+      "start_countdown_s": 0,
+      "penalties": []
+    },
+    "estopped": false,
+    "params": {
+      "nav_speed": 0.25,
+      "perception_hz": 10.0,
+      "confidence": 0.65,
+      "scene": "training_mock"
+    },
+    "pid": 12877,
+    "run": "/home/ubuntu2204/smartcar-advanced/M5/runs/20261116_214159"
+  },
+  "resources": {
+    "aggregator_cpu": {
+      "mean": 0.0,
+      "max": 0.0
+    },
+    "aggregator_rss_mb": {
+      "mean": 0.0,
+      "max": 0.0
+    },
+    "host_cpu": {
+      "mean": 12.595454545454547,
+      "max": 34.3
+    },
+    "host_rss_mb": {
+      "mean": 92.25484245867769,
+      "max": 92.86328125
+    }
+  },
+  "bandwidth_kbytes_s": 1.6592809450789616
+}

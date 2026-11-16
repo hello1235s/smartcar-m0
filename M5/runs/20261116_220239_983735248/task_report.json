@@ -1,0 +1,96 @@
+{
+  "task_id": "20261116_220239_983735248",
+  "result": "SUCCESS",
+  "total_elapsed_s": 7.010009696999987,
+  "steps": [
+    {
+      "name": "wait_start",
+      "status": "SUCCESS",
+      "elapsed_s": 0.009439912999368971,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "navigate_to_scan",
+      "status": "SUCCESS",
+      "elapsed_s": 4.958442233000824,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "detect_qr",
+      "status": "SUCCESS",
+      "elapsed_s": 0.009612442001525778,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "grasp",
+      "status": "SUCCESS",
+      "elapsed_s": 2.0072720400003163,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "battery_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.007308565000130329,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "lidar_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.009879504999844357,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "parallel_checks",
+      "status": "SUCCESS",
+      "elapsed_s": 0.023188901999674272,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    }
+  ],
+  "final_context": {
+    "triggered": true,
+    "last_nav_result": {
+      "success": true,
+      "mock": true,
+      "targets": [],
+      "object_pose": null
+    },
+    "target_pose": {
+      "x": 2.1,
+      "y": 0.4,
+      "yaw": 0.0
+    },
+    "target_id": "qr_01",
+    "grasp_result": {
+      "success": true,
+      "mock": true,
+      "targets": [],
+      "object_pose": {
+        "x": 2.1,
+        "y": 0.4,
+        "yaw": 0.0
+      }
+    },
+    "object_pose": {
+      "x": 2.1,
+      "y": 0.4,
+      "yaw": 0.0
+    }
+  },
+  "degraded": false,
+  "backend": "explicit_mock",
+  "retry_budget_remaining": 20
+}

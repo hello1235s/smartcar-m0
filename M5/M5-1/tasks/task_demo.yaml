@@ -1,0 +1,17 @@
+# Explicit mock demonstration; not a claim that a physical robot navigated/grasped.
+tasks:
+  - {name: wait_start, type: WaitForTrigger, auto_trigger: true, timeout: 2}
+  - {name: navigate_to_scan, type: NavigateTo, pose: {x: 2.0, y: 0.5, yaw: 0.0}, retry: 1, mock_delay_s: 2.0, mock_outcomes: [FAILED, SUCCESS]}
+  - name: detect_qr
+    type: DetectTarget
+    target_class: qrcode
+    min_confidence: 0.7
+    timeout: 1
+    mock_targets: [{id: qr_01, class: qrcode, confidence: 0.9, pose: {x: 2.1, y: 0.4, yaw: 0.0}}]
+  - {name: grasp, type: ExecuteGrasp, grasp_type: top_down, retry: 1, mock_delay_s: 2.0}
+  - name: parallel_checks
+    parallel:
+      fail_policy: all_must_succeed
+      branches:
+        - {name: battery_check, type: SpeakTTS, text: 检查电量}
+        - {name: lidar_check, type: SpeakTTS, text: 检查雷达}

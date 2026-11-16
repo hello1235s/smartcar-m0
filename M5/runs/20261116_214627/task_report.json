@@ -1,0 +1,96 @@
+{
+  "task_id": "20261116_214627",
+  "result": "SUCCESS",
+  "total_elapsed_s": 6.96340049399987,
+  "steps": [
+    {
+      "name": "wait_start",
+      "status": "SUCCESS",
+      "elapsed_s": 0.01828065500012599,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "navigate_to_scan",
+      "status": "SUCCESS",
+      "elapsed_s": 4.9037829429998965,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "detect_qr",
+      "status": "SUCCESS",
+      "elapsed_s": 0.009433548999368213,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "grasp",
+      "status": "SUCCESS",
+      "elapsed_s": 2.0031530300002487,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "battery_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.010458327999003814,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "lidar_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.009462555999562028,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "parallel_checks",
+      "status": "SUCCESS",
+      "elapsed_s": 0.024012527999730082,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    }
+  ],
+  "final_context": {
+    "triggered": true,
+    "last_nav_result": {
+      "success": true,
+      "mock": true,
+      "targets": [],
+      "object_pose": null
+    },
+    "target_pose": {
+      "x": 2.1,
+      "y": 0.4,
+      "yaw": 0.0
+    },
+    "target_id": "qr_01",
+    "grasp_result": {
+      "success": true,
+      "mock": true,
+      "targets": [],
+      "object_pose": {
+        "x": 2.1,
+        "y": 0.4,
+        "yaw": 0.0
+      }
+    },
+    "object_pose": {
+      "x": 2.1,
+      "y": 0.4,
+      "yaw": 0.0
+    }
+  },
+  "degraded": false,
+  "backend": "explicit_mock",
+  "retry_budget_remaining": 20
+}

@@ -1,0 +1,96 @@
+{
+  "task_id": "20261116_214159",
+  "result": "SUCCESS",
+  "total_elapsed_s": 6.809905998001341,
+  "steps": [
+    {
+      "name": "wait_start",
+      "status": "SUCCESS",
+      "elapsed_s": 0.016401695998865762,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "navigate_to_scan",
+      "status": "SUCCESS",
+      "elapsed_s": 4.766633311000987,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "detect_qr",
+      "status": "SUCCESS",
+      "elapsed_s": 0.010994220998327364,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "grasp",
+      "status": "SUCCESS",
+      "elapsed_s": 2.002562610001405,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "battery_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.00905987400074082,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "lidar_check",
+      "status": "SUCCESS",
+      "elapsed_s": 0.00826707099986379,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "parallel_checks",
+      "status": "SUCCESS",
+      "elapsed_s": 0.012195610999697237,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    }
+  ],
+  "final_context": {
+    "triggered": true,
+    "last_nav_result": {
+      "success": true,
+      "mock": true,
+      "targets": [],
+      "object_pose": null
+    },
+    "target_pose": {
+      "x": 2.1,
+      "y": 0.4,
+      "yaw": 0.0
+    },
+    "target_id": "qr_01",
+    "grasp_result": {
+      "success": true,
+      "mock": true,
+      "targets": [],
+      "object_pose": {
+        "x": 2.1,
+        "y": 0.4,
+        "yaw": 0.0
+      }
+    },
+    "object_pose": {
+      "x": 2.1,
+      "y": 0.4,
+      "yaw": 0.0
+    }
+  },
+  "degraded": false,
+  "backend": "explicit_mock",
+  "retry_budget_remaining": 20
+}

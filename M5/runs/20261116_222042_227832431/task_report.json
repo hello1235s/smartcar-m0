@@ -1,0 +1,57 @@
+{
+  "task_id": "20261116_222042_227832431",
+  "result": "ABORTED",
+  "total_elapsed_s": 8.803109167000002,
+  "steps": [
+    {
+      "name": "wait_start",
+      "status": "SUCCESS",
+      "elapsed_s": 0.012578473000758095,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "navigate_to_scan",
+      "status": "SUCCESS",
+      "elapsed_s": 4.010477616000571,
+      "retries": 1,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "detect_qr",
+      "status": "SUCCESS",
+      "elapsed_s": 0.006725593000737717,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    },
+    {
+      "name": "grasp",
+      "status": "FAILED",
+      "elapsed_s": 4.76885356800085,
+      "retries": 0,
+      "degraded": false,
+      "error": null
+    }
+  ],
+  "final_context": {
+    "triggered": true,
+    "last_nav_result": {
+      "success": true,
+      "mock": true,
+      "targets": [],
+      "object_pose": null
+    },
+    "target_pose": {
+      "x": 2.1,
+      "y": 0.4,
+      "yaw": 0.0
+    },
+    "target_id": "qr_01"
+  },
+  "degraded": false,
+  "backend": "explicit_mock",
+  "retry_budget_remaining": 19
+}
