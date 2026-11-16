@@ -11,6 +11,8 @@ from referee_bridge import Referee
 
 def test_hash_chain_detects_tampering(tmp_path):
     path=tmp_path/'audit.jsonl'; audit=Audit(path); audit.append('A'); audit.append('B'); assert verify(path)['valid']
+    audit.seal()
+    with pytest.raises(ValueError,match='sealed'): audit.append('AFTER_CLOSE')
     text=path.read_text().replace('"action": "A"','"action": "X"'); path.write_text(text)
     assert not verify(path)['valid']
     with pytest.raises(ValueError): Audit(path)
@@ -43,3 +45,21 @@ def test_fault_does_not_silently_end_competition(monkeypatch):
     r.command('START'); now[0]=4; r.tick(); r.state='FAULT'
     assert r.snapshot()['competition_active'] is True
     r.command('STOP'); assert r.snapshot()['competition_active'] is False
+
+
+def test_emergency_latch_preempts_transaction_lock():
+    import threading
+    from operator_core import Operator
+    operator=Operator.__new__(Operator); operator.lock=threading.RLock(); messages=[]
+    operator.publish=lambda topic,data:messages.append((topic,data)); operator.emit=lambda *a:None
+    operator.audit=type('AuditStub',(),{'append':lambda *a,**k:None})()
+    operator.referee=Referee(lambda *a:None); operator.estopped=False
+    errors=[]
+    def stop():
+        try: operator.command('STOP')
+        except Exception as error: errors.append(error)
+    operator.lock.acquire(); worker=threading.Thread(target=stop); worker.start()
+    deadline=time.monotonic()+.2
+    while not messages and time.monotonic()<deadline: time.sleep(.001)
+    assert ('/emergency_stop',True) in messages and operator.estopped
+    operator.lock.release(); worker.join(1); assert not worker.is_alive() and not errors

@@ -21,7 +21,7 @@ def verify(path):
 
 class Audit:
     def __init__(self,path):
-        self.path=Path(path); self.path.parent.mkdir(parents=True,exist_ok=True); self.lock=threading.Lock(); self.previous='0'*64
+        self.path=Path(path); self.path.parent.mkdir(parents=True,exist_ok=True); self.lock=threading.Lock(); self.previous='0'*64; self.sealed=False
         if self.path.exists():
             result=verify(self.path)
             if not result['valid']: raise ValueError('Existing audit chain invalid; refusing append')
@@ -29,6 +29,7 @@ class Audit:
 
     def append(self,action,user='local_operator',**details):
         with self.lock:
+            if self.sealed: raise ValueError('Audit sealed; create a new session before appending')
             entry=dict(ts_ns=time.time_ns(),action=action,user=user,details=details,previous_hash=self.previous)
             entry['hash']=hashlib.sha256(canonical(entry)).hexdigest()
             with self.path.open('a',encoding='utf-8') as f:
@@ -37,4 +38,5 @@ class Audit:
 
     def seal(self):
         # Store this head separately to detect removal of a valid suffix.
-        self.path.with_suffix('.seal.json').write_text(json.dumps(dict(head=self.previous,ts_ns=time.time_ns())))
+        with self.lock:
+            self.path.with_suffix('.seal.json').write_text(json.dumps(dict(head=self.previous,ts_ns=time.time_ns()))); self.sealed=True

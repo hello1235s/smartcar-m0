@@ -12,7 +12,7 @@ class RemoteModel:
         self.node=node; self.client=node.create_client(SetParameters,'/smartcar_perception/set_parameters'); self.check=node.create_client(Trigger,'/perception/check'); self.path=None; self.sha256=None
     def wait(self,future):
         deadline=time.monotonic()+25
-        while not future.done() and time.monotonic()<deadline: time.sleep(.01)
+        while not future.done() and self.node.context.ok() and time.monotonic()<deadline: time.sleep(.01)
         if not future.done(): raise RuntimeError('Perception service timeout')
         return future.result()
     def parameters(self,**values):

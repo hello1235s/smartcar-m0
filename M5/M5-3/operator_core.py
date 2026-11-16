@@ -59,6 +59,9 @@ class Operator:
         self.audit.append('TASK_'+action.upper(),user)
 
     def command(self,action,user='local_operator',**args):
+        if action=='STOP':
+            # The actuator latch must not wait for a slow parameter/model transaction.
+            self.estopped=True; self.publish('/emergency_stop',True); self.publish('/cmd_vel',dict(v=0,omega=0))
         if action=='SOFT_RESET':
             self.audit.append('SOFT_RESET_REQUESTED',user)
             if self.context: self.context.abort()
@@ -86,9 +89,6 @@ class Operator:
                 if action in ('START','PAUSE','RESUME','STOP','PENALTY','SCORE_QUERY'): result=self.referee.command(action,user,**args)
                 elif action=='SKIP': self.task_action('skip',user); result={}
                 elif action=='HELP': self.emit('/referee/help',dict(user=user,text='请求人工介入')); result={}
-                elif action=='SOFT_RESET':
-                    if self.worker and self.worker.is_alive(): raise ValueError('Stop task before soft reset')
-                    self.context=None; self.state={}; self.referee=Referee(self.task_action); result=dict(pid=os.getpid())
                 elif action=='HARD_RESET':
                     if self.referee.competition_active: raise ValueError('Hard reset disabled during competition')
                     self.emit('/operator/hard_reset',True); result=dict(supervised_restart_requested=True)
@@ -101,7 +101,6 @@ class Operator:
                     path=Path(args['path']).resolve()
                     if self.root not in path.parents: raise ValueError('Scene must be inside project')
                     result=self.switch_params(yaml.safe_load(path.read_text()),user)
-                elif action=='LOAD_MODEL': result=self.switch_model(args['path'],user)
                 else: raise ValueError('Unknown command '+action)
                 self.audit.append('COMMAND_ACCEPTED',user,command=action,result=result)
                 self.emit('/referee/status',self.referee.snapshot()); return dict(ok=True,result=result)

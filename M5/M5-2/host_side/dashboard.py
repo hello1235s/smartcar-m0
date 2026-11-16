@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import queue
 import sys
 import threading
 import time
@@ -34,13 +35,14 @@ class Host(Node):
         self.speed=self.create_client(SetParameters,'/chassis_command_bridge/set_parameters')
         self.patterns=self.create_client(SetParameters,'/dashboard_aggregator/set_parameters')
         self.model_client=RemoteModel(self); self.operator=Operator(ROOT,self.publish,self.model_client); self.last_metric_record=0; self.perception_state={}
+        self.jobs=queue.Queue(128); self.jobs_closed=threading.Event(); self.action_worker=threading.Thread(target=self.actions,daemon=True); self.action_worker.start()
         self.create_subscription(String,'/perception/model_state',lambda m:setattr(self,'perception_state',json.loads(m.data)),10)
         for topic in ['/dashboard/metrics','/dashboard/faults','/dashboard/task_state']:
             self.create_subscription(String,topic,lambda m,t=topic:self.receive(t,m),100)
         self.create_subscription(Bool,'/system_ready',lambda m:setattr(self,'ready',m.data) if self.operator.params['scene']!='usb_indoor' else None,10)
         self.create_subscription(Bool,'/perception/ready',lambda m:setattr(self,'ready',m.data) if self.operator.params['scene']=='usb_indoor' else None,10)
         self.create_subscription(String,'/referee/cmd',self.referee,10)
-        self.create_subscription(Bool,'/k230/button',lambda m:self.command('STOP',source='k230_key') if m.data else None,10)
+        self.create_subscription(Bool,'/k230/button',lambda m:self.dispatch('STOP','k230_key') if m.data else None,10)
         self.create_subscription(String,'/operator/voice_command',self.voice,10)
         self.create_timer(.2,lambda:self.operator.tick())
 
@@ -55,16 +57,38 @@ class Host(Node):
             if topic=='/dashboard/metrics': self.current=data; self.history.append(data)
             elif topic=='/dashboard/faults': self.faults.append(data)
             elif topic=='/dashboard/task_state': self.task=data
-        if topic=='/dashboard/faults': self.operator.sensor_fault(data)
+        if topic=='/dashboard/faults' and data.get('type')=='LOST' and data.get('topic','').startswith('/perception/'):
+            try: self.jobs.put_nowait(('fault',self.operator,data))
+            except queue.Full: self.get_logger().error('Host command queue full; fault remains visible')
+
+    def dispatch(self,action,source,**args):
+        if action=='STOP':
+            self.operator.estopped=True; self.publish('/emergency_stop',True); self.publish('/cmd_vel',dict(v=0,omega=0))
+        try: self.jobs.put_nowait(('command',action,dict(source=source,**args)))
+        except queue.Full: self.get_logger().error('Command queue full; emergency latch still applied')
+
+    def actions(self):
+        while not self.jobs_closed.is_set():
+            try: kind,target,data=self.jobs.get(timeout=.2)
+            except queue.Empty: continue
+            try:
+                if kind=='fault': target.sensor_fault(data)
+                else: self.command(target,**data)
+            except Exception as error:
+                if not self.jobs_closed.is_set(): self.get_logger().warning('Command rejected safely: '+str(error))
 
     def referee(self,message):
         try:
             data=json.loads(message.data) if message.data.startswith('{') else {'action':message.data}
-            self.command(data.pop('action'),source='referee_topic',**data)
+            action=data.pop('action')
+            if action not in ('START','PAUSE','RESUME','STOP','PENALTY','SCORE_QUERY'): raise ValueError('Unknown referee protocol command')
+            self.dispatch(action,'referee_topic',**data)
         except ValueError as error: self.get_logger().warning(str(error))
 
     def voice(self,message):
-        try: self.command(message.data,source='offline_voice')
+        try:
+            if message.data not in ('START','PAUSE','STOP','HELP'): raise ValueError('Unknown voice command')
+            self.dispatch(message.data,'offline_voice')
         except (ValueError,RuntimeError) as error: self.get_logger().warning('Voice command rejected safely: '+str(error))
 
     def command(self,action,source='web',**args):
@@ -163,7 +187,7 @@ def main():
     if not a.no_browser: threading.Timer(2,lambda:webbrowser.open('http://127.0.0.1:8080')).start()
     try: dashboard.run()
     finally:
-        terminal.should_exit=True; second.join(3); host.operator.close(); executor.shutdown(timeout_sec=3); thread.join(3); host.destroy_node(); rclpy.shutdown()
+        terminal.should_exit=True; second.join(3); host.jobs_closed.set(); host.action_worker.join(3); host.operator.close(); executor.shutdown(timeout_sec=3); thread.join(3); host.destroy_node(); rclpy.shutdown()
 
 
 if __name__=='__main__': main()
