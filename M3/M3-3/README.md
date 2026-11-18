@@ -1,0 +1,19 @@
+# M3-3：阿克曼自主导航
+
+```bash
+source scripts/env.sh
+.venv-ros/bin/python M3/M3-3/make_config.py
+ros2 launch ./M3/M3-3/bringup.launch.py
+# 批量复现（自己启动/停止仿真）：
+.venv-ros/bin/python scripts/verify_navigation.py --runs 3
+```
+
+一键启动原车Gazebo、M3-2地图、AMCL和Nav2。全局Smac Hybrid-A*使用DUBIN前向运动、最小半径0.65m；局部RPP禁止原地转向、禁止倒车。底盘适配器另保证半径不小于0.60m。恢复行为树去掉Spin，两个导航器的BT都要替换，否则“through poses”默认树会因找不到Spin服务导致整个导航器不能激活。
+
+AMCL根据激光和M3-2地图发布map→odom；初始已知位姿为map(0,0,0)，对应世界(1,1,0)，不持续读取仿真真值修正定位。车体footprint是0.45×0.22m矩形。膨胀半径0.35m，窄门约0.95m；0.22+2×0.35=0.92m仅作间隙检查，还必须考虑斜入门时外包络和曲率。
+
+全部非默认参数的原值、新值和理由自动写入config/changes.yaml，参数文件带逐项注释。主要改动包括NavFn→Hybrid-A*、DWB→RPP、膨胀0.55→0.35m、多边形footprint、速度上限、进度判据和目标容差。旧版本结果保留，不能用换目标前后的数据声称某一个参数的独立因果收益。
+
+最终目标map(10,4,π/2)，实际路径>12m且含转弯。`results/20261116_220158_final_static/` 三次：前两次成功，约32.4/32.5秒、12.43/12.59m；第三次150秒超时，保留原始轨迹和日志。成功率2/3=66.7%，满足≥60%条件，不能写成100%。过小目标姿态容差曾让前向车绕大圈尝试重新对齐，因此最终xy容差0.35m、yaw容差1.0rad；需要更精确停靠时应另做末端可行轨迹规划。
+
+试验先等待BT节点达到active，再提交Action目标；批次之间分配独立ROS_DOMAIN_ID，避免仿真时钟重置和DDS历史数据相互影响。
