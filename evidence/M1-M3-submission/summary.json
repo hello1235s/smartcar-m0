@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-11-18T13:40:04.741816+08:00",
+  "source_commit": "2bf7fb0cf28bcbd60eb716e8020ac4865cff6a3e",
+  "branch": "codex/m1-m3-training",
+  "ros_build": "3 packages built from isolated M1/M3 checkout",
+  "python_compile": "PASS",
+  "bash_syntax": "PASS",
+  "m1_chain": {
+    "sensor_hz": 10.00035530392794,
+    "processed_hz": 9.781987815873467,
+    "invalid_status_samples": 1,
+    "timeout_after_server_killed": true,
+    "namespaced_nodes": [
+      "/robot1/node_a_sensor",
+      "/robot1/node_b_filter",
+      "/robot1/node_c_alarm",
+      "/robot2/node_a_sensor",
+      "/robot2/node_b_filter",
+      "/robot2/node_c_alarm"
+    ],
+    "thresholds": {
+      "robot1": 0.3,
+      "robot2": 0.5
+    },
+    "missing_yaml_human_error": true,
+    "result": "PASS"
+  },
+  "image_semantics": {
+    "pixel_exact": true,
+    "header_exact": true,
+    "encoding": "mono8",
+    "sha256": "c4886ec4e1d94575ad43a245a804548e2fbd17c48a6401d1099b7acd57ac7055"
+  },
+  "historical_graph_rechecked": {
+    "vertices": 265,
+    "edges": 281,
+    "historic_constraints": 17
+  },
+  "historical_m3_metrics": "recomputed from archived raw data; not fresh navigation trials",
+  "scope": "M0 baseline + M1 + M3; no M5/M6 source in branch",
+  "human_study": "not yet confirmed by author; formal on-site assessment pending",
+  "posegraph_bad_input": "missing file rejected with exit 2 and readable diagnostic"
+}

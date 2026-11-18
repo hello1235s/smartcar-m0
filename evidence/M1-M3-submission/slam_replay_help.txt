@@ -1,0 +1,8 @@
+usage: verify_slam_replay.py [-h] [--bag BAG]
+
+Reprocess recorded real Gazebo scans/odom/TF; serialize the actual SLAM graph.
+
+options:
+  -h, --help  show this help message and exit
+  --bag BAG   A recorded Gazebo scan/odom/TF bag directory; defaults to latest
+              mapping bag

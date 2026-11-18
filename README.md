@@ -31,7 +31,7 @@
 sudo apt update
 sudo apt install -y build-essential cmake git python3-venv python3-pip \
   python3-colcon-common-extensions python3-numpy python3-opencv python3-pyqt5 \
-  libboost-serialization-dev libeigen3-dev nlohmann-json3-dev \
+  libboost-serialization-dev libeigen3-dev libtbb-dev nlohmann-json3-dev \
   ros-humble-desktop ros-humble-gazebo-ros-pkgs ros-humble-gazebo-ros2-control \
   ros-humble-ros2-control ros-humble-ros2-controllers \
   ros-humble-ackermann-steering-controller ros-humble-navigation2 \

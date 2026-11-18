@@ -29,7 +29,7 @@ Git不含原始bag。可先运行 `scripts/verify_mapping.py` 重新采集，再
 ```bash
 cmake -S M3/M3-2/scripts -B tmp/posegraph_tool
 cmake --build tmp/posegraph_tool
-tmp/posegraph_tool/inspect_posegraph M3/M3-2/results/replay_20261116_225310/serialized_map
+tmp/posegraph_tool/inspect_posegraph M3/M3-2/results/replay_20261116_225310/serialized_map.posegraph
 ```
 
-构建依赖 `libboost-serialization-dev`、`libeigen3-dev`、`nlohmann-json3-dev` 和ROS slam_toolbox/karto SDK。
+构建依赖 `libboost-serialization-dev`、`libeigen3-dev`、`libtbb-dev`、`nlohmann-json3-dev` 和ROS slam_toolbox/karto SDK。读取工具需要完整的 `.posegraph` 文件名，不能只传给SLAM服务使用的文件名前缀。
