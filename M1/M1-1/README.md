@@ -22,3 +22,7 @@ ros2 service call /trigger_alarm sensor_interfaces/srv/TriggerAlarm '{distance: 
 自动验收：`.venv-ros/bin/python scripts/verify_m1_chain.py`。已实测传感器 10.010 Hz、有效滤波输出 9.842 Hz；参数修改与非法值拒绝通过；实际杀掉节点 B 后，节点 C 出现 `[WARN] 报警服务超时`。原始记录在 `evidence/M1-chain/`，保留失败尝试，最新通过结果为 `latest.json`。
 
 故障排查：接口包需在 package.xml 中声明 `ament_cmake` build_type。曾因缺少该声明导致构建缓存类型不一致、目录与符号链接冲突；现使用独立 `build_ros/install_ros/log_ros` 目录，保留原缓存供追溯。
+
+## AI参与与本人研究状态
+
+本题由Codex协助代码/配置、实验验证及文档整理；已有实测证据见本页。本人逐行研究和独立复现程度尚未确认，待本人学习后更新。详细范围见[AI使用说明](../../AI_USAGE.md)，现场要求见[验收清单](../../docs/M1_M3_验收清单.md)。自动验证不替代本人理解或考官验收。

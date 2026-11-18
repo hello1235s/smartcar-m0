@@ -17,3 +17,7 @@ ros2 launch smartcar_training bringup.launch.py params_file:=/nope.yaml
 已实际验收六个节点、两组阈值和话题隔离。缺失 YAML 输出 `[ERROR] Parameter YAML file does not exist: /nope.yaml`，没有 Python 栈回溯。验收脚本与日志同 M1-1。
 
 Humble 兼容记录：当前安装版本不导出 `launch.actions.LogError`，初次 Launch 因 ImportError 失败；已改为 `LogInfo` 输出明确 ERROR 前缀，原始失败日志保留在 `evidence/M1-chain/`。实际安装的 Launch 位于 M1-1 包内，本目录保留同内容交付副本。
+
+## AI参与与本人研究状态
+
+本题由Codex协助代码/配置、实验验证及文档整理；已有实测证据见本页。本人逐行研究和独立复现程度尚未确认，待本人学习后更新。详细范围见[AI使用说明](../../AI_USAGE.md)，现场要求见[验收清单](../../docs/M1_M3_验收清单.md)。自动验证不替代本人理解或考官验收。

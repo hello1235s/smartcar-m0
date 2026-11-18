@@ -15,3 +15,7 @@ source scripts/env.sh
 `results/20261116_210401/` 保存修正后20份CSV、每圈统计、双轨迹图及所用配置。CSV列 `t,x,y,theta`，t来自仿真时钟；/odom目标50Hz，frame=odom、child=base_footprint，真值来自/gazebo/model_states。曲线闭合误差不等于定位误差：开环时间控制、转向建立过程和轮胎接触都会影响轨迹，需要用双源数据区分，不能仅用odom“自证准确”。
 
 `results/tf_tree_annotated.png` 标注变换类型与发布者。map是SLAM/定位的全局一致坐标系；odom连续但累积漂移；base_footprint用于地面投影；base_link是车体坐标；lidar/camera与车体的固定关系由URDF提供。M3-1没有map→odom，M3-2由slam_toolbox发布，M3-3改由AMCL发布。
+
+## AI参与与本人研究状态
+
+本题由Codex协助代码/配置、实验验证及文档整理；已有实测证据见本页。本人逐行研究和独立复现程度尚未确认，待本人学习后更新。详细范围见[AI使用说明](../../AI_USAGE.md)，现场要求见[验收清单](../../docs/M1_M3_验收清单.md)。自动验证不替代本人理解或考官验收。
