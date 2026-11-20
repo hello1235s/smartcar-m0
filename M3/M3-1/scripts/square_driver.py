@@ -15,13 +15,18 @@ def main():
     parser.add_argument('--laps', type=int, default=10)
     parser.add_argument('--side', type=float, default=2.0)
     parser.add_argument('--radius', type=float, default=0.65)
-    parser.add_argument('--speed', type=float, default=0.6)
-    parser.add_argument('--turn-speed', type=float, default=0.35)
+    parser.add_argument('--speed', type=float, default=0.28)
+    parser.add_argument('--turn-speed', type=float, default=0.18)
+    parser.add_argument('--mode', choices=['feedback','timed'], default='feedback')
+    parser.add_argument('--timeout', type=float, default=90.)
     parser.add_argument('--out', default='logs')
     args = parser.parse_args()
     minimum = 0.28/math.tan(0.5236)+0.18/2
     if not minimum <= args.radius < args.side/2 or min(args.speed, args.turn_speed) <= 0:
         parser.error('radius must fit Ackermann inner-wheel limit and square; speeds must be positive')
+    if args.mode == 'feedback':
+        from square_feedback_driver import run
+        return run(args)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     rclpy.init()
