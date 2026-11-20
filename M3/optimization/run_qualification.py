@@ -19,7 +19,8 @@ else:
               dict(label='heldout_obstacle_gate_exit',runs=2,profile='B_tuned',seed=402,obstacle='7.0,1.3'),
               dict(label='heldout_goal_northeast',runs=2,profile='B_tuned',seed=404,goal='9,6,3.141592653589793'),
               dict(label='heldout_goal_far_northwest',runs=2,profile='B_tuned',seed=406,goal='0,6,-1.5707963267948966'),
-              dict(label='boundary_blocked_goal',runs=1,profile='B_tuned',seed=408,obstacle='11,5',size=.8,timeout=90)]
+              dict(label='boundary_blocked_goal',runs=1,profile='B_tuned',seed=408,obstacle='11,5',size=.8,timeout=90),
+              dict(label='boundary_close_front',runs=1,profile='B_tuned',seed=410,obstacle='2.8,1.0',size=.6,timeout=90)]
 out=ROOT/'M3/optimization/results'/(time.strftime('%Y%m%d_%H%M%S')+'_qualification_'+a.suite); out.mkdir(parents=True)
 (out/'schedule.json').write_text(json.dumps(schedule,indent=2))
 manifest=[]
