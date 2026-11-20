@@ -23,5 +23,28 @@
     "historic_constraints": 17
   },
   "map_sha256": "43f1e9f41b6957d041239f81345b6dfe9ccc6b51ff1aa233f700f63960613dda",
-  "promoted": true
+  "promoted": true,
+  "map_yaml_sha256": "ef3d2a75a6d81feec49a748252eab575687d34b76f33e41c8d967e3b9e770504",
+  "semantic_roundtrip": {
+    "report": "M3/M3-2/results/map_semantics_final_20261121/roundtrip.json",
+    "status": "PASS",
+    "source_yaml": "M3/M3-2/maps/map.yaml",
+    "source_image_sha256": "43f1e9f41b6957d041239f81345b6dfe9ccc6b51ff1aa233f700f63960613dda",
+    "source_yaml_sha256": "ef3d2a75a6d81feec49a748252eab575687d34b76f33e41c8d967e3b9e770504",
+    "expected_from_actual_pgm": {
+      "occupied": 1600,
+      "unknown": 12820,
+      "free": 24784
+    },
+    "observed_from_native_nav2_getmap": {
+      "occupied": 1600,
+      "unknown": 12820,
+      "free": 24784
+    },
+    "other_values": {},
+    "normalization": null,
+    "native_getmap_service": "/semantic_map_server/map",
+    "free_thresh": 0.196,
+    "image_pixels_unchanged": true
+  }
 }

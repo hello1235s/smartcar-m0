@@ -55,7 +55,9 @@ try:
         (out/'serialize_result.txt').write_text(str(future.result()))
     finally: node.destroy_node(); rclpy.shutdown()
     with (out/'save_map.log').open('w') as log:
-        subprocess.run(['ros2','run','nav2_map_server','map_saver_cli','-f',str(out/'map'),'--ros-args','-p','use_sim_time:=true','-p','save_map_timeout:=15.0'],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=45)
+        subprocess.run(['ros2','run','nav2_map_server','map_saver_cli','-f',str(out/'map'),'--free','0.196','--ros-args','-p','use_sim_time:=true','-p','save_map_timeout:=15.0'],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=45)
+    with (out/'semantic_verification.log').open('w') as log:
+        subprocess.run([str(ROOT/'.venv-ros/bin/python'),str(ROOT/'scripts/verify_map_semantics.py'),'--map',str(out/'map.yaml'),'--out',str(out/'semantic_roundtrip')],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=75)
     with (out/'graph_analysis.txt').open('w') as log:
         subprocess.run([str(tool/'inspect_posegraph'),str(out/'serialized_map.posegraph')],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=30)
     graph=json.loads(next(line.split('POSEGRAPH_JSON ',1)[1] for line in (out/'graph_analysis.txt').read_text().splitlines() if 'POSEGRAPH_JSON ' in line))
@@ -72,6 +74,8 @@ try:
     qualification=dict(status='PASS' if not reasons else 'FAIL',failures=reasons,quality=quality,
                        graph=dict(vertices=graph['vertices'],edges=graph['edges'],historic_constraints=len(historic)),
                        map_sha256=hashlib.sha256((out/'map.pgm').read_bytes()).hexdigest(),promoted=False)
+    qualification['map_yaml_sha256']=hashlib.sha256((out/'map.yaml').read_bytes()).hexdigest()
+    qualification['semantic_roundtrip']=json.loads((out/'semantic_roundtrip/roundtrip.json').read_text())
     if reasons: raise RuntimeError('Map qualification failed: '+str(reasons))
     if a.promote:
         maps=ROOT/'M3/M3-2/maps'; maps.mkdir(exist_ok=True)

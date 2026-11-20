@@ -55,6 +55,7 @@ metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obst
               goal_checker_library_sha256=plugin_sha256,dds_transport='UDPv4',
               ackermann_controller_library_sha256=controller_sha256,
               map_sha256=hashlib.sha256((ROOT/'M3/M3-2/maps/map.pgm').read_bytes()).hexdigest(),
+              map_yaml_sha256=hashlib.sha256((ROOT/'M3/M3-2/maps/map.yaml').read_bytes()).hexdigest(),
               independent_qualification=dict(position_m=.15,yaw_rad=.20,minimum_path_m=5.,geometric_overlap_limit_m=-.002))
 (folder/'experiment.json').write_text(json.dumps(metadata,indent=2)); reports=[]
 for i in range(a.runs):
