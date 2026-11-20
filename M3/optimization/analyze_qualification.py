@@ -51,6 +51,9 @@ def main():
                          steering_variation_rad_per_m=r['steering_variation_rad_per_m'],
                          first_plan_after_injection_s=r['first_plan_after_injection_delay_s'],
                          final_linear_speed_mps=(r.get('final_measured_speed') or [None])[0],
+                         controller_command_samples=r.get('controller_command_samples',0),
+                         controller_curvature_violation_samples=r.get('controller_curvature_violation_samples'),
+                         maximum_requested_curvature_1_per_m=r.get('maximum_requested_curvature_1_per_m'),
                          obstacle_distance_to_initial_path_m=r.get('obstacle_distance_to_initial_path_m'),
                          failure=';'.join(r['qualification_failures']),map_sha256=metadata['map_sha256'],params_sha256=metadata['params_sha256'],extra_length_m=None)
                 rows.append(row); raw.append((row,r))
@@ -69,6 +72,8 @@ def main():
                               mean_position_error_m=average([r['position_error_m'] for r in successes]),max_position_error_m=max([r['position_error_m'] for r in successes],default=None),
                               max_yaw_error_rad=max([r['yaw_error_rad'] for r in successes],default=None),
                               minimum_clearance_all_attempts_m=min([r['minimum_clearance_m'] for r in records if r['minimum_clearance_m'] is not None],default=None),
+                              controller_curvature_violation_samples=sum(r['controller_curvature_violation_samples'] or 0 for r in records),
+                              controller_command_samples=sum(r['controller_command_samples'] for r in records),
                               no_obstacle_reference_successes=len(references.get(group['profile'],[])),no_obstacle_reference_mean_m=ref,
                               failure_reasons=dict(failure_counts)))
     with (out/'all_attempts.csv').open('w',newline='') as stream:
