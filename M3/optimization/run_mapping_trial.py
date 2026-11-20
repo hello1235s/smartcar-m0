@@ -13,6 +13,7 @@ ROOT=Path(__file__).resolve().parents[2]
 import sys
 sys.path.insert(0,str(ROOT/'M3/common'))
 from experiment_lock import acquire
+from process_cleanup import terminate_owned_tree
 experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--seed',type=int,default=43); p.add_argument('--label',default='qualified_mapping')
 p.add_argument('--timeout',type=float,default=900.); p.add_argument('--promote',action=argparse.BooleanOptionalAction,default=True)
@@ -79,11 +80,7 @@ try:
         (maps/'map_manifest.json').write_text(json.dumps(dict(source_trial=str(out.relative_to(ROOT)),**qualification),indent=2))
     print('MAPPING_QUALIFICATION_PASS '+json.dumps(qualification),flush=True)
 finally:
-    for process in reversed(processes):
-        if process.poll() is None: os.killpg(process.pid,signal.SIGINT)
-    for process in reversed(processes):
-        try: process.wait(timeout=12)
-        except subprocess.TimeoutExpired: os.killpg(process.pid,signal.SIGKILL); process.wait()
+    for process in reversed(processes): terminate_owned_tree(process)
     for stream in streams: stream.close()
     settings.update(finished=time.time(),qualification=qualification)
     (out/'settings.json').write_text(json.dumps(settings,indent=2))

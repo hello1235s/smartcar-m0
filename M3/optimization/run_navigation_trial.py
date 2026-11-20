@@ -14,6 +14,7 @@ ROOT=Path(__file__).resolve().parents[2]
 import sys
 sys.path.insert(0,str(ROOT/'M3/common'))
 from experiment_lock import acquire
+from process_cleanup import terminate_owned_tree
 experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--runs',type=int,default=1); p.add_argument('--label',default='candidate_static')
 p.add_argument('--params',type=Path); p.add_argument('--obstacle-at'); p.add_argument('--obstacle-size',type=float,default=.6)
@@ -43,6 +44,8 @@ for base in ['M3/common','M3/M3-1/src','M3/M3-2/worlds','M3/M3-2/config','M3/M3-
 (folder/'source_hashes.json').write_text(json.dumps(sources,indent=2,sort_keys=True))
 plugin=ROOT/'install_ros/smartcar_nav_checks/lib/libvalid_pose_goal_checker.so'
 plugin_sha256=hashlib.sha256(plugin.read_bytes()).hexdigest() if plugin.exists() else None
+controller_library=ROOT/'install_ros/smartcar_nav_checks/lib/libackermann_rpp.so'
+controller_sha256=hashlib.sha256(controller_library.read_bytes()).hexdigest() if controller_library.exists() else None
 versions=subprocess.run(['dpkg-query','-W','ros-humble-navigation2','ros-humble-nav2-controller','ros-humble-fastrtps','ros-humble-ackermann-steering-controller','gazebo'],capture_output=True,text=True)
 (folder/'runtime_versions.txt').write_text(versions.stdout+versions.stderr)
 metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obstacle_size=a.obstacle_size,delay_s=a.delay,
@@ -50,6 +53,7 @@ metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obst
               code_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
               source_manifest_sha256=hashlib.sha256((folder/'source_hashes.json').read_bytes()).hexdigest(),
               goal_checker_library_sha256=plugin_sha256,dds_transport='UDPv4',
+              ackermann_controller_library_sha256=controller_sha256,
               map_sha256=hashlib.sha256((ROOT/'M3/M3-2/maps/map.pgm').read_bytes()).hexdigest(),
               independent_qualification=dict(position_m=.15,yaw_rad=.20,minimum_path_m=5.,geometric_overlap_limit_m=-.002))
 (folder/'experiment.json').write_text(json.dumps(metadata,indent=2)); reports=[]
@@ -74,18 +78,17 @@ for i in range(a.runs):
         else: report=dict(success=False,action_success=False,goal_accepted=False,failure_reason='trial_process_failed_before_report',returncode=completed.returncode)
         report.update(run=i+1,seed=a.seed+i,result_dir=str(directory.relative_to(ROOT)))
         reports.append(report); (folder/'runs.json').write_text(json.dumps(reports,indent=2))
+        metadata.update(completed=len(reports),successes=sum(r['success'] for r in reports),accepted=sum(r.get('goal_accepted',False) for r in reports),state='running')
+        if not report.get('goal_accepted') or completed.returncode:
+            metadata['state']='infrastructure_failure'
+        (folder/'experiment.json').write_text(json.dumps(metadata,indent=2))
         print(json.dumps(report),flush=True)
+        if metadata['state']=='infrastructure_failure':
+            raise RuntimeError('Trial infrastructure failed; retained attempt, stopping without replacement: '+str(directory))
     finally:
-        for child in children:
-            if child.poll() is None:
-                os.killpg(child.pid,signal.SIGTERM)
-                try: child.wait(timeout=6)
-                except subprocess.TimeoutExpired: os.killpg(child.pid,signal.SIGKILL); child.wait()
-        if process and process.poll() is None:
-            os.killpg(process.pid,signal.SIGINT)
-            try: process.wait(timeout=18)
-            except subprocess.TimeoutExpired: os.killpg(process.pid,signal.SIGKILL); process.wait()
+        for child in children: terminate_owned_tree(child)
+        if process: terminate_owned_tree(process)
         log.close()
-metadata.update(completed=len(reports),successes=sum(r['success'] for r in reports),accepted=sum(r.get('goal_accepted',False) for r in reports))
+metadata.update(completed=len(reports),successes=sum(r['success'] for r in reports),accepted=sum(r.get('goal_accepted',False) for r in reports),state='complete')
 (folder/'experiment.json').write_text(json.dumps(metadata,indent=2))
 print('NAVIGATION_EXPERIMENT',folder,metadata['successes'],len(reports),flush=True)

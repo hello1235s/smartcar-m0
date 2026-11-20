@@ -11,6 +11,7 @@ ROOT=Path(__file__).resolve().parents[2]
 import sys
 sys.path.insert(0,str(ROOT/'M3/common'))
 from experiment_lock import acquire
+from process_cleanup import terminate_owned_tree
 experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--mode',choices=['feedback','timed'],default='feedback')
 p.add_argument('--rear-axle-reference',choices=['true','false'],default='true')
@@ -35,14 +36,8 @@ try:
     settings['returncode']=result.returncode
     print((out/'driver.log').read_text()[-6000:],flush=True)
 finally:
-    if viewer and viewer.poll() is None:
-        os.killpg(viewer.pid,signal.SIGTERM)
-        try: viewer.wait(timeout=5)
-        except subprocess.TimeoutExpired: os.killpg(viewer.pid,signal.SIGKILL); viewer.wait()
-    if proc.poll() is None:
-        os.killpg(proc.pid,signal.SIGINT)
-        try: proc.wait(timeout=15)
-        except subprocess.TimeoutExpired: os.killpg(proc.pid,signal.SIGKILL); proc.wait()
+    if viewer: terminate_owned_tree(viewer)
+    terminate_owned_tree(proc)
     log.close(); settings['finished']=time.time(); (out/'settings.json').write_text(json.dumps(settings,indent=2))
     print('SQUARE_EXPERIMENT',out,flush=True)
 if result is None or result.returncode: raise SystemExit(1)
