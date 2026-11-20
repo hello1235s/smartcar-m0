@@ -55,7 +55,7 @@ def main():
                          controller_curvature_violation_samples=r.get('controller_curvature_violation_samples'),
                          maximum_requested_curvature_1_per_m=r.get('maximum_requested_curvature_1_per_m'),
                          obstacle_distance_to_initial_path_m=r.get('obstacle_distance_to_initial_path_m'),
-                         failure=';'.join(r['qualification_failures']),map_sha256=metadata['map_sha256'],params_sha256=metadata['params_sha256'],extra_length_m=None)
+                         failure=';'.join(r['qualification_failures']),map_sha256=metadata['map_sha256'],map_yaml_sha256=metadata.get('map_yaml_sha256'),params_sha256=metadata['params_sha256'],extra_length_m=None)
                 rows.append(row); raw.append((row,r))
     references={label:[r['truth_length_m'] for r in rows if r['group']=='formal_static_'+label and r['success']] for label in ['A','B','B_tuned']}
     summaries=[]

@@ -46,7 +46,7 @@ plugin=ROOT/'install_ros/smartcar_nav_checks/lib/libvalid_pose_goal_checker.so'
 plugin_sha256=hashlib.sha256(plugin.read_bytes()).hexdigest() if plugin.exists() else None
 controller_library=ROOT/'install_ros/smartcar_nav_checks/lib/libackermann_rpp.so'
 controller_sha256=hashlib.sha256(controller_library.read_bytes()).hexdigest() if controller_library.exists() else None
-versions=subprocess.run(['dpkg-query','-W','ros-humble-navigation2','ros-humble-nav2-controller','ros-humble-fastrtps','ros-humble-ackermann-steering-controller','gazebo'],capture_output=True,text=True)
+versions=subprocess.run(['dpkg-query','-W','ros-humble-navigation2','ros-humble-nav2-controller','ros-humble-nav2-map-server','ros-humble-slam-toolbox','ros-humble-fastrtps','ros-humble-ackermann-steering-controller','gazebo'],capture_output=True,text=True)
 (folder/'runtime_versions.txt').write_text(versions.stdout+versions.stderr)
 metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obstacle_size=a.obstacle_size,delay_s=a.delay,
               base_seed=a.seed,goal_map=a.goal,params_source=str(params),params_sha256=hashlib.sha256(actual.read_bytes()).hexdigest(),

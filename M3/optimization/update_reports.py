@@ -65,6 +65,8 @@ bash scripts/run_m3_demo.sh square
 
 本轮修正后轴TF后重新实际巡场建图。当前导航图来自`{map_info['source_trial']}`，SHA256为`{map_info['map_sha256']}`；`maps/map_manifest.json`记录验收与来源。地图0.05m分辨率，窄门19个自由格，即0.95m。北墙{map_info['quality']['wall_points']}个占据点在该栅格上共线、最大观测墙厚1格，没有发现间隔超过2格的分离占据簇。这只能说明栅格尺度下没有检出的重影，不能证明零漂移或皮米级精度。未知区域不允许规划通行。
 
+另做了真实Nav2加载回验：原保存阈值0.25会把灰205未知格读成自由格，修正free_thresh为0.196，PGM像素完全不变。原生map_server返回1600占据、12820未知、24784自由格，与PGM逐类计数完全相同；检查报告与修正前失败均保留，当前map_manifest记录YAML哈希。此后导航统计全部重新采集，不能混入修正前成绩。
+
 SLAM仍运行时调用真实序列化服务，得到{map_info['graph']['vertices']}节点、{map_info['graph']['edges']}边的图，其中{map_info['graph']['historic_constraints']}条连接历史时段的非邻接约束。原`.posegraph`/`.data`、分析JSON、实际路线CSV和地图质量图同目录保留。图中校正节点间距离不是回环误差。旧265节点/281边的历史图仍保留在原results目录。
 
 ```bash

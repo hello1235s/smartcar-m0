@@ -21,10 +21,11 @@ for file in sorted((ROOT/'M3/optimization/results').glob('*/experiment.json')):
         status='complete' if complete and accepted==len(results) else 'infrastructure_or_incomplete',
         failures=dict(Counter(reason for result in results for reason in result['qualification_failures'])),
         internal_xy_tolerance=checker['xy_goal_tolerance'],internal_yaw_tolerance=checker['yaw_goal_tolerance'],controller=control['FollowPath']['plugin'],
-        code_head=metadata['code_head'],params_sha256=metadata['params_sha256'],map_sha256=metadata['map_sha256']))
+        code_head=metadata['code_head'],params_sha256=metadata['params_sha256'],map_sha256=metadata['map_sha256'],map_yaml_sha256=metadata.get('map_yaml_sha256')))
 out=ROOT/'M3/optimization/report/experiment_audit.json'; out.parent.mkdir(parents=True,exist_ok=True)
 out.write_text(json.dumps(dict(experiments=rows,notes=[
     'All retained attempts are indexed. Different candidates, tolerances and infrastructure failures are not pooled into one success rate.',
     'The standard-RPP nominal candidate with internal .08m/.15rad completed 9/10 but was not adopted because one terminal maneuver overlapped the conservative envelope.',
-    'The first split-controller comparison exposed plugin factory initialization failure, not evidence of navigation quality. Raw files remain retained.']),indent=2))
+    'The first split-controller comparison exposed plugin factory initialization failure, not evidence of navigation quality. Raw files remain retained.',
+    'Pre-correction map YAML used free_thresh .25, reloading gray205 as free. Actual native-loader checks prove the issue and correction. Those results are not pooled with final post-roundtrip-validated runs.']),indent=2))
 print('EXPERIMENT_AUDIT',len(rows),'navigation experiment folders')

@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[2]
 p=argparse.ArgumentParser(); p.add_argument('--suite',choices=['main','extended'],default='main'); p.add_argument('--prefix',default=''); a=p.parse_args()
 schedule=[]
 if a.suite=='main':
-    for label,runs in [('B',3),('A',3),('B_tuned',10)]:
+    for label,runs in [('B_tuned',10),('A',3),('B',3)]:
         schedule.append(dict(label='formal_static_'+label,runs=runs,profile=label,seed=200))
     for label in ['A','B','B_tuned']:
         schedule.append(dict(label='formal_dynamic_'+label,runs=10,profile=label,seed=200,obstacle='8.0,1.6'))
