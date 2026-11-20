@@ -1,0 +1,5 @@
+<library path="valid_pose_goal_checker">
+  <class name="smartcar_nav_checks::ValidPoseGoalChecker" type="smartcar_nav_checks::ValidPoseGoalChecker" base_class_type="nav2_core::GoalChecker">
+    <description>Requires valid finite unit quaternions and simultaneous XY/yaw agreement. Rejects the zero quaternion left by failed TF conversion.</description>
+  </class>
+</library>

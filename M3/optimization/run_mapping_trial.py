@@ -10,6 +10,10 @@ import subprocess
 import time
 
 ROOT=Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT/'M3/common'))
+from experiment_lock import acquire
+experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--seed',type=int,default=43); p.add_argument('--label',default='qualified_mapping')
 p.add_argument('--timeout',type=float,default=900.); p.add_argument('--promote',action=argparse.BooleanOptionalAction,default=True)
 a=p.parse_args(); os.environ['ROS_DOMAIN_ID']='165'

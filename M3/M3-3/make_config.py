@@ -34,6 +34,7 @@ def main():
     node('controller_server','general_goal_checker/xy_goal_tolerance',.08,'Leave localization margin inside independent truth qualification <=.15m')
     node('controller_server','general_goal_checker/yaw_goal_tolerance',.15,'Tightened heading; independent truth qualification <=.20rad, without in-place rotation')
     node('controller_server','general_goal_checker/stateful',False,'Require position and heading together at completion')
+    node('controller_server','general_goal_checker/plugin','smartcar_nav_checks::ValidPoseGoalChecker','Reject invalid transformed goal quaternion; prevents observed Humble premature success after TF failure')
     node('controller_server','FollowPath',{
         'plugin':'nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController',
         'desired_linear_vel':.32,'lookahead_dist':.5,'min_lookahead_dist':.30,'max_lookahead_dist':.65,
@@ -58,8 +59,9 @@ def main():
         prefix=name+'/'+name+'/ros__parameters/'
         for key,value,reason in [
             ('robot_base_frame','base_footprint','Rear-axle midpoint, matching controller kinematics'),('footprint',footprint,'Unchanged .45x.22m body centered .14m ahead; .26m envelope includes steered wheels'),
+            ('footprint_padding',.08,'Planning margin for measured localization/grid/tracking error; evaluation retains physical envelope'),
             ('plugins',['obstacle_layer','inflation_layer'] if name=='local_costmap' else ['static_layer','obstacle_layer','inflation_layer'],'2D laser; avoid needless voxel projection'),
-            ('inflation_layer/inflation_radius',.35,'1m gate leaves .3m low cost center; footprint checked separately'),
+            ('inflation_layer/inflation_radius',.45,'Soft cost field encourages corner clearance while .95m gate remains traversable with padded footprint'),
             ('obstacle_layer',dict(plugin='nav2_costmap_2d::ObstacleLayer',enabled=True,observation_sources='scan',scan=dict(topic='/scan',max_obstacle_height=2.,clearing=True,marking=True,data_type='LaserScan',raytrace_max_range=8.,raytrace_min_range=.12,obstacle_max_range=7.8,obstacle_min_range=.12)),'Use actual 8m laser for obstacle marking/clearing')]: set_value(prefix+key,value,reason)
     set_value('local_costmap/local_costmap/ros__parameters/width',5,'See turn before entering it')
     set_value('local_costmap/local_costmap/ros__parameters/height',5,'See turn before entering it')

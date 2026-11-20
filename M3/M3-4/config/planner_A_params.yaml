@@ -166,7 +166,7 @@ controller_server:
     - FollowPath
     failure_tolerance: 2.0
     general_goal_checker:
-      plugin: nav2_controller::SimpleGoalChecker
+      plugin: smartcar_nav_checks::ValidPoseGoalChecker
       stateful: false
       xy_goal_tolerance: 0.08
       yaw_goal_tolerance: 0.15
@@ -186,10 +186,11 @@ global_costmap:
     ros__parameters:
       always_send_full_costmap: true
       footprint: '[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
+      footprint_padding: 0.08
       global_frame: map
       inflation_layer:
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35
+        inflation_radius: 0.45
         plugin: nav2_costmap_2d::InflationLayer
       obstacle_layer:
         enabled: true
@@ -224,11 +225,12 @@ local_costmap:
     ros__parameters:
       always_send_full_costmap: true
       footprint: '[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
+      footprint_padding: 0.08
       global_frame: odom
       height: 5
       inflation_layer:
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35
+        inflation_radius: 0.45
         plugin: nav2_costmap_2d::InflationLayer
       obstacle_layer:
         enabled: true

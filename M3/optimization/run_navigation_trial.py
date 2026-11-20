@@ -11,6 +11,10 @@ import time
 import yaml
 
 ROOT=Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT/'M3/common'))
+from experiment_lock import acquire
+experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--runs',type=int,default=1); p.add_argument('--label',default='candidate_static')
 p.add_argument('--params',type=Path); p.add_argument('--obstacle-at'); p.add_argument('--obstacle-size',type=float,default=.6)
 p.add_argument('--delay',type=float,default=3.); p.add_argument('--timeout',type=float,default=150.)

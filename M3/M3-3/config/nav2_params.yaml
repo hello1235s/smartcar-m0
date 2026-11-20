@@ -16,18 +16,21 @@
 # controller_server/ros__parameters/general_goal_checker/xy_goal_tolerance: Leave localization margin inside independent truth qualification <=.15m
 # controller_server/ros__parameters/general_goal_checker/yaw_goal_tolerance: Tightened heading; independent truth qualification <=.20rad, without in-place rotation
 # controller_server/ros__parameters/general_goal_checker/stateful: Require position and heading together at completion
+# controller_server/ros__parameters/general_goal_checker/plugin: Reject invalid transformed goal quaternion; prevents observed Humble premature success after TF failure
 # controller_server/ros__parameters/FollowPath: RPP supports planned reverse correction, no in-place turn; chassis clamps curvature to radius >=.60m
 # planner_server/ros__parameters/expected_planner_frequency: Match 1Hz BT replan instead of default20
 # planner_server/ros__parameters/GridBased: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius .65m
 # local_costmap/local_costmap/ros__parameters/robot_base_frame: Rear-axle midpoint, matching controller kinematics
 # local_costmap/local_costmap/ros__parameters/footprint: Unchanged .45x.22m body centered .14m ahead; .26m envelope includes steered wheels
+# local_costmap/local_costmap/ros__parameters/footprint_padding: Planning margin for measured localization/grid/tracking error; evaluation retains physical envelope
 # local_costmap/local_costmap/ros__parameters/plugins: 2D laser; avoid needless voxel projection
-# local_costmap/local_costmap/ros__parameters/inflation_layer/inflation_radius: 1m gate leaves .3m low cost center; footprint checked separately
+# local_costmap/local_costmap/ros__parameters/inflation_layer/inflation_radius: Soft cost field encourages corner clearance while .95m gate remains traversable with padded footprint
 # local_costmap/local_costmap/ros__parameters/obstacle_layer: Use actual 8m laser for obstacle marking/clearing
 # global_costmap/global_costmap/ros__parameters/robot_base_frame: Rear-axle midpoint, matching controller kinematics
 # global_costmap/global_costmap/ros__parameters/footprint: Unchanged .45x.22m body centered .14m ahead; .26m envelope includes steered wheels
+# global_costmap/global_costmap/ros__parameters/footprint_padding: Planning margin for measured localization/grid/tracking error; evaluation retains physical envelope
 # global_costmap/global_costmap/ros__parameters/plugins: 2D laser; avoid needless voxel projection
-# global_costmap/global_costmap/ros__parameters/inflation_layer/inflation_radius: 1m gate leaves .3m low cost center; footprint checked separately
+# global_costmap/global_costmap/ros__parameters/inflation_layer/inflation_radius: Soft cost field encourages corner clearance while .95m gate remains traversable with padded footprint
 # global_costmap/global_costmap/ros__parameters/obstacle_layer: Use actual 8m laser for obstacle marking/clearing
 # local_costmap/local_costmap/ros__parameters/width: See turn before entering it
 # local_costmap/local_costmap/ros__parameters/height: See turn before entering it
@@ -166,7 +169,7 @@ controller_server:
       movement_time_allowance: 20.0
     general_goal_checker:
       stateful: false
-      plugin: nav2_controller::SimpleGoalChecker
+      plugin: smartcar_nav_checks::ValidPoseGoalChecker
       xy_goal_tolerance: 0.08
       yaw_goal_tolerance: 0.15
     FollowPath:
@@ -211,7 +214,7 @@ local_costmap:
       inflation_layer:
         plugin: nav2_costmap_2d::InflationLayer
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35
+        inflation_radius: 0.45
       voxel_layer:
         plugin: nav2_costmap_2d::VoxelLayer
         enabled: true
@@ -237,6 +240,7 @@ local_costmap:
         map_subscribe_transient_local: true
       always_send_full_costmap: true
       footprint: '[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
+      footprint_padding: 0.08
       obstacle_layer:
         plugin: nav2_costmap_2d::ObstacleLayer
         enabled: true
@@ -286,9 +290,10 @@ global_costmap:
       inflation_layer:
         plugin: nav2_costmap_2d::InflationLayer
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35
+        inflation_radius: 0.45
       always_send_full_costmap: true
       footprint: '[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
+      footprint_padding: 0.08
 map_server:
   ros__parameters:
     use_sim_time: true
