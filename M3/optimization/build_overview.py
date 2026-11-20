@@ -38,7 +38,7 @@ def main():
 4. Nav2使用SmacHybrid/Reeds-Shepp、AckermannRPP、有界倒车平滑链，关闭原地旋转。控制器在碰撞预测之前限制曲率，并用0.45m虚拟末端参考引导朝向；真实目标不移动，近端按实际目标距离减速。默认xy/yaw容差0.05m/0.10rad，外部真值验收≤0.15m/0.20rad，不靠放宽容差过关。
 5. 默认0.08m规划padding、0.45m软膨胀，给定位、栅格和跟踪误差留余量。早期内岛拐角包络越界失败保留，规划余量不用于缩小独立评价车身。
 6. 修复Humble目标检查路径的TF失败假成功：无效目标四元数被新增插件拒绝。原错误曾在仅行驶约0.24m时返回Action成功，被独立真值门槛拦截。10项Python测试与3项C++回归（位姿有效性、车辆曲率/末端速度约束、标准/扩展插件加载）通过。
-7. M3导航使用Fast DDS UDPv4，解决反复启动时观察到的服务响应超时；行为树路径按当前checkout解析，消除旧目录依赖。
+7. Fast DDS UDPv4候选仍发生TF停滞，只通过默认静态8/10；该轮完整保留。相同失败种子下的通信对照后，M3导航采用项目内官方CycloneDDS、本机单播；M1、方形与建图环境不改。固定地图目标按最新TF转换，等待时不占用代价地图锁。行为树路径按当前checkout解析，消除旧目录依赖。
 
 地图序列化还通过原生Nav2回验：保留原SLAM像素，仅修正free_thresh 0.25→0.196，使12820个灰色未知格不再错误变成自由格。原生map_server加载后1600占据/12820未知/24784自由与原PGM完全一致。当前正式统计均使用修正后的同一PGM与YAML哈希，修正前候选单列保留。
 
@@ -62,6 +62,7 @@ def main():
 
 ```bash
 bash scripts/build_ros.sh
+bash scripts/install_m3_dds.sh
 source scripts/env.sh
 .venv-ros/bin/python -m unittest discover -s M3/tests -v
 ctest --test-dir build_ros/smartcar_nav_checks --output-on-failure

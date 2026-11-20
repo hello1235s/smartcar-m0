@@ -1,11 +1,16 @@
 """Generate reproducible Nav2 configurations from installed Humble snapshot."""
 from pathlib import Path
+import sys
 import yaml
 ROOT=Path(__file__).resolve().parent
+sys.path.insert(0,str(ROOT.parent/'common'))
+from config_annotations import expand_changes
 
 
 def main():
-    data=yaml.safe_load((ROOT/'config/nav2_humble.original.yaml').read_text())
+    original=yaml.safe_load((ROOT/'config/nav2_humble.original.yaml').read_text())
+    import copy
+    data=copy.deepcopy(original)
     notes=[]
     def set_value(path,value,reason):
         target=data; keys=path.split('/')
@@ -24,10 +29,10 @@ def main():
     node('amcl','sigma_hit',.05,'Laser sigma .01m; include grid uncertainty')
     # Differential odometry proposal is used for forward car motion, not a differential command model.
     node('bt_navigator','robot_base_frame','base_footprint','Ground projection for planar navigation')
-    node('bt_navigator','default_nav_to_pose_bt_xml',str(ROOT/'config/car_navigation.xml'),'Recovery excludes impossible in-place spin')
+    node('bt_navigator','default_nav_to_pose_bt_xml','M3/M3-3/config/car_navigation.xml','Resolved by bringup per checkout; recovery excludes impossible in-place spin')
     through=(ROOT/'config/car_navigation.xml').read_text().replace('<ComputePathToPose goal="{goal}"','<ComputePathThroughPoses goals="{goals}"')
     (ROOT/'config/car_through_poses.xml').write_text(through)
-    node('bt_navigator','default_nav_through_poses_bt_xml',str(ROOT/'config/car_through_poses.xml'),'Both navigator BTs must exclude unavailable spin action')
+    node('bt_navigator','default_nav_through_poses_bt_xml','M3/M3-3/config/car_through_poses.xml','Resolved by bringup per checkout; both navigator BTs exclude unavailable spin action')
     node('controller_server','failure_tolerance',2.,'Allow one global replan before abort')
     node('controller_server','progress_checker/required_movement_radius',.15,'Slow approach still counts as progress')
     node('controller_server','progress_checker/movement_time_allowance',20.,'Wait for obstacle replan')
@@ -72,6 +77,7 @@ def main():
     node('velocity_smoother','max_accel',[.5,0.,1.],'Reduce tire slip on velocity changes')
     node('velocity_smoother','max_decel',[-.7,0.,-1.],'Controlled braking')
     node('behavior_server','behavior_plugins',['backup','drive_on_heading','wait'],'No spin behavior for car')
+    notes=expand_changes(original,data,notes)
     comments=''.join('# '+n['parameter']+': '+n['reason']+'\n' for n in notes)
     (ROOT/'config/nav2_params.yaml').write_text(comments+yaml.safe_dump(data,sort_keys=False))
     (ROOT/'config/changes.yaml').write_text(yaml.safe_dump(notes,sort_keys=False))

@@ -106,13 +106,14 @@ tmp/posegraph_tool/inspect_posegraph <path/to/serialized_map.posegraph>
 
 1. 旧配置行为树绝对路径指向其他目录：launch现在根据当前checkout解析，原参数文件不被运行过程改写。
 2. 前向导航进入位置容差但朝向差约14°，继续绕行后中止：完整倒车规划/跟踪链解决候选问题，仍以重复真值验收为准。
-3. 重复启动中地图服务响应超时：M3导航统一使用当前Fast DDS支持的UDPv4传输。
+3. 反复启动时曾出现服务超时、TF停滞和旧路径起点：Fast DDS UDPv4候选仍只通过8/10。相同失败种子对照后，M3导航改用项目内官方CycloneDDS和本机单播配置；M1、方形与建图环境保持原设置。固定地图目标按最新TF转换，等待TF时不占用代价地图锁。对照、失败和运行库版本均保留。
 4. Humble目标TF转换失败时曾出现车只走0.24m就Action成功。新增C++`ValidPoseGoalChecker`拒绝零/非有限/非单位四元数，始终同时检查xy和yaw。插件与上游接口兼容，独立回归测试覆盖实际失败形态；即使Action成功，外部真值门槛仍会拦截假成功。
 5. 内岛拐角曾擦入保守包络：增加规划余量和软代价场。后续标准RPP候选即使静态9/10，仍有末端绕行碰外墙；因此没有采用，新增阿克曼曲率预测与末端朝向引导后重新完整验收，失败CSV全部保留。
 
 ```bash
 bash scripts/build_ros.sh
-source scripts/env.sh
+bash scripts/install_m3_dds.sh
+source scripts/m3_nav_env.sh
 # 一条launch同时起Gazebo、地图、AMCL、Nav2
 ros2 launch ./M3/M3-3/bringup.launch.py
 # 与上一条二选一：自启并清理仿真，实际发送任意地图目标
@@ -135,7 +136,7 @@ bash scripts/run_m3_demo.sh static --goal 10,4,1.5707963268
 正式A/B/B_speed/B_tuned共用AckermannRPP、曲率约束和末端跟踪，A/B是保守/激进两套参数，符合题面允许的两套极端参数方案。B_speed只降低B速度，用作中间诊断；B_tuned进一步调整前视与预测时间。标准RPP候选静态9/10与一次外墙包络越界作为根因证据另存，不混入正式参数对照。三组正式动态每组10次，不自动丢弃失败重抽。具体配置与结果见[分析报告](report.md)及[原始CSV](../optimization/report/all_attempts.csv)。
 
 ```bash
-source scripts/env.sh
+source scripts/m3_nav_env.sh
 # 图形桌面：一个命令完整演示，自行起栈、发目标、延迟注入并清理
 bash scripts/run_m3_demo.sh dynamic
 # 考官指定另一个位置；可修改目标、delay、size

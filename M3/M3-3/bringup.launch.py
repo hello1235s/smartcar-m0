@@ -8,7 +8,10 @@ import tempfile
 import yaml
 import atexit
 import shutil
+import sys
 ROOT=Path(__file__).resolve().parent
+sys.path.insert(0,str(ROOT.parent/'common'))
+from navigation_transport import configure
 
 
 def setup(context):
@@ -31,4 +34,5 @@ def setup(context):
 
 
 def generate_launch_description():
+    configure(ROOT.parents[1])
     return LaunchDescription([SetEnvironmentVariable('FASTDDS_BUILTIN_TRANSPORTS','UDPv4'),DeclareLaunchArgument('params_file',default_value=str(ROOT/'config/nav2_params.yaml')),DeclareLaunchArgument('physics_seed',default_value='42'),OpaqueFunction(function=setup)])

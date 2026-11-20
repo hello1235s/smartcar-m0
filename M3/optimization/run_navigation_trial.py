@@ -15,6 +15,8 @@ import sys
 sys.path.insert(0,str(ROOT/'M3/common'))
 from experiment_lock import acquire
 from process_cleanup import terminate_owned_tree
+from navigation_transport import configure
+transport=configure(ROOT)
 experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--runs',type=int,default=1); p.add_argument('--label',default='candidate_static')
 p.add_argument('--params',type=Path); p.add_argument('--obstacle-at'); p.add_argument('--obstacle-size',type=float,default=.6)
@@ -48,11 +50,13 @@ controller_library=ROOT/'install_ros/smartcar_nav_checks/lib/libackermann_rpp.so
 controller_sha256=hashlib.sha256(controller_library.read_bytes()).hexdigest() if controller_library.exists() else None
 versions=subprocess.run(['dpkg-query','-W','ros-humble-navigation2','ros-humble-nav2-controller','ros-humble-nav2-map-server','ros-humble-slam-toolbox','ros-humble-fastrtps','ros-humble-ackermann-steering-controller','gazebo'],capture_output=True,text=True)
 (folder/'runtime_versions.txt').write_text(versions.stdout+versions.stderr)
+for name in ['packages.txt','packages.sha256']:
+    shutil.copy2(ROOT/'vendor/m3-dds'/name,folder/('dds_'+name))
 metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obstacle_size=a.obstacle_size,delay_s=a.delay,
               base_seed=a.seed,goal_map=a.goal,params_source=str(params),params_sha256=hashlib.sha256(actual.read_bytes()).hexdigest(),
               code_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
               source_manifest_sha256=hashlib.sha256((folder/'source_hashes.json').read_bytes()).hexdigest(),
-              goal_checker_library_sha256=plugin_sha256,dds_transport='UDPv4',
+              goal_checker_library_sha256=plugin_sha256,**transport,
               ackermann_controller_library_sha256=controller_sha256,
               map_sha256=hashlib.sha256((ROOT/'M3/M3-2/maps/map.pgm').read_bytes()).hexdigest(),
               map_yaml_sha256=hashlib.sha256((ROOT/'M3/M3-2/maps/map.yaml').read_bytes()).hexdigest(),

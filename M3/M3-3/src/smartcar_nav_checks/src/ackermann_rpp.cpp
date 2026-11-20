@@ -52,10 +52,14 @@ public:
   geometry_msgs::msg::TwistStamped computeVelocityCommands(const geometry_msgs::msg::PoseStamped & pose,
       const geometry_msgs::msg::Twist & speed,nav2_core::GoalChecker *) override {
     std::lock_guard<std::mutex> guard(mutex_);
-    std::unique_lock<nav2_costmap_2d::Costmap2D::mutex_t> map_guard(*(costmap_->getMutex()));
     geometry_msgs::msg::PoseStamped goal_here;
-    if(!transformPose(pose.header.frame_id,goal_,goal_here))
+    auto current_goal=goal_;
+    // A fixed map goal needs the latest map->odom correction, not the transform
+    // at the last planner message time. Never wait for TF holding the costmap.
+    current_goal.header.stamp=builtin_interfaces::msg::Time();
+    if(!transformPose(pose.header.frame_id,current_goal,goal_here))
       throw nav2_core::PlannerException("Goal transform unavailable; hold safely");
+    std::unique_lock<nav2_costmap_2d::Costmap2D::mutex_t> map_guard(*(costmap_->getMutex()));
     const double distance=std::hypot(goal_here.pose.position.x-pose.pose.position.x,goal_here.pose.position.y-pose.pose.position.y);
     auto path=transformGlobalPlan(pose);
     double lookahead=getLookAheadDistance(speed);

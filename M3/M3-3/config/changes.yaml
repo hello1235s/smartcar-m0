@@ -6,26 +6,6 @@
   old: -1.0
   new: 0.12
   reason: Reject below laser minimum
-- parameter: amcl/ros__parameters/set_initial_pose
-  old: <not in defaults>
-  new: true
-  reason: Known surveyed start; never read Gazebo truth for localization
-- parameter: amcl/ros__parameters/initial_pose
-  old: <not in defaults>
-  new:
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    yaw: 0.0
-  reason: Map start at world (1,1)
-- parameter: amcl/ros__parameters/update_min_d
-  old: 0.25
-  new: 0.1
-  reason: Dense updates through 1m gate
-- parameter: amcl/ros__parameters/update_min_a
-  old: 0.2
-  new: 0.1
-  reason: Car turning updates
 - parameter: amcl/ros__parameters/max_particles
   old: 2000
   new: 1000
@@ -38,172 +18,215 @@
   old: 0.2
   new: 0.05
   reason: Laser sigma .01m; include grid uncertainty
+- parameter: amcl/ros__parameters/update_min_a
+  old: 0.2
+  new: 0.1
+  reason: Car turning updates
+- parameter: amcl/ros__parameters/update_min_d
+  old: 0.25
+  new: 0.1
+  reason: Dense updates through 1m gate
+- parameter: amcl/ros__parameters/set_initial_pose
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Known surveyed start; never read Gazebo truth for localization
+- parameter: amcl/ros__parameters/initial_pose/x
+  old: <not present in original Humble YAML>
+  new: 0.0
+  reason: Map start at world (1,1)
+- parameter: amcl/ros__parameters/initial_pose/y
+  old: <not present in original Humble YAML>
+  new: 0.0
+  reason: Map start at world (1,1)
+- parameter: amcl/ros__parameters/initial_pose/z
+  old: <not present in original Humble YAML>
+  new: 0.0
+  reason: Map start at world (1,1)
+- parameter: amcl/ros__parameters/initial_pose/yaw
+  old: <not present in original Humble YAML>
+  new: 0.0
+  reason: Map start at world (1,1)
 - parameter: bt_navigator/ros__parameters/robot_base_frame
   old: base_link
   new: base_footprint
   reason: Ground projection for planar navigation
 - parameter: bt_navigator/ros__parameters/default_nav_to_pose_bt_xml
-  old: <not in defaults>
-  new: /home/ubuntu2204/smartcar-m3-opt/M3/M3-3/config/car_navigation.xml
-  reason: Recovery excludes impossible in-place spin
+  old: <not present in original Humble YAML>
+  new: M3/M3-3/config/car_navigation.xml
+  reason: Resolved by bringup per checkout; recovery excludes impossible in-place
+    spin
 - parameter: bt_navigator/ros__parameters/default_nav_through_poses_bt_xml
-  old: <not in defaults>
-  new: /home/ubuntu2204/smartcar-m3-opt/M3/M3-3/config/car_through_poses.xml
-  reason: Both navigator BTs must exclude unavailable spin action
+  old: <not present in original Humble YAML>
+  new: M3/M3-3/config/car_through_poses.xml
+  reason: Resolved by bringup per checkout; both navigator BTs exclude unavailable
+    spin action
 - parameter: controller_server/ros__parameters/failure_tolerance
   old: 0.3
   new: 2.0
-  reason: Allow one global replan before abort
+  reason: Allow2s of transient unavailable local control while periodic global replanning
+    can respond.
 - parameter: controller_server/ros__parameters/progress_checker/required_movement_radius
   old: 0.5
   new: 0.15
-  reason: Slow approach still counts as progress
+  reason: Slow .15m progress remains valid during obstacle approach.
 - parameter: controller_server/ros__parameters/progress_checker/movement_time_allowance
   old: 10.0
   new: 20.0
-  reason: Wait for obstacle replan
-- parameter: controller_server/ros__parameters/general_goal_checker/xy_goal_tolerance
-  old: 0.25
-  new: 0.05
-  reason: Terminal reference permits tighter stop; leave localization/grid margin
-    inside truth qualification <=.15m
-- parameter: controller_server/ros__parameters/general_goal_checker/yaw_goal_tolerance
-  old: 0.25
-  new: 0.1
-  reason: Tighter joint heading requirement; independent truth qualification <=.20rad,
-    without in-place rotation
+  reason: Allow20s to make measurable progress; the external trial timeout remains
+    bounded.
 - parameter: controller_server/ros__parameters/general_goal_checker/stateful
   old: true
   new: false
-  reason: Require position and heading together at completion
+  reason: False documents joint XY/yaw checking; the custom checker always checks
+    both and rejects invalid poses.
 - parameter: controller_server/ros__parameters/general_goal_checker/plugin
   old: nav2_controller::SimpleGoalChecker
   new: smartcar_nav_checks::ValidPoseGoalChecker
   reason: Reject invalid transformed goal quaternion; prevents observed Humble premature
     success after TF failure
-- parameter: controller_server/ros__parameters/FollowPath
-  old:
-    plugin: dwb_core::DWBLocalPlanner
-    debug_trajectory_details: true
-    min_vel_x: 0.0
-    min_vel_y: 0.0
-    max_vel_x: 0.26
-    max_vel_y: 0.0
-    max_vel_theta: 1.0
-    min_speed_xy: 0.0
-    max_speed_xy: 0.26
-    min_speed_theta: 0.0
-    acc_lim_x: 2.5
-    acc_lim_y: 0.0
-    acc_lim_theta: 3.2
-    decel_lim_x: -2.5
-    decel_lim_y: 0.0
-    decel_lim_theta: -3.2
-    vx_samples: 20
-    vy_samples: 5
-    vtheta_samples: 20
-    sim_time: 1.7
-    linear_granularity: 0.05
-    angular_granularity: 0.025
-    transform_tolerance: 0.2
-    xy_goal_tolerance: 0.25
-    trans_stopped_velocity: 0.25
-    short_circuit_trajectory_evaluation: true
-    stateful: true
-    critics:
-    - RotateToGoal
-    - Oscillation
-    - BaseObstacle
-    - GoalAlign
-    - PathAlign
-    - PathDist
-    - GoalDist
-    BaseObstacle.scale: 0.02
-    PathAlign.scale: 32.0
-    PathAlign.forward_point_distance: 0.1
-    GoalAlign.scale: 24.0
-    GoalAlign.forward_point_distance: 0.1
-    PathDist.scale: 32.0
-    GoalDist.scale: 24.0
-    RotateToGoal.scale: 32.0
-    RotateToGoal.slowing_factor: 5.0
-    RotateToGoal.lookahead_time: -1.0
-  new:
-    plugin: smartcar_nav_checks::AckermannRPP
-    min_turning_radius: 0.6
-    terminal_extension: 0.45
-    terminal_slowdown_distance: 0.6
-    terminal_speed_gain: 0.7
-    desired_linear_vel: 0.32
-    lookahead_dist: 0.5
-    min_lookahead_dist: 0.3
-    max_lookahead_dist: 0.65
-    lookahead_time: 1.2
-    use_velocity_scaled_lookahead_dist: true
-    transform_tolerance: 0.5
-    min_approach_linear_velocity: 0.035
-    approach_velocity_scaling_dist: 0.8
-    use_collision_detection: true
-    max_allowed_time_to_collision_up_to_carrot: 2.0
-    use_regulated_linear_velocity_scaling: true
-    use_cost_regulated_linear_velocity_scaling: true
-    regulated_linear_scaling_min_radius: 0.85
-    regulated_linear_scaling_min_speed: 0.08
-    cost_scaling_dist: 0.3
-    cost_scaling_gain: 1.0
-    inflation_cost_scaling_factor: 3.0
-    use_rotate_to_heading: false
-    allow_reversing: true
-    max_angular_accel: 1.0
+- parameter: controller_server/ros__parameters/general_goal_checker/xy_goal_tolerance
+  old: 0.25
+  new: 0.05
+  reason: Internal .05m leaves map-grid and localization margin inside the independent
+    .15m truth limit.
+- parameter: controller_server/ros__parameters/general_goal_checker/yaw_goal_tolerance
+  old: 0.25
+  new: 0.1
+  reason: Internal .10rad leaves margin inside the independent .20rad truth limit.
+- parameter: controller_server/ros__parameters/FollowPath/plugin
+  old: dwb_core::DWBLocalPlanner
+  new: smartcar_nav_checks::AckermannRPP
   reason: AckermannRPP bounds curvature before collision prediction and extends terminal
     heading reference; real Nav2 goal remains unchanged
-- parameter: planner_server/ros__parameters/expected_planner_frequency
-  old: 20.0
+- parameter: controller_server/ros__parameters/FollowPath/min_turning_radius
+  old: <not present in original Humble YAML>
+  new: 0.6
+  reason: Clamp curvature before prediction; .60m exceeds the car geometric inner-wheel
+    limit of about .575m.
+- parameter: controller_server/ros__parameters/FollowPath/terminal_extension
+  old: <not present in original Humble YAML>
+  new: 0.45
+  reason: Virtual .45m heading reference improves terminal alignment; ControllerServer
+    still checks the original goal.
+- parameter: controller_server/ros__parameters/FollowPath/terminal_slowdown_distance
+  old: <not present in original Humble YAML>
+  new: 0.6
+  reason: Start actual-goal speed limiting within .60m; the virtual reference must
+    not cause overshoot.
+- parameter: controller_server/ros__parameters/FollowPath/terminal_speed_gain
+  old: <not present in original Humble YAML>
+  new: 0.7
+  reason: Inside the terminal region cap |v| by max(approach floor, .7*distance),
+    preserving an already lower safe speed.
+- parameter: controller_server/ros__parameters/FollowPath/desired_linear_vel
+  old: <not present in original Humble YAML>
+  new: 0.32
+  reason: Nominal cruise .32m/s balances traversal time, clearance and command variation;
+    aggressive comparison is .65m/s.
+- parameter: controller_server/ros__parameters/FollowPath/lookahead_dist
+  old: <not present in original Humble YAML>
+  new: 0.5
+  reason: Nominal reference distance; velocity scaling and min/max bounds determine
+    the actual carrot.
+- parameter: controller_server/ros__parameters/FollowPath/min_lookahead_dist
+  old: <not present in original Humble YAML>
+  new: 0.3
+  reason: Lower bound avoids chasing laser/localization noise at near-zero speed.
+- parameter: controller_server/ros__parameters/FollowPath/max_lookahead_dist
+  old: <not present in original Humble YAML>
+  new: 0.65
+  reason: Upper bound limits corner cutting in the narrow ring corridors.
+- parameter: controller_server/ros__parameters/FollowPath/lookahead_time
+  old: <not present in original Humble YAML>
+  new: 1.2
+  reason: Scale the reference distance from measured forward/reverse speed before
+    clamping to .30-.65m.
+- parameter: controller_server/ros__parameters/FollowPath/use_velocity_scaled_lookahead_dist
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Adapt tracking distance to measured speed; fixed short lookahead is reserved
+    for the aggressive comparison.
+- parameter: controller_server/ros__parameters/FollowPath/transform_tolerance
+  old: 0.2
+  new: 0.5
+  reason: AckermannRPP bounds curvature before collision prediction and extends terminal
+    heading reference; real Nav2 goal remains unchanged
+- parameter: controller_server/ros__parameters/FollowPath/min_approach_linear_velocity
+  old: <not present in original Humble YAML>
+  new: 0.035
+  reason: A .035m/s floor prevents numerical stall; the terminal cap never accelerates
+    a lower safe command.
+- parameter: controller_server/ros__parameters/FollowPath/approach_velocity_scaling_dist
+  old: <not present in original Humble YAML>
+  new: 0.8
+  reason: Keep inherited RPP approach regulation; additional terminal regulation uses
+    the actual goal, not the virtual endpoint.
+- parameter: controller_server/ros__parameters/FollowPath/use_collision_detection
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Retain footprint checks on the bounded command; never rely only on bridge
+    clipping.
+- parameter: controller_server/ros__parameters/FollowPath/max_allowed_time_to_collision_up_to_carrot
+  old: <not present in original Humble YAML>
+  new: 2.0
+  reason: Predict feasible chassis arcs for up to2s, bounded by the current tracking/stopping
+    region.
+- parameter: controller_server/ros__parameters/FollowPath/use_regulated_linear_velocity_scaling
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Reduce cruise speed when reference curvature becomes tight.
+- parameter: controller_server/ros__parameters/FollowPath/use_cost_regulated_linear_velocity_scaling
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Reduce speed near obstacle inflation costs.
+- parameter: controller_server/ros__parameters/FollowPath/regulated_linear_scaling_min_radius
+  old: <not present in original Humble YAML>
+  new: 0.85
+  reason: Begin speed regulation before reaching the .60m physical curvature bound.
+- parameter: controller_server/ros__parameters/FollowPath/regulated_linear_scaling_min_speed
+  old: <not present in original Humble YAML>
+  new: 0.08
+  reason: Inherited regulation floor; terminal approach may command lower speeds.
+- parameter: controller_server/ros__parameters/FollowPath/cost_scaling_dist
+  old: <not present in original Humble YAML>
+  new: 0.3
+  reason: Proximity band for cost-based speed regulation, separate from footprint
+    collision checks.
+- parameter: controller_server/ros__parameters/FollowPath/cost_scaling_gain
+  old: <not present in original Humble YAML>
   new: 1.0
-  reason: Match 1Hz BT replan instead of default20
-- parameter: planner_server/ros__parameters/GridBased
-  old:
-    plugin: nav2_navfn_planner/NavfnPlanner
-    tolerance: 0.5
-    use_astar: false
-    allow_unknown: true
-  new:
-    plugin: nav2_smac_planner/SmacPlannerHybrid
-    tolerance: 0.25
-    downsample_costmap: false
-    allow_unknown: false
-    max_iterations: 1000000
-    max_on_approach_iterations: 1000
-    max_planning_time: 2.0
-    motion_model_for_search: REEDS_SHEPP
-    angle_quantization_bins: 72
-    analytic_expansion_ratio: 3.5
-    analytic_expansion_max_length: 3.0
-    minimum_turning_radius: 0.65
-    reverse_penalty: 2.0
-    change_penalty: 0.0
-    non_straight_penalty: 1.2
-    cost_penalty: 2.0
-    retrospective_penalty: 0.015
-    lookup_table_size: 20.0
-    cache_obstacle_heuristic: true
-    smooth_path: true
-  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
-    .65m
+  reason: Keep cost regulation proportional rather than adding an unmeasured extra
+    gain.
+- parameter: controller_server/ros__parameters/FollowPath/inflation_cost_scaling_factor
+  old: <not present in original Humble YAML>
+  new: 3.0
+  reason: Match the actual costmap inflation-layer decay factor.
+- parameter: controller_server/ros__parameters/FollowPath/use_rotate_to_heading
+  old: <not present in original Humble YAML>
+  new: false
+  reason: 'False: an Ackermann chassis cannot execute an in-place rotation.'
+- parameter: controller_server/ros__parameters/FollowPath/allow_reversing
+  old: <not present in original Humble YAML>
+  new: true
+  reason: 'True: match Reeds-Shepp path inversions and the negative smoother velocity
+    bound.'
+- parameter: controller_server/ros__parameters/FollowPath/max_angular_accel
+  old: <not present in original Humble YAML>
+  new: 1.0
+  reason: Inherited rotate-only RPP parameter is inactive in this Ackermann branch;
+    the external smoother bounds angular acceleration.
 - parameter: local_costmap/local_costmap/ros__parameters/robot_base_frame
   old: base_link
   new: base_footprint
   reason: Rear-axle midpoint, matching controller kinematics
-- parameter: local_costmap/local_costmap/ros__parameters/footprint
-  old: <not in defaults>
-  new: '[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
-  reason: Unchanged .45x.22m body centered .14m ahead; .26m envelope includes steered
-    wheels
-- parameter: local_costmap/local_costmap/ros__parameters/footprint_padding
-  old: <not in defaults>
-  new: 0.08
-  reason: Planning margin for measured localization/grid/tracking error; evaluation
-    retains physical envelope
+- parameter: local_costmap/local_costmap/ros__parameters/width
+  old: 3
+  new: 5
+  reason: See turn before entering it
+- parameter: local_costmap/local_costmap/ros__parameters/height
+  old: 3
+  new: 5
+  reason: See turn before entering it
 - parameter: local_costmap/local_costmap/ros__parameters/plugins
   old:
   - voxel_layer
@@ -215,92 +238,214 @@
 - parameter: local_costmap/local_costmap/ros__parameters/inflation_layer/inflation_radius
   old: 0.55
   new: 0.45
-  reason: Soft cost field encourages corner clearance while .95m gate remains traversable
-    with padded footprint
-- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer
-  old: <not in defaults>
-  new:
-    plugin: nav2_costmap_2d::ObstacleLayer
-    enabled: true
-    observation_sources: scan
-    scan:
-      topic: /scan
-      max_obstacle_height: 2.0
-      clearing: true
-      marking: true
-      data_type: LaserScan
-      raytrace_max_range: 8.0
-      raytrace_min_range: 0.12
-      obstacle_max_range: 7.8
-      obstacle_min_range: 0.12
+  reason: Soft .45m cost field improves corner clearance without treating the full
+    radius as a lethal band.
+- parameter: local_costmap/local_costmap/ros__parameters/footprint
+  old: <not present in original Humble YAML>
+  new: '[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
+  reason: Unchanged .45x.22m body centered .14m ahead; .26m envelope includes steered
+    wheels
+- parameter: local_costmap/local_costmap/ros__parameters/footprint_padding
+  old: <not present in original Humble YAML>
+  new: 0.08
+  reason: Add .08m planning margin around the unchanged physical envelope; independent
+    evaluation does not shrink its footprint.
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/plugin
+  old: <not present in original Humble YAML>
+  new: nav2_costmap_2d::ObstacleLayer
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/enabled
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/observation_sources
+  old: <not present in original Humble YAML>
+  new: scan
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/topic
+  old: <not present in original Humble YAML>
+  new: /scan
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/max_obstacle_height
+  old: <not present in original Humble YAML>
+  new: 2.0
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/clearing
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/marking
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/data_type
+  old: <not present in original Humble YAML>
+  new: LaserScan
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/raytrace_max_range
+  old: <not present in original Humble YAML>
+  new: 8.0
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/raytrace_min_range
+  old: <not present in original Humble YAML>
+  new: 0.12
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/obstacle_max_range
+  old: <not present in original Humble YAML>
+  new: 7.8
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: local_costmap/local_costmap/ros__parameters/obstacle_layer/scan/obstacle_min_range
+  old: <not present in original Humble YAML>
+  new: 0.12
   reason: Use actual 8m laser for obstacle marking/clearing
 - parameter: global_costmap/global_costmap/ros__parameters/robot_base_frame
   old: base_link
   new: base_footprint
   reason: Rear-axle midpoint, matching controller kinematics
+- parameter: global_costmap/global_costmap/ros__parameters/obstacle_layer/scan/raytrace_max_range
+  old: 3.0
+  new: 8.0
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: global_costmap/global_costmap/ros__parameters/obstacle_layer/scan/raytrace_min_range
+  old: 0.0
+  new: 0.12
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: global_costmap/global_costmap/ros__parameters/obstacle_layer/scan/obstacle_max_range
+  old: 2.5
+  new: 7.8
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: global_costmap/global_costmap/ros__parameters/obstacle_layer/scan/obstacle_min_range
+  old: 0.0
+  new: 0.12
+  reason: Use actual 8m laser for obstacle marking/clearing
+- parameter: global_costmap/global_costmap/ros__parameters/inflation_layer/inflation_radius
+  old: 0.55
+  new: 0.45
+  reason: Soft .45m cost field improves corner clearance without treating the full
+    radius as a lethal band.
 - parameter: global_costmap/global_costmap/ros__parameters/footprint
-  old: <not in defaults>
+  old: <not present in original Humble YAML>
   new: '[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
   reason: Unchanged .45x.22m body centered .14m ahead; .26m envelope includes steered
     wheels
 - parameter: global_costmap/global_costmap/ros__parameters/footprint_padding
-  old: <not in defaults>
+  old: <not present in original Humble YAML>
   new: 0.08
-  reason: Planning margin for measured localization/grid/tracking error; evaluation
-    retains physical envelope
-- parameter: global_costmap/global_costmap/ros__parameters/plugins
+  reason: Add .08m planning margin around the unchanged physical envelope; independent
+    evaluation does not shrink its footprint.
+- parameter: planner_server/ros__parameters/expected_planner_frequency
+  old: 20.0
+  new: 1.0
+  reason: Match 1Hz BT replan instead of default20
+- parameter: planner_server/ros__parameters/GridBased/plugin
+  old: nav2_navfn_planner/NavfnPlanner
+  new: nav2_smac_planner/SmacPlannerHybrid
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/tolerance
+  old: 0.5
+  new: 0.25
+  reason: Planner fallback search tolerance is separate from the strict physical-goal
+    validation; an approximate endpoint cannot pass if truth limits fail.
+- parameter: planner_server/ros__parameters/GridBased/downsample_costmap
+  old: <not present in original Humble YAML>
+  new: false
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/allow_unknown
+  old: true
+  new: false
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/max_iterations
+  old: <not present in original Humble YAML>
+  new: 1000000
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/max_on_approach_iterations
+  old: <not present in original Humble YAML>
+  new: 1000
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/max_planning_time
+  old: <not present in original Humble YAML>
+  new: 2.0
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/motion_model_for_search
+  old: <not present in original Humble YAML>
+  new: REEDS_SHEPP
+  reason: Reeds-Shepp explicitly supports feasible forward/reverse car maneuvers.
+- parameter: planner_server/ros__parameters/GridBased/angle_quantization_bins
+  old: <not present in original Humble YAML>
+  new: 72
+  reason: 72 heading bins give5deg search resolution; this is not a precision claim.
+- parameter: planner_server/ros__parameters/GridBased/analytic_expansion_ratio
+  old: <not present in original Humble YAML>
+  new: 3.5
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/analytic_expansion_max_length
+  old: <not present in original Humble YAML>
+  new: 3.0
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/minimum_turning_radius
+  old: <not present in original Humble YAML>
+  new: 0.65
+  reason: Hybrid-A* radius .65m leaves margin above controller/chassis .60m bound.
+- parameter: planner_server/ros__parameters/GridBased/reverse_penalty
+  old: <not present in original Humble YAML>
+  new: 2.0
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/change_penalty
+  old: <not present in original Humble YAML>
+  new: 0.0
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/non_straight_penalty
+  old: <not present in original Humble YAML>
+  new: 1.2
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/cost_penalty
+  old: <not present in original Humble YAML>
+  new: 2.0
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/retrospective_penalty
+  old: <not present in original Humble YAML>
+  new: 0.015
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/lookup_table_size
+  old: <not present in original Humble YAML>
+  new: 20.0
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/cache_obstacle_heuristic
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: planner_server/ros__parameters/GridBased/smooth_path
+  old: <not present in original Humble YAML>
+  new: true
+  reason: Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius
+    .65m
+- parameter: behavior_server/ros__parameters/behavior_plugins
   old:
-  - static_layer
-  - obstacle_layer
-  - inflation_layer
+  - spin
+  - backup
+  - drive_on_heading
+  - assisted_teleop
+  - wait
   new:
-  - static_layer
-  - obstacle_layer
-  - inflation_layer
-  reason: 2D laser; avoid needless voxel projection
-- parameter: global_costmap/global_costmap/ros__parameters/inflation_layer/inflation_radius
-  old: 0.55
-  new: 0.45
-  reason: Soft cost field encourages corner clearance while .95m gate remains traversable
-    with padded footprint
-- parameter: global_costmap/global_costmap/ros__parameters/obstacle_layer
-  old:
-    plugin: nav2_costmap_2d::ObstacleLayer
-    enabled: true
-    observation_sources: scan
-    scan:
-      topic: /scan
-      max_obstacle_height: 2.0
-      clearing: true
-      marking: true
-      data_type: LaserScan
-      raytrace_max_range: 3.0
-      raytrace_min_range: 0.0
-      obstacle_max_range: 2.5
-      obstacle_min_range: 0.0
-  new:
-    plugin: nav2_costmap_2d::ObstacleLayer
-    enabled: true
-    observation_sources: scan
-    scan:
-      topic: /scan
-      max_obstacle_height: 2.0
-      clearing: true
-      marking: true
-      data_type: LaserScan
-      raytrace_max_range: 8.0
-      raytrace_min_range: 0.12
-      obstacle_max_range: 7.8
-      obstacle_min_range: 0.12
-  reason: Use actual 8m laser for obstacle marking/clearing
-- parameter: local_costmap/local_costmap/ros__parameters/width
-  old: 3
-  new: 5
-  reason: See turn before entering it
-- parameter: local_costmap/local_costmap/ros__parameters/height
-  old: 3
-  new: 5
-  reason: See turn before entering it
+  - backup
+  - drive_on_heading
+  - wait
+  reason: No spin behavior for car
 - parameter: velocity_smoother/ros__parameters/max_velocity
   old:
   - 0.26
@@ -342,15 +487,3 @@
   - 0.0
   - -1.0
   reason: Controlled braking
-- parameter: behavior_server/ros__parameters/behavior_plugins
-  old:
-  - spin
-  - backup
-  - drive_on_heading
-  - assisted_teleop
-  - wait
-  new:
-  - backup
-  - drive_on_heading
-  - wait
-  reason: No spin behavior for car
