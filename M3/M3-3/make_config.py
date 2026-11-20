@@ -31,8 +31,8 @@ def main():
     node('controller_server','failure_tolerance',2.,'Allow one global replan before abort')
     node('controller_server','progress_checker/required_movement_radius',.15,'Slow approach still counts as progress')
     node('controller_server','progress_checker/movement_time_allowance',20.,'Wait for obstacle replan')
-    node('controller_server','general_goal_checker/xy_goal_tolerance',.08,'Leave localization margin inside independent truth qualification <=.15m')
-    node('controller_server','general_goal_checker/yaw_goal_tolerance',.15,'Tightened heading; independent truth qualification <=.20rad, without in-place rotation')
+    node('controller_server','general_goal_checker/xy_goal_tolerance',.05,'Terminal reference permits tighter stop; leave localization/grid margin inside truth qualification <=.15m')
+    node('controller_server','general_goal_checker/yaw_goal_tolerance',.10,'Tighter joint heading requirement; independent truth qualification <=.20rad, without in-place rotation')
     node('controller_server','general_goal_checker/stateful',False,'Require position and heading together at completion')
     node('controller_server','general_goal_checker/plugin','smartcar_nav_checks::ValidPoseGoalChecker','Reject invalid transformed goal quaternion; prevents observed Humble premature success after TF failure')
     node('controller_server','FollowPath',{

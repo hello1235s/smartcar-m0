@@ -64,13 +64,14 @@
   reason: Wait for obstacle replan
 - parameter: controller_server/ros__parameters/general_goal_checker/xy_goal_tolerance
   old: 0.25
-  new: 0.08
-  reason: Leave localization margin inside independent truth qualification <=.15m
+  new: 0.05
+  reason: Terminal reference permits tighter stop; leave localization/grid margin
+    inside truth qualification <=.15m
 - parameter: controller_server/ros__parameters/general_goal_checker/yaw_goal_tolerance
   old: 0.25
-  new: 0.15
-  reason: Tightened heading; independent truth qualification <=.20rad, without in-place
-    rotation
+  new: 0.1
+  reason: Tighter joint heading requirement; independent truth qualification <=.20rad,
+    without in-place rotation
 - parameter: controller_server/ros__parameters/general_goal_checker/stateful
   old: true
   new: false

@@ -172,8 +172,8 @@ controller_server:
     general_goal_checker:
       plugin: smartcar_nav_checks::ValidPoseGoalChecker
       stateful: false
-      xy_goal_tolerance: 0.08
-      yaw_goal_tolerance: 0.15
+      xy_goal_tolerance: 0.05
+      yaw_goal_tolerance: 0.1
     goal_checker_plugins:
     - general_goal_checker
     min_theta_velocity_threshold: 0.001

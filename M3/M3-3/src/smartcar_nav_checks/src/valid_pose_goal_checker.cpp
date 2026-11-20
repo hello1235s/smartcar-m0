@@ -6,7 +6,7 @@
 #include <stdexcept>
 namespace smartcar_nav_checks {
 class ValidPoseGoalChecker: public nav2_core::GoalChecker {
-  double xy_=0.08,heading_=0.15;
+  double xy_=0.05,heading_=0.10;
   static Pose unpack(const geometry_msgs::msg::Pose & p) {
     return {p.position.x,p.position.y,p.position.z,p.orientation.x,p.orientation.y,p.orientation.z,p.orientation.w};
   }
