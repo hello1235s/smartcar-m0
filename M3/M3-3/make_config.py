@@ -36,7 +36,9 @@ def main():
     node('controller_server','general_goal_checker/stateful',False,'Require position and heading together at completion')
     node('controller_server','general_goal_checker/plugin','smartcar_nav_checks::ValidPoseGoalChecker','Reject invalid transformed goal quaternion; prevents observed Humble premature success after TF failure')
     node('controller_server','FollowPath',{
-        'plugin':'nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController',
+        'plugin':'smartcar_nav_checks::AckermannRPP',
+        'min_turning_radius':.60,'terminal_extension':.45,
+        'terminal_slowdown_distance':.60,'terminal_speed_gain':.7,
         'desired_linear_vel':.32,'lookahead_dist':.5,'min_lookahead_dist':.30,'max_lookahead_dist':.65,
         'lookahead_time':1.2,'use_velocity_scaled_lookahead_dist':True,'transform_tolerance':.5,
         'min_approach_linear_velocity':.035,'approach_velocity_scaling_dist':.8,
@@ -44,7 +46,7 @@ def main():
         'use_regulated_linear_velocity_scaling':True,'use_cost_regulated_linear_velocity_scaling':True,
         'regulated_linear_scaling_min_radius':.85,'regulated_linear_scaling_min_speed':.08,
         'cost_scaling_dist':.3,'cost_scaling_gain':1.,'inflation_cost_scaling_factor':3.,
-        'use_rotate_to_heading':False,'allow_reversing':True,'max_angular_accel':1.0},'RPP supports planned reverse correction, no in-place turn; chassis clamps curvature to radius >=.60m')
+        'use_rotate_to_heading':False,'allow_reversing':True,'max_angular_accel':1.0},'AckermannRPP bounds curvature before collision prediction and extends terminal heading reference; real Nav2 goal remains unchanged')
     node('planner_server','expected_planner_frequency',1.,'Match 1Hz BT replan instead of default20')
     node('planner_server','GridBased',{
         'plugin':'nav2_smac_planner/SmacPlannerHybrid','tolerance':.25,'downsample_costmap':False,

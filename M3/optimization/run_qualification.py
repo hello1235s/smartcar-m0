@@ -6,7 +6,7 @@ import subprocess
 import time
 
 ROOT=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser(); p.add_argument('--suite',choices=['main','extended'],default='main'); a=p.parse_args()
+p=argparse.ArgumentParser(); p.add_argument('--suite',choices=['main','extended'],default='main'); p.add_argument('--prefix',default=''); a=p.parse_args()
 schedule=[]
 if a.suite=='main':
     for label,runs in [('B',3),('A',3),('B_tuned',10)]:
@@ -26,7 +26,7 @@ manifest=[]
 for item in schedule:
     before=set((ROOT/'M3/optimization/results').iterdir())
     command=[str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/optimization/run_navigation_trial.py'),
-             '--label',item['label'],'--runs',str(item['runs']),'--seed',str(item['seed']),
+             '--label',a.prefix+item['label'],'--runs',str(item['runs']),'--seed',str(item['seed']),
              '--params',str(ROOT/'M3/M3-4/config'/('planner_'+item['profile']+'_params.yaml')),
              '--timeout',str(item.get('timeout',150))]
     if item.get('obstacle'): command+=['--obstacle-at',item['obstacle'],'--obstacle-size',str(item.get('size',.6)),'--viewer']

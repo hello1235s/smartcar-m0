@@ -16,7 +16,7 @@ from rclpy.qos import qos_profile_sensor_data
 from nav2_msgs.action import NavigateToPose
 from nav2_msgs.msg import BehaviorTreeLog
 from nav_msgs.msg import Odometry,Path as NavPath,OccupancyGrid
-from geometry_msgs.msg import TwistStamped
+from geometry_msgs.msg import TwistStamped,Twist
 from gazebo_msgs.msg import ModelStates
 from gazebo_msgs.srv import SpawnEntity
 from lifecycle_msgs.srv import GetState
@@ -43,7 +43,7 @@ def main():
     if min(a.timeout,a.obstacle_size,a.position_limit,a.yaw_limit)<=0 or a.delay<0: p.error('timeouts, dimensions and tolerances must be positive; delay cannot be negative')
     rclpy.init(); node=Node('navigation_trial',parameter_overrides=[Parameter('use_sim_time',value=True)])
     buffer=Buffer(); listener=TransformListener(buffer,node)
-    trajectory=[]; commands=[]; plans=[]; truth=[]; estimates=[]; scan_times=[]; events=[]; measured_speeds=[]; costmaps={}
+    trajectory=[]; commands=[]; plans=[]; truth=[]; estimates=[]; scan_times=[]; events=[]; measured_speeds=[]; costmaps={}; controller_commands=[]
     def seconds(): return node.get_clock().now().nanoseconds/1e9
     def odom(m):
         trajectory.append([seconds(),m.pose.pose.position.x,m.pose.pose.position.y,yaw(m.pose.pose.orientation)])
@@ -57,6 +57,10 @@ def main():
             pose=m.pose[m.name.index('smart_car')]; truth.append([seconds(),pose.position.x,pose.position.y,yaw(pose.orientation)])
     node.create_subscription(Odometry,'/odom',odom,qos_profile_sensor_data)
     node.create_subscription(TwistStamped,'/ackermann_steering_controller/reference',cmd,10)
+    def controller_command(message):
+        v,w=message.linear.x,message.angular.z
+        controller_commands.append([seconds(),v,w,w/v if abs(v)>.005 else 0.])
+    node.create_subscription(Twist,'/cmd_vel_nav',controller_command,10)
     node.create_subscription(NavPath,'/plan',plan,10)
     node.create_subscription(ModelStates,'/gazebo/model_states',ground_truth,qos_profile_sensor_data)
     node.create_subscription(LaserScan,'/scan',lambda m:scan_times.append(seconds()),qos_profile_sensor_data)
@@ -100,7 +104,7 @@ def main():
         future=action.send_goal_async(message); rclpy.spin_until_future_complete(node,future,timeout_sec=15)
         if not future.done() or not future.result().accepted: raise RuntimeError('Navigation target rejected')
         handle=future.result(); result=handle.get_result_async(); accepted=True
-        trajectory.clear(); commands.clear(); plans.clear(); truth.clear(); estimates.clear(); scan_times.clear(); events.clear(); measured_speeds.clear()
+        trajectory.clear(); commands.clear(); plans.clear(); truth.clear(); estimates.clear(); scan_times.clear(); events.clear(); measured_speeds.clear(); controller_commands.clear()
         start=seconds(); wall_start=time.monotonic()
         print('NAV_TARGET_ACCEPTED '+json.dumps(dict(goal_map=goal,world_goal_for_evaluation=world_goal(goal,origin))),flush=True)
         while not result.done() and seconds()-start<a.timeout and time.monotonic()-wall_start<a.timeout*8:
@@ -181,11 +185,15 @@ def main():
                     path_length_m=length,path_length_source='world truth integral, evaluation only',odom_path_length_m=odom_length,
                     steering_variation_rad_per_m=variation,steering_source='Ackermann bridge reference command',plans=len(plans),obstacle=obstacle,
                     final_measured_speed=measured_speeds[-1][1:] if measured_speeds else None,
+                    controller_command_samples=len(controller_commands),
+                    controller_curvature_violation_samples=sum(abs(row[3])>1/.60+1e-3 for row in controller_commands),
+                    maximum_requested_curvature_1_per_m=max((abs(row[3]) for row in controller_commands),default=None),
                     obstacle_distance_to_initial_path_m=distance_to_initial_path,
                     controller_failure_replans=failure_replans,
                     laser_samples=len(scan_times),first_plan_after_injection_delay_s=next((r['t']-injection for r in plans if injection is not None and r['t']>=injection),None))
         for name,rows,header in [('trajectory',trajectory,['t','x','y','theta']),('commands',commands,['t','v','omega','steering']),
                                  ('world_truth',truth,['t','world_x','world_y','yaw']),('map_estimate',estimates,['t','map_x','map_y','yaw']),
+                                 ('controller_commands',controller_commands,['t','v','omega','requested_curvature']),
                                  ('geometric_clearance',safety,['t','clearance_m','closest_obstacle'])]:
             with (out/(name+'.csv')).open('w',newline='') as stream:
                 writer=csv.writer(stream); writer.writerow(header); writer.writerows(rows)

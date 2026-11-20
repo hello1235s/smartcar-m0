@@ -2,4 +2,7 @@
   <class name="smartcar_nav_checks::ValidPoseGoalChecker" type="smartcar_nav_checks::ValidPoseGoalChecker" base_class_type="nav2_core::GoalChecker">
     <description>Requires valid finite unit quaternions and simultaneous XY/yaw agreement. Rejects the zero quaternion left by failed TF conversion.</description>
   </class>
+  <class name="smartcar_nav_checks::AckermannRPP" type="smartcar_nav_checks::AckermannRPP" base_class_type="nav2_core::Controller">
+    <description>RPP with curvature bounded before collision prediction and a virtual terminal heading reference.</description>
+  </class>
 </library>

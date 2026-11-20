@@ -128,7 +128,11 @@
     RotateToGoal.slowing_factor: 5.0
     RotateToGoal.lookahead_time: -1.0
   new:
-    plugin: nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController
+    plugin: smartcar_nav_checks::AckermannRPP
+    min_turning_radius: 0.6
+    terminal_extension: 0.45
+    terminal_slowdown_distance: 0.6
+    terminal_speed_gain: 0.7
     desired_linear_vel: 0.32
     lookahead_dist: 0.5
     min_lookahead_dist: 0.3
@@ -150,8 +154,8 @@
     use_rotate_to_heading: false
     allow_reversing: true
     max_angular_accel: 1.0
-  reason: RPP supports planned reverse correction, no in-place turn; chassis clamps
-    curvature to radius >=.60m
+  reason: AckermannRPP bounds curvature before collision prediction and extends terminal
+    heading reference; real Nav2 goal remains unchanged
 - parameter: planner_server/ros__parameters/expected_planner_frequency
   old: 20.0
   new: 1.0

@@ -11,6 +11,10 @@ def main():
     for label in ['A','B','B_speed','B_tuned']:
         data=yaml.safe_load(yaml.safe_dump(base))
         follow=data['controller_server']['ros__parameters']['FollowPath']
+        if label!='B_tuned':
+            follow['plugin']='nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController'
+            for key in ['min_turning_radius','terminal_extension','terminal_slowdown_distance','terminal_speed_gain']:
+                follow.pop(key,None)
         if label=='A': follow['desired_linear_vel']=.28
         if label in ['B','B_speed']:
             follow.update(desired_linear_vel=.65 if label=='B' else .32,
