@@ -33,6 +33,7 @@ def main():
     node('controller_server','progress_checker/movement_time_allowance',20.,'Wait for obstacle replan')
     node('controller_server','general_goal_checker/xy_goal_tolerance',.12,'Tightened goal after aligning base_footprint with rear axle; independent truth qualification <=.15m')
     node('controller_server','general_goal_checker/yaw_goal_tolerance',.15,'Tightened heading; independent truth qualification <=.20rad, without in-place rotation')
+    node('controller_server','general_goal_checker/stateful',False,'Require position and heading together at completion')
     node('controller_server','FollowPath',{
         'plugin':'nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController',
         'desired_linear_vel':.32,'lookahead_dist':.5,'min_lookahead_dist':.30,'max_lookahead_dist':.65,
@@ -42,16 +43,16 @@ def main():
         'use_regulated_linear_velocity_scaling':True,'use_cost_regulated_linear_velocity_scaling':True,
         'regulated_linear_scaling_min_radius':.85,'regulated_linear_scaling_min_speed':.08,
         'cost_scaling_dist':.3,'cost_scaling_gain':1.,'inflation_cost_scaling_factor':3.,
-        'use_rotate_to_heading':False,'allow_reversing':False,'max_angular_accel':1.0},'RPP forward only, no in-place turn; chassis clamps curvature to radius >=.60m')
+        'use_rotate_to_heading':False,'allow_reversing':True,'max_angular_accel':1.0},'RPP supports planned reverse correction, no in-place turn; chassis clamps curvature to radius >=.60m')
     node('planner_server','expected_planner_frequency',1.,'Match 1Hz BT replan instead of default20')
     node('planner_server','GridBased',{
         'plugin':'nav2_smac_planner/SmacPlannerHybrid','tolerance':.25,'downsample_costmap':False,
         'allow_unknown':False,'max_iterations':1000000,'max_on_approach_iterations':1000,
-        'max_planning_time':2.,'motion_model_for_search':'DUBIN','angle_quantization_bins':72,
+        'max_planning_time':2.,'motion_model_for_search':'REEDS_SHEPP','angle_quantization_bins':72,
         'analytic_expansion_ratio':3.5,'analytic_expansion_max_length':3.,'minimum_turning_radius':.65,
         'reverse_penalty':2.,'change_penalty':0.,'non_straight_penalty':1.2,'cost_penalty':2.,
         'retrospective_penalty':.015,'lookup_table_size':20.,'cache_obstacle_heuristic':True,
-        'smooth_path':True},'Hybrid-A* Dubins explicitly models forward Ackermann radius')
+        'smooth_path':True},'Hybrid-A* Reeds-Shepp plans forward/reverse Ackermann maneuvers with radius .65m')
     footprint='[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
     for name in ['local_costmap','global_costmap']:
         prefix=name+'/'+name+'/ros__parameters/'
@@ -63,7 +64,7 @@ def main():
     set_value('local_costmap/local_costmap/ros__parameters/width',5,'See turn before entering it')
     set_value('local_costmap/local_costmap/ros__parameters/height',5,'See turn before entering it')
     node('velocity_smoother','max_velocity',[.5,0.,.9],'Compatible with selected car command envelope')
-    node('velocity_smoother','min_velocity',[0.,0.,-.9],'No reverse commands')
+    node('velocity_smoother','min_velocity',[-.20,0.,-.9],'Allow bounded reverse commands consistently with planner and controller')
     node('velocity_smoother','max_accel',[.5,0.,1.],'Reduce tire slip on velocity changes')
     node('velocity_smoother','max_decel',[-.7,0.,-1.],'Controlled braking')
     node('behavior_server','behavior_plugins',['backup','drive_on_heading','wait'],'No spin behavior for car')

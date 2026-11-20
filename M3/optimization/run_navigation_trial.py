@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import shutil
 import subprocess
 import time
 import yaml
@@ -16,15 +17,26 @@ p.add_argument('--delay',type=float,default=3.); p.add_argument('--timeout',type
 p.add_argument('--seed',type=int,default=100); p.add_argument('--domain',type=int,default=180); p.add_argument('--port',default='11382')
 p.add_argument('--gui',action='store_true'); p.add_argument('--viewer',action='store_true')
 a=p.parse_args()
+if not 1<=a.runs<=30 or not 0<=a.domain<=232-a.runs+1: p.error('runs/domain outside supported ROS DDS range')
 folder=ROOT/'M3/optimization/results'/(time.strftime('%Y%m%d_%H%M%S')+'_'+a.label); folder.mkdir(parents=True)
 params=(a.params or ROOT/'M3/M3-3/config/nav2_params.yaml').resolve()
 configuration=yaml.safe_load(params.read_text())
 for key,name in [('default_nav_to_pose_bt_xml','car_navigation.xml'),('default_nav_through_poses_bt_xml','car_through_poses.xml')]:
     configuration['bt_navigator']['ros__parameters'][key]=str(ROOT/'M3/M3-3/config'/name)
 actual=folder/'parameters_used.yaml'; actual.write_text(yaml.safe_dump(configuration,sort_keys=False))
+snapshots=folder/'map_used'; snapshots.mkdir()
+for name in ['map.yaml','map.pgm','map_manifest.json']:
+    if (ROOT/'M3/M3-2/maps'/name).exists(): shutil.copy2(ROOT/'M3/M3-2/maps'/name,snapshots/name)
+sources={}
+for base in ['M3/common','M3/M3-1/src','M3/M3-3','M3/optimization','scripts']:
+    for path in (ROOT/base).rglob('*'):
+        if path.is_file() and path.suffix in ['.py','.xacro','.cpp','.xml','.world','.sh'] and not any(part in ['results','__pycache__','baseline'] for part in path.relative_to(ROOT).parts):
+            sources[str(path.relative_to(ROOT))]=hashlib.sha256(path.read_bytes()).hexdigest()
+(folder/'source_hashes.json').write_text(json.dumps(sources,indent=2,sort_keys=True))
 metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obstacle_size=a.obstacle_size,delay_s=a.delay,
               base_seed=a.seed,params_source=str(params),params_sha256=hashlib.sha256(actual.read_bytes()).hexdigest(),
               code_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+              source_manifest_sha256=hashlib.sha256((folder/'source_hashes.json').read_bytes()).hexdigest(),
               map_sha256=hashlib.sha256((ROOT/'M3/M3-2/maps/map.pgm').read_bytes()).hexdigest(),
               independent_qualification=dict(position_m=.15,yaw_rad=.20,minimum_path_m=5.,geometric_overlap_limit_m=-.002))
 (folder/'experiment.json').write_text(json.dumps(metadata,indent=2)); reports=[]
