@@ -34,7 +34,7 @@
 # global_costmap/global_costmap/ros__parameters/obstacle_layer: Use actual 8m laser for obstacle marking/clearing
 # local_costmap/local_costmap/ros__parameters/width: See turn before entering it
 # local_costmap/local_costmap/ros__parameters/height: See turn before entering it
-# velocity_smoother/ros__parameters/max_velocity: Compatible with selected car command envelope
+# velocity_smoother/ros__parameters/max_velocity: Shared envelope for controlled profiles; nominal RPP cruise remains .32m/s and chassis clamps curvature
 # velocity_smoother/ros__parameters/min_velocity: Allow bounded reverse commands consistently with planner and controller
 # velocity_smoother/ros__parameters/max_accel: Reduce tire slip on velocity changes
 # velocity_smoother/ros__parameters/max_decel: Controlled braking
@@ -389,9 +389,9 @@ velocity_smoother:
     scale_velocities: false
     feedback: OPEN_LOOP
     max_velocity:
-    - 0.5
+    - 0.75
     - 0.0
-    - 0.9
+    - 1.2
     min_velocity:
     - -0.2
     - 0.0

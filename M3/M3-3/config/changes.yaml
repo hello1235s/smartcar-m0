@@ -302,10 +302,11 @@
   - 0.0
   - 1.0
   new:
-  - 0.5
+  - 0.75
   - 0.0
-  - 0.9
-  reason: Compatible with selected car command envelope
+  - 1.2
+  reason: Shared envelope for controlled profiles; nominal RPP cruise remains .32m/s
+    and chassis clamps curvature
 - parameter: velocity_smoother/ros__parameters/min_velocity
   old:
   - -0.26

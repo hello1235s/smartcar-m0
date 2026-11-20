@@ -65,7 +65,7 @@ def main():
             ('obstacle_layer',dict(plugin='nav2_costmap_2d::ObstacleLayer',enabled=True,observation_sources='scan',scan=dict(topic='/scan',max_obstacle_height=2.,clearing=True,marking=True,data_type='LaserScan',raytrace_max_range=8.,raytrace_min_range=.12,obstacle_max_range=7.8,obstacle_min_range=.12)),'Use actual 8m laser for obstacle marking/clearing')]: set_value(prefix+key,value,reason)
     set_value('local_costmap/local_costmap/ros__parameters/width',5,'See turn before entering it')
     set_value('local_costmap/local_costmap/ros__parameters/height',5,'See turn before entering it')
-    node('velocity_smoother','max_velocity',[.5,0.,.9],'Compatible with selected car command envelope')
+    node('velocity_smoother','max_velocity',[.75,0.,1.2],'Shared envelope for controlled profiles; nominal RPP cruise remains .32m/s and chassis clamps curvature')
     node('velocity_smoother','min_velocity',[-.20,0.,-.9],'Allow bounded reverse commands consistently with planner and controller')
     node('velocity_smoother','max_accel',[.5,0.,1.],'Reduce tire slip on velocity changes')
     node('velocity_smoother','max_decel',[-.7,0.,-1.],'Controlled braking')
