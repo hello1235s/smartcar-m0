@@ -8,7 +8,7 @@ from pathlib import Path
 import rclpy
 from rclpy.node import Node
 from rclpy.parameter import Parameter
-from rclpy.qos import qos_profile_sensor_data
+from rclpy.qos import qos_profile_sensor_data,QoSProfile,DurabilityPolicy,ReliabilityPolicy
 from nav_msgs.msg import Path as NavPath,OccupancyGrid
 from sensor_msgs.msg import LaserScan
 from tf2_ros import Buffer,TransformListener,TransformException
@@ -29,8 +29,9 @@ class View(QWidget):
         self.node.create_subscription(NavPath,'/plan',lambda m:setattr(self,'path',[(p.pose.position.x,p.pose.position.y) for p in m.poses]),10)
         def scan(message): self.scan=message; self.stats['scan_messages']+=1
         self.node.create_subscription(LaserScan,'/scan',scan,qos_profile_sensor_data)
+        map_qos=QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL,reliability=ReliabilityPolicy.RELIABLE)
         for label in ['global','local']:
-            self.node.create_subscription(OccupancyGrid,'/'+label+'_costmap/costmap',lambda m,label=label:self.receive_costmap(m,label),10)
+            self.node.create_subscription(OccupancyGrid,'/'+label+'_costmap/costmap',lambda m,label=label:self.receive_costmap(m,label),map_qos)
         self.timer=QTimer(); self.timer.timeout.connect(self.tick); self.timer.start(50)
     def receive_costmap(self,message,label):
         width,height=message.info.width,message.info.height
