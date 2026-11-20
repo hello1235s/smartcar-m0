@@ -32,16 +32,24 @@ actual=folder/'parameters_used.yaml'; actual.write_text(yaml.safe_dump(configura
 snapshots=folder/'map_used'; snapshots.mkdir()
 for name in ['map.yaml','map.pgm','map_manifest.json']:
     if (ROOT/'M3/M3-2/maps'/name).exists(): shutil.copy2(ROOT/'M3/M3-2/maps'/name,snapshots/name)
+shutil.copy2(ROOT/'M3/M3-1/src/smart_car_description/config/ackermann_controllers.yaml',folder/'controller_used.yaml')
+with (folder/'model_used.urdf').open('w') as model:
+    subprocess.run(['xacro',str(ROOT/'M3/M3-1/src/smart_car_description/urdf/smart_car.urdf.xacro'),'rear_axle_reference:=true'],stdout=model,check=True)
 sources={}
-for base in ['M3/common','M3/M3-1/src','M3/M3-3','M3/optimization','scripts']:
+for base in ['M3/common','M3/M3-1/src','M3/M3-2/worlds','M3/M3-2/config','M3/M3-3','M3/optimization','scripts']:
     for path in (ROOT/base).rglob('*'):
-        if path.is_file() and path.suffix in ['.py','.xacro','.cpp','.xml','.world','.sh'] and not any(part in ['results','__pycache__','baseline'] for part in path.relative_to(ROOT).parts):
+        if path.is_file() and (path.suffix in ['.py','.xacro','.cpp','.xml','.world','.sh','.hpp','.h','.yaml'] or path.name=='CMakeLists.txt') and not any(part in ['results','__pycache__','baseline'] for part in path.relative_to(ROOT).parts):
             sources[str(path.relative_to(ROOT))]=hashlib.sha256(path.read_bytes()).hexdigest()
 (folder/'source_hashes.json').write_text(json.dumps(sources,indent=2,sort_keys=True))
+plugin=ROOT/'install_ros/smartcar_nav_checks/lib/libvalid_pose_goal_checker.so'
+plugin_sha256=hashlib.sha256(plugin.read_bytes()).hexdigest() if plugin.exists() else None
+versions=subprocess.run(['dpkg-query','-W','ros-humble-navigation2','ros-humble-nav2-controller','ros-humble-fastrtps','ros-humble-ackermann-steering-controller','gazebo'],capture_output=True,text=True)
+(folder/'runtime_versions.txt').write_text(versions.stdout+versions.stderr)
 metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obstacle_size=a.obstacle_size,delay_s=a.delay,
               base_seed=a.seed,goal_map=a.goal,params_source=str(params),params_sha256=hashlib.sha256(actual.read_bytes()).hexdigest(),
               code_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
               source_manifest_sha256=hashlib.sha256((folder/'source_hashes.json').read_bytes()).hexdigest(),
+              goal_checker_library_sha256=plugin_sha256,dds_transport='UDPv4',
               map_sha256=hashlib.sha256((ROOT/'M3/M3-2/maps/map.pgm').read_bytes()).hexdigest(),
               independent_qualification=dict(position_m=.15,yaw_rad=.20,minimum_path_m=5.,geometric_overlap_limit_m=-.002))
 (folder/'experiment.json').write_text(json.dumps(metadata,indent=2)); reports=[]
