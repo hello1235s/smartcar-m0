@@ -14,13 +14,15 @@ import sys
 sys.path.insert(0,str(ROOT/'M3/common'))
 from experiment_lock import acquire
 from process_cleanup import terminate_owned_tree
+from navigation_transport import configure_tf2
+tf2_runtime=configure_tf2(ROOT)
 experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--seed',type=int,default=43); p.add_argument('--label',default='qualified_mapping')
 p.add_argument('--timeout',type=float,default=900.); p.add_argument('--promote',action=argparse.BooleanOptionalAction,default=True)
 a=p.parse_args(); os.environ['ROS_DOMAIN_ID']='165'
 env=dict(os.environ,ROS_DOMAIN_ID='165',GAZEBO_MASTER_URI='http://127.0.0.1:11383',GAZEBO_MODEL_DATABASE_URI='')
 out=ROOT/'M3/M3-2/results'/(time.strftime('%Y%m%d_%H%M%S')+'_'+a.label); out.mkdir(parents=True)
-settings=dict(seed=a.seed,label=a.label,promote_requested=a.promote,started=time.time(),truth_input_to_slam=False,
+settings=dict(**tf2_runtime,seed=a.seed,label=a.label,promote_requested=a.promote,started=time.time(),truth_input_to_slam=False,
               code_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip())
 (out/'settings.json').write_text(json.dumps(settings,indent=2))
 shutil.copy2(ROOT/'M3/M3-2/config/slam_params.yaml',out/'slam_params_used.yaml')

@@ -12,16 +12,20 @@ import sys
 sys.path.insert(0,str(ROOT/'M3/common'))
 from experiment_lock import acquire
 from process_cleanup import terminate_owned_tree
+from navigation_transport import configure_tf2
+tf2_runtime=configure_tf2(ROOT)
 experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--mode',choices=['feedback','timed'],default='feedback')
 p.add_argument('--rear-axle-reference',choices=['true','false'],default='true')
 p.add_argument('--laps',type=int,default=1); p.add_argument('--speed',type=float,default=.28); p.add_argument('--turn-speed',type=float,default=.18)
 p.add_argument('--label',default='candidate'); p.add_argument('--domain',default='171'); p.add_argument('--port',default='11381')
 p.add_argument('--gui',action='store_true'); p.add_argument('--seed',type=int,default=42)
+p.add_argument('--hold-after',type=float,default=0.)
 a=p.parse_args()
+if not 0<=a.hold_after<=60: p.error('hold-after must be between0 and60 seconds')
 out=ROOT/'M3/optimization/results'/(time.strftime('%Y%m%d_%H%M%S')+'_'+a.label); out.mkdir(parents=True)
 env=dict(os.environ,ROS_DOMAIN_ID=a.domain,GAZEBO_MASTER_URI='http://127.0.0.1:'+a.port,GAZEBO_MODEL_DATABASE_URI='')
-settings=dict(vars(a),source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),started=time.time())
+settings=dict(vars(a),**tf2_runtime,source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),started=time.time())
 (out/'settings.json').write_text(json.dumps(settings,indent=2))
 (out/'controller.yaml').write_bytes((ROOT/'M3/M3-1/src/smart_car_description/config/ackermann_controllers.yaml').read_bytes())
 with (out/'model.urdf').open('w') as model:
@@ -35,6 +39,7 @@ try:
         result=subprocess.run([str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/M3-1/scripts/square_driver.py'),'--mode',a.mode,'--laps',str(a.laps),'--speed',str(a.speed),'--turn-speed',str(a.turn_speed),'--out',str(out/'logs')],cwd=ROOT,env=env,stdout=driver,stderr=subprocess.STDOUT,timeout=1200*a.laps)
     settings['returncode']=result.returncode
     print((out/'driver.log').read_text()[-6000:],flush=True)
+    if a.gui and a.hold_after and result.returncode==0: time.sleep(a.hold_after)
 finally:
     if viewer: terminate_owned_tree(viewer)
     terminate_owned_tree(proc)

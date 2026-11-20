@@ -10,4 +10,4 @@ edges=[('map','odom','DYNAMIC: slam_toolbox / AMCL\nAbsent in M3-1',True),('odom
 for a,b,label,dashed in edges:
     x,y=nodes[a]; xx,yy=nodes[b]; ax.annotate('',xy=(xx,yy+.23),xytext=(x,y-.23),arrowprops=dict(arrowstyle='->',color='#355d6e',linestyle='--' if dashed else '-'))
     ax.text((x+xx)/2+.12,(y+yy)/2,label,fontsize=8,ha='left',va='center')
-ax.set_title('Provided car TF frames and actual publishing roles',fontsize=14); fig.tight_layout(); fig.savefig(out/'tf_tree_annotated.png',dpi=160); plt.close(fig)
+ax.set_title('Provided car TF frames and actual publishing roles',fontsize=14); fig.tight_layout(); fig.savefig(out/'tf_tree_annotated.png',dpi=160,bbox_inches='tight'); fig.savefig(out/'tf_tree.pdf',bbox_inches='tight'); plt.close(fig)

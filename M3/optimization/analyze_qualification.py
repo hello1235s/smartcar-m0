@@ -7,6 +7,7 @@ import math
 from pathlib import Path
 import statistics
 import sys
+import yaml
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -31,11 +32,21 @@ def interval(k,n):
 def main():
     p=argparse.ArgumentParser(); p.add_argument('--manifest',type=Path,required=True)
     p.add_argument('--out',type=Path,default=ROOT/'M3/optimization/report'); a=p.parse_args()
+    a.manifest=a.manifest.resolve()
     out=a.out; out.mkdir(parents=True,exist_ok=True)
     manifest=json.loads(a.manifest.read_text()); rows=[]; raw=[]
+    experiment_metadata=[]; profile_configs={}
     for group in manifest:
         for directory in group['result_dirs']:
             folder=ROOT/directory; metadata=json.loads((folder/'experiment.json').read_text())
+            experiment_metadata.append((group,metadata))
+            config=yaml.safe_load((folder/'parameters_used.yaml').read_text())
+            for key in ['default_nav_to_pose_bt_xml','default_nav_through_poses_bt_xml']:
+                config['bt_navigator']['ros__parameters'][key]=Path(config['bt_navigator']['ros__parameters'][key]).name
+            label=group['profile']
+            if label in profile_configs and config!=profile_configs[label]:
+                raise RuntimeError('Mismatched control settings in same-profile reference/comparison: '+label)
+            profile_configs[label]=config
             files=sorted(folder.glob('run_*/result.json'))
             if len(files)!=group['runs']: raise RuntimeError('Missing attempts; refuse partial headline: '+directory)
             for file in files:
@@ -57,6 +68,12 @@ def main():
                          obstacle_distance_to_initial_path_m=r.get('obstacle_distance_to_initial_path_m'),
                          failure=';'.join(r['qualification_failures']),map_sha256=metadata['map_sha256'],map_yaml_sha256=metadata.get('map_yaml_sha256'),params_sha256=metadata['params_sha256'],extra_length_m=None)
                 rows.append(row); raw.append((row,r))
+    for key in ['map_sha256','map_yaml_sha256','goal_checker_library_sha256','ackermann_controller_library_sha256','rmw_implementation','tf2_core_library_sha256']:
+        if len({m.get(key) for _,m in experiment_metadata})>1:
+            raise RuntimeError('Mixed map, runtime or control kernel cannot share one comparison: '+key)
+    formal=[m for g,m in experiment_metadata if g['label'].startswith('formal_dynamic_')]
+    for key in ['goal_map','obstacle_at','obstacle_size','delay_s']:
+        if len({str(m.get(key)) for m in formal})>1: raise RuntimeError('Different formal dynamic conditions: '+key)
     references={label:[r['truth_length_m'] for r in rows if r['group']=='formal_static_'+label and r['success']] for label in ['A','B','B_tuned']}
     summaries=[]
     for group in manifest:
@@ -82,7 +99,7 @@ def main():
     (out/'method.json').write_text(json.dumps(dict(manifest=str(a.manifest.relative_to(ROOT)),
         success='Action success AND truth endpoint <=0.15m/0.20rad AND >=5m AND no conservative-envelope overlap AND sufficient scan/truth samples AND requested obstacle inserted',
         distance='world truth integral minus mean successful no-obstacle integral for the same profile; unavailable if no successful reference',
-        time='simulated action duration; excludes post-action settling',smoothness='TV of bridge commanded steering atan(0.28*omega/v), divided by truth distance',
+        time='simulated action duration; excludes post-action settling',smoothness='TV of bridge commanded steering atan(0.28*omega/v) when abs(v)>.005m/s, otherwise0, divided by truth distance; command proxy, not steering-joint measurement',
         safety='Known world-box geometry against conservative body/wheel envelope sampled from ModelStates; not contact-sensor certification',
         randomization='Gazebo seeds recorded; AMCL scheduling and random sampling are not bitwise deterministic',
         means='Time, detour, smoothness and endpoint means use qualified successes only. All failures remain in denominator and CSV. Negative distance differences are retained, including run-to-run path/localization variation.'),indent=2))
@@ -93,11 +110,20 @@ def main():
             values=[s[key] for s in dynamic]; ax.bar(labels,[v if v is not None else 0 for v in values],color=['#237b86','#d65c47','#6b61a8'])
             for i,value in enumerate(values):
                 if value is None: ax.text(i,0,'N/A',ha='center',va='bottom')
+                elif key=='success_rate':
+                    lower,upper=dynamic[i]['wilson_95']
+                    ax.errorbar(i,value,yerr=[[max(0.,value-lower)],[max(0.,upper-value)]],fmt='none',color='#243b47',capsize=5)
+                    ax.text(i,min(1.08,max(value,upper)+.035),f"{dynamic[i]['successes']}/{dynamic[i]['attempts']}",ha='center',fontsize=10)
+                else: ax.annotate(f'{value:.2f}',(i,value),xytext=(0,3 if value>=0 else -3),textcoords='offset points',ha='center',va='bottom' if value>=0 else 'top',fontsize=10)
             ax.set_title(title); ax.grid(axis='y',alpha=.2)
+            if key!='success_rate': ax.margins(y=.17)
         axes[0,0].set_ylim(0,1.15); fig.tight_layout(); fig.savefig(out/'metrics.png',dpi=170); plt.close(fig)
         fig,ax=plt.subplots(figsize=(10,7)); colors={'A':'#237b86','B':'#d65c47','B_tuned':'#6b61a8'}
         for _,shape in scene_obstacles(): ax.add_patch(Polygon(shape,facecolor='#cbd4d7',edgecolor='#546b75'))
-        ax.add_patch(Polygon(rectangle(8,1.6,.6,.6),facecolor='#f6bd60',edgecolor='#9d5b00',label='Obstacle inserted after 3s'))
+        obstacles={(m['obstacle_at'],m['obstacle_size'],m['delay_s']) for m in formal if m.get('obstacle_at')}
+        for location,size,delay in sorted(obstacles):
+            x,y=map(float,location.split(','))
+            ax.add_patch(Polygon(rectangle(x,y,size,size),facecolor='#f6bd60',edgecolor='#9d5b00',label=f'Inserted obstacle after {delay:g}s'))
         for row in rows:
             if not row['group'].startswith('formal_dynamic_'): continue
             points=list(csv.DictReader((ROOT/row['result_dir']/'world_truth.csv').open()))

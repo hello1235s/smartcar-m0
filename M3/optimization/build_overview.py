@@ -37,8 +37,8 @@ def main():
 3. 同速参考点/控制方式消融的单次探索全部保留：原参考定时约0.1314m、后轴参考定时约0.1415m、原参考反馈约0.0200m、后轴参考反馈约0.0185m。单次不作为显著性检验，只说明主要收益与反馈相关，不能把它归功于移动坐标原点。
 4. Nav2使用SmacHybrid/Reeds-Shepp、AckermannRPP、有界倒车平滑链，关闭原地旋转。控制器在碰撞预测之前限制曲率，并用0.45m虚拟末端参考引导朝向；真实目标不移动，近端按实际目标距离减速。默认xy/yaw容差0.05m/0.10rad，外部真值验收≤0.15m/0.20rad，不靠放宽容差过关。
 5. 默认0.08m规划padding、0.45m软膨胀，给定位、栅格和跟踪误差留余量。早期内岛拐角包络越界失败保留，规划余量不用于缩小独立评价车身。
-6. 修复Humble目标检查路径的TF失败假成功：无效目标四元数被新增插件拒绝。原错误曾在仅行驶约0.24m时返回Action成功，被独立真值门槛拦截。10项Python测试与3项C++回归（位姿有效性、车辆曲率/末端速度约束、标准/扩展插件加载）通过。
-7. Fast DDS UDPv4候选仍发生TF停滞，只通过默认静态8/10；该轮完整保留。相同失败种子下的通信对照后，M3导航采用项目内官方CycloneDDS、本机单播；M1、方形与建图环境不改。固定地图目标按最新TF转换，等待时不占用代价地图锁。行为树路径按当前checkout解析，消除旧目录依赖。
+6. 修复Humble目标检查路径的TF失败假成功：无效目标四元数被新增插件拒绝。原错误曾在仅行驶约0.24m时返回Action成功，被独立真值门槛拦截。10项Python测试与4项C++回归（位姿有效性、车辆曲率/末端速度约束、标准/扩展插件加载、TF2回调锁顺序）通过。
+7. Fast DDS候选静态8/10，换CycloneDDS后动态仍9/10。进一步定位到系统TF2 0.25.23的回调锁反转：本机两线程回归旧库稳定超时、官方0.25.24核心库通过，见[锁顺序回归](report/tf2_lock_regression.json)和[官方修复PR990](https://github.com/ros2/geometry2/pull/990)。仅在M3进程内加载修复，不修改M1系统环境；各次保存控制器、规划器和AMCL实际加载的TF2库路径。最终对照在修复后全部重采，旧失败完整保留，不把DDS切换独立宣称为根因修复。
 
 地图序列化还通过原生Nav2回验：保留原SLAM像素，仅修正free_thresh 0.25→0.196，使12820个灰色未知格不再错误变成自由格。原生map_server加载后1600占据/12820未知/24784自由与原PGM完全一致。当前正式统计均使用修正后的同一PGM与YAML哈希，修正前候选单列保留。
 
@@ -62,7 +62,7 @@ def main():
 
 ```bash
 bash scripts/build_ros.sh
-bash scripts/install_m3_dds.sh
+bash scripts/install_m3_runtime.sh
 source scripts/env.sh
 .venv-ros/bin/python -m unittest discover -s M3/tests -v
 ctest --test-dir build_ros/smartcar_nav_checks --output-on-failure
@@ -79,6 +79,8 @@ Gazebo实验依次运行，自动入口会锁定同机M3实验并创建新目录
 '''
     (ROOT/'M3/optimization/REPORT.md').write_text(text,encoding='utf-8')
     readme=ROOT/'README.md'; content=readme.read_text(encoding='utf-8')
+    content=re.sub(r'^代码与历史实测证据来自.*$', 'M1代码与历史测量来自开发提交2bf7fb0，保留2026-11-16的测量日期。M3本轮在2026-11-21继续优化并实际重新采集；旧M3记录单独保留，当前结论以M3/optimization/REPORT.md为准。本分支新增验证记录可从evidence/和验收索引追溯，整理日期不代替实验日期。',content,flags=re.M)
+    content=content.replace('内容与历史实测','内容与实测（日期见来源）')
     replacements={
       'M3-1':f"| M3-1 | odom反馈十次；真值闭合{square['position_mean_m']:.4f}±{square['position_sd_m']:.4f}m、{square['yaw_mean_deg']:.2f}±{square['yaw_sd_deg']:.2f}° | [说明](M3/M3-1/README.md) · [优化实测](M3/optimization/REPORT.md) |",
       'M3-2':f"| M3-2 | 后轴TF修正后真实重建SLAM；0.95m门，268节点/284边/17历史约束 | [说明](M3/M3-2/README.md) · [地图与来源](M3/M3-2/maps/) |",
@@ -86,7 +88,9 @@ Gazebo实验依次运行，自动入口会锁定同机M3实验并创建新目录
       'M3-4':f"| M3-4 | 动态实体障碍，A/B/B_tuned各10次：{'/'.join(str(s['successes']) for s in dynamic)}次通过；另有独立位置/目标与边界 | [说明](M3/M3-4/README.md) · [分析](M3/M3-4/report.md) · [当前对照](M3/optimization/report/) |"}
     for key,line in replacements.items(): content=re.sub(r'^\| '+key+r' \|.*$',lambda _:line,content,flags=re.M)
     content=re.sub(r'^数据口径、失败记录和限制见.*$', '当前M3使用严格真值终点验收与实际轨迹积分，见[优化总报告](M3/optimization/REPORT.md)；旧66.7%、8/3/7等成绩保留为历史，不能与新口径直接混算。验收边界见[清单](docs/M1_M3_验收清单.md)。',content,flags=re.M)
-    content=content.replace('三个包。','四个包（新增smartcar_nav_checks目标检查插件）。')
+    content=content.replace('`sensor_interfaces`、`smartcar_training`、`smart_car_description` 三个包。','`sensor_interfaces`、`smartcar_training`、`smart_car_description`、`smartcar_nav_checks` 四个包。')
+    content=content.replace('bash scripts/build_ros.sh\nsource scripts/env.sh','bash scripts/build_ros.sh\nbash scripts/install_m3_runtime.sh\nsource scripts/env.sh')
+    content=content.replace('# M3-3：一条命令起Gazebo、地图、定位和导航\nros2 launch','# M3-3：一条命令起Gazebo、地图、定位和导航\nsource scripts/m3_nav_env.sh\nros2 launch')
     marker='\n## M3本轮更新\n\n实现与实测已更新；M1原实现保留，并执行共享环境回归。当前代码、地图、配置、实验结果、图表和复现入口以M3/optimization/REPORT.md为索引。答辩材料与PDF只在本地。\n'
     if '## M3本轮更新' not in content: content+=marker
     readme.write_text(content,encoding='utf-8')
@@ -108,7 +112,7 @@ Gazebo实验依次运行，自动入口会锁定同机M3实验并创建新目录
     content+='\n## M3本轮验收索引\n\n当前M3以M3/optimization/REPORT.md及report/all_attempts.csv为准；方形10次、默认静态10次、三组动态各10次、额外位置/目标和无解边界分别报告。真值不输入控制或定位；有限样本、几何包络与实车边界均保留。M1历史指标不被本轮M3成绩覆盖，M5/M6未继续验收。\n'
     checklist.write_text(content,encoding='utf-8')
     sources=ROOT/'THIRD_PARTY.md'
-    content=sources.read_text(encoding='utf-8').split('\n本轮增加本仓库C++插件')[0]+'\n本轮增加本仓库C++插件smartcar_nav_checks（Apache-2.0），使用Nav2 GoalChecker公开接口；未修改apt安装的Nav2二进制。后轴运动学、Humble目标转换失败链路和Fast DDS 2.6配置的官方源码/文档链接见M3/optimization/REPORT.md，精确运行版本随实验runtime_versions.txt保存。\n'
+    content=sources.read_text(encoding='utf-8').split('\n本轮增加本仓库C++插件')[0]+'\n本轮增加本仓库C++插件smartcar_nav_checks（Apache-2.0），使用Nav2 GoalChecker和RPP公开/受保护接口；未修改apt安装的Nav2二进制。后轴运动学、Humble目标转换失败链路及通信配置的官方链接见M3/optimization/REPORT.md。\n\nM3导航的本地依赖来自官方ROS apt软件包：[CycloneDDS 0.10.5](https://github.com/eclipse-cyclonedds/cyclonedds/tree/0.10.5)（EPL-2.0或EDL-1.0）、[rmw_cyclonedds](https://github.com/ros2/rmw_cyclonedds/tree/humble)（Apache-2.0）、[iceoryx 2.0.5](https://github.com/eclipse-iceoryx/iceoryx/tree/v2.0.5)（Apache-2.0）。版本锁在M3/runtime/navigation-packages.lock；实际包版本和SHA256随实验dds_packages文件保存。未修改这些依赖；Git只提交安装脚本/配置，离线包保留原.deb及其中的版权材料。\n'
     sources.write_text(content,encoding='utf-8')
     print('UPDATED_OVERVIEW_AND_DELIVERY_DOCS')
 

@@ -6,7 +6,7 @@ import subprocess
 import time
 
 ROOT=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser(); p.add_argument('--suite',choices=['main','extended'],default='main'); p.add_argument('--prefix',default=''); a=p.parse_args()
+p=argparse.ArgumentParser(); p.add_argument('--suite',choices=['main','extended','tuning'],default='main'); p.add_argument('--prefix',default=''); a=p.parse_args()
 schedule=[]
 if a.suite=='main':
     for label,runs in [('B_tuned',10),('A',3),('B',3)]:
@@ -14,6 +14,8 @@ if a.suite=='main':
     for label in ['A','B','B_tuned']:
         schedule.append(dict(label='formal_dynamic_'+label,runs=10,profile=label,seed=200,obstacle='8.0,1.6'))
     schedule.append(dict(label='tuning_speed_only',runs=3,profile='B_speed',seed=200,obstacle='8.0,1.6'))
+elif a.suite=='tuning':
+    schedule=[dict(label='tuning_lookahead',runs=3,profile='B_lookahead',seed=200,obstacle='8.0,1.6')]
 else:
     schedule=[dict(label='heldout_obstacle_east',runs=2,profile='B_tuned',seed=400,obstacle='9.5,1.4'),
               dict(label='heldout_obstacle_gate_exit',runs=2,profile='B_tuned',seed=402,obstacle='7.0,1.3'),

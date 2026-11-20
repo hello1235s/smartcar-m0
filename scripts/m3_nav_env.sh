@@ -3,7 +3,7 @@
 source "$(dirname "${BASH_SOURCE[0]}")/env.sh"
 task_dds_prefix="$SMARTCAR_ROOT/vendor/m3-dds/opt/ros/humble"
 if [ ! -f "$task_dds_prefix/lib/librmw_cyclonedds_cpp.so" ]; then
-  printf 'Run bash scripts/install_m3_dds.sh first.\n' >&2
+  printf 'Run bash scripts/install_m3_runtime.sh first.\n' >&2
   return 1
 fi
 export LD_LIBRARY_PATH="$task_dds_prefix/lib:$task_dds_prefix/lib/x86_64-linux-gnu${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"

@@ -15,7 +15,7 @@ import sys
 sys.path.insert(0,str(ROOT/'M3/common'))
 from experiment_lock import acquire
 from process_cleanup import terminate_owned_tree
-from navigation_transport import configure
+from navigation_transport import configure,inspect_native_tf2
 transport=configure(ROOT)
 experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--runs',type=int,default=1); p.add_argument('--label',default='candidate_static')
@@ -24,8 +24,10 @@ p.add_argument('--delay',type=float,default=3.); p.add_argument('--timeout',type
 p.add_argument('--seed',type=int,default=100); p.add_argument('--domain',type=int,default=180); p.add_argument('--port',default='11382')
 p.add_argument('--goal',default='10,4,1.5707963267948966')
 p.add_argument('--gui',action='store_true'); p.add_argument('--viewer',action='store_true')
+p.add_argument('--hold-after',type=float,default=0.,help='GUI-only presentation pause after the saved result; excluded from measurements')
 a=p.parse_args()
 if not 1<=a.runs<=30 or not 0<=a.domain<=232-a.runs+1: p.error('runs/domain outside supported ROS DDS range')
+if not 0<=a.hold_after<=60: p.error('hold-after must be between0 and60 seconds')
 folder=ROOT/'M3/optimization/results'/(time.strftime('%Y%m%d_%H%M%S')+'_'+a.label); folder.mkdir(parents=True)
 params=(a.params or ROOT/'M3/M3-3/config/nav2_params.yaml').resolve()
 configuration=yaml.safe_load(params.read_text())
@@ -48,11 +50,12 @@ plugin=ROOT/'install_ros/smartcar_nav_checks/lib/libvalid_pose_goal_checker.so'
 plugin_sha256=hashlib.sha256(plugin.read_bytes()).hexdigest() if plugin.exists() else None
 controller_library=ROOT/'install_ros/smartcar_nav_checks/lib/libackermann_rpp.so'
 controller_sha256=hashlib.sha256(controller_library.read_bytes()).hexdigest() if controller_library.exists() else None
-versions=subprocess.run(['dpkg-query','-W','ros-humble-navigation2','ros-humble-nav2-controller','ros-humble-nav2-map-server','ros-humble-slam-toolbox','ros-humble-fastrtps','ros-humble-ackermann-steering-controller','gazebo'],capture_output=True,text=True)
+versions=subprocess.run(['dpkg-query','-W','ros-humble-navigation2','ros-humble-nav2-controller','ros-humble-nav2-map-server','ros-humble-slam-toolbox','ros-humble-fastrtps','ros-humble-ackermann-steering-controller','ros-humble-tf2','ros-humble-tf2-ros','gazebo'],capture_output=True,text=True)
 (folder/'runtime_versions.txt').write_text(versions.stdout+versions.stderr)
 for name in ['packages.txt','packages.sha256']:
     shutil.copy2(ROOT/'vendor/m3-dds'/name,folder/('dds_'+name))
 metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obstacle_size=a.obstacle_size,delay_s=a.delay,
+              gui=a.gui,live_view=a.viewer,presentation_hold_wall_s=a.hold_after if a.gui else 0.,
               base_seed=a.seed,goal_map=a.goal,params_source=str(params),params_sha256=hashlib.sha256(actual.read_bytes()).hexdigest(),
               code_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
               source_manifest_sha256=hashlib.sha256((folder/'source_hashes.json').read_bytes()).hexdigest(),
@@ -82,14 +85,19 @@ for i in range(a.runs):
         if (directory/'result.json').exists(): report=json.loads((directory/'result.json').read_text())
         else: report=dict(success=False,action_success=False,goal_accepted=False,failure_reason='trial_process_failed_before_report',returncode=completed.returncode)
         report.update(run=i+1,seed=a.seed+i,result_dir=str(directory.relative_to(ROOT)))
+        native_runtime=inspect_native_tf2(process.pid,ROOT)
+        (directory/'native_runtime.json').write_text(json.dumps(native_runtime,indent=2))
         reports.append(report); (folder/'runs.json').write_text(json.dumps(reports,indent=2))
         metadata.update(completed=len(reports),successes=sum(r['success'] for r in reports),accepted=sum(r.get('goal_accepted',False) for r in reports),state='running')
-        if not report.get('goal_accepted') or completed.returncode:
+        if not report.get('goal_accepted') or completed.returncode or native_runtime['status']!='PASS':
             metadata['state']='infrastructure_failure'
         (folder/'experiment.json').write_text(json.dumps(metadata,indent=2))
         print(json.dumps(report),flush=True)
         if metadata['state']=='infrastructure_failure':
             raise RuntimeError('Trial infrastructure failed; retained attempt, stopping without replacement: '+str(directory))
+        if a.gui and a.hold_after and i==a.runs-1:
+            print('GUI_RESULT_SAVED; presentation pause outside measured interval',a.hold_after,flush=True)
+            time.sleep(a.hold_after)
     finally:
         for child in children: terminate_owned_tree(child)
         if process: terminate_owned_tree(process)

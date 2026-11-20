@@ -67,6 +67,8 @@ bash scripts/run_m3_demo.sh square
 
 另做了真实Nav2加载回验：原保存阈值0.25会把灰205未知格读成自由格，修正free_thresh为0.196，PGM像素完全不变。原生map_server返回1600占据、12820未知、24784自由格，与PGM逐类计数完全相同；检查报告与修正前失败均保留，当前map_manifest记录YAML哈希。此后导航统计全部重新采集，不能混入修正前成绩。
 
+分辨率0.05m使0.45m车长约9格、地图窄门约19格，兼顾厘米级激光噪声、通道几何和虚拟机开销。自定难点为1m物理窄门：预期定位和栅格误差会压缩通行余量，实测地图剩0.95m，按0.26m车/轮包络加两侧0.08m余量后仍有约0.53m横向总余量；这只是宽度核算，实际转向可达性仍由轨迹实测。未把仿真器没有模拟的玻璃反射等现象写成已验证。
+
 SLAM仍运行时调用真实序列化服务，得到{map_info['graph']['vertices']}节点、{map_info['graph']['edges']}边的图，其中{map_info['graph']['historic_constraints']}条连接历史时段的非邻接约束。原`.posegraph`/`.data`、分析JSON、实际路线CSV和地图质量图同目录保留。图中校正节点间距离不是回环误差。旧265节点/281边的历史图仍保留在原results目录。
 
 ```bash
@@ -106,13 +108,13 @@ tmp/posegraph_tool/inspect_posegraph <path/to/serialized_map.posegraph>
 
 1. 旧配置行为树绝对路径指向其他目录：launch现在根据当前checkout解析，原参数文件不被运行过程改写。
 2. 前向导航进入位置容差但朝向差约14°，继续绕行后中止：完整倒车规划/跟踪链解决候选问题，仍以重复真值验收为准。
-3. 反复启动时曾出现服务超时、TF停滞和旧路径起点：Fast DDS UDPv4候选仍只通过8/10。相同失败种子对照后，M3导航改用项目内官方CycloneDDS和本机单播配置；M1、方形与建图环境保持原设置。固定地图目标按最新TF转换，等待TF时不占用代价地图锁。对照、失败和运行库版本均保留。
+3. 反复启动曾出现TF缓存停滞：Fast DDS候选静态8/10，更换CycloneDDS后动态仍9/10，未误称更换DDS已彻底修复。发现系统TF2 0.25.23具有上游已修复的回调锁反转；本机两线程回归旧库超时、官方0.25.24库通过，现仅在项目内加载TF2核心修复。C++节点实际加载路径逐次保存。M1系统环境不变，M3方形/建图保持原DDS并加载修复，Nav2使用CycloneDDS本机单播。固定地图目标按最新TF转换；整套最终对照在修复后重采，旧失败不混算。见`../optimization/report/tf2_lock_regression.json`与官方geometry2修复PR990。
 4. Humble目标TF转换失败时曾出现车只走0.24m就Action成功。新增C++`ValidPoseGoalChecker`拒绝零/非有限/非单位四元数，始终同时检查xy和yaw。插件与上游接口兼容，独立回归测试覆盖实际失败形态；即使Action成功，外部真值门槛仍会拦截假成功。
 5. 内岛拐角曾擦入保守包络：增加规划余量和软代价场。后续标准RPP候选即使静态9/10，仍有末端绕行碰外墙；因此没有采用，新增阿克曼曲率预测与末端朝向引导后重新完整验收，失败CSV全部保留。
 
 ```bash
 bash scripts/build_ros.sh
-bash scripts/install_m3_dds.sh
+bash scripts/install_m3_runtime.sh
 source scripts/m3_nav_env.sh
 # 一条launch同时起Gazebo、地图、AMCL、Nav2
 ros2 launch ./M3/M3-3/bringup.launch.py
@@ -133,7 +135,7 @@ bash scripts/run_m3_demo.sh static --goal 10,4,1.5707963268
 
 {table}
 
-正式A/B/B_speed/B_tuned共用AckermannRPP、曲率约束和末端跟踪，A/B是保守/激进两套参数，符合题面允许的两套极端参数方案。B_speed只降低B速度，用作中间诊断；B_tuned进一步调整前视与预测时间。标准RPP候选静态9/10与一次外墙包络越界作为根因证据另存，不混入正式参数对照。三组正式动态每组10次，不自动丢弃失败重抽。具体配置与结果见[分析报告](report.md)及[原始CSV](../optimization/report/all_attempts.csv)。
+正式A/B/B_speed/B_lookahead/B_tuned共用AckermannRPP、曲率约束和末端跟踪，A/B是保守/激进两套参数，符合题面允许的两套极端参数方案。B_speed只降低B速度；B_lookahead只再改变前视策略；最后B_tuned只把碰撞预测0.5s改为2s。标准RPP候选静态9/10与一次外墙包络越界作为根因证据另存，不混入正式参数对照。三组正式动态每组10次，不自动丢弃失败重抽。具体配置与结果见[分析报告](report.md)及[原始CSV](../optimization/report/all_attempts.csv)。
 
 ```bash
 source scripts/m3_nav_env.sh
@@ -173,7 +175,7 @@ bash scripts/run_m3_demo.sh dynamic --obstacle-at 9.5,1.4 --delay 2.5
 
 ## 分步调优
 
-先完成阿克曼曲率预测和末端跟踪修复，再固定同一个AckermannRPP内核做参数对照。第一步只把B速度0.65降到0.32m/s，得到B_speed诊断组；第二步保持该速度，仅改前视策略和碰撞预测时间，形成B_tuned，并完整重跑10次动态。标准RPP候选的9/10与越界失败用于解释控制器改造，不冒充同内核参数调优的因果收益。每组参数快照与原始结果可对照，历史基线未删除。中间3次诊断不冒充10次验收，静态和动态结果不混成单一成功率。
+先完成阿克曼曲率预测和末端跟踪修复，再固定同一个AckermannRPP内核做参数对照。第一步只把B速度0.65降到0.32m/s，得到B_speed；第二步保持该速度和0.5s预测，只改变前视策略，得到B_lookahead；第三步只把预测0.5s改为2s，形成B_tuned，并完整重跑10次动态。标准RPP候选的9/10与越界失败用于解释控制器改造，不冒充同内核参数调优的因果收益。每组参数快照与原始结果可对照，历史基线未删除。两个中间组各3次诊断，不冒充10次验收；没有独立无障碍参考的中间组绕行指标为N/A。实测表见results/tuning_log.md，静态和动态结果不混成单一成功率。
 
 ## 四指标数据口径
 
