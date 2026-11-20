@@ -85,7 +85,7 @@ def main():
         time='simulated action duration; excludes post-action settling',smoothness='TV of bridge commanded steering atan(0.28*omega/v), divided by truth distance',
         safety='Known world-box geometry against conservative body/wheel envelope sampled from ModelStates; not contact-sensor certification',
         randomization='Gazebo seeds recorded; AMCL scheduling and random sampling are not bitwise deterministic',
-        means='Time, detour, smoothness and endpoint means use qualified successes only. All failures remain in denominator and CSV.'),indent=2))
+        means='Time, detour, smoothness and endpoint means use qualified successes only. All failures remain in denominator and CSV. Negative distance differences are retained, including run-to-run path/localization variation.'),indent=2))
     dynamic=[s for s in summaries if s['group'].startswith('formal_dynamic_')]
     if dynamic:
         fig,axes=plt.subplots(2,2,figsize=(10,7)); labels=[s['profile'] for s in dynamic]
