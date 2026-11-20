@@ -15,6 +15,7 @@ p=argparse.ArgumentParser(); p.add_argument('--runs',type=int,default=1); p.add_
 p.add_argument('--params',type=Path); p.add_argument('--obstacle-at'); p.add_argument('--obstacle-size',type=float,default=.6)
 p.add_argument('--delay',type=float,default=3.); p.add_argument('--timeout',type=float,default=150.)
 p.add_argument('--seed',type=int,default=100); p.add_argument('--domain',type=int,default=180); p.add_argument('--port',default='11382')
+p.add_argument('--goal',default='10,4,1.5707963267948966')
 p.add_argument('--gui',action='store_true'); p.add_argument('--viewer',action='store_true')
 a=p.parse_args()
 if not 1<=a.runs<=30 or not 0<=a.domain<=232-a.runs+1: p.error('runs/domain outside supported ROS DDS range')
@@ -34,7 +35,7 @@ for base in ['M3/common','M3/M3-1/src','M3/M3-3','M3/optimization','scripts']:
             sources[str(path.relative_to(ROOT))]=hashlib.sha256(path.read_bytes()).hexdigest()
 (folder/'source_hashes.json').write_text(json.dumps(sources,indent=2,sort_keys=True))
 metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obstacle_size=a.obstacle_size,delay_s=a.delay,
-              base_seed=a.seed,params_source=str(params),params_sha256=hashlib.sha256(actual.read_bytes()).hexdigest(),
+              base_seed=a.seed,goal_map=a.goal,params_source=str(params),params_sha256=hashlib.sha256(actual.read_bytes()).hexdigest(),
               code_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
               source_manifest_sha256=hashlib.sha256((folder/'source_hashes.json').read_bytes()).hexdigest(),
               map_sha256=hashlib.sha256((ROOT/'M3/M3-2/maps/map.pgm').read_bytes()).hexdigest(),
@@ -53,7 +54,7 @@ for i in range(a.runs):
             viewenv=dict(env)
             if not a.gui: viewenv['QT_QPA_PLATFORM']='offscreen'
             children.append(subprocess.Popen(viewargs,cwd=ROOT,env=viewenv,stdout=log,stderr=subprocess.STDOUT,start_new_session=True))
-        command=[str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/M3-3/scripts/nav_trial.py'),'--out',str(directory),'--timeout',str(a.timeout)]
+        command=[str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/M3-3/scripts/nav_trial.py'),'--out',str(directory),'--timeout',str(a.timeout),'--goal',a.goal]
         if a.obstacle_at: command+=['--obstacle-at',a.obstacle_at,'--delay',str(a.delay),'--obstacle-size',str(a.obstacle_size)]
         with (directory/'trial.log').open('w') as driver:
             completed=subprocess.run(command,cwd=ROOT,env=env,stdout=driver,stderr=subprocess.STDOUT,timeout=a.timeout*8+240)

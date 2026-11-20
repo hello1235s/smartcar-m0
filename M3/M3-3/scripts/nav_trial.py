@@ -15,7 +15,7 @@ from rclpy.action import ActionClient
 from rclpy.qos import qos_profile_sensor_data
 from nav2_msgs.action import NavigateToPose
 from nav2_msgs.msg import BehaviorTreeLog
-from nav_msgs.msg import Odometry,Path as NavPath
+from nav_msgs.msg import Odometry,Path as NavPath,OccupancyGrid
 from geometry_msgs.msg import TwistStamped
 from gazebo_msgs.msg import ModelStates
 from gazebo_msgs.srv import SpawnEntity
@@ -43,7 +43,7 @@ def main():
     if min(a.timeout,a.obstacle_size,a.position_limit,a.yaw_limit)<=0 or a.delay<0: p.error('timeouts, dimensions and tolerances must be positive; delay cannot be negative')
     rclpy.init(); node=Node('navigation_trial',parameter_overrides=[Parameter('use_sim_time',value=True)])
     buffer=Buffer(); listener=TransformListener(buffer,node)
-    trajectory=[]; commands=[]; plans=[]; truth=[]; estimates=[]; scan_times=[]; events=[]; measured_speeds=[]
+    trajectory=[]; commands=[]; plans=[]; truth=[]; estimates=[]; scan_times=[]; events=[]; measured_speeds=[]; costmaps={}
     def seconds(): return node.get_clock().now().nanoseconds/1e9
     def odom(m):
         trajectory.append([seconds(),m.pose.pose.position.x,m.pose.pose.position.y,yaw(m.pose.pose.orientation)])
@@ -65,6 +65,14 @@ def main():
         for event in message.event_log:
             events.append(dict(received_sim_t=seconds(),node=event.node_name,previous=event.previous_status,current=event.current_status))
     node.create_subscription(BehaviorTreeLog,'/behavior_tree_log',behavior_log,100)
+    def costmap(message,label):
+        previous=costmaps.get(label,{})
+        if seconds()-previous.get('t',-100)<5: return
+        costmaps[label]=dict(t=seconds(),frame=message.header.frame_id,resolution=message.info.resolution,
+                             width=message.info.width,height=message.info.height,
+                             origin=[message.info.origin.position.x,message.info.origin.position.y],data=list(message.data))
+    for label in ['global','local']:
+        node.create_subscription(OccupancyGrid,'/'+label+'_costmap/costmap',lambda m,label=label:costmap(m,label),10)
     def spin():
         rclpy.spin_once(node,timeout_sec=.05)
         try:
@@ -183,6 +191,7 @@ def main():
                 writer=csv.writer(stream); writer.writerow(header); writer.writerows(rows)
         (out/'plans.json').write_text(json.dumps(plans))
         (out/'behavior_events.json').write_text(json.dumps(events,indent=2))
+        (out/'costmaps.json').write_text(json.dumps(costmaps))
         (out/'result.json').write_text(json.dumps(report,indent=2)); print(json.dumps(report),flush=True)
         node.destroy_node(); rclpy.shutdown()
 
