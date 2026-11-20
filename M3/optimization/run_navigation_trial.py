@@ -37,7 +37,7 @@ shutil.copy2(ROOT/'M3/M3-1/src/smart_car_description/config/ackermann_controller
 with (folder/'model_used.urdf').open('w') as model:
     subprocess.run(['xacro',str(ROOT/'M3/M3-1/src/smart_car_description/urdf/smart_car.urdf.xacro'),'rear_axle_reference:=true'],stdout=model,check=True)
 sources={}
-for base in ['M3/common','M3/M3-1/src','M3/M3-2/worlds','M3/M3-2/config','M3/M3-3','M3/optimization','scripts']:
+for base in ['M3/common','M3/M3-1/src','M3/M3-2/worlds','M3/M3-2/config','M3/M3-3','M3/M3-4','M3/optimization','scripts']:
     for path in (ROOT/base).rglob('*'):
         if path.is_file() and (path.suffix in ['.py','.xacro','.cpp','.xml','.world','.sh','.hpp','.h','.yaml'] or path.name=='CMakeLists.txt') and not any(part in ['results','__pycache__','baseline'] for part in path.relative_to(ROOT).parts):
             sources[str(path.relative_to(ROOT))]=hashlib.sha256(path.read_bytes()).hexdigest()
