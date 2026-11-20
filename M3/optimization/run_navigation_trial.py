@@ -43,7 +43,7 @@ metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obst
 (folder/'experiment.json').write_text(json.dumps(metadata,indent=2)); reports=[]
 for i in range(a.runs):
     directory=folder/('run_%02d'%(i+1)); directory.mkdir()
-    env=dict(os.environ,ROS_DOMAIN_ID=str(a.domain+i),GAZEBO_MASTER_URI='http://127.0.0.1:'+a.port,GAZEBO_MODEL_DATABASE_URI='')
+    env=dict(os.environ,ROS_DOMAIN_ID=str(a.domain+i),GAZEBO_MASTER_URI='http://127.0.0.1:'+a.port,GAZEBO_MODEL_DATABASE_URI='',FASTDDS_BUILTIN_TRANSPORTS='UDPv4')
     process=None; children=[]; log=(directory/'navigation.log').open('w')
     try:
         process=subprocess.Popen(['ros2','launch',str(ROOT/'M3/M3-3/bringup.launch.py'),'params_file:='+str(actual),'physics_seed:='+str(a.seed+i)],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)

@@ -1,7 +1,7 @@
 from pathlib import Path
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument,IncludeLaunchDescription,OpaqueFunction
+from launch.actions import DeclareLaunchArgument,IncludeLaunchDescription,OpaqueFunction,SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 import tempfile
@@ -31,4 +31,4 @@ def setup(context):
 
 
 def generate_launch_description():
-    return LaunchDescription([DeclareLaunchArgument('params_file',default_value=str(ROOT/'config/nav2_params.yaml')),DeclareLaunchArgument('physics_seed',default_value='42'),OpaqueFunction(function=setup)])
+    return LaunchDescription([SetEnvironmentVariable('FASTDDS_BUILTIN_TRANSPORTS','UDPv4'),DeclareLaunchArgument('params_file',default_value=str(ROOT/'config/nav2_params.yaml')),DeclareLaunchArgument('physics_seed',default_value='42'),OpaqueFunction(function=setup)])
