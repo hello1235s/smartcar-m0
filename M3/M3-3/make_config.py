@@ -31,16 +31,16 @@ def main():
     node('controller_server','failure_tolerance',2.,'Allow one global replan before abort')
     node('controller_server','progress_checker/required_movement_radius',.15,'Slow approach still counts as progress')
     node('controller_server','progress_checker/movement_time_allowance',20.,'Wait for obstacle replan')
-    node('controller_server','general_goal_checker/xy_goal_tolerance',.35,'Grid/AMCL uncertainty and rear-axle/body reference offset')
-    node('controller_server','general_goal_checker/yaw_goal_tolerance',1.0,'Avoid a full Dubins loop trying to rotate in place at goal')
+    node('controller_server','general_goal_checker/xy_goal_tolerance',.12,'Tightened goal after aligning base_footprint with rear axle; independent truth qualification <=.15m')
+    node('controller_server','general_goal_checker/yaw_goal_tolerance',.15,'Tightened heading; independent truth qualification <=.20rad, without in-place rotation')
     node('controller_server','FollowPath',{
         'plugin':'nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController',
-        'desired_linear_vel':.4,'lookahead_dist':.5,'min_lookahead_dist':.35,'max_lookahead_dist':.65,
+        'desired_linear_vel':.32,'lookahead_dist':.5,'min_lookahead_dist':.30,'max_lookahead_dist':.65,
         'lookahead_time':1.2,'use_velocity_scaled_lookahead_dist':True,'transform_tolerance':.5,
-        'min_approach_linear_velocity':.06,'approach_velocity_scaling_dist':.5,
-        'use_collision_detection':True,'max_allowed_time_to_collision_up_to_carrot':1.5,
+        'min_approach_linear_velocity':.035,'approach_velocity_scaling_dist':.8,
+        'use_collision_detection':True,'max_allowed_time_to_collision_up_to_carrot':2.0,
         'use_regulated_linear_velocity_scaling':True,'use_cost_regulated_linear_velocity_scaling':True,
-        'regulated_linear_scaling_min_radius':.65,'regulated_linear_scaling_min_speed':.10,
+        'regulated_linear_scaling_min_radius':.85,'regulated_linear_scaling_min_speed':.08,
         'cost_scaling_dist':.3,'cost_scaling_gain':1.,'inflation_cost_scaling_factor':3.,
         'use_rotate_to_heading':False,'allow_reversing':False,'max_angular_accel':1.0},'RPP forward only, no in-place turn; chassis clamps curvature to radius >=.60m')
     node('planner_server','expected_planner_frequency',1.,'Match 1Hz BT replan instead of default20')
@@ -52,11 +52,11 @@ def main():
         'reverse_penalty':2.,'change_penalty':0.,'non_straight_penalty':1.2,'cost_penalty':2.,
         'retrospective_penalty':.015,'lookup_table_size':20.,'cache_obstacle_heuristic':True,
         'smooth_path':True},'Hybrid-A* Dubins explicitly models forward Ackermann radius')
-    footprint='[[0.225,0.11],[0.225,-0.11],[-0.225,-0.11],[-0.225,0.11]]'
+    footprint='[[0.365,0.13],[0.365,-0.13],[-0.085,-0.13],[-0.085,0.13]]'
     for name in ['local_costmap','global_costmap']:
         prefix=name+'/'+name+'/ros__parameters/'
         for key,value,reason in [
-            ('robot_base_frame','base_footprint','Planar footprint'),('footprint',footprint,'URDF .45x.22m rectangle'),
+            ('robot_base_frame','base_footprint','Rear-axle midpoint, matching controller kinematics'),('footprint',footprint,'Unchanged .45x.22m body centered .14m ahead; .26m envelope includes steered wheels'),
             ('plugins',['obstacle_layer','inflation_layer'] if name=='local_costmap' else ['static_layer','obstacle_layer','inflation_layer'],'2D laser; avoid needless voxel projection'),
             ('inflation_layer/inflation_radius',.35,'1m gate leaves .3m low cost center; footprint checked separately'),
             ('obstacle_layer',dict(plugin='nav2_costmap_2d::ObstacleLayer',enabled=True,observation_sources='scan',scan=dict(topic='/scan',max_obstacle_height=2.,clearing=True,marking=True,data_type='LaserScan',raytrace_max_range=8.,raytrace_min_range=.12,obstacle_max_range=7.8,obstacle_min_range=.12)),'Use actual 8m laser for obstacle marking/clearing')]: set_value(prefix+key,value,reason)

@@ -21,22 +21,29 @@ class View(QWidget):
     def __init__(self,root,out,obstacle=(8.,1.6),size=.6):
         super().__init__(); self.resize(900,650); self.setWindowTitle('Smartcar actual ROS navigation')
         self.node=Node('actual_navigation_view',parameter_overrides=[Parameter('use_sim_time',value=True)])
-        self.buffer=Buffer(); self.listener=TransformListener(self.buffer,self.node); self.path=[]; self.scan=None; self.pose=None; self.trajectory=[]; self.out=out; self.stage=0; self.obstacle=(obstacle[0]-1,obstacle[1]-1); self.obstacle_half=size/2
+        self.buffer=Buffer(); self.listener=TransformListener(self.buffer,self.node); self.path=[]; self.scan=None; self.pose=None; self.laser_pose=None; self.trajectory=[]; self.out=out; self.stage=0; self.obstacle=(obstacle[0]-1,obstacle[1]-1); self.obstacle_half=size/2
         config=yaml.safe_load((root/'M3/M3-2/maps/map.yaml').read_text()); self.origin=config['origin']; self.resolution=config['resolution']; self.map=QImage(str(root/'M3/M3-2/maps'/config['image']))
         self.node.create_subscription(NavPath,'/plan',lambda m:setattr(self,'path',[(p.pose.position.x,p.pose.position.y) for p in m.poses]),10)
         self.node.create_subscription(LaserScan,'/scan',lambda m:setattr(self,'scan',m),qos_profile_sensor_data)
         self.timer=QTimer(); self.timer.timeout.connect(self.tick); self.timer.start(50)
     def project(self,x,y):
-        return 40+(x-self.origin[0])/.05*3,70+(self.map.height()-(y-self.origin[1])/.05)*3
+        return 40+(x-self.origin[0])/self.resolution*3,70+(self.map.height()-(y-self.origin[1])/self.resolution)*3
     def tick(self):
         rclpy.spin_once(self.node,timeout_sec=0)
         try:
             t=self.buffer.lookup_transform('map','base_footprint',rclpy.time.Time()); q=t.transform.rotation
             self.pose=(t.transform.translation.x,t.transform.translation.y,math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z)))
             self.trajectory.append(self.pose); self.update()
-            hit=False
+            self.laser_pose=None
             if self.scan:
-                x,y,yaw=self.pose
+                try:
+                    laser=self.buffer.lookup_transform('map',self.scan.header.frame_id,rclpy.time.Time.from_msg(self.scan.header.stamp))
+                    ql=laser.transform.rotation
+                    self.laser_pose=(laser.transform.translation.x,laser.transform.translation.y,math.atan2(2*(ql.w*ql.z+ql.x*ql.y),1-2*(ql.y*ql.y+ql.z*ql.z)))
+                except TransformException: pass
+            hit=False
+            if self.scan and self.laser_pose:
+                x,y,yaw=self.laser_pose
                 for i,r in enumerate(self.scan.ranges):
                     if not math.isfinite(r): continue
                     angle=yaw+self.scan.angle_min+i*self.scan.angle_increment; xx=x+r*math.cos(angle); yy=y+r*math.sin(angle)
@@ -56,7 +63,8 @@ class View(QWidget):
         if self.pose:
             x,y,yaw=self.pose; px,py=self.project(x,y); p.setBrush(QColor('#23b38c')); p.setPen(QColor('#23b38c')); p.drawEllipse(int(px)-5,int(py)-5,10,10)
             p.drawLine(int(px),int(py),int(px+20*math.cos(yaw)),int(py-20*math.sin(yaw)))
-            if self.scan:
+            if self.scan and self.laser_pose:
+                x,y,yaw=self.laser_pose
                 p.setPen(QColor('#da424d'))
                 for i,r in enumerate(self.scan.ranges):
                     if math.isfinite(r) and self.scan.range_min<r<self.scan.range_max:
