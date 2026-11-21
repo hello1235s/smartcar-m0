@@ -1,0 +1,163 @@
+{
+  "square": {
+    "position_mean_m": 0.01828457915476062,
+    "position_sd_m": 0.005359003725404432,
+    "yaw_mean_deg": 1.6377363164026217,
+    "yaw_sd_deg": 0.19180170198099325
+  },
+  "map": {
+    "source_trial": "M3/M3-2/results/20261121_001551_qualified_mapping",
+    "status": "PASS",
+    "failures": [],
+    "quality": {
+      "resolution_m": 0.05,
+      "wall_points": 190,
+      "wall_fit_slope": 8.702905502264152e-17,
+      "wall_rms_m": 1.4175751685759025e-15,
+      "wall_max_deviation_m": 1.7763568394002505e-15,
+      "loop_wall_columns": 190,
+      "loop_wall_double_clusters": 0,
+      "loop_wall_observed_thickness_max_m": 0.05,
+      "ghost_separation_detection_limit_m": 0.1,
+      "gate_free_cells": 19,
+      "gate_measured_free_width_m": 0.9500000000000001,
+      "unknown_fraction": 0.32700744821956945,
+      "method": "Quantities from actual occupancy image. Zero double clusters does not prove sub-grid zero drift."
+    },
+    "graph": {
+      "vertices": 268,
+      "edges": 284,
+      "historic_constraints": 17
+    },
+    "map_sha256": "43f1e9f41b6957d041239f81345b6dfe9ccc6b51ff1aa233f700f63960613dda",
+    "promoted": true,
+    "map_yaml_sha256": "ef3d2a75a6d81feec49a748252eab575687d34b76f33e41c8d967e3b9e770504",
+    "semantic_roundtrip": {
+      "report": "M3/M3-2/results/map_semantics_final_20261121/roundtrip.json",
+      "status": "PASS",
+      "source_yaml": "M3/M3-2/maps/map.yaml",
+      "source_image_sha256": "43f1e9f41b6957d041239f81345b6dfe9ccc6b51ff1aa233f700f63960613dda",
+      "source_yaml_sha256": "ef3d2a75a6d81feec49a748252eab575687d34b76f33e41c8d967e3b9e770504",
+      "expected_from_actual_pgm": {
+        "occupied": 1600,
+        "unknown": 12820,
+        "free": 24784
+      },
+      "observed_from_native_nav2_getmap": {
+        "occupied": 1600,
+        "unknown": 12820,
+        "free": 24784
+      },
+      "other_values": {},
+      "normalization": null,
+      "native_getmap_service": "/semantic_map_server/map",
+      "free_thresh": 0.196,
+      "image_pixels_unchanged": true
+    }
+  },
+  "static": {
+    "group": "formal_static_B_tuned",
+    "profile": "B_tuned",
+    "attempts": 10,
+    "accepted": 10,
+    "successes": 10,
+    "success_rate": 1.0,
+    "wilson_95": [
+      0.7224598312333834,
+      1.0
+    ],
+    "mean_seconds": 43.41,
+    "mean_extra_length_m": null,
+    "mean_steering_variation_rad_per_m": 0.822313438962868,
+    "mean_position_error_m": 0.04687441606529358,
+    "max_position_error_m": 0.08603024338214503,
+    "max_yaw_error_rad": 0.052622527579087926,
+    "minimum_clearance_all_attempts_m": 0.25379622658722956,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 8698,
+    "no_obstacle_reference_successes": 10,
+    "no_obstacle_reference_mean_m": 12.904214802625955,
+    "failure_reasons": {}
+  },
+  "dynamic": [
+    {
+      "group": "formal_dynamic_A",
+      "profile": "A",
+      "attempts": 10,
+      "accepted": 10,
+      "successes": 10,
+      "success_rate": 1.0,
+      "wilson_95": [
+        0.7224598312333834,
+        1.0
+      ],
+      "mean_seconds": 49.35,
+      "mean_extra_length_m": 0.14822736995577088,
+      "mean_steering_variation_rad_per_m": 0.9902611446343068,
+      "mean_position_error_m": 0.07872618251855813,
+      "max_position_error_m": 0.11152105490634218,
+      "max_yaw_error_rad": 0.10401688135056818,
+      "minimum_clearance_all_attempts_m": 0.2699655590705868,
+      "controller_curvature_violation_samples": 0,
+      "controller_command_samples": 9891,
+      "no_obstacle_reference_successes": 3,
+      "no_obstacle_reference_mean_m": 12.826765647818618,
+      "failure_reasons": {}
+    },
+    {
+      "group": "formal_dynamic_B",
+      "profile": "B",
+      "attempts": 10,
+      "accepted": 10,
+      "successes": 9,
+      "success_rate": 0.9,
+      "wilson_95": [
+        0.5958436145024278,
+        0.9821242504842788
+      ],
+      "mean_seconds": 36.55555555555556,
+      "mean_extra_length_m": 0.1252497931917114,
+      "mean_steering_variation_rad_per_m": 1.4100980499693772,
+      "mean_position_error_m": 0.04290090759592771,
+      "max_position_error_m": 0.07468183685259427,
+      "max_yaw_error_rad": 0.11286024344396006,
+      "minimum_clearance_all_attempts_m": 0.029385641658563166,
+      "controller_curvature_violation_samples": 0,
+      "controller_command_samples": 6788,
+      "no_obstacle_reference_successes": 3,
+      "no_obstacle_reference_mean_m": 13.856545120818838,
+      "failure_reasons": {
+        "navigation_action_status_6": 1,
+        "world_position_error_exceeds_limit": 1,
+        "world_heading_error_exceeds_limit": 1,
+        "insufficient_route_length": 1
+      }
+    },
+    {
+      "group": "formal_dynamic_B_tuned",
+      "profile": "B_tuned",
+      "attempts": 10,
+      "accepted": 10,
+      "successes": 9,
+      "success_rate": 0.9,
+      "wilson_95": [
+        0.5958436145024278,
+        0.9821242504842788
+      ],
+      "mean_seconds": 43.17777777777778,
+      "mean_extra_length_m": 0.04570816274182516,
+      "mean_steering_variation_rad_per_m": 0.7416492640655368,
+      "mean_position_error_m": 0.06544869287354498,
+      "max_position_error_m": 0.1144375662839814,
+      "max_yaw_error_rad": 0.06859598749023244,
+      "minimum_clearance_all_attempts_m": 0.2499733922487407,
+      "controller_curvature_violation_samples": 0,
+      "controller_command_samples": 8637,
+      "no_obstacle_reference_successes": 10,
+      "no_obstacle_reference_mean_m": 12.904214802625955,
+      "failure_reasons": {
+        "world_position_error_exceeds_limit": 1
+      }
+    }
+  ]
+}

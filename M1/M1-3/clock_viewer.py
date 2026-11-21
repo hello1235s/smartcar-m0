@@ -1,5 +1,6 @@
 """Record only this live ROS application window, not the user's whole desktop."""
 import argparse
+import json
 import sys
 import signal
 import time
@@ -32,9 +33,11 @@ def main():
     layout.addWidget(clock_label)
     layout.addWidget(image_label)
     bridge = CvBridge()
-    state = {'image': None, 'frames': 0, 'stamp': 0}
+    state = {'image': None, 'frames': 0, 'stamp': 0, 'modes': set(), 'encodings': set(), 'shapes': set()}
 
     def receive(message):
+        assert message.encoding=='rgb8' and (message.width,message.height)==(640,480)
+        state['encodings'].add(message.encoding); state['shapes'].add((message.width,message.height))
         state.update(image=bridge.imgmsg_to_cv2(message, 'rgb8').copy(), frames=state['frames']+1,
                      stamp=message.header.stamp.sec+message.header.stamp.nanosec/1e9)
     node.create_subscription(Image, '/projection/debug_image', receive, 5)
@@ -54,6 +57,7 @@ def main():
             return
         rclpy.spin_once(node, timeout_sec=0)
         elapsed = time.monotonic()-started
+        state['modes'].add(bool(node.get_parameter('use_sim_time').value))
         clock_label.setText('use_sim_time=%s  node_clock=%.3f s\nimage_stamp=%.3f  received=%d' %
                             (node.get_parameter('use_sim_time').value, node.get_clock().now().nanoseconds/1e9, state['stamp'], state['frames']))
         if state['image'] is not None:
@@ -82,6 +86,10 @@ def main():
         app.exec_()
     finally:
         writer.release()
+        target.with_suffix('.json').write_text(json.dumps(dict(
+            received_debug_images=state['frames'],observed_clock_modes=sorted(state['modes']),
+            encodings=sorted(state['encodings']),image_shapes=sorted(state['shapes']),
+            last_input_header_stamp_s=state['stamp'],video_source='Actual read-only ROS widget capture'),indent=2))
         node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()

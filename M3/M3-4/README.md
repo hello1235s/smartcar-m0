@@ -6,10 +6,10 @@
 |---|---:|---:|---:|---:|
 |A|10/10|49.350|0.148|0.990|
 |B|9/10|36.556|0.125|1.410|
-|B_tuned|9/10|43.178|0.046|0.742|
+|B_tuned|10/10|47.450|-0.230|0.871|
 
 
-正式A/B/B_speed/B_lookahead/B_tuned共用AckermannRPP、曲率约束和末端跟踪，A/B是保守/激进两套参数，符合题面允许的两套极端参数方案。B_speed只降低B速度；B_lookahead只再改变前视策略；最后B_tuned只把碰撞预测0.5s改为2s。标准RPP候选静态9/10与一次外墙包络越界作为根因证据另存，不混入正式参数对照。三组正式动态每组10次，不自动丢弃失败重抽。具体配置与结果见[分析报告](report.md)及[原始CSV](../optimization/report/all_attempts.csv)。
+正式A/B/B_speed/B_lookahead/B_tuned共用AckermannRPP、曲率约束和末端跟踪，A/B是保守/激进两套参数，符合题面允许的两套极端参数方案。B_speed只降低B速度；B_lookahead只再改变前视策略；B_horizon保留上一版只把碰撞预测0.5s改为2s的阶段；最终B_tuned再只将内部停车0.05m收紧为0.02m，外部0.15m不变。标准RPP候选静态9/10与一次外墙包络越界作为根因证据另存，不混入正式参数对照。三组正式动态每组10次，不自动丢弃失败重抽。具体配置与结果见[分析报告](report.md)及[原始CSV](../optimization/report/all_attempts.csv)。
 
 ```bash
 source scripts/m3_nav_env.sh

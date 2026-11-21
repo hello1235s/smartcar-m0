@@ -1,0 +1,25 @@
+{
+  "sensor_hz": 10.001465853978104,
+  "processed_hz": 9.783723174441885,
+  "invalid_status_samples": 1,
+  "timeout_after_server_killed": true,
+  "namespaced_nodes": [
+    "/robot1/node_a_sensor",
+    "/robot1/node_b_filter",
+    "/robot1/node_c_alarm",
+    "/robot2/node_a_sensor",
+    "/robot2/node_b_filter",
+    "/robot2/node_c_alarm"
+  ],
+  "thresholds": {
+    "robot1": 0.3,
+    "robot2": 0.5
+  },
+  "isolated_alpha": {
+    "robot1": 0.9,
+    "robot2": 0.7
+  },
+  "topic_endpoints_namespace_isolated": true,
+  "missing_yaml_human_error": true,
+  "result": "PASS"
+}

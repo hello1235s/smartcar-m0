@@ -65,7 +65,7 @@ matrix=f'''# M3题面要求与本轮证据索引
 |M3-3|每个非默认参数注释、调参前后数据|{len(notes)}项叶参数[旧值/新值/理由](../M3-3/config/changes.yaml)，[带注释YAML](../M3-3/config/nav2_params.yaml)、[分步实测](../M3-3/results/tuning_log.md)|
 |M3-3|全局/局部代价地图、路径、速度与原话题|[实际图](report/costmaps.png)、[控制曲线](report/commands.png)、每次costmaps.json/plans.json/commands.csv/controller_commands.csv|
 |M3-4|出发后2～4s实体注入、雷达可见、位置可改|默认--delay3，spawn实际时刻、激光与路径距离逐次保存；[演示入口](../../scripts/run_m3_demo.sh)|
-|M3-4|两套极端参数各10次、差方案调优后10次|A/B/B_tuned各10次，[30行正式动态CSV](../M3-4/results/benchmark.csv)；两组中间诊断各3次，分别改变速度/前视策略/预测时间|
+|M3-4|两套极端参数各10次、差方案调优后10次|A/B/B_tuned各10次，[30行正式动态CSV](../M3-4/results/benchmark.csv)；早期速度/前视诊断各3次；上一版2秒预测十次另存，最后只收紧内部停车余量|
 |M3-4|四指标、轨迹叠加、至少4帧过程|[四指标](report/metrics.png)、[全轨迹](report/trajectories.png)、[实际四帧与代价地图](../M3-4/results/process_sequence/)；主绕行为真值积分|
 |M3-4|四问引用实测、重规划延迟、失效触发|[四问](../M3-4/report.md)、[逐步调参](../M3-4/results/tuning_log.md)、[边界](../M3-4/results/failure_boundary.md)、[延迟配对](report/replanning_detail.json)|
 |M3-4|额外位置、不同目标、不可达边界|10次额外场景，[完整统计](extended_report/summary.json)；目标被箱体占据时检查失败退出与停车，不能计作到达成功|

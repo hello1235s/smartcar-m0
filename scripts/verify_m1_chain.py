@@ -106,6 +106,17 @@ try:
         response = call(GetParameters, '/'+namespace+'/node_c_alarm/get_parameters', GetParameters.Request(names=['alarm_threshold']))
         assert response.values[0].double_value == expected_threshold
         report['thresholds'][namespace] = response.values[0].double_value
+    assert set_double('/robot1/node_b_filter','alpha',.9).successful
+    report['isolated_alpha']={}
+    for namespace,expected_alpha in [('robot1',.9),('robot2',.7)]:
+        response=call(GetParameters,'/'+namespace+'/node_b_filter/get_parameters',GetParameters.Request(names=['alpha']))
+        assert response.values[0].double_value==expected_alpha
+        publishers=observer.get_publishers_info_by_topic('/'+namespace+'/sensor_data')
+        subscribers=observer.get_subscriptions_info_by_topic('/'+namespace+'/sensor_data')
+        assert publishers and subscribers
+        assert all(endpoint.node_namespace=='/'+namespace for endpoint in publishers+subscribers)
+        report['isolated_alpha'][namespace]=response.values[0].double_value
+    report['topic_endpoints_namespace_isolated']=True
     result = subprocess.run(['ros2','launch','smartcar_training','bringup.launch.py','params_file:=/nope.yaml'], capture_output=True, text=True, timeout=12)
     (OUT/'missing_yaml.log').write_text(result.stdout+result.stderr)
     assert 'does not exist: /nope.yaml' in result.stdout+result.stderr and 'Traceback' not in result.stdout+result.stderr

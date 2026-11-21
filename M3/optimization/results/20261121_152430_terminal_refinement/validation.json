@@ -1,0 +1,38 @@
+{
+  "status": "completed",
+  "qualification_head": "491200ceb1778bc7f70df1006280391921691f80",
+  "previous_release": "d02cdf7eaa20411d0f2fde1871d9acbb2e1c10c9",
+  "setup": "evidence/M3-terminal-refinement/20261121_152129",
+  "original_manifest": "evidence/M3-final-validation/20261121_030304/analysis_manifest.json",
+  "groups": [
+    {
+      "label": "formal_dynamic_B_tuned",
+      "runs": 10,
+      "profile": "B_tuned",
+      "seed": 200,
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned"
+      ],
+      "obstacle": "8.0,1.6",
+      "completed": 10,
+      "successes": 10
+    },
+    {
+      "label": "formal_static_B_tuned",
+      "runs": 10,
+      "profile": "B_tuned",
+      "seed": 200,
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned"
+      ],
+      "completed": 10,
+      "successes": 10
+    }
+  ],
+  "analysis_manifest": "M3/optimization/results/20261121_152430_terminal_refinement/analysis_manifest.json",
+  "historical_manifest": "evidence/M3-final-validation/20261121_030304/analysis_manifest.json",
+  "parameters_sha256": "10f0223daff0d231a7047848de45d1bcbfec233aa1979ef80d8b1d85dc1ce104",
+  "note": "Old A/B/intermediate samples retained exactly; only final B_tuned is newly collected with2cm internal stop tolerance. Same external .15m/.20rad validator; previous B_tuned 9/10 remains in previous_release_report and old manifest."
+}

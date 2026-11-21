@@ -12,14 +12,14 @@ M1代码与历史测量来自开发提交2bf7fb0，保留2026-11-16的测量日�
 
 | 任务 | 内容与实测（日期见来源） | 代码、说明和证据 |
 |---|---|---|
-| M1-1 | 三节点、自定义接口、动态滤波参数、服务超时；发布约10.01 Hz | [说明](M1/M1-1/README.md) · [链路记录](evidence/M1-chain/latest.json) |
-| M1-2 | 双命名空间六节点、参数隔离、就绪探测和配置报错 | [说明](M1/M1-2/README.md) · [实际链路记录](evidence/M1-chain/) |
-| M1-3 | TF、两组外参、同步扫参、投影图和仿真时钟切换录像 | [说明](M1/M1-3/README.md) · [结果](M1/M1-3/results/20261116_204426/) |
-| M1-4 | 输出31.72 FPS、控制20.99 Hz、P95约26.71 ms；保留灰度增强语义 | [说明](M1/M1-4/README.md) · [踩坑记录](M1/M1-4/FAULTS.md) · [实测](M1/M1-4/results/) |
+| M1-1 | 实际滤波数值、无效数据、动态参数与非阻塞超时重新核验；10.00Hz发布 | [说明](M1/M1-1/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
+| M1-2 | 双命名空间六节点、动态隔离与就绪顺序重新验证 | [说明](M1/M1-2/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
+| M1-3 | 两组外参六图逐像素对照、实际TF、真实时钟切换录像重新验证 | [说明](M1/M1-3/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
+| M1-4 | 新60秒测量：输入32.00/输出32.00/控制21.00Hz，P95 13.48ms | [说明](M1/M1-4/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
 | M3-1 | odom反馈十次；真值闭合0.0183±0.0054m、1.64±0.19° | [说明](M3/M3-1/README.md) · [优化实测](M3/optimization/REPORT.md) |
 | M3-2 | 后轴TF修正后真实重建SLAM；0.95m门，268节点/284边/17历史约束 | [说明](M3/M3-2/README.md) · [地图与来源](M3/M3-2/maps/) |
 | M3-3 | AMCL、阿克曼Nav2、有效位姿检查；严格10/10 | [说明](M3/M3-3/README.md) · [全部成败](M3/optimization/report/all_attempts.csv) |
-| M3-4 | 动态实体障碍，A/B/B_tuned各10次：10/9/9次通过；另有独立位置/目标与边界 | [说明](M3/M3-4/README.md) · [分析](M3/M3-4/report.md) · [当前对照](M3/optimization/report/) |
+| M3-4 | 动态实体障碍，A/B/B_tuned各10次：10/9/10次通过；另有独立位置/目标与边界 | [说明](M3/M3-4/README.md) · [分析](M3/M3-4/report.md) · [当前对照](M3/optimization/report/) |
 
 当前M3使用严格真值终点验收与实际轨迹积分，见[优化总报告](M3/optimization/REPORT.md)；旧66.7%、8/3/7等成绩保留为历史，不能与新口径直接混算。验收边界见[清单](docs/M1_M3_验收清单.md)。
 
@@ -82,3 +82,7 @@ ros2 launch ./M3/M3-3/bringup.launch.py
 ## M3本轮更新
 
 实现与实测已更新；M1原实现保留，并执行共享环境回归。当前代码、地图、配置、实验结果、图表和复现入口见[优化总报告](M3/optimization/REPORT.md)，每条题面要求对应[逐项证据索引](M3/optimization/acceptance_matrix.md)。答辩材料与PDF只在本地。
+
+## 终点修正与M1全项复测
+
+优化B内部停车余量收紧至2cm，外部15cm不变；动态和静态均新采完整十次。旧9/10与超差案例保留。M1四题本轮完整重测，当前结论见[M1验收](M1/ACCEPTANCE.md)，历史数据不混算。

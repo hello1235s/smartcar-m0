@@ -13,7 +13,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 ROOT=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser(); p.add_argument('--main',type=Path,required=True); p.add_argument('--extended',type=Path,required=True); p.add_argument('--timed',type=Path,required=True); p.add_argument('--demonstration',type=Path); a=p.parse_args()
+p=argparse.ArgumentParser(); p.add_argument('--main',type=Path,required=True); p.add_argument('--extended',type=Path,required=True); p.add_argument('--timed',type=Path,required=True); p.add_argument('--demonstration',type=Path); p.add_argument('--previous-summary',type=Path); a=p.parse_args()
 a.timed=a.timed.resolve()
 a.main=a.main.resolve(); a.extended=a.extended.resolve()
 report=ROOT/'M3/optimization/report'
@@ -69,12 +69,18 @@ lines=['# 本轮默认静态十次：全部成败','', '|次序|严格通过|仿
 for row in records:
     if row['group']!='formal_static_B_tuned': continue
     lines.append('|%s|%s|%s|%s|%s|%s|'%(row['run'],row['success'],row['seconds'],row['position_error_m'],row['yaw_error_rad'],row['failure'] or '无'))
-lines+=['','真实终点要求≤0.15m且≤0.20rad；内部目标容差0.05m/0.10rad。完整来源和哈希见`../../optimization/report/all_attempts.csv`。历史试验留在原日期目录，不覆盖。']
+lines+=['','真实终点要求≤0.15m且≤0.20rad；当前默认内部目标容差0.02m/0.10rad。完整来源和哈希见`../../optimization/report/all_attempts.csv`。历史试验留在原日期目录，不覆盖。']
 (task3/'runs.md').write_text('\n'.join(lines)+'\n')
 stages=['# 同一AckermannRPP内核的分步调优','', '|阶段|修改|样本/成功|成功耗时s|转向TV rad/m|额外距离m|','|---|---|---:|---:|---:|---:|']
-for label,key,change in [('B','formal_dynamic_B','激进：0.65m/s、固定0.25m前视、0.5s预测'),('B_speed','tuning_speed_only','只把巡航速度0.65降到0.32'),('B_lookahead','tuning_lookahead','保持0.32和0.5s预测；只将前视策略改为速度相关0.30～0.65m'),('B_tuned','formal_dynamic_B_tuned','保持速度和前视策略；只将预测0.5→2.0s')]:
+if a.previous_summary:
+    previous={row['group']:row for row in json.loads(a.previous_summary.read_text())}
+    summary['previous_horizon']=previous['formal_dynamic_B_tuned']
+tuning=[('B','formal_dynamic_B','激进：0.65m/s、固定0.25m前视、0.5s预测、内部停车0.05m'),('B_speed','tuning_speed_only','只把巡航速度0.65降到0.32'),('B_lookahead','tuning_lookahead','保持0.32和0.5s预测；只将前视策略改为速度相关0.30～0.65m')]
+if a.previous_summary:tuning.append(('B_horizon（上一版）','previous_horizon','只将预测0.5→2.0s，内部停车仍0.05m；保留上一版完整十次'))
+tuning.append(('B_tuned（终点修正）','formal_dynamic_B_tuned','保持速度、前视和2s预测；内部XY停车0.05→0.02m，外部0.15m不变'))
+for label,key,change in tuning:
     s=summary[key]; stages.append(f"|{label}|{change}|{s['attempts']}/{s['successes']}|{f(s['mean_seconds'])}|{f(s['mean_steering_variation_rad_per_m'])}|{f(s['mean_extra_length_m'])}|")
-stages+=['','全部正式组共用相同运动内核、地图与YAML哈希、目标、footprint和验收器。B_speed为3次诊断，没有独立无障碍参考时不计算绕行均值；最终B与B_tuned各10次并有同配置参考。标准RPP及修正地图语义前的候选只作根因证据，不混入本表。','', '控制器改造先于参数对照：曲率在碰撞预测前受限，末端用虚拟朝向参考，真实目标未更换。源代码/参数快照/失败审计见`../../optimization/report/`。']
+stages+=['','全部正式组共用相同运动内核、地图与YAML哈希、请求目标、footprint和外部验收器。A/B及早期中间组保留上一版0.05m内部停车；本次最终B_tuned收紧到0.02m。B_speed为3次诊断，无独立无障碍参考时不计算绕行均值；最终B与B_tuned各10次且匹配各自配置的参考。B_horizon行来自单独保存的上一版十次，不加入当前30次动态分母。标准RPP及修正地图语义前候选单列。','', '控制器改造先于参数对照：曲率在碰撞预测前受限，末端用虚拟朝向参考，真实请求目标未更换。源代码/参数快照/失败审计见`../../optimization/report/`。']
 stages+=['','本表按参数差异链排序，不按采集时间排序；主组按预先固定计划采集，中间组用于补充消融归因，不冒称每轮看成绩后才在线决定下一参数。两个中间组各3次，未做显著性结论；每一步是否有可检测收益应读实际数字，不能只因改了参数就宣称改善。']
 (task4/'tuning_log.md').write_text('\n'.join(stages)+'\n')
 (task3/'tuning_log.md').write_text('\n'.join(stages)+'\n\n本表使用同一导航内核的实际动态诊断，避免把同时更换控制器与参数当成单参数收益。安装版Humble默认值→当前值→理由的完整101项记录见../config/changes.yaml；默认DWB方案不适用于该阿克曼车，不能捏造其同条件成功率。\n')

@@ -31,3 +31,5 @@ AI还参与依赖配置、命令执行、日志分析、README和本次交付分
 ## M3本轮优化补充
 
 Codex继续参与后轴参考点核对、odom反馈控制、SLAM重建、严格真值验收、Humble无效目标位姿插件、DDS排查与官方TF2核心修复的项目内加载、分步参数试验和报告更新。新结果见M3/optimization/REPORT.md；它们来自重新运行的Gazebo进程，不是把历史结果改名。本人独立理解和现场操作仍由本人确认。
+
+本轮继续由Codex协助收紧内部停车余量并重跑20次B_tuned，以及完整重测M1四题。原始报告在M1/ACCEPTANCE.md及M3/optimization/REPORT.md；不删除旧失败，不以自动验证代替作者理解，也不作任意环境零故障保证。

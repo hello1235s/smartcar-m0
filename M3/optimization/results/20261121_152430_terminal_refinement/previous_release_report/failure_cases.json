@@ -1,0 +1,201 @@
+{
+  "cases": [
+    {
+      "group": "formal_dynamic_B",
+      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_03",
+      "action_status": 6,
+      "action_success": false,
+      "accepted": true,
+      "qualification_failures": [
+        "navigation_action_status_6",
+        "world_position_error_exceeds_limit",
+        "world_heading_error_exceeds_limit",
+        "insufficient_route_length"
+      ],
+      "world_endpoint": {
+        "position_m": 6.553742040779765,
+        "yaw_rad": 1.1878456529701351
+      },
+      "estimated_endpoint": {
+        "position_m": 6.542434406623098,
+        "yaw_rad": 1.1818269387273665
+      },
+      "final_measured_speed": [
+        -5.8340214730590467e-05,
+        -8.40055159343273e-08
+      ],
+      "minimum_clearance_m": 0.029385641658563166,
+      "overlap_samples": 0,
+      "fixed_tf2_runtime_verified": true,
+      "observations": {
+        "feasible_arc_collision_warning": {
+          "count": 15,
+          "first": "[controller_server-8] [WARN] [1795202931.963045503] [controller_server]: AckermannRPP detected collision on feasible chassis arc"
+        },
+        "planner_start_in_lethal_space": {
+          "count": 10,
+          "first": "[planner_server-10] [WARN] [1795202932.424993326] [planner_server]: GridBased: failed to create plan, invalid use: Starting point in lethal space! Cannot create feasible plan.."
+        },
+        "planner_goal_occupied": {
+          "count": 0,
+          "first": null
+        },
+        "tf_or_transform_warning": {
+          "count": 3,
+          "first": "[bt_navigator-12] [ERROR] [1795202923.013455669] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 6.484000 but the earliest data is at time 6.742000, when looking up transform from frame [base_footprint] to frame [map]"
+        },
+        "goal_failed": {
+          "count": 1,
+          "first": "[bt_navigator-12] [ERROR] [1795202940.666557470] [bt_navigator]: Goal failed"
+        }
+      }
+    },
+    {
+      "group": "formal_dynamic_B_tuned",
+      "source": "M3/optimization/results/20261121_033452_tf2q_formal_dynamic_B_tuned/run_02",
+      "action_status": 4,
+      "action_success": true,
+      "accepted": true,
+      "qualification_failures": [
+        "world_position_error_exceeds_limit"
+      ],
+      "world_endpoint": {
+        "position_m": 0.1515233311568416,
+        "yaw_rad": 0.05916114558599106
+      },
+      "estimated_endpoint": {
+        "position_m": 0.06772846959387872,
+        "yaw_rad": 0.058181356622927456
+      },
+      "final_measured_speed": [
+        2.152479472370469e-05,
+        5.979685057952865e-08
+      ],
+      "minimum_clearance_m": 0.30209273011072063,
+      "overlap_samples": 0,
+      "fixed_tf2_runtime_verified": true,
+      "observations": {
+        "feasible_arc_collision_warning": {
+          "count": 0,
+          "first": null
+        },
+        "planner_start_in_lethal_space": {
+          "count": 0,
+          "first": null
+        },
+        "planner_goal_occupied": {
+          "count": 0,
+          "first": null
+        },
+        "tf_or_transform_warning": {
+          "count": 0,
+          "first": null
+        },
+        "goal_failed": {
+          "count": 0,
+          "first": null
+        }
+      }
+    },
+    {
+      "group": "boundary_blocked_goal",
+      "source": "M3/optimization/results/20261121_035724_ak_final_boundary_blocked_goal/run_01",
+      "action_status": null,
+      "action_success": false,
+      "accepted": true,
+      "qualification_failures": [
+        "simulation_timeout",
+        "world_position_error_exceeds_limit",
+        "world_heading_error_exceeds_limit"
+      ],
+      "world_endpoint": {
+        "position_m": 1.0826172844307647,
+        "yaw_rad": 1.009163225063849
+      },
+      "estimated_endpoint": {
+        "position_m": 1.0461251806465617,
+        "yaw_rad": 1.012036358941468
+      },
+      "final_measured_speed": [
+        -6.220774604288851e-06,
+        7.196934296014937e-10
+      ],
+      "minimum_clearance_m": 0.11431893715774244,
+      "overlap_samples": 0,
+      "fixed_tf2_runtime_verified": true,
+      "observations": {
+        "feasible_arc_collision_warning": {
+          "count": 242,
+          "first": "[controller_server-8] [WARN] [1795204693.203329911] [controller_server]: AckermannRPP detected collision on feasible chassis arc"
+        },
+        "planner_start_in_lethal_space": {
+          "count": 0,
+          "first": null
+        },
+        "planner_goal_occupied": {
+          "count": 0,
+          "first": null
+        },
+        "tf_or_transform_warning": {
+          "count": 3,
+          "first": "[bt_navigator-12] [ERROR] [1795204653.004483332] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 6.904000 but the earliest data is at time 7.142000, when looking up transform from frame [base_footprint] to frame [map]"
+        },
+        "goal_failed": {
+          "count": 0,
+          "first": null
+        }
+      }
+    },
+    {
+      "group": "boundary_close_front",
+      "source": "M3/optimization/results/20261121_035905_ak_final_boundary_close_front/run_01",
+      "action_status": 6,
+      "action_success": false,
+      "accepted": true,
+      "qualification_failures": [
+        "navigation_action_status_6",
+        "world_position_error_exceeds_limit",
+        "world_heading_error_exceeds_limit",
+        "insufficient_route_length"
+      ],
+      "world_endpoint": {
+        "position_m": 10.13864410247739,
+        "yaw_rad": 1.6706364245663474
+      },
+      "estimated_endpoint": {
+        "position_m": 10.184021029451948,
+        "yaw_rad": 1.66649192576125
+      },
+      "final_measured_speed": [
+        0.0001325215762354736,
+        -2.997545276252487e-07
+      ],
+      "minimum_clearance_m": 0.13142335267540428,
+      "overlap_samples": 0,
+      "fixed_tf2_runtime_verified": true,
+      "observations": {
+        "feasible_arc_collision_warning": {
+          "count": 478,
+          "first": "[controller_server-8] [WARN] [1795204758.479042463] [controller_server]: AckermannRPP detected collision on feasible chassis arc"
+        },
+        "planner_start_in_lethal_space": {
+          "count": 1,
+          "first": "[planner_server-10] [WARN] [1795204759.118604036] [planner_server]: GridBased: failed to create plan, invalid use: Starting point in lethal space! Cannot create feasible plan.."
+        },
+        "planner_goal_occupied": {
+          "count": 0,
+          "first": null
+        },
+        "tf_or_transform_warning": {
+          "count": 0,
+          "first": null
+        },
+        "goal_failed": {
+          "count": 1,
+          "first": "[bt_navigator-12] [ERROR] [1795204793.377926931] [bt_navigator]: Goal failed"
+        }
+      }
+    }
+  ],
+  "method": "Observable log patterns and measured outcomes only; counts are repeated messages, not independent failures. Missing TF warnings do not prove that all TF timing was ideal."
+}

@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "action_success": true,
+  "status": 4,
+  "goal_accepted": true,
+  "failure_reason": null,
+  "qualification_failures": [],
+  "goal_map": [
+    10.0,
+    4.0,
+    1.5707963267948966
+  ],
+  "world_goal_for_evaluation": [
+    11.0,
+    5.0,
+    1.5707963267948966
+  ],
+  "map_world_origin": [
+    1.0,
+    1.0,
+    0.0
+  ],
+  "endpoint_error_world_truth": {
+    "position_m": 0.04106322681869596,
+    "yaw_rad": 0.05302759508274768
+  },
+  "endpoint_error_map_estimate": {
+    "position_m": 0.04911897499754454,
+    "yaw_rad": 0.05959160309862921
+  },
+  "truth_pose_final": [
+    10.960664814937841,
+    4.988213066009798,
+    1.5177687317121489
+  ],
+  "estimated_pose_final": [
+    9.956346861213328,
+    3.9774816257496024,
+    1.5112047236962673
+  ],
+  "qualification_thresholds": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0
+  },
+  "minimum_geometric_clearance_m": 0.2711063330562281,
+  "geometric_overlap_samples": 0,
+  "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+  "truth_is_evaluation_only": true,
+  "sim_seconds": 44.0,
+  "post_action_settle_seconds": 0.7999999999999972,
+  "wall_seconds": 45.16155126599915,
+  "maximum_truth_sample_gap_s": 0.10000000000000142,
+  "path_length_m": 12.906615096631192,
+  "path_length_source": "world truth integral, evaluation only",
+  "odom_path_length_m": 12.90509089068012,
+  "steering_variation_rad_per_m": 0.7354545496268295,
+  "steering_source": "Ackermann bridge reference command",
+  "plans": 44,
+  "obstacle": null,
+  "final_measured_speed": [
+    1.4694222901955926e-05,
+    -9.566265242241637e-09
+  ],
+  "controller_command_samples": 882,
+  "controller_curvature_violation_samples": 0,
+  "maximum_requested_curvature_1_per_m": 1.6666666666666667,
+  "obstacle_distance_to_initial_path_m": null,
+  "controller_failure_replans": [],
+  "laser_samples": 447,
+  "first_plan_after_injection_delay_s": null
+}

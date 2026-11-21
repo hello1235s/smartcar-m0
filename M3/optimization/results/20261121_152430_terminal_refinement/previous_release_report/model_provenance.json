@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "reference_repository": "https://github.com/Blake-John/22SmartCar",
+  "reference_commit": "cdc8dd45296f4eaf57924c0686d861e07252905d",
+  "original_sha256_after_crlf_normalization": {
+    "urdf/smart_car.original.urdf.xacro": "e4e7289d2acb4da7cd596a41d0c7620453cef23a6663354e674f3032019a93f5",
+    "config/ackermann_controllers.original.yaml": "d5406a080f99a6cc7a794312c03b66c88b8edb45d7527ba61cb295d4f9571d49"
+  },
+  "expanded_physical_links_unchanged": 11,
+  "expanded_nonreference_joints_unchanged": 9,
+  "changed_reference_joint": {
+    "name": "base_footprint_joint",
+    "xyz_m": [
+      0.14,
+      0.0,
+      0.05
+    ]
+  },
+  "scope": "Link visual/collision/inertial geometry and all other joint definitions. ROS interfaces, RIGHT/LEFT controller ordering and optional disabled camera plugin are adaptations, not claimed byte-identical."
+}

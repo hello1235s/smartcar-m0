@@ -15,17 +15,6 @@ Action状态6；未通过项：navigation_action_status_6, world_position_error_
 
 Action未到达仍计入成功率分母。目标被箱体覆盖属于预期不可达，需另核对停车与间距，不能计作避障到达。
 
-## formal_dynamic_B_tuned / run_02
-
-[原始结果](../results/20261121_033452_tf2q_formal_dynamic_B_tuned/run_02/result.json) · [导航日志](../results/20261121_033452_tf2q_formal_dynamic_B_tuned/run_02/navigation.log) · [原生TF2加载](../results/20261121_033452_tf2q_formal_dynamic_B_tuned/run_02/native_runtime.json)
-
-Action状态4；未通过项：world_position_error_exceeds_limit。真值终点误差：位置0.1515m、朝向0.0592rad。最终实测速度[2.152479472370469e-05, 5.979685057952865e-08]；最小几何间距0.3021m，重叠采样0；修复TF2实际加载核验True。
-
-Action虽然成功，独立物理验收仍失败。停车后地图估计终点误差为0.0677m；它与世界真值是不同数据源，不能用估计合格替代真值合格，也不能为跨过门槛而四舍五入。
-
-
-Action未到达仍计入成功率分母。目标被箱体覆盖属于预期不可达，需另核对停车与间距，不能计作避障到达。
-
 ## boundary_blocked_goal / run_01
 
 [原始结果](../results/20261121_035724_ak_final_boundary_blocked_goal/run_01/result.json) · [导航日志](../results/20261121_035724_ak_final_boundary_blocked_goal/run_01/navigation.log) · [原生TF2加载](../results/20261121_035724_ak_final_boundary_blocked_goal/run_01/native_runtime.json)
