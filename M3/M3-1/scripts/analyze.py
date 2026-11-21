@@ -46,7 +46,7 @@ def main():
             first['odom_position_error_m'],first['odom_angle_error_deg']),
         transform=ax.transAxes,ha='center',va='center',fontsize=10,
         bbox=dict(boxstyle='round,pad=.6',facecolor='white',edgecolor='#ced8dd',alpha=.95))
-    ax.legend(); ax.grid(True)
+    ax.legend(loc='upper center',bbox_to_anchor=(.5,-.13),ncol=3,fontsize=8); ax.grid(True)
     fig.tight_layout(); fig.savefig(out/'trajectory_compare.png',dpi=160)
     print(json.dumps(stats, indent=2))
 
