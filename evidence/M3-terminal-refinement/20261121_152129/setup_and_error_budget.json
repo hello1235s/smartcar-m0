@@ -1,0 +1,122 @@
+{
+  "source_release": "d02cdf7eaa20411d0f2fde1871d9acbb2e1c10c9",
+  "source_failure": "M3/optimization/results/20261121_033452_tf2q_formal_dynamic_B_tuned/run_02",
+  "old_result": {
+    "success": false,
+    "action_success": true,
+    "status": 4,
+    "goal_accepted": true,
+    "failure_reason": null,
+    "qualification_failures": [
+      "world_position_error_exceeds_limit"
+    ],
+    "goal_map": [
+      10.0,
+      4.0,
+      1.5707963267948966
+    ],
+    "world_goal_for_evaluation": [
+      11.0,
+      5.0,
+      1.5707963267948966
+    ],
+    "map_world_origin": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "endpoint_error_world_truth": {
+      "position_m": 0.1515233311568416,
+      "yaw_rad": 0.05916114558599106
+    },
+    "endpoint_error_map_estimate": {
+      "position_m": 0.06772846959387872,
+      "yaw_rad": 0.058181356622927456
+    },
+    "truth_pose_final": [
+      10.975709328740631,
+      4.850436357443946,
+      1.5116351812089055
+    ],
+    "estimated_pose_final": [
+      9.97374382210468,
+      3.937567967229488,
+      1.512614970171969
+    ],
+    "qualification_thresholds": {
+      "position_m": 0.15,
+      "yaw_rad": 0.2,
+      "minimum_path_m": 5.0
+    },
+    "minimum_geometric_clearance_m": 0.30209273011072063,
+    "geometric_overlap_samples": 0,
+    "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+    "truth_is_evaluation_only": true,
+    "sim_seconds": 42.400000000000006,
+    "post_action_settle_seconds": 0.7999999999999972,
+    "wall_seconds": 43.56645597800161,
+    "maximum_truth_sample_gap_s": 0.10000000000000142,
+    "path_length_m": 12.843519156128037,
+    "path_length_source": "world truth integral, evaluation only",
+    "odom_path_length_m": 12.838566192382492,
+    "steering_variation_rad_per_m": 0.6939753777301108,
+    "steering_source": "Ackermann bridge reference command",
+    "plans": 42,
+    "obstacle": {
+      "success": true,
+      "status": "SpawnEntity: Successfully spawned entity [temporary_obstacle]",
+      "sim_t": 10.8,
+      "confirmed_sim_t": 10.9,
+      "world_xy": "8.0,1.6",
+      "size": 0.6
+    },
+    "final_measured_speed": [
+      2.152479472370469e-05,
+      5.979685057952865e-08
+    ],
+    "controller_command_samples": 848,
+    "controller_curvature_violation_samples": 0,
+    "maximum_requested_curvature_1_per_m": 1.6384655615371209,
+    "obstacle_distance_to_initial_path_m": 0.23299111523348273,
+    "controller_failure_replans": [],
+    "laser_samples": 431,
+    "first_plan_after_injection_delay_s": 0.09999999999999964
+  },
+  "last_plan_endpoint": [
+    9.975000211969018,
+    3.9850001130253077
+  ],
+  "components_xy_m": {
+    "request_minus_plan_endpoint": [
+      0.024999788030982018,
+      0.014999886974692345
+    ],
+    "plan_endpoint_minus_estimated_stop": [
+      0.001256389864337848,
+      0.04743214579581956
+    ],
+    "estimated_world_minus_truth": [
+      -0.0019655066359511864,
+      0.08713160978554235
+    ]
+  },
+  "component_norms_m": {
+    "request_minus_plan_endpoint": 0.029154519561254595,
+    "plan_endpoint_minus_estimated_stop": 0.047448782600685274,
+    "estimated_world_minus_truth": 0.08715377582271458
+  },
+  "candidate_changes": [
+    {
+      "parameter": "/controller_server/ros__parameters/general_goal_checker/xy_goal_tolerance",
+      "old": 0.05,
+      "new": 0.02
+    }
+  ],
+  "baselines_A_B_intermediates_unchanged": true,
+  "evaluation_unchanged": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5
+  },
+  "note": "Post-stop samples explain this recorded error budget, not a universal localization bound. Map/world offset is used only for evaluation; no truth feedback. Candidate reduces allowed estimated stop error by 3cm; no map, localization, goal or external limit changes."
+}

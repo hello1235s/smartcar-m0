@@ -8,9 +8,13 @@ ROOT=Path(__file__).resolve().parents[3]
 def main():
     base=yaml.safe_load((ROOT/'M3/M3-3/config/nav2_params.yaml').read_text())
     folder=ROOT/'M3/M3-4/config'; folder.mkdir(exist_ok=True)
-    for label in ['A','B','B_speed','B_lookahead','B_tuned']:
+    for label in ['A','B','B_speed','B_lookahead','B_horizon','B_tuned']:
         data=yaml.safe_load(yaml.safe_dump(base))
         follow=data['controller_server']['ros__parameters']['FollowPath']
+        # Keep historical baselines and the pre-terminal-fix horizon stage exact.
+        # The final tuning step tightens internal XY stopping from .05 to .02m.
+        if label!='B_tuned':
+            data['controller_server']['ros__parameters']['general_goal_checker']['xy_goal_tolerance']=.05
         # Every formal profile uses the same chassis-feasible prediction and terminal tracking.
         # Standard RPP candidates are retained separately as root-cause evidence.
         if label=='A': follow['desired_linear_vel']=.28
@@ -21,8 +25,8 @@ def main():
                           max_allowed_time_to_collision_up_to_carrot=.5)
         if label=='B_lookahead':
             follow['max_allowed_time_to_collision_up_to_carrot']=.5
-        # B -> B_speed: speed; -> B_lookahead: lookahead policy; -> B_tuned: horizon alone.
-        # All profiles retain identical map, footprint, goal tolerances, planner, and reverse support.
+        # B -> B_speed: speed; -> B_lookahead: lookahead; -> B_horizon: horizon;
+        # -> B_tuned: internal XY stop margin. External truth limits stay identical.
         data['velocity_smoother']['ros__parameters']['max_velocity']=[.75,0.,1.2]
         path=folder/('planner_'+label+'_params.yaml')
         path.write_text(yaml.safe_dump(data,sort_keys=False))

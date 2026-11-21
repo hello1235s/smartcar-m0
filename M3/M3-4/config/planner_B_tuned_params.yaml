@@ -172,7 +172,7 @@ controller_server:
     general_goal_checker:
       plugin: smartcar_nav_checks::ValidPoseGoalChecker
       stateful: false
-      xy_goal_tolerance: 0.05
+      xy_goal_tolerance: 0.02
       yaw_goal_tolerance: 0.1
     goal_checker_plugins:
     - general_goal_checker
