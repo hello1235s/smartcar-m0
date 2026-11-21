@@ -1,0 +1,206 @@
+[
+  {
+    "group": "formal_static_B_tuned",
+    "profile": "B_tuned",
+    "attempts": 10,
+    "accepted": 10,
+    "successes": 10,
+    "success_rate": 1.0,
+    "wilson_95": [
+      0.7224598312333834,
+      1.0
+    ],
+    "mean_seconds": 43.14,
+    "mean_extra_length_m": null,
+    "mean_steering_variation_rad_per_m": 0.8070361100065709,
+    "mean_position_error_m": 0.06551724583807472,
+    "max_position_error_m": 0.0992424787022205,
+    "max_yaw_error_rad": 0.07317417594448107,
+    "minimum_clearance_all_attempts_m": 0.2685771944639351,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 8646,
+    "no_obstacle_reference_successes": 10,
+    "no_obstacle_reference_mean_m": 12.874076246163572,
+    "failure_reasons": {}
+  },
+  {
+    "group": "formal_static_A",
+    "profile": "A",
+    "attempts": 3,
+    "accepted": 3,
+    "successes": 3,
+    "success_rate": 1.0,
+    "wilson_95": [
+      0.43849391955098227,
+      1.0
+    ],
+    "mean_seconds": 49.0,
+    "mean_extra_length_m": null,
+    "mean_steering_variation_rad_per_m": 1.055166956350572,
+    "mean_position_error_m": 0.044590492362820006,
+    "max_position_error_m": 0.05803407182820089,
+    "max_yaw_error_rad": 0.04428965888090741,
+    "minimum_clearance_all_attempts_m": 0.27326435203925836,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 2945,
+    "no_obstacle_reference_successes": 3,
+    "no_obstacle_reference_mean_m": 12.91643218311937,
+    "failure_reasons": {}
+  },
+  {
+    "group": "formal_static_B",
+    "profile": "B",
+    "attempts": 3,
+    "accepted": 3,
+    "successes": 2,
+    "success_rate": 0.6666666666666666,
+    "wilson_95": [
+      0.2076549551264879,
+      0.9385096847238394
+    ],
+    "mean_seconds": 39.65,
+    "mean_extra_length_m": null,
+    "mean_steering_variation_rad_per_m": 1.6504405418994288,
+    "mean_position_error_m": 0.03985254695261152,
+    "max_position_error_m": 0.05379326769166014,
+    "max_yaw_error_rad": 0.1030679511220165,
+    "minimum_clearance_all_attempts_m": 0.08664938925894439,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 1943,
+    "no_obstacle_reference_successes": 2,
+    "no_obstacle_reference_mean_m": 14.26543381085903,
+    "failure_reasons": {
+      "navigation_action_status_6": 1,
+      "world_position_error_exceeds_limit": 1,
+      "world_heading_error_exceeds_limit": 1
+    }
+  },
+  {
+    "group": "formal_dynamic_A",
+    "profile": "A",
+    "attempts": 10,
+    "accepted": 10,
+    "successes": 10,
+    "success_rate": 1.0,
+    "wilson_95": [
+      0.7224598312333834,
+      1.0
+    ],
+    "mean_seconds": 49.13,
+    "mean_extra_length_m": 0.047778003729915496,
+    "mean_steering_variation_rad_per_m": 0.9407796153348729,
+    "mean_position_error_m": 0.07737669256805116,
+    "max_position_error_m": 0.10291701360059942,
+    "max_yaw_error_rad": 0.06783169127169897,
+    "minimum_clearance_all_attempts_m": 0.271107058018661,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 9845,
+    "no_obstacle_reference_successes": 3,
+    "no_obstacle_reference_mean_m": 12.91643218311937,
+    "failure_reasons": {}
+  },
+  {
+    "group": "formal_dynamic_B",
+    "profile": "B",
+    "attempts": 10,
+    "accepted": 10,
+    "successes": 9,
+    "success_rate": 0.9,
+    "wilson_95": [
+      0.5958436145024278,
+      0.9821242504842788
+    ],
+    "mean_seconds": 35.87777777777778,
+    "mean_extra_length_m": -0.12477795023536034,
+    "mean_steering_variation_rad_per_m": 1.354219920522743,
+    "mean_position_error_m": 0.0649498562541338,
+    "max_position_error_m": 0.09592846730505501,
+    "max_yaw_error_rad": 0.10051630600583983,
+    "minimum_clearance_all_attempts_m": 0.07038760571293505,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 7260,
+    "no_obstacle_reference_successes": 2,
+    "no_obstacle_reference_mean_m": 14.26543381085903,
+    "failure_reasons": {
+      "navigation_action_status_6": 1,
+      "world_position_error_exceeds_limit": 1,
+      "world_heading_error_exceeds_limit": 1
+    }
+  },
+  {
+    "group": "formal_dynamic_B_tuned",
+    "profile": "B_tuned",
+    "attempts": 10,
+    "accepted": 10,
+    "successes": 9,
+    "success_rate": 0.9,
+    "wilson_95": [
+      0.5958436145024278,
+      0.9821242504842788
+    ],
+    "mean_seconds": 43.233333333333334,
+    "mean_extra_length_m": 0.10604518376265758,
+    "mean_steering_variation_rad_per_m": 0.7238164658085654,
+    "mean_position_error_m": 0.060083908238124054,
+    "max_position_error_m": 0.08166630930610626,
+    "max_yaw_error_rad": 0.05158696338898827,
+    "minimum_clearance_all_attempts_m": 0.21299556977849116,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 8611,
+    "no_obstacle_reference_successes": 10,
+    "no_obstacle_reference_mean_m": 12.874076246163572,
+    "failure_reasons": {
+      "navigation_action_status_6": 1,
+      "world_position_error_exceeds_limit": 1,
+      "world_heading_error_exceeds_limit": 1
+    }
+  },
+  {
+    "group": "tuning_speed_only",
+    "profile": "B_speed",
+    "attempts": 3,
+    "accepted": 3,
+    "successes": 3,
+    "success_rate": 1.0,
+    "wilson_95": [
+      0.43849391955098227,
+      1.0
+    ],
+    "mean_seconds": 44.3,
+    "mean_extra_length_m": null,
+    "mean_steering_variation_rad_per_m": 1.311557729462854,
+    "mean_position_error_m": 0.062195940992168006,
+    "max_position_error_m": 0.07486621223844238,
+    "max_yaw_error_rad": 0.05789164284379322,
+    "minimum_clearance_all_attempts_m": 0.2731331930920026,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 2663,
+    "no_obstacle_reference_successes": 0,
+    "no_obstacle_reference_mean_m": null,
+    "failure_reasons": {}
+  },
+  {
+    "group": "tuning_lookahead",
+    "profile": "B_lookahead",
+    "attempts": 3,
+    "accepted": 3,
+    "successes": 3,
+    "success_rate": 1.0,
+    "wilson_95": [
+      0.43849391955098227,
+      1.0
+    ],
+    "mean_seconds": 45.63333333333333,
+    "mean_extra_length_m": null,
+    "mean_steering_variation_rad_per_m": 0.960059999487911,
+    "mean_position_error_m": 0.05356861623888471,
+    "max_position_error_m": 0.09563283835157728,
+    "max_yaw_error_rad": 0.07049146693988284,
+    "minimum_clearance_all_attempts_m": 0.2857931241801809,
+    "controller_curvature_violation_samples": 0,
+    "controller_command_samples": 2742,
+    "no_obstacle_reference_successes": 0,
+    "no_obstacle_reference_mean_m": null,
+    "failure_reasons": {}
+  }
+]

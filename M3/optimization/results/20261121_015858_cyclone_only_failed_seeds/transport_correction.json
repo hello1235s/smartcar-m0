@@ -1,0 +1,20 @@
+{
+  "issue": "Legacy experiment writer hardcoded dds_transport=UDPv4; actual external environment for this isolated diagnostic is recorded here without altering raw experiment.json.",
+  "rmw_implementation": "rmw_cyclonedds_cpp",
+  "cyclone_version": "0.10.5",
+  "configuration": "M3/M3-3/config/cyclone_local.xml",
+  "source_configuration": "tmp/cyclone_local.xml",
+  "goal_transform_code": "Original pre latest-TF change; communication was the only control-runtime change.",
+  "seeds": [
+    205,
+    206,
+    207
+  ],
+  "successes": 3,
+  "plans": [
+    42,
+    42,
+    44
+  ],
+  "scope": "Diagnostic only; not pooled with final qualification."
+}

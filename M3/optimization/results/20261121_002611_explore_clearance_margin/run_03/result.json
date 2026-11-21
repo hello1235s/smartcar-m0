@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "action_success": true,
+  "status": 4,
+  "goal_accepted": true,
+  "failure_reason": null,
+  "qualification_failures": [],
+  "goal_map": [
+    10.0,
+    4.0,
+    1.5707963267948966
+  ],
+  "world_goal_for_evaluation": [
+    11.0,
+    5.0,
+    1.5707963267948966
+  ],
+  "map_world_origin": [
+    1.0,
+    1.0,
+    0.0
+  ],
+  "endpoint_error_world_truth": {
+    "position_m": 0.10094977323080946,
+    "yaw_rad": 0.011640300412507631
+  },
+  "endpoint_error_map_estimate": {
+    "position_m": 0.09198205280054132,
+    "yaw_rad": 0.011761472970581499
+  },
+  "truth_pose_final": [
+    10.976920725750231,
+    4.901723839027688,
+    1.559156026382389
+  ],
+  "estimated_pose_final": [
+    9.974454801449344,
+    3.91163631476444,
+    1.559034853824315
+  ],
+  "qualification_thresholds": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0
+  },
+  "minimum_geometric_clearance_m": 0.3130625700719664,
+  "geometric_overlap_samples": 0,
+  "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+  "truth_is_evaluation_only": true,
+  "sim_seconds": 44.8,
+  "post_action_settle_seconds": 0.7999999999999972,
+  "wall_seconds": 46.048530263999965,
+  "maximum_truth_sample_gap_s": 0.10000000000000142,
+  "path_length_m": 12.977095388541722,
+  "path_length_source": "world truth integral, evaluation only",
+  "odom_path_length_m": 12.976043168800373,
+  "steering_variation_rad_per_m": 0.7538164433539384,
+  "steering_source": "Ackermann bridge reference command",
+  "plans": 44,
+  "obstacle": {
+    "success": true,
+    "status": "SpawnEntity: Successfully spawned entity [temporary_obstacle]",
+    "sim_t": 11.2,
+    "confirmed_sim_t": 11.3,
+    "world_xy": "8.0,1.6",
+    "size": 0.6
+  },
+  "final_measured_speed": [
+    1.1235555900458165e-05,
+    8.588899024317536e-10
+  ],
+  "obstacle_distance_to_initial_path_m": 0.19197348592363442,
+  "controller_failure_replans": [],
+  "laser_samples": 455,
+  "first_plan_after_injection_delay_s": 0.10000000000000142
+}

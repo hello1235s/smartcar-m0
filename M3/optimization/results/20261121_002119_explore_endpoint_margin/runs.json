@@ -1,0 +1,74 @@
+[
+  {
+    "success": false,
+    "action_success": false,
+    "status": null,
+    "goal_accepted": false,
+    "failure_reason": "BT navigator failed to become active",
+    "qualification_failures": [
+      "BT navigator failed to become active",
+      "world_position_error_exceeds_limit",
+      "world_heading_error_exceeds_limit",
+      "insufficient_route_length",
+      "required_obstacle_not_inserted",
+      "independent_pose_sampling_gap"
+    ],
+    "goal_map": [
+      10.0,
+      4.0,
+      1.5707963267948966
+    ],
+    "world_goal_for_evaluation": [
+      11.0,
+      5.0,
+      1.5707963267948966
+    ],
+    "map_world_origin": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "endpoint_error_world_truth": {
+      "position_m": 10.770790176566422,
+      "yaw_rad": 1.566554470986975
+    },
+    "endpoint_error_map_estimate": null,
+    "truth_pose_final": [
+      1.0000421738326846,
+      0.9986546634294656,
+      0.004241855807921646
+    ],
+    "estimated_pose_final": null,
+    "qualification_thresholds": {
+      "position_m": 0.15,
+      "yaw_rad": 0.2,
+      "minimum_path_m": 5.0
+    },
+    "minimum_geometric_clearance_m": 0.8682932217779471,
+    "geometric_overlap_samples": 0,
+    "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+    "truth_is_evaluation_only": true,
+    "sim_seconds": null,
+    "post_action_settle_seconds": null,
+    "wall_seconds": 98.14992253699984,
+    "maximum_truth_sample_gap_s": 2.0,
+    "path_length_m": 0.0015016981693486827,
+    "path_length_source": "world truth integral, evaluation only",
+    "odom_path_length_m": 0.0022428838176577178,
+    "steering_variation_rad_per_m": 0.0,
+    "steering_source": "Ackermann bridge reference command",
+    "plans": 0,
+    "obstacle": null,
+    "final_measured_speed": [
+      -6.7692777017507055e-09,
+      -3.1507854641964198e-12
+    ],
+    "obstacle_distance_to_initial_path_m": null,
+    "controller_failure_replans": [],
+    "laser_samples": 908,
+    "first_plan_after_injection_delay_s": null,
+    "run": 1,
+    "seed": 101,
+    "result_dir": "M3/optimization/results/20261121_002119_explore_endpoint_margin/run_01"
+  }
+]

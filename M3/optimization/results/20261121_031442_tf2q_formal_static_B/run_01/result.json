@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "action_success": true,
+  "status": 4,
+  "goal_accepted": true,
+  "failure_reason": null,
+  "qualification_failures": [],
+  "goal_map": [
+    10.0,
+    4.0,
+    1.5707963267948966
+  ],
+  "world_goal_for_evaluation": [
+    11.0,
+    5.0,
+    1.5707963267948966
+  ],
+  "map_world_origin": [
+    1.0,
+    1.0,
+    0.0
+  ],
+  "endpoint_error_world_truth": {
+    "position_m": 0.07435411539302926,
+    "yaw_rad": 0.07219662639065215
+  },
+  "endpoint_error_map_estimate": {
+    "position_m": 0.06598188710366701,
+    "yaw_rad": 0.06789580833233577
+  },
+  "truth_pose_final": [
+    10.963821315306328,
+    4.935041265023742,
+    1.4985997004042444
+  ],
+  "estimated_pose_final": [
+    9.961865135682185,
+    3.946154465837705,
+    1.5029005184625608
+  ],
+  "qualification_thresholds": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0
+  },
+  "minimum_geometric_clearance_m": 0.19015160525180633,
+  "geometric_overlap_samples": 0,
+  "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+  "truth_is_evaluation_only": true,
+  "sim_seconds": 32.699999999999996,
+  "post_action_settle_seconds": 0.8000000000000043,
+  "wall_seconds": 33.75796074699974,
+  "maximum_truth_sample_gap_s": 0.10000000000000142,
+  "path_length_m": 14.010586669001828,
+  "path_length_source": "world truth integral, evaluation only",
+  "odom_path_length_m": 13.980491693100468,
+  "steering_variation_rad_per_m": 1.1486862119963266,
+  "steering_source": "Ackermann bridge reference command",
+  "plans": 32,
+  "obstacle": null,
+  "final_measured_speed": [
+    1.5324898276536654e-05,
+    -1.670878551796204e-08
+  ],
+  "controller_command_samples": 656,
+  "controller_curvature_violation_samples": 0,
+  "maximum_requested_curvature_1_per_m": 1.666666666666667,
+  "obstacle_distance_to_initial_path_m": null,
+  "controller_failure_replans": [],
+  "laser_samples": 334,
+  "first_plan_after_injection_delay_s": null
+}

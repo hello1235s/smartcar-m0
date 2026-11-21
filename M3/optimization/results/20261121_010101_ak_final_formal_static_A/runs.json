@@ -1,0 +1,83 @@
+[
+  {
+    "success": false,
+    "action_success": false,
+    "status": null,
+    "goal_accepted": false,
+    "failure_reason": "Nav2 action unavailable during initialization",
+    "qualification_failures": [
+      "Nav2 action unavailable during initialization",
+      "world_position_error_exceeds_limit",
+      "world_heading_error_exceeds_limit",
+      "insufficient_route_length",
+      "independent_pose_sampling_gap"
+    ],
+    "goal_map": [
+      10.0,
+      4.0,
+      1.5707963267948966
+    ],
+    "world_goal_for_evaluation": [
+      11.0,
+      5.0,
+      1.5707963267948966
+    ],
+    "map_world_origin": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "endpoint_error_world_truth": {
+      "position_m": 10.770769735956264,
+      "yaw_rad": 1.566795826599729
+    },
+    "endpoint_error_map_estimate": {
+      "position_m": 10.76976899768047,
+      "yaw_rad": 1.5707973281215861
+    },
+    "truth_pose_final": [
+      1.0000328904744076,
+      0.9987328865223514,
+      0.004000500195167621
+    ],
+    "estimated_pose_final": [
+      0.0006038051322563168,
+      -1.8298718299042057e-10,
+      -1.001326689461805e-06
+    ],
+    "qualification_thresholds": {
+      "position_m": 0.15,
+      "yaw_rad": 0.2,
+      "minimum_path_m": 5.0
+    },
+    "minimum_geometric_clearance_m": 0.8683938851714986,
+    "geometric_overlap_samples": 0,
+    "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+    "truth_is_evaluation_only": true,
+    "sim_seconds": null,
+    "post_action_settle_seconds": null,
+    "wall_seconds": 90.21825341899967,
+    "maximum_truth_sample_gap_s": 1.6000000000000014,
+    "path_length_m": 0.0012937354452781532,
+    "path_length_source": "world truth integral, evaluation only",
+    "odom_path_length_m": 0.002012034268658372,
+    "steering_variation_rad_per_m": 0.0,
+    "steering_source": "Ackermann bridge reference command",
+    "plans": 0,
+    "obstacle": null,
+    "final_measured_speed": [
+      -6.5455725191244684e-09,
+      -2.668858508248398e-12
+    ],
+    "controller_command_samples": 0,
+    "controller_curvature_violation_samples": 0,
+    "maximum_requested_curvature_1_per_m": null,
+    "obstacle_distance_to_initial_path_m": null,
+    "controller_failure_replans": [],
+    "laser_samples": 59,
+    "first_plan_after_injection_delay_s": null,
+    "run": 1,
+    "seed": 200,
+    "result_dir": "M3/optimization/results/20261121_010101_ak_final_formal_static_A/run_01"
+  }
+]

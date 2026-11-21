@@ -1,0 +1,32 @@
+{
+  "label": "stable_dds_formal_dynamic_A",
+  "runs_requested": 10,
+  "obstacle_at": "8.0,1.6",
+  "obstacle_size": 0.6,
+  "delay_s": 3.0,
+  "base_seed": 200,
+  "goal_map": "10,4,1.5707963267948966",
+  "params_source": "/home/ubuntu2204/smartcar-m3-opt/M3/M3-4/config/planner_A_params.yaml",
+  "params_sha256": "f31f8cb68532387b10cd32258be003887809ff5ccbef75865aa4d9523c8922a7",
+  "code_head": "6269db7e3aa607e881ca5293b57389d38015d31e",
+  "source_manifest_sha256": "435dbf5a0279a72f5002f742b6d4ec720d4642d3710d55c69cf949f8135d3d2b",
+  "goal_checker_library_sha256": "ff8717fc7ce4acff73c4cde7c988f092be09caca87935dfb156235a6b1f6f412",
+  "rmw_implementation": "rmw_cyclonedds_cpp",
+  "dds_transport": "UDPv4 loopback unicast",
+  "dds_scope": "M3 navigation on this host only",
+  "dds_prefix": "/home/ubuntu2204/smartcar-m3-opt/vendor/m3-dds/opt/ros/humble",
+  "cyclone_config": "/home/ubuntu2204/smartcar-m3-opt/M3/M3-3/config/cyclone_local.xml",
+  "ackermann_controller_library_sha256": "bfccead2f4cd2a4917a9752a2db9958b83f674825067e93c76c6f3901f868cd5",
+  "map_sha256": "43f1e9f41b6957d041239f81345b6dfe9ccc6b51ff1aa233f700f63960613dda",
+  "map_yaml_sha256": "ef3d2a75a6d81feec49a748252eab575687d34b76f33e41c8d967e3b9e770504",
+  "independent_qualification": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0,
+    "geometric_overlap_limit_m": -0.002
+  },
+  "completed": 10,
+  "successes": 10,
+  "accepted": 10,
+  "state": "complete"
+}

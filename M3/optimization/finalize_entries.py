@@ -7,12 +7,13 @@ import math
 from pathlib import Path
 import shutil
 import statistics
+import yaml
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 ROOT=Path(__file__).resolve().parents[2]
-p=argparse.ArgumentParser(); p.add_argument('--main',type=Path,required=True); p.add_argument('--extended',type=Path,required=True); p.add_argument('--timed',type=Path,required=True); a=p.parse_args()
+p=argparse.ArgumentParser(); p.add_argument('--main',type=Path,required=True); p.add_argument('--extended',type=Path,required=True); p.add_argument('--timed',type=Path,required=True); p.add_argument('--demonstration',type=Path); a=p.parse_args()
 a.timed=a.timed.resolve()
 a.main=a.main.resolve(); a.extended=a.extended.resolve()
 report=ROOT/'M3/optimization/report'
@@ -34,10 +35,30 @@ for row in dynamic:
     directory=ROOT/row['result_dir']; screenshots=directory/'screenshots'
     if all((screenshots/('actual_view_%d.png'%i)).exists() for i in range(1,5)) and (screenshots/'actual_costmaps_obstacle.png').exists():
         selected=directory; break
-if selected is None: raise RuntimeError('Complete actual navigation and costmap screenshots are required')
+if selected is None and not a.demonstration: raise RuntimeError('Complete actual navigation and costmap screenshots are required')
+if a.demonstration:
+    formal=next(ROOT/row['result_dir'] for row in dynamic if row['profile']=='B_tuned' and row['success']=='True')
+    formal_metadata=json.loads((formal.parent/'experiment.json').read_text())
+    selected=a.demonstration.resolve()
+    demo_metadata=json.loads((selected.parent/'experiment.json').read_text())
+    for key in ['goal_map','obstacle_at','obstacle_size','delay_s','map_sha256','map_yaml_sha256','tf2_core_library_sha256']:
+        assert demo_metadata[key]==formal_metadata[key],('GUI scenario differs from nominal comparison',key)
+    result=json.loads((selected/'result.json').read_text())
+    status=json.loads((selected/'screenshots/viewer_status.json').read_text())
+    assert result['success'] and status['captured_navigation_stages']==4
+    assert status['spawn_confirmation']['success']
+    assert status['capture_events'][1]['sim_t']>=status['spawn_confirmation']['confirmed_sim_t']
+    assert all((selected/f'screenshots/actual_view_{i}.png').is_file() for i in range(1,5))
+    current=yaml.safe_load((selected.parent/'parameters_used.yaml').read_text())
+    reference=yaml.safe_load((ROOT/'M3/M3-4/config/planner_B_tuned_params.yaml').read_text())
+    for config in [current,reference]:
+        for key in ['default_nav_to_pose_bt_xml','default_nav_through_poses_bt_xml']:
+            config['bt_navigator']['ros__parameters'][key]=Path(config['bt_navigator']['ros__parameters'][key]).name
+    assert current==reference,'GUI evidence must use the same nominal control parameters'
 sequence=task4/'process_sequence'; sequence.mkdir(exist_ok=True)
 for file in (selected/'screenshots').glob('*.png'): shutil.copy2(file,sequence/file.name)
 source=dict(source_run=str(selected.relative_to(ROOT)),native_ros_images=True,
+            role='Additional validated GUI demonstration; excluded from performance denominator' if a.demonstration else 'One of the formal nominal dynamic runs',
             hashes={file.name:hashlib.sha256(file.read_bytes()).hexdigest() for file in (selected/'screenshots').glob('*.png')})
 (sequence/'source_manifest.json').write_text(json.dumps(source,indent=2))
 task3=ROOT/'M3/M3-3/results'; current=task3/'current_nav'; current.mkdir(exist_ok=True)
@@ -66,9 +87,9 @@ for group in json.loads(a.extended.read_text()):
             if group['label']=='boundary_blocked_goal':
                 speed=(result.get('final_measured_speed') or [None])[0]
                 valid=result['goal_accepted'] and not result['action_success'] and result['obstacle']['success'] and speed is not None and abs(speed)<.02 and result['geometric_overlap_samples']==0
-                boundaries.append(dict(source=str(file.parent.relative_to(ROOT)),expected_unreachable=True,safe_rejection=valid,status=result['status'],speed_mps=speed,clearance_m=result['minimum_geometric_clearance_m']))
+                boundaries.append(dict(source=str(file.parent.relative_to(ROOT)),expected_unreachable=True,safe_rejection=valid,status=result['status'],failure_reason=result.get('failure_reason'),speed_mps=speed,clearance_m=result['minimum_geometric_clearance_m']))
     boundary_lines.append('|%s|%s/%s|%s|%s|%s|'%(group['label'],sum(r['success'] for r in results),len(results),','.join(str(r['status']) for r in results),','.join(f((r.get('final_measured_speed') or [None])[0]) for r in results),sum(r['geometric_overlap_samples'] for r in results)))
-boundary_lines+=['','目标被0.8m实体箱覆盖时预期不可达，不能把正确退出当作到达成功。近前方突发箱测试局部阻挡、重规划与停车；其结果单独报告，不能从单次推断“所有近障都必失败”。原始位置/目标/尺寸/时机见每组快照。']
+boundary_lines+=['','目标被0.8m实体箱覆盖时预期不可达，不能把退出停车当作到达成功。Action状态为None表示未取得终态；若原始failure_reason为simulation_timeout，则由试验器90秒看门狗触发取消与停车，不冒称Nav2主动判定无解。近前方突发箱测试局部阻挡、重规划与停车；其结果单独报告，不能从单次推断“所有近障都必失败”。原始位置/目标/尺寸/时机见每组快照。']
 (task4/'failure_boundary.md').write_text('\n'.join(boundary_lines)+'\n')
 (report/'boundary_validation.json').write_text(json.dumps(boundaries,indent=2))
 if not boundaries or not all(r['safe_rejection'] for r in boundaries): raise RuntimeError('Blocked-goal safe rejection needs review')
@@ -103,11 +124,20 @@ answers=['\n## 四问的实测补充','']
 for name in ['A','B','B_tuned']:
     s=summary['formal_dynamic_'+name]
     answers.append(f"- ① {name}：严格{s['successes']}/{s['attempts']}，成功耗时{f(s['mean_seconds'])}s、额外路径{f(s['mean_extra_length_m'])}m、指令转向TV {f(s['mean_steering_variation_rad_per_m'])}rad/m。采用同一验收器，成功样本均值和失败分母分开。")
+baseline=summary['formal_dynamic_B']; tuned=summary['formal_dynamic_B_tuned']; conservative=summary['formal_dynamic_A']
+if baseline['mean_steering_variation_rad_per_m'] and baseline['mean_seconds']:
+    reduction=100*(1-tuned['mean_steering_variation_rad_per_m']/baseline['mean_steering_variation_rad_per_m'])
+    time_change=100*(tuned['mean_seconds']/baseline['mean_seconds']-1)
+    answers.append(f"- ① 取舍：B_tuned相对B的指令转向TV下降{reduction:.1f}%，成功耗时变化{time_change:+.1f}%；严格通过从{baseline['successes']}/10变为{tuned['successes']}/10。A本批为{conservative['successes']}/10、成功平均{f(conservative['mean_seconds'])}s。优先到达稳定性时参考A，平滑度与耗时折中时考虑B_tuned；不能把调优描述成所有指标都提高，也不能从10个样本证明总体优劣。")
 for boundary in boundaries:
-    answers.append(f"- ② 目标世界(11,5)在出发3s后被0.8m实体箱覆盖：Action状态{boundary['status']}，末速度{f(boundary['speed_mps'])}m/s，最小包络间距{f(boundary['clearance_m'])}m，安全退出检查{boundary['safe_rejection']}。这是目标占据的不可达边界，不推断其他坐标必败。")
+    termination='试验器90秒超时，未取得Action终态' if boundary['status'] is None and boundary['failure_reason']=='simulation_timeout' else f"Action状态{boundary['status']}"
+    answers.append(f"- ② 目标世界(11,5)在出发3s后被0.8m实体箱覆盖：{termination}，末速度{f(boundary['speed_mps'])}m/s，最小包络间距{f(boundary['clearance_m'])}m，退出后停车检查{boundary['safe_rejection']}。这是目标占据的不可达边界，不推断其他坐标必败，也不把试验器超时冒称Nav2主动拒绝。")
 for name,detail in [('主对照',replanning),('额外场景',extra_replanning)]:
     s=detail['summary']
     answers.append(f"- ③ {name}：{s['runs_with_controller_error']}/{s['runs']}次出现局部控制碰撞/进度/耐心错误；{s['runs_with_later_valid_plan']}次随后收到有效plan。错误日志墙钟→下条plan接收墙钟中位延迟{f(s['wall_delay_median_s'])}s，范围{f(s['wall_delay_min_s'])}～{f(s['wall_delay_max_s'])}s。空值表示没有可配对事件，不能填成0秒。")
+    paired=[r for r in detail['runs'] if r['next_valid_plan_after_controller_error_wall_s'] is not None]
+    reached=sum(r['strict_success'] for r in paired)
+    answers.append(f"- ③ {name}收到后续有效plan的{len(paired)}次中，{reached}次最后严格到达，{len(paired)-reached}次仍未到达；这描述后续结果，不单独证明重规划导致脱困。有新plan不等于有解，尤其不能解除目标被实体占据的边界。")
 s=summary['formal_dynamic_B_tuned']
 answers.append(f"- ④ 当前约2m走廊、0.95m窄门、0.6m临时静止方盒场景，默认选0.32m/s、速度相关0.30～0.65m前视和2s预测；该组动态严格{s['successes']}/10，成功耗时{f(s['mean_seconds'])}s。该选择是对当前速度、平滑度和成功率的折中，额外位置/目标另列，不是任意场景最优证明。")
 answers+=['','逐次依据：`../optimization/report/all_attempts.csv`、`../optimization/report/replanning_detail.json`、`../optimization/extended_report/`。日志配对不是ROS仿真时钟延迟；BT FAILURE→plan仿真时间另在同JSON逐条保留。','']

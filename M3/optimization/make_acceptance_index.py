@@ -14,6 +14,14 @@ report=ROOT/'M3/optimization/report'
 head=json.loads((report/'headline.json').read_text())
 rows=list(csv.DictReader((report/'all_attempts.csv').open()))
 assert len(rows)==52 and all(row['accepted']=='True' for row in rows)
+for row in rows:
+    directory=ROOT/row['result_dir']
+    runtime=json.loads((directory/'native_runtime.json').read_text())
+    metadata=json.loads((directory.parent/'experiment.json').read_text())
+    assert runtime['status']=='PASS' and len(runtime['nodes'])==3
+    assert metadata['tf2_core_version']=='0.25.24'
+lock_check=json.loads((report/'tf2_lock_regression.json').read_text())
+assert lock_check['status']=='PASS' and lock_check['cases'][-1]['result']=='PASS'
 assert len([r for r in rows if r['group'].startswith('formal_dynamic_')])==30
 for row in rows:
     if row['group'].startswith('formal_dynamic_'):
@@ -63,6 +71,8 @@ matrix=f'''# M3题面要求与本轮证据索引
 |M3-4|额外位置、不同目标、不可达边界|10次额外场景，[完整统计](extended_report/summary.json)；目标被箱体占据时检查失败退出与停车，不能计作到达成功|
 
 ## 共同验证与边界
+
+TF2锁顺序回归与原生加载路径：[本机旧/新库回归](report/tf2_lock_regression.json)。每次controller_server、planner_server和amcl的实际库映射在该次native_runtime.json中，52次都已核对；系统dpkg仍显示旧版是因为修复只在项目进程内加载，并未修改M1系统环境。
 
 独立成功门槛：Action成功且世界真值终点≤0.15m/0.20rad、路径>5m、数据充分、保守包络无重叠，动态场景要求实体注入成功。52次正式/诊断记录中控制器原始请求曲率越界为0；几何采样不等于接触传感器认证。
 

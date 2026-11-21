@@ -1,0 +1,21 @@
+{
+  "status": "FAIL",
+  "source_yaml": "M3/M3-2/maps/map.yaml",
+  "source_image_sha256": "43f1e9f41b6957d041239f81345b6dfe9ccc6b51ff1aa233f700f63960613dda",
+  "source_yaml_sha256": "2b58b53d01a9f7289f1f02395f221b91ae583bc2c721069a99202a1b175fe848",
+  "expected_from_actual_pgm": {
+    "occupied": 1600,
+    "unknown": 12820,
+    "free": 24784
+  },
+  "observed_from_native_nav2_getmap": {
+    "occupied": 1600,
+    "unknown": 0,
+    "free": 37604
+  },
+  "other_values": {},
+  "normalization": null,
+  "native_getmap_service": "/semantic_map_server/map",
+  "free_thresh": 0.25,
+  "image_pixels_unchanged": true
+}

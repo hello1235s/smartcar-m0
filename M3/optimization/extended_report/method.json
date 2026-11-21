@@ -1,0 +1,10 @@
+{
+  "manifest": "M3/optimization/results/20261121_034938_qualification_extended/manifest.json",
+  "success": "Action success AND truth endpoint <=0.15m/0.20rad AND >=5m AND no conservative-envelope overlap AND sufficient scan/truth samples AND requested obstacle inserted",
+  "distance": "world truth integral minus mean successful no-obstacle integral for the same profile; unavailable if no successful reference",
+  "time": "simulated action duration; excludes post-action settling",
+  "smoothness": "TV of bridge commanded steering atan(0.28*omega/v) when abs(v)>.005m/s, otherwise0, divided by truth distance; command proxy, not steering-joint measurement",
+  "safety": "Known world-box geometry against conservative body/wheel envelope sampled from ModelStates; not contact-sensor certification",
+  "randomization": "Gazebo seeds recorded; AMCL scheduling and random sampling are not bitwise deterministic",
+  "means": "Time, detour, smoothness and endpoint means use qualified successes only. All failures remain in denominator and CSV. Negative distance differences are retained, including run-to-run path/localization variation."
+}

@@ -35,10 +35,17 @@ def main():
         rotation = np.array([[np.cos(theta),-np.sin(theta)],[np.sin(theta),np.cos(theta)]])
         xy = xy@rotation
         ax.plot(xy[:,0], xy[:,1], color=color, label=source)
-        ax.scatter(xy[-1,0],xy[-1,1],color=color,marker='x',s=70)
+        ax.scatter(xy[-1,0],xy[-1,1],color=color,marker='x',s=70,label=source+' end')
     ax.scatter(0,0,color='black',label='start')
     ax.set_aspect('equal', adjustable='box')
     ax.set(xlabel='x (m)', ylabel='y (m)', title='2 m rounded square: actual Gazebo vs wheel odometry')
+    first=runs[0]
+    ax.text(.5,.48,
+        'Run 1 closure\nTruth: %.4f m / %.2f deg\nOdom: %.4f m / %.2f deg' % (
+            first['truth_position_error_m'],first['truth_angle_error_deg'],
+            first['odom_position_error_m'],first['odom_angle_error_deg']),
+        transform=ax.transAxes,ha='center',va='center',fontsize=10,
+        bbox=dict(boxstyle='round,pad=.6',facecolor='white',edgecolor='#ced8dd',alpha=.95))
     ax.legend(); ax.grid(True)
     fig.tight_layout(); fig.savefig(out/'trajectory_compare.png',dpi=160)
     print(json.dumps(stats, indent=2))

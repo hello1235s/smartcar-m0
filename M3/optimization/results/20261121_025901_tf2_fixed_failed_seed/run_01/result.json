@@ -1,0 +1,79 @@
+{
+  "success": true,
+  "action_success": true,
+  "status": 4,
+  "goal_accepted": true,
+  "failure_reason": null,
+  "qualification_failures": [],
+  "goal_map": [
+    10.0,
+    4.0,
+    1.5707963267948966
+  ],
+  "world_goal_for_evaluation": [
+    11.0,
+    5.0,
+    1.5707963267948966
+  ],
+  "map_world_origin": [
+    1.0,
+    1.0,
+    0.0
+  ],
+  "endpoint_error_world_truth": {
+    "position_m": 0.034801495624970646,
+    "yaw_rad": 0.04686218480480031
+  },
+  "endpoint_error_map_estimate": {
+    "position_m": 0.06692322001707032,
+    "yaw_rad": 0.052746703276637774
+  },
+  "truth_pose_final": [
+    10.977995553488421,
+    4.973038018777287,
+    1.5239341419900962
+  ],
+  "estimated_pose_final": [
+    9.969485248910633,
+    3.9404385414600416,
+    1.5180496235182588
+  ],
+  "qualification_thresholds": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0
+  },
+  "minimum_geometric_clearance_m": 0.275799806727456,
+  "geometric_overlap_samples": 0,
+  "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+  "truth_is_evaluation_only": true,
+  "sim_seconds": 43.1,
+  "post_action_settle_seconds": 0.8000000000000043,
+  "wall_seconds": 44.330076448999534,
+  "maximum_truth_sample_gap_s": 0.10000000000000142,
+  "path_length_m": 12.912142978847772,
+  "path_length_source": "world truth integral, evaluation only",
+  "odom_path_length_m": 12.910081656200019,
+  "steering_variation_rad_per_m": 0.6824948543020566,
+  "steering_source": "Ackermann bridge reference command",
+  "plans": 43,
+  "obstacle": {
+    "success": true,
+    "status": "SpawnEntity: Successfully spawned entity [temporary_obstacle]",
+    "sim_t": 10.8,
+    "confirmed_sim_t": 10.9,
+    "world_xy": "8.0,1.6",
+    "size": 0.6
+  },
+  "final_measured_speed": [
+    1.9135138732442847e-05,
+    2.1249326364195105e-08
+  ],
+  "controller_command_samples": 864,
+  "controller_curvature_violation_samples": 0,
+  "maximum_requested_curvature_1_per_m": 1.6666666666666667,
+  "obstacle_distance_to_initial_path_m": 0.23299111523348273,
+  "controller_failure_replans": [],
+  "laser_samples": 438,
+  "first_plan_after_injection_delay_s": 0.09999999999999964
+}

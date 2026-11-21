@@ -1,0 +1,10 @@
+{
+  "status": "superseded_after_tf2_core_lock_regression",
+  "nominal_static": "10/10",
+  "nominal_dynamic": "9/10",
+  "observed": "Controller TF cache stopped while independent map->base reader kept updating; controller failed to cleanly terminate after SIGINT.",
+  "system_tf2": "0.25.23",
+  "official_fix": "https://github.com/ros2/geometry2/pull/990",
+  "local_evidence": "M3/optimization/report/tf2_lock_regression.json",
+  "decision": "Do not pool this candidate with final TF2 0.25.24 qualification. Retain every attempted run. Old extended batch was deliberately stopped before completion."
+}

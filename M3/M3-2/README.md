@@ -1,35 +1,34 @@
-# M3-2：真实激光 SLAM
+# M3-2：真实激光SLAM、回环与地图晋级检查
 
-自建12×8m环形场景：中部8×4m岛状墙体，约2m宽走廊，长边巡场距离10m，底部1m窄门。窄门考验地图分辨率、墙边伪影以及后续膨胀层的可通行性。Gazebo激光为360线/10Hz，0.12～8m，噪声σ=0.01m。
+自建12×8m环形场景，中部8×4m岛状墙体、约2m走廊、底部1m物理窄门。激光360线/10Hz、0.12～8m、噪声σ=0.01m。`slam_toolbox`使用scan、轮式odom和传感器TF，巡场跟踪SLAM定位，不使用Gazebo真值控制或建图。
+
+本轮修正后轴TF后重新实际巡场建图。当前导航图来自`M3/M3-2/results/20261121_001551_qualified_mapping`，SHA256为`43f1e9f41b6957d041239f81345b6dfe9ccc6b51ff1aa233f700f63960613dda`；`maps/map_manifest.json`记录验收与来源。地图0.05m分辨率，窄门19个自由格，即0.95m。北墙190个占据点在该栅格上共线、最大观测墙厚1格，没有发现间隔超过2格的分离占据簇。这只能说明栅格尺度下没有检出的重影，不能证明零漂移或皮米级精度。未知区域不允许规划通行。
+
+另做了真实Nav2加载回验：原保存阈值0.25会把灰205未知格读成自由格，修正free_thresh为0.196，PGM像素完全不变。原生map_server返回1600占据、12820未知、24784自由格，与PGM逐类计数完全相同；检查报告与修正前失败均保留，当前map_manifest记录YAML哈希。此后导航统计全部重新采集，不能混入修正前成绩。
+
+分辨率0.05m使0.45m车长约9格、地图窄门约19格，兼顾厘米级激光噪声、通道几何和虚拟机开销。自定难点为1m物理窄门：预期定位和栅格误差会压缩通行余量，实测地图剩0.95m，按0.26m车/轮包络加两侧0.08m余量后仍有约0.53m横向总余量；这只是宽度核算，实际转向可达性仍由轨迹实测。未把仿真器没有模拟的玻璃反射等现象写成已验证。
+
+SLAM仍运行时调用真实序列化服务，得到268节点、284边的图，其中17条连接历史时段的非邻接约束。原`.posegraph`/`.data`、分析JSON、实际路线CSV和地图质量图同目录保留。图中校正节点间距离不是回环误差。旧265节点/281边的历史图仍保留在原results目录。
 
 ```bash
 source scripts/env.sh
+# 单命令巡场、录bag、序列化图、保存地图、质量检查
 .venv-ros/bin/python scripts/verify_mapping.py
-.venv-ros/bin/python M3/M3-2/scripts/eval_map.py --map M3/M3-2/maps/map.yaml --out M3/M3-2/results/quality
+# 只验证新地图，不替换正在使用的导航图
+.venv-ros/bin/python scripts/verify_mapping.py --no-promote
 ```
 
-使用 `slam_toolbox`，配置参数和理由在config/slam_params.yaml；0.05m栅格将1m门表示为约20格，车速直线0.25m/s、弯道0.13m/s，每次10Hz扫描约移动2.5cm。巡场使用SLAM的map→base TF跟随预定测绘路线，从未把Gazebo真值输入SLAM；真值只在M3-1做对照。路线绕岛一周后返回已扫描区域，`slam_route.csv`保留实际轨迹。
+只有巡场完整、墙体/窄门检查通过且存在历史图约束才晋级到`maps/`，失败图和日志保留。导航正式对照全部使用同一个固定地图哈希，不能在对照中间换图。原始bag体积较大，不放Git；在Ubuntu原实验目录和本地完整交付包保留，可用上述命令重新采集。
 
-真实结果位于 `results/20261116_212209/`，ROS bag仍保留在Ubuntu相同目录的bag/。`maps/map.pgm`和map.yaml已由ROS标准map_saver保存，M3-3直接使用此图。
-
-质量数据：北墙190个占据像素，拟合残差在浮点舍入范围内为0；这表示在0.05m栅格上共线，**不能宣称皮米级实际精度**。被重复观测的墙没有出现间隔超过2格的分离占据簇，墙厚最大1格；小于0.1m的鬼影不能由该判据排除。窄门实测19个自由格，宽0.95m。灰色岛体内部是雷达不可达的未知区域，不把它当成可导航空间。
-
-图和数据见 results/quality/。回环是否建立额外图约束不能仅靠“地图墙直”推断；补充回放脚本 `scripts/verify_slam_replay.py` 保存实际序列化图和调试日志，回放输入仍是本次实测scan/odom/TF。
-
-## AI参与与本人研究状态
-
-本题由Codex协助代码/配置、实验验证及文档整理；已有实测证据见本页。本人逐行研究和独立复现程度尚未确认，待本人学习后更新。详细范围见[AI使用说明](../../AI_USAGE.md)，现场要求见[验收清单](../../docs/M1_M3_验收清单.md)。自动验证不替代本人理解或考官验收。
-
-## 回环图约束与复现
-
-实际保存的图位于 `results/replay_20261116_225310/`：265个节点、281条边，其中17条边连接ID相隔超过20的历史节点，时间间隔约131～141秒；原图、分析JSON和文本同时保留。校正后节点距离不是回环误差。
-
-Git不含原始bag。可先运行 `scripts/verify_mapping.py` 重新采集，再运行 `scripts/verify_slam_replay.py --bag <新采集的bag目录>`；不传--bag时选择本机最新建图bag。需要检查图时：
+独立检查实际图：
 
 ```bash
 cmake -S M3/M3-2/scripts -B tmp/posegraph_tool
 cmake --build tmp/posegraph_tool
-tmp/posegraph_tool/inspect_posegraph M3/M3-2/results/replay_20261116_225310/serialized_map.posegraph
+# 传完整.posegraph文件名，不能只传服务使用的前缀
+tmp/posegraph_tool/inspect_posegraph <path/to/serialized_map.posegraph>
 ```
 
-构建依赖 `libboost-serialization-dev`、`libeigen3-dev`、`libtbb-dev`、`nlohmann-json3-dev` 和ROS slam_toolbox/karto SDK。读取工具需要完整的 `.posegraph` 文件名，不能只传给SLAM服务使用的文件名前缀。
+## 来源、AI参与与现场边界
+
+使用题面车辆与历史文件，物理尺寸未缩小。Codex参与实现、调参、真实进程验证和文档整理；本人独立复现与逐行理解程度需本人确认。见[AI使用说明](../../AI_USAGE.md)和[验收清单](../../docs/M1_M3_验收清单.md)。全部M3结果为Gazebo仿真，不宣称实车道路性能；旧结果和失败样本保留，不代表任意目标都能成功。

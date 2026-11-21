@@ -2,6 +2,7 @@
 import argparse
 from collections import Counter
 import csv
+import colorsys
 import json
 import math
 from pathlib import Path
@@ -13,6 +14,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
+from matplotlib.colors import ListedColormap,BoundaryNorm
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'M3/common'))
 from evaluation import scene_obstacles,rectangle
@@ -138,10 +140,16 @@ def main():
     if successful:
         directory=ROOT/successful['result_dir']; maps=json.loads((directory/'costmaps.json').read_text())
         fig,axes=plt.subplots(1,2,figsize=(11,5))
+        palette=['#959da3','#ffffff']+[colorsys.hsv_to_rgb((60-value*.6)/360,.75,.98) for value in range(1,100)]+['#000000']
+        cmap=ListedColormap(palette); norm=BoundaryNorm(np.arange(-1.5,101.5,1),len(palette))
         for ax,label in zip(axes,['global','local']):
             m=maps[label]; array=np.array(m['data']).reshape(m['height'],m['width']); x,y=m['origin']; res=m['resolution']
-            ax.imshow(array,origin='lower',extent=[x,x+res*m['width'],y,y+res*m['height']],vmin=-1,vmax=100,cmap='magma')
+            raster=ax.imshow(array,origin='lower',extent=[x,x+res*m['width'],y,y+res*m['height']],norm=norm,cmap=cmap,interpolation='nearest')
+            bar=fig.colorbar(raster,ax=ax,shrink=.72,ticks=[0,25,50,75,100]); bar.ax.tick_params(labelsize=8)
+            bar.ax.set_yticklabels(['0 free','25','50','75','100 lethal'])
+            ax.set_xlabel(m['frame']+' x (m)'); ax.set_ylabel(m['frame']+' y (m)')
             ax.set_title(label+' costmap: actual ROS message'); ax.set_aspect('equal')
+        fig.suptitle('Gray: unknown | white: free | warm: inflated cost | black: lethal',fontsize=10)
         fig.tight_layout(); fig.savefig(out/'costmaps.png',dpi=170); plt.close(fig)
         commands=list(csv.DictReader((directory/'commands.csv').open())); t=np.array([float(r['t']) for r in commands]); t-=t[0]
         fig,axes=plt.subplots(2,1,figsize=(10,5),sharex=True)

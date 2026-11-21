@@ -1,0 +1,100 @@
+{
+  "success": false,
+  "action_success": false,
+  "status": null,
+  "goal_accepted": true,
+  "failure_reason": "simulation_timeout",
+  "qualification_failures": [
+    "simulation_timeout",
+    "world_position_error_exceeds_limit",
+    "world_heading_error_exceeds_limit"
+  ],
+  "goal_map": [
+    10.0,
+    4.0,
+    1.5707963267948966
+  ],
+  "world_goal_for_evaluation": [
+    11.0,
+    5.0,
+    1.5707963267948966
+  ],
+  "map_world_origin": [
+    1.0,
+    1.0,
+    0.0
+  ],
+  "endpoint_error_world_truth": {
+    "position_m": 1.0826172844307647,
+    "yaw_rad": 1.009163225063849
+  },
+  "endpoint_error_map_estimate": {
+    "position_m": 1.0461251806465617,
+    "yaw_rad": 1.012036358941468
+  },
+  "truth_pose_final": [
+    11.300324008900745,
+    3.9598722798492347,
+    0.5616331017310477
+  ],
+  "estimated_pose_final": [
+    10.289539149179708,
+    2.9947413394180122,
+    0.5587599678534285
+  ],
+  "qualification_thresholds": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0
+  },
+  "minimum_geometric_clearance_m": 0.11431893715774244,
+  "geometric_overlap_samples": 0,
+  "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+  "truth_is_evaluation_only": true,
+  "sim_seconds": 90.0,
+  "post_action_settle_seconds": 0.7999999999999972,
+  "wall_seconds": 91.72672613800023,
+  "maximum_truth_sample_gap_s": 0.10000000000000853,
+  "path_length_m": 19.03727779289681,
+  "path_length_source": "world truth integral, evaluation only",
+  "odom_path_length_m": 19.024610616579498,
+  "steering_variation_rad_per_m": 2.5543955823786764,
+  "steering_source": "Ackermann bridge reference command",
+  "plans": 80,
+  "obstacle": {
+    "success": true,
+    "status": "SpawnEntity: Successfully spawned entity [temporary_obstacle]",
+    "sim_t": 9.8,
+    "confirmed_sim_t": 9.9,
+    "world_xy": "11,5",
+    "size": 0.8
+  },
+  "final_measured_speed": [
+    -6.220774604288851e-06,
+    7.196934296014937e-10
+  ],
+  "controller_command_samples": 1773,
+  "controller_curvature_violation_samples": 0,
+  "maximum_requested_curvature_1_per_m": 1.6666666666666667,
+  "obstacle_distance_to_initial_path_m": 0.029154519561254595,
+  "controller_failure_replans": [
+    {
+      "failure_received_sim_t": 68.4,
+      "next_plan_delay_s": 1.0
+    },
+    {
+      "failure_received_sim_t": 70.5,
+      "next_plan_delay_s": 0.0
+    },
+    {
+      "failure_received_sim_t": 70.5,
+      "next_plan_delay_s": 0.0
+    },
+    {
+      "failure_received_sim_t": 74.4,
+      "next_plan_delay_s": 0.6999999999999886
+    }
+  ],
+  "laser_samples": 908,
+  "first_plan_after_injection_delay_s": 0.29999999999999893
+}

@@ -1,0 +1,135 @@
+{
+  "success": false,
+  "action_success": false,
+  "status": 6,
+  "goal_accepted": true,
+  "failure_reason": null,
+  "qualification_failures": [
+    "navigation_action_status_6"
+  ],
+  "goal_map": [
+    10.0,
+    4.0,
+    1.5707963267948966
+  ],
+  "world_goal_for_evaluation": [
+    11.0,
+    5.0,
+    1.5707963267948966
+  ],
+  "map_world_origin": [
+    1.0,
+    1.0,
+    0.0
+  ],
+  "endpoint_error_world_truth": {
+    "position_m": 0.057602016027910465,
+    "yaw_rad": 0.03322368631769934
+  },
+  "endpoint_error_map_estimate": {
+    "position_m": 0.05217363237124393,
+    "yaw_rad": 0.03955287298037335
+  },
+  "truth_pose_final": [
+    10.979364954631436,
+    5.053779058685672,
+    1.5375726404771972
+  ],
+  "estimated_pose_final": [
+    9.978732601602225,
+    4.047642267790272,
+    1.5312434538145232
+  ],
+  "qualification_thresholds": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0
+  },
+  "minimum_geometric_clearance_m": 0.27635089288813997,
+  "geometric_overlap_samples": 0,
+  "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+  "truth_is_evaluation_only": true,
+  "sim_seconds": 84.9,
+  "post_action_settle_seconds": 0.7999999999999972,
+  "wall_seconds": 86.52243946999988,
+  "maximum_truth_sample_gap_s": 0.10000000000000853,
+  "path_length_m": 12.950088101642754,
+  "path_length_source": "world truth integral, evaluation only",
+  "odom_path_length_m": 12.95664628199365,
+  "steering_variation_rad_per_m": 0.7923247055412767,
+  "steering_source": "Ackermann bridge reference command",
+  "plans": 80,
+  "obstacle": null,
+  "final_measured_speed": [
+    -1.8900010046865007e-07,
+    3.3508231894798584e-10
+  ],
+  "controller_command_samples": 973,
+  "controller_curvature_violation_samples": 0,
+  "maximum_requested_curvature_1_per_m": 1.6666666666666667,
+  "obstacle_distance_to_initial_path_m": null,
+  "controller_failure_replans": [
+    {
+      "failure_received_sim_t": 58.1,
+      "next_plan_delay_s": 0.10000000000000142
+    },
+    {
+      "failure_received_sim_t": 60.3,
+      "next_plan_delay_s": 0.0
+    },
+    {
+      "failure_received_sim_t": 60.3,
+      "next_plan_delay_s": 0.0
+    },
+    {
+      "failure_received_sim_t": 66.3,
+      "next_plan_delay_s": 0.10000000000000853
+    },
+    {
+      "failure_received_sim_t": 68.5,
+      "next_plan_delay_s": 1.0
+    },
+    {
+      "failure_received_sim_t": 68.5,
+      "next_plan_delay_s": 1.0
+    },
+    {
+      "failure_received_sim_t": 74.5,
+      "next_plan_delay_s": 0.09999999999999432
+    },
+    {
+      "failure_received_sim_t": 76.6,
+      "next_plan_delay_s": 1.0
+    },
+    {
+      "failure_received_sim_t": 76.6,
+      "next_plan_delay_s": 1.0
+    },
+    {
+      "failure_received_sim_t": 82.6,
+      "next_plan_delay_s": 0.10000000000000853
+    },
+    {
+      "failure_received_sim_t": 84.8,
+      "next_plan_delay_s": 1.0
+    },
+    {
+      "failure_received_sim_t": 84.8,
+      "next_plan_delay_s": 1.0
+    },
+    {
+      "failure_received_sim_t": 90.8,
+      "next_plan_delay_s": 0.10000000000000853
+    },
+    {
+      "failure_received_sim_t": 92.9,
+      "next_plan_delay_s": null
+    },
+    {
+      "failure_received_sim_t": 92.9,
+      "next_plan_delay_s": null
+    }
+  ],
+  "laser_samples": 856,
+  "first_plan_after_injection_delay_s": null
+}

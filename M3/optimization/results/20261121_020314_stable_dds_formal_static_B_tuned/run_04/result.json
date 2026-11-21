@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "action_success": true,
+  "status": 4,
+  "goal_accepted": true,
+  "failure_reason": null,
+  "qualification_failures": [],
+  "goal_map": [
+    10.0,
+    4.0,
+    1.5707963267948966
+  ],
+  "world_goal_for_evaluation": [
+    11.0,
+    5.0,
+    1.5707963267948966
+  ],
+  "map_world_origin": [
+    1.0,
+    1.0,
+    0.0
+  ],
+  "endpoint_error_world_truth": {
+    "position_m": 0.0348540706149923,
+    "yaw_rad": 0.02427766093442596
+  },
+  "endpoint_error_map_estimate": {
+    "position_m": 0.06694566701740799,
+    "yaw_rad": 0.04302557473257695
+  },
+  "truth_pose_final": [
+    10.965236902180422,
+    5.00251659858168,
+    1.5950739877293225
+  ],
+  "estimated_pose_final": [
+    9.967159000140892,
+    3.9416631243495184,
+    1.6138219015274735
+  ],
+  "qualification_thresholds": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0
+  },
+  "minimum_geometric_clearance_m": 0.30291812325757594,
+  "geometric_overlap_samples": 0,
+  "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+  "truth_is_evaluation_only": true,
+  "sim_seconds": 45.599999999999994,
+  "post_action_settle_seconds": 0.8000000000000043,
+  "wall_seconds": 46.800833437999245,
+  "maximum_truth_sample_gap_s": 0.10000000000000142,
+  "path_length_m": 13.036532580705837,
+  "path_length_source": "world truth integral, evaluation only",
+  "odom_path_length_m": 13.034278923754597,
+  "steering_variation_rad_per_m": 1.152201495627351,
+  "steering_source": "Ackermann bridge reference command",
+  "plans": 45,
+  "obstacle": null,
+  "final_measured_speed": [
+    1.3284932732477255e-05,
+    1.9408302302298576e-10
+  ],
+  "controller_command_samples": 914,
+  "controller_curvature_violation_samples": 0,
+  "maximum_requested_curvature_1_per_m": 1.666666666666667,
+  "obstacle_distance_to_initial_path_m": null,
+  "controller_failure_replans": [],
+  "laser_samples": 463,
+  "first_plan_after_injection_delay_s": null
+}

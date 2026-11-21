@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "system_baseline",
+      "result": "DEADLOCK_TIMEOUT",
+      "timeout_s": 3,
+      "library": "/opt/ros/humble/lib/libtf2.so",
+      "sha256": "49348b6b14ff7b938d6a386b0d969a8ed2d218c997c0b3c95718ea359641fb18"
+    },
+    {
+      "name": "project_fixed",
+      "result": "PASS",
+      "returncode": 0,
+      "stdout": "TF2 callback lock-order regression PASS\n",
+      "stderr": "",
+      "library": "/home/ubuntu2204/smartcar-m3-opt/vendor/m3-dds/opt/ros/humble/lib/libtf2.so",
+      "sha256": "bf1196057a188f43647e167f2626a4af2d07feae376adadc8ab780d47ad21a80"
+    }
+  ],
+  "system_package": "ros-humble-tf2\t0.25.23-1jammy.20260907.213559",
+  "official_fix": "https://github.com/ros2/geometry2/pull/990",
+  "method": "Two-thread lock-order regression: caller holds its own lock then registers a TF request while the ready callback takes that lock. Old BufferCore invokes callbacks holding the request lock; fixed core invokes them after unlocking. Process timeout bounds the old deadlock.",
+  "inference": "The observed stale Nav2 TF/forced cleanup is consistent with the upstream issue and this vulnerable installed core. This test does not claim a GDB backtrace was captured from the original failed Nav2 process."
+}
