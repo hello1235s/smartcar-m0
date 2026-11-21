@@ -1,0 +1,56 @@
+[INFO] [launch]: All log files can be found below /home/ubuntu2204/.ros/log/2026-11-21-15-52-44-823234-ros2humble-127617
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [node_a_sensor-1]: process started with pid [127619]
+[INFO] [node_b_filter-2]: process started with pid [127623]
+[INFO] [filter_ready-3]: process started with pid [127626]
+[node_b_filter-2] [INFO] [1795247565.277333701] [robot2.node_b_filter]: raw=0.5951 filtered=0.5951 alpha=0.70
+[filter_ready-3] FILTER_READY
+[INFO] [filter_ready-3]: process has finished cleanly [pid 127626]
+[INFO] [node_c_alarm-4]: process started with pid [127690]
+[node_b_filter-2] [INFO] [1795247566.366453132] [robot2.node_b_filter]: raw=0.9000 filtered=0.8975 alpha=0.70
+[node_b_filter-2] [INFO] [1795247567.366545489] [robot2.node_b_filter]: raw=0.6490 filtered=0.6670 alpha=0.70
+[node_b_filter-2] [WARN] [1795247567.770287165] [robot2.node_b_filter]: [ALARM] 距离过近！ distance=0.4812
+[node_c_alarm-4] [INFO] [1795247567.798838265] [robot2.node_c_alarm]: alarm result: alarm acknowledged
+[node_b_filter-2] [INFO] [1795247568.366815480] [robot2.node_b_filter]: raw=0.2080 filtered=0.2235 alpha=0.70
+[node_b_filter-2] [WARN] [1795247569.030840420] [robot2.node_b_filter]: [ALARM] 距离过近！ distance=0.1031
+[node_c_alarm-4] [INFO] [1795247569.050233031] [robot2.node_c_alarm]: alarm result: alarm acknowledged
+[node_b_filter-2] [WARN] [1795247569.066270680] [robot2.node_b_filter]: invalid sensor sample ignored: status=1
+[node_b_filter-2] [INFO] [1795247569.466230740] [robot2.node_b_filter]: raw=0.1627 filtered=0.1537 alpha=0.70
+[node_b_filter-2] [WARN] [1795247570.290855681] [robot2.node_b_filter]: [ALARM] 距离过近！ distance=0.4625
+[node_c_alarm-4] [INFO] [1795247570.310074563] [robot2.node_c_alarm]: alarm result: alarm acknowledged
+[node_b_filter-2] [INFO] [1795247570.466779379] [robot2.node_b_filter]: raw=0.5782 filtered=0.5578 alpha=0.70
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [node_c_alarm-4]: sending signal 'SIGINT' to process[node_c_alarm-4]
+[INFO] [node_b_filter-2]: sending signal 'SIGINT' to process[node_b_filter-2]
+[INFO] [node_a_sensor-1]: sending signal 'SIGINT' to process[node_a_sensor-1]
+[node_c_alarm-4] Traceback (most recent call last):
+[node_c_alarm-4]   File "/home/ubuntu2204/smartcar-m1-m3/install_ros/smartcar_training/lib/smartcar_training/node_c_alarm", line 33, in <module>
+[node_c_alarm-4]     sys.exit(load_entry_point('smartcar-training', 'console_scripts', 'node_c_alarm')())
+[node_c_alarm-4]   File "/home/ubuntu2204/smartcar-m1-m3/build_ros/smartcar_training/smartcar_training/sensor_chain.py", line 133, in alarm_main
+[node_c_alarm-4]     run(Alarm)
+[node_c_alarm-4]   File "/home/ubuntu2204/smartcar-m1-m3/build_ros/smartcar_training/smartcar_training/sensor_chain.py", line 119, in run
+[node_c_alarm-4]     node.destroy_node()
+[node_c_alarm-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[node_c_alarm-4]     self.destroy_service(self._services[0])
+[node_c_alarm-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[node_c_alarm-4]     service.destroy()
+[node_c_alarm-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[node_c_alarm-4]     self.__service.destroy_when_not_in_use()
+[node_c_alarm-4] KeyboardInterrupt
+[node_a_sensor-1] Traceback (most recent call last):
+[node_a_sensor-1]   File "/home/ubuntu2204/smartcar-m1-m3/install_ros/smartcar_training/lib/smartcar_training/node_a_sensor", line 33, in <module>
+[node_a_sensor-1]     sys.exit(load_entry_point('smartcar-training', 'console_scripts', 'node_a_sensor')())
+[node_a_sensor-1]   File "/home/ubuntu2204/smartcar-m1-m3/build_ros/smartcar_training/smartcar_training/sensor_chain.py", line 125, in sensor_main
+[node_a_sensor-1]     run(Sensor)
+[node_a_sensor-1]   File "/home/ubuntu2204/smartcar-m1-m3/build_ros/smartcar_training/smartcar_training/sensor_chain.py", line 119, in run
+[node_a_sensor-1]     node.destroy_node()
+[node_a_sensor-1]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[node_a_sensor-1]     self.destroy_service(self._services[0])
+[node_a_sensor-1]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[node_a_sensor-1]     service.destroy()
+[node_a_sensor-1]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[node_a_sensor-1]     self.__service.destroy_when_not_in_use()
+[node_a_sensor-1] KeyboardInterrupt
+[ERROR] [node_c_alarm-4]: process has died [pid 127690, exit code -2, cmd '/home/ubuntu2204/smartcar-m1-m3/install_ros/smartcar_training/lib/smartcar_training/node_c_alarm --ros-args -r __node:=node_c_alarm -r __ns:=/robot2 --params-file /home/ubuntu2204/smartcar-m1-m3/M1/M1-2/params_robot2.yaml --params-file /tmp/launch_params_8swdme0d'].
+[ERROR] [node_a_sensor-1]: process has died [pid 127619, exit code -2, cmd '/home/ubuntu2204/smartcar-m1-m3/install_ros/smartcar_training/lib/smartcar_training/node_a_sensor --ros-args -r __node:=node_a_sensor -r __ns:=/robot2 --params-file /home/ubuntu2204/smartcar-m1-m3/M1/M1-2/params_robot2.yaml --params-file /tmp/launch_params_08ykx0c4'].
+[INFO] [node_b_filter-2]: process has finished cleanly [pid 127623]

@@ -15,7 +15,7 @@
 |M3-3|每个非默认参数注释、调参前后数据|101项叶参数[旧值/新值/理由](../M3-3/config/changes.yaml)，[带注释YAML](../M3-3/config/nav2_params.yaml)、[分步实测](../M3-3/results/tuning_log.md)|
 |M3-3|全局/局部代价地图、路径、速度与原话题|[实际图](report/costmaps.png)、[控制曲线](report/commands.png)、每次costmaps.json/plans.json/commands.csv/controller_commands.csv|
 |M3-4|出发后2～4s实体注入、雷达可见、位置可改|默认--delay3，spawn实际时刻、激光与路径距离逐次保存；[演示入口](../../scripts/run_m3_demo.sh)|
-|M3-4|两套极端参数各10次、差方案调优后10次|A/B/B_tuned各10次，[30行正式动态CSV](../M3-4/results/benchmark.csv)；两组中间诊断各3次，分别改变速度/前视策略/预测时间|
+|M3-4|两套极端参数各10次、差方案调优后10次|A/B/B_tuned各10次，[30行正式动态CSV](../M3-4/results/benchmark.csv)；早期速度/前视诊断各3次；上一版2秒预测十次另存，最后只收紧内部停车余量|
 |M3-4|四指标、轨迹叠加、至少4帧过程|[四指标](report/metrics.png)、[全轨迹](report/trajectories.png)、[实际四帧与代价地图](../M3-4/results/process_sequence/)；主绕行为真值积分|
 |M3-4|四问引用实测、重规划延迟、失效触发|[四问](../M3-4/report.md)、[逐步调参](../M3-4/results/tuning_log.md)、[边界](../M3-4/results/failure_boundary.md)、[延迟配对](report/replanning_detail.json)|
 |M3-4|额外位置、不同目标、不可达边界|10次额外场景，[完整统计](extended_report/summary.json)；目标被箱体占据时检查失败退出与停车，不能计作到达成功|
@@ -26,12 +26,16 @@ TF2锁顺序回归与原生加载路径：[本机旧/新库回归](report/tf2_lo
 
 独立成功门槛：Action成功且世界真值终点≤0.15m/0.20rad、路径>5m、数据充分、保守包络无重叠，动态场景要求实体注入成功。52次正式/诊断记录中控制器原始请求曲率越界为0；几何采样不等于接触传感器认证。
 
-10项Python与4项原生C++检查、M1处理语义与通信链路回归、实际桌面演示的退出码见[最终验证目录](../../evidence/M3-final-validation/20261121_030304/)。不同ROS通信实现、阈值和中途停止的候选在[完整审计](report/experiment_audit.json)单列保留，不混入最终成功率。10次全成功也不能证明所有目标成功。
+10项Python与4项原生C++检查、M1处理语义与通信链路回归、实际桌面演示的退出码见[最终验证目录](../../M3/optimization/results/20261121_152430_terminal_refinement/)。不同ROS通信实现、阈值和中途停止的候选在[完整审计](report/experiment_audit.json)单列保留，不混入最终成功率。10次全成功也不能证明所有目标成功。
 
 当前M3导航只在本机使用CycloneDDS单播；M1保留原环境；M3方形、建图保留原DDS并加载TF2修复。依赖版本锁见[navigation-packages.lock](../runtime/navigation-packages.lock)。全新环境按根README安装；完整离线包提供DDS缓存与原始bag。答辩准备/PDF只在本地，M5/M6未继续验收。
 
-## 最终作业目录的真实演示
+## 终点修正版与M1完整验收
 
-[一键演示与源码对应证明](../../evidence/M3-deployment/20261121_134148/verification.json)；[该次实际TF树](../../evidence/M3-deployment/20261121_134148/actual_nav_tf.pdf)；[向北路段四阶段回归](../../evidence/M3-deployment/north_20261121_133917/verification.json)。两次额外展示不计入主统计分母。
+本次最终B_tuned内部XY停车从0.05收紧至0.02m，外部0.15m/0.20rad不变。新动态10/10和新静态10/10来自固定种子200～209的完整批次。A/B和原中间组保留历史实测，没有冒称全部重跑。
 
-相机前端额外0.01m余量的62次独立复算见[额外几何审计](report/camera_margin_audit.json)，未改写原始体轮包络成绩。
+[误差预算与旧失败](../../evidence/M3-terminal-refinement/20261121_152129/setup_and_error_budget.json)；[新固定批次](../../M3/optimization/results/20261121_152430_terminal_refinement/validation.json)；[实际用户一键演示](../../evidence/M3-deployment/20261121_155402/verification.json)；[该次实际TF树](../../evidence/M3-deployment/20261121_155402/actual_nav_tf.pdf)。展示不计入正式十次分母，控制配置和核心源码已与冻结版本逐项比对。
+
+[M1四题完整复测](../../M1/ACCEPTANCE.md)及[原始报告](../../evidence/M1-acceptance-v2/20261121_154558/results.json)覆盖实际滤波、隔离/就绪、六图像素及TF/时钟、五组图像语义、四组性能和60秒持续达标。
+
+M3的10项Python与4项原生C++回归日志在[本轮整理证据](../../evidence/M1-M3-terminal-release/20261121_155100/)中；相机前端0.01m余量按当前62条记录重新复核。不能把十次通过解读为任意现场零风险。
