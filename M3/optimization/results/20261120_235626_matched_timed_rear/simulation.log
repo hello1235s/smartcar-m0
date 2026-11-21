@@ -1,0 +1,136 @@
+[INFO] [launch]: All log files can be found below /home/ubuntu2204/.ros/log/2026-11-20-23-56-26-534388-ros2humble-7066
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [robot_state_publisher-1]: process started with pid [7083]
+[INFO] [gzserver-2]: process started with pid [7085]
+[INFO] [control_bridge-3]: process started with pid [7087]
+[INFO] [spawn_entity.py-4]: process started with pid [7089]
+[robot_state_publisher-1] [INFO] [1795190186.623659308] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-1] [INFO] [1795190186.623807758] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1795190186.623813537] [robot_state_publisher]: got segment camera_link
+[robot_state_publisher-1] [INFO] [1795190186.623816700] [robot_state_publisher]: got segment camera_optical_link
+[robot_state_publisher-1] [INFO] [1795190186.623819677] [robot_state_publisher]: got segment front_left_steering_link
+[robot_state_publisher-1] [INFO] [1795190186.623822547] [robot_state_publisher]: got segment front_left_wheel
+[robot_state_publisher-1] [INFO] [1795190186.623825172] [robot_state_publisher]: got segment front_right_steering_link
+[robot_state_publisher-1] [INFO] [1795190186.623827764] [robot_state_publisher]: got segment front_right_wheel
+[robot_state_publisher-1] [INFO] [1795190186.623830210] [robot_state_publisher]: got segment lidar_link
+[robot_state_publisher-1] [INFO] [1795190186.623832770] [robot_state_publisher]: got segment rear_left_wheel
+[robot_state_publisher-1] [INFO] [1795190186.623835308] [robot_state_publisher]: got segment rear_right_wheel
+[gzserver-2] Gazebo multi-robot simulator, version 11.10.2
+[gzserver-2] Copyright (C) 2012 Open Source Robotics Foundation.
+[gzserver-2] Released under the Apache 2 License.
+[gzserver-2] http://gazebosim.org
+[gzserver-2] 
+[spawn_entity.py-4] [INFO] [1795190186.819048086] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-4] [INFO] [1795190186.819294964] [spawn_entity]: Loading entity published on topic robot_description
+[spawn_entity.py-4] [INFO] [1795190186.820840003] [spawn_entity]: Waiting for entity xml on robot_description
+[spawn_entity.py-4] [INFO] [1795190186.832590598] [spawn_entity]: Waiting for service /spawn_entity, timeout = 60
+[spawn_entity.py-4] [INFO] [1795190186.832799029] [spawn_entity]: Waiting for service /spawn_entity
+[gzserver-2] [1;33m[Wrn] [gazebo_ros_init.cpp:178] [0m[1;33m
+[gzserver-2] #     # ####### ####### ###  #####  #######
+[gzserver-2] ##    # #     #    #     #  #     # #
+[gzserver-2] # #   # #     #    #     #  #       #
+[gzserver-2] #  #  # #     #    #     #  #       #####
+[gzserver-2] #   # # #     #    #     #  #       #
+[gzserver-2] #    ## #     #    #     #  #     # #
+[gzserver-2] #     # #######    #    ###  #####  #######
+[gzserver-2] 
+[gzserver-2] This version of Gazebo, now called Gazebo classic, reaches end-of-life
+[gzserver-2] in January 2025. Users are highly encouraged to migrate to the new Gazebo
+[gzserver-2] using our migration guides (https://gazebosim.org/docs/latest/gazebo_classic_migration?utm_source=gazebo_ros_pkgs&utm_medium=cli)
+[gzserver-2] 
+[gzserver-2] [0m[1;33m
+[gzserver-2] [1;32m[Msg] [0m[1;32mWaiting for master.[0m[1;32m
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mConnected to gazebo master @ [0m[1;32mhttp://127.0.0.1:11381[0m[1;32m
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mPublicized address: [0m[1;32m192.168.19.131[0m[1;32m
+[gzserver-2] [0m[1;33m[0m[1;33m[0m[1;31m[Err] [RenderEngine.cc:749] [0m[1;31mCan't open display: [0m[1;31m[0m[1;31m
+[gzserver-2] [0m[1;33m[Wrn] [RenderEngine.cc:89] [0m[1;33mUnable to create X window. Rendering will be disabled
+[gzserver-2] [0m[1;33m[Wrn] [RenderEngine.cc:292] [0m[1;33mCannot initialize render engine since [0m[1;33mrender path type is NONE. Ignore this warning if[0m[1;33mrendering has been turned off on purpose.
+[spawn_entity.py-4] [INFO] [1795190187.086039480] [spawn_entity]: Calling service /spawn_entity
+[gzserver-2] [0m[INFO] [1795190187.231443397] [gazebo.gazebo_ros_state]: Publishing states of gazebo models at [/gazebo/model_states]
+[gzserver-2] [INFO] [1795190187.232156734] [gazebo.gazebo_ros_state]: Publishing states of gazebo links at [/gazebo/link_states]
+[spawn_entity.py-4] [INFO] [1795190187.337958499] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [smart_car]
+[gzserver-2] [INFO] [1795190187.452312009] [gazebo_ros2_control]: Loading gazebo_ros2_control plugin
+[gzserver-2] [INFO] [1795190187.456175775] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in namespace: /
+[gzserver-2] [INFO] [1795190187.456225499] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in ros 2 node: gazebo_ros2_control
+[gzserver-2] [INFO] [1795190187.459513641] [gazebo_ros2_control]: connected to service!! robot_state_publisher
+[gzserver-2] [INFO] [1795190187.459960468] [gazebo_ros2_control]: Received urdf from param server, parsing...
+[gzserver-2] [INFO] [1795190187.460005882] [gazebo_ros2_control]: Loading parameter files /home/ubuntu2204/smartcar-m3-opt/install_ros/smart_car_description/share/smart_car_description/config/ackermann_controllers.yaml
+[gzserver-2] [INFO] [1795190187.465651738] [gazebo_ros2_control]: Loading joint: front_left_steering_joint
+[gzserver-2] [INFO] [1795190187.465697161] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795190187.465705618] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795190187.465710925] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795190187.465714695] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795190187.465718191] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795190187.465803630] [gazebo_ros2_control]: Loading joint: front_right_steering_joint
+[gzserver-2] [INFO] [1795190187.465809419] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795190187.465812843] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795190187.465816181] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795190187.465819184] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795190187.465822274] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795190187.465850842] [gazebo_ros2_control]: Loading joint: front_left_wheel_joint
+[gzserver-2] [INFO] [1795190187.465855368] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795190187.465858694] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795190187.465861912] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795190187.465864941] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795190187.465868447] [gazebo_ros2_control]: Loading joint: front_right_wheel_joint
+[gzserver-2] [INFO] [1795190187.465871668] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795190187.465883234] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795190187.465887884] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795190187.465891155] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795190187.465895066] [gazebo_ros2_control]: Loading joint: rear_left_wheel_joint
+[gzserver-2] [INFO] [1795190187.465898391] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795190187.465901525] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795190187.465905331] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795190187.465908662] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795190187.465914674] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795190187.466055510] [gazebo_ros2_control]: Loading joint: rear_right_wheel_joint
+[gzserver-2] [INFO] [1795190187.466068467] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795190187.466072863] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795190187.466076621] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795190187.466080078] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795190187.466088981] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795190187.466183987] [resource_manager]: Initialize hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795190187.466272468] [resource_manager]: Successful initialization of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795190187.466319817] [resource_manager]: 'configure' hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795190187.466325400] [resource_manager]: Successful 'configure' of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795190187.466329502] [resource_manager]: 'activate' hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795190187.466332436] [resource_manager]: Successful 'activate' of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795190187.466380926] [gazebo_ros2_control]: Loading controller_manager
+[INFO] [spawn_entity.py-4]: process has finished cleanly [pid 7089]
+[INFO] [spawner-5]: process started with pid [7166]
+[gzserver-2] [WARN] [1795190187.477784260] [gazebo_ros2_control]:  Desired controller update period (0.02 s) is slower than the gazebo simulation period (0.002 s).
+[gzserver-2] [INFO] [1795190187.477949454] [gazebo_ros2_control]: Loaded gazebo_ros2_control.
+[gzserver-2] [INFO] [1795190187.747680912] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-5] [INFO] [1795190187.785143115] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[gzserver-2] [INFO] [1795190187.786320937] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[gzserver-2] [INFO] [1795190187.786569087] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-5] [INFO] [1795190187.841561710] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[INFO] [spawner-5]: process has finished cleanly [pid 7166]
+[INFO] [spawner-6]: process started with pid [7183]
+[gzserver-2] [INFO] [1795190188.130689632] [controller_manager]: Loading controller 'ackermann_steering_controller'
+[spawner-6] [INFO] [1795190188.157386882] [spawner_ackermann_steering_controller]: [94mLoaded [1mackermann_steering_controller[0m
+[gzserver-2] [INFO] [1795190188.158212267] [controller_manager]: Configuring controller 'ackermann_steering_controller'
+[gzserver-2] [INFO] [1795190188.158353573] [ackermann_steering_controller]: Ackermann odom configure successful
+[gzserver-2] [INFO] [1795190188.163365047] [ackermann_steering_controller]: configure successful
+[spawner-6] [INFO] [1795190188.214368748] [spawner_ackermann_steering_controller]: [92mConfigured and activated [1mackermann_steering_controller[0m
+[INFO] [spawner-6]: process has finished cleanly [pid 7183]
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mLoading world file [[0m[1;32m/home/ubuntu2204/smartcar-m3-opt/install_ros/smart_car_description/share/smart_car_description/worlds/square.world[0m[1;32m][0m[1;32m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [control_bridge-3]: sending signal 'SIGINT' to process[control_bridge-3]
+[INFO] [gzserver-2]: sending signal 'SIGINT' to process[gzserver-2]
+[INFO] [robot_state_publisher-1]: sending signal 'SIGINT' to process[robot_state_publisher-1]
+[robot_state_publisher-1] [INFO] [1795190223.180952120] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[control_bridge-3] Traceback (most recent call last):
+[control_bridge-3]   File "/home/ubuntu2204/smartcar-m3-opt/install_ros/smartcar_training/lib/smartcar_training/control_bridge", line 33, in <module>
+[control_bridge-3]     sys.exit(load_entry_point('smartcar-training', 'console_scripts', 'control_bridge')())
+[control_bridge-3]   File "/home/ubuntu2204/smartcar-m3-opt/build_ros/smartcar_training/smartcar_training/control_bridge.py", line 70, in main
+[control_bridge-3]     node.destroy_node()
+[control_bridge-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1696, in destroy_node
+[control_bridge-3]     self.__node.destroy_when_not_in_use()
+[control_bridge-3] KeyboardInterrupt
+[robot_state_publisher-1] [INFO] [1795190223.184496670] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [control_bridge-3]: process has died [pid 7087, exit code -2, cmd '/home/ubuntu2204/smartcar-m3-opt/install_ros/smartcar_training/lib/smartcar_training/control_bridge --ros-args --params-file /tmp/launch_params_tsewfoh1'].
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 7083]
+[INFO] [gzserver-2]: process has finished cleanly [pid 7085]
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;36m[0m[1;32m[0m
+[gzserver-2] [1;33m[0m[1;31m[0m

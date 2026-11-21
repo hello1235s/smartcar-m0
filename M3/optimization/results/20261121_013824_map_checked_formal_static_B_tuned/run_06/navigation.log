@@ -1,0 +1,934 @@
+[INFO] [launch]: All log files can be found below /home/ubuntu2204/.ros/log/2026-11-21-01-43-00-713867-ros2humble-42142
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [robot_state_publisher-1]: process started with pid [42157]
+[INFO] [gzserver-2]: process started with pid [42159]
+[INFO] [control_bridge-3]: process started with pid [42161]
+[INFO] [spawn_entity.py-4]: process started with pid [42163]
+[INFO] [map_server-5]: process started with pid [42165]
+[INFO] [amcl-6]: process started with pid [42167]
+[INFO] [lifecycle_manager-7]: process started with pid [42169]
+[INFO] [controller_server-8]: process started with pid [42173]
+[INFO] [smoother_server-9]: process started with pid [42181]
+[INFO] [planner_server-10]: process started with pid [42183]
+[INFO] [behavior_server-11]: process started with pid [42185]
+[INFO] [bt_navigator-12]: process started with pid [42187]
+[INFO] [waypoint_follower-13]: process started with pid [42199]
+[INFO] [velocity_smoother-14]: process started with pid [42233]
+[INFO] [lifecycle_manager-15]: process started with pid [42236]
+[lifecycle_manager-7] [INFO] [1795196580.968734124] [lifecycle_manager_localization]: Creating
+[lifecycle_manager-7] [INFO] [1795196580.969582475] [lifecycle_manager_localization]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[smoother_server-9] [INFO] [1795196581.014022075] [smoother_server]: 
+[smoother_server-9] 	smoother_server lifecycle node launched. 
+[smoother_server-9] 	Waiting on external lifecycle transitions to activate
+[smoother_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[smoother_server-9] [INFO] [1795196581.017923649] [smoother_server]: Creating smoother server
+[robot_state_publisher-1] [INFO] [1795196581.016250142] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-1] [INFO] [1795196581.016343657] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1795196581.016349170] [robot_state_publisher]: got segment camera_link
+[robot_state_publisher-1] [INFO] [1795196581.016352362] [robot_state_publisher]: got segment camera_optical_link
+[robot_state_publisher-1] [INFO] [1795196581.016355103] [robot_state_publisher]: got segment front_left_steering_link
+[robot_state_publisher-1] [INFO] [1795196581.016358013] [robot_state_publisher]: got segment front_left_wheel
+[robot_state_publisher-1] [INFO] [1795196581.016360560] [robot_state_publisher]: got segment front_right_steering_link
+[robot_state_publisher-1] [INFO] [1795196581.016363068] [robot_state_publisher]: got segment front_right_wheel
+[robot_state_publisher-1] [INFO] [1795196581.016365625] [robot_state_publisher]: got segment lidar_link
+[robot_state_publisher-1] [INFO] [1795196581.016368195] [robot_state_publisher]: got segment rear_left_wheel
+[robot_state_publisher-1] [INFO] [1795196581.016370791] [robot_state_publisher]: got segment rear_right_wheel
+[map_server-5] [INFO] [1795196581.016546784] [map_server]: 
+[map_server-5] 	map_server lifecycle node launched. 
+[map_server-5] 	Waiting on external lifecycle transitions to activate
+[map_server-5] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-5] [INFO] [1795196581.018910646] [map_server]: Creating
+[planner_server-10] [INFO] [1795196581.028506026] [planner_server]: 
+[planner_server-10] 	planner_server lifecycle node launched. 
+[planner_server-10] 	Waiting on external lifecycle transitions to activate
+[planner_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-10] [INFO] [1795196581.029413438] [planner_server]: Creating
+[amcl-6] [INFO] [1795196581.037290618] [amcl]: 
+[amcl-6] 	amcl lifecycle node launched. 
+[amcl-6] 	Waiting on external lifecycle transitions to activate
+[amcl-6] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-6] [INFO] [1795196581.037564059] [amcl]: Creating
+[controller_server-8] [INFO] [1795196581.040695196] [controller_server]: 
+[controller_server-8] 	controller_server lifecycle node launched. 
+[controller_server-8] 	Waiting on external lifecycle transitions to activate
+[controller_server-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[controller_server-8] [INFO] [1795196581.048877952] [controller_server]: Creating controller server
+[lifecycle_manager-15] [INFO] [1795196581.061834491] [lifecycle_manager_navigation]: Creating
+[behavior_server-11] [INFO] [1795196581.068743402] [behavior_server]: 
+[behavior_server-11] 	behavior_server lifecycle node launched. 
+[behavior_server-11] 	Waiting on external lifecycle transitions to activate
+[behavior_server-11] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[lifecycle_manager-15] [INFO] [1795196581.069498579] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[controller_server-8] [INFO] [1795196581.072515114] [local_costmap.local_costmap]: 
+[controller_server-8] 	local_costmap lifecycle node launched. 
+[controller_server-8] 	Waiting on external lifecycle transitions to activate
+[controller_server-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[controller_server-8] [INFO] [1795196581.072882306] [local_costmap.local_costmap]: Creating Costmap
+[waypoint_follower-13] [INFO] [1795196581.077241370] [waypoint_follower]: 
+[waypoint_follower-13] 	waypoint_follower lifecycle node launched. 
+[waypoint_follower-13] 	Waiting on external lifecycle transitions to activate
+[waypoint_follower-13] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[waypoint_follower-13] [INFO] [1795196581.077854005] [waypoint_follower]: Creating
+[velocity_smoother-14] [INFO] [1795196581.085766086] [velocity_smoother]: 
+[velocity_smoother-14] 	velocity_smoother lifecycle node launched. 
+[velocity_smoother-14] 	Waiting on external lifecycle transitions to activate
+[velocity_smoother-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-10] [INFO] [1795196581.095434855] [global_costmap.global_costmap]: 
+[planner_server-10] 	global_costmap lifecycle node launched. 
+[planner_server-10] 	Waiting on external lifecycle transitions to activate
+[planner_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-10] [INFO] [1795196581.095762622] [global_costmap.global_costmap]: Creating Costmap
+[bt_navigator-12] [INFO] [1795196581.098636608] [bt_navigator]: 
+[bt_navigator-12] 	bt_navigator lifecycle node launched. 
+[bt_navigator-12] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-12] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-12] [INFO] [1795196581.098755863] [bt_navigator]: Creating
+[lifecycle_manager-7] [INFO] [1795196581.112092771] [lifecycle_manager_localization]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-7] [INFO] [1795196581.112159086] [lifecycle_manager_localization]: [34m[1mConfiguring map_server[0m[0m
+[map_server-5] [INFO] [1795196581.113781247] [map_server]: Configuring
+[map_server-5] [INFO] [1795196581.113844347] [map_io]: Loading yaml file: /home/ubuntu2204/smartcar-m3-opt/M3/M3-2/maps/map.yaml
+[map_server-5] [INFO] [1795196581.114025651] [map_io]: resolution: 0.05
+[map_server-5] [INFO] [1795196581.114031144] [map_io]: origin[0]: -1.05
+[map_server-5] [INFO] [1795196581.114033986] [map_io]: origin[1]: -1.04
+[map_server-5] [INFO] [1795196581.114036527] [map_io]: origin[2]: 0
+[map_server-5] [INFO] [1795196581.114039621] [map_io]: free_thresh: 0.196
+[map_server-5] [INFO] [1795196581.114042348] [map_io]: occupied_thresh: 0.65
+[map_server-5] [INFO] [1795196581.114045363] [map_io]: mode: trinary
+[map_server-5] [INFO] [1795196581.114048914] [map_io]: negate: 0
+[map_server-5] [INFO] [1795196581.114194032] [map_io]: Loading image_file: /home/ubuntu2204/smartcar-m3-opt/M3/M3-2/maps/map.pgm
+[map_server-5] [INFO] [1795196581.117744695] [map_io]: Read map /home/ubuntu2204/smartcar-m3-opt/M3/M3-2/maps/map.pgm: 242 X 162 map @ 0.05 m/cell
+[lifecycle_manager-7] [INFO] [1795196581.124235306] [lifecycle_manager_localization]: [34m[1mConfiguring amcl[0m[0m
+[amcl-6] [INFO] [1795196581.124508407] [amcl]: Configuring
+[amcl-6] [INFO] [1795196581.124586467] [amcl]: initTransforms
+[amcl-6] [INFO] [1795196581.138794929] [amcl]: initPubSub
+[amcl-6] [INFO] [1795196581.142951018] [amcl]: Subscribed to map topic.
+[lifecycle_manager-7] [INFO] [1795196581.146863105] [lifecycle_manager_localization]: [34m[1mActivating map_server[0m[0m
+[map_server-5] [INFO] [1795196581.146943985] [map_server]: Activating
+[amcl-6] [INFO] [1795196581.147681362] [amcl]: Received a 242 X 162 map @ 0.050 m/pix
+[map_server-5] [INFO] [1795196581.148136682] [map_server]: Creating bond (map_server) to lifecycle manager.
+[gzserver-2] Gazebo multi-robot simulator, version 11.10.2
+[gzserver-2] Copyright (C) 2012 Open Source Robotics Foundation.
+[gzserver-2] Released under the Apache 2 License.
+[gzserver-2] http://gazebosim.org
+[gzserver-2] 
+[lifecycle_manager-7] [INFO] [1795196581.259485140] [lifecycle_manager_localization]: Server map_server connected with bond.
+[lifecycle_manager-7] [INFO] [1795196581.259522534] [lifecycle_manager_localization]: [34m[1mActivating amcl[0m[0m
+[amcl-6] [INFO] [1795196581.260584179] [amcl]: Activating
+[amcl-6] [INFO] [1795196581.260648329] [amcl]: initialPoseReceived
+[amcl-6] [INFO] [1795196581.260707400] [amcl]: Setting pose (0.000000): 0.000 0.000 0.000
+[amcl-6] [INFO] [1795196581.261365671] [amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795196581.279750462] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-15] [INFO] [1795196581.279789946] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-8] [INFO] [1795196581.280504689] [controller_server]: Configuring controller interface
+[controller_server-8] [INFO] [1795196581.281666559] [controller_server]: getting goal checker plugins..
+[controller_server-8] [INFO] [1795196581.281843079] [controller_server]: Controller frequency set to 20.0000Hz
+[controller_server-8] [INFO] [1795196581.281865648] [local_costmap.local_costmap]: Configuring
+[spawn_entity.py-4] [INFO] [1795196581.286022787] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-4] [INFO] [1795196581.287940279] [spawn_entity]: Loading entity published on topic robot_description
+[controller_server-8] [INFO] [1795196581.290237912] [local_costmap.local_costmap]: Using plugin "obstacle_layer"
+[spawn_entity.py-4] [INFO] [1795196581.292039429] [spawn_entity]: Waiting for entity xml on robot_description
+[controller_server-8] [INFO] [1795196581.293404197] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[controller_server-8] [INFO] [1795196581.298142407] [local_costmap.local_costmap]: Initialized plugin "obstacle_layer"
+[controller_server-8] [INFO] [1795196581.298245195] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[controller_server-8] [INFO] [1795196581.299491533] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[spawn_entity.py-4] [INFO] [1795196581.303640348] [spawn_entity]: Waiting for service /spawn_entity, timeout = 60
+[spawn_entity.py-4] [INFO] [1795196581.304176592] [spawn_entity]: Waiting for service /spawn_entity
+[controller_server-8] [INFO] [1795196581.312762244] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[controller_server-8] [INFO] [1795196581.314119399] [controller_server]: Created goal checker : general_goal_checker of type smartcar_nav_checks::ValidPoseGoalChecker
+[controller_server-8] [INFO] [1795196581.314707271] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[controller_server-8] [INFO] [1795196581.315243320] [controller_server]: Created controller : FollowPath of type smartcar_nav_checks::AckermannRPP
+[gzserver-2] [1;33m[Wrn] [gazebo_ros_init.cpp:178] [0m[1;33m
+[gzserver-2] #     # ####### ####### ###  #####  #######
+[gzserver-2] ##    # #     #    #     #  #     # #
+[gzserver-2] # #   # #     #    #     #  #       #
+[gzserver-2] #  #  # #     #    #     #  #       #####
+[gzserver-2] #   # # #     #    #     #  #       #
+[gzserver-2] #    ## #     #    #     #  #     # #
+[gzserver-2] #     # #######    #    ###  #####  #######
+[gzserver-2] 
+[gzserver-2] This version of Gazebo, now called Gazebo classic, reaches end-of-life
+[gzserver-2] in January 2025. Users are highly encouraged to migrate to the new Gazebo
+[gzserver-2] using our migration guides (https://gazebosim.org/docs/latest/gazebo_classic_migration?utm_source=gazebo_ros_pkgs&utm_medium=cli)
+[gzserver-2] 
+[gzserver-2] [0m[1;33m
+[controller_server-8] [INFO] [1795196581.324556885] [controller_server]: Controller Server has FollowPath  controllers available.
+[lifecycle_manager-15] [INFO] [1795196581.331413702] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[smoother_server-9] [INFO] [1795196581.331688547] [smoother_server]: Configuring smoother server
+[smoother_server-9] [INFO] [1795196581.341798786] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[smoother_server-9] [INFO] [1795196581.342583499] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[lifecycle_manager-15] [INFO] [1795196581.352633250] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-10] [INFO] [1795196581.352914849] [planner_server]: Configuring
+[planner_server-10] [INFO] [1795196581.352948428] [global_costmap.global_costmap]: Configuring
+[planner_server-10] [INFO] [1795196581.359638443] [global_costmap.global_costmap]: Using plugin "static_layer"
+[planner_server-10] [INFO] [1795196581.361929687] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[planner_server-10] [INFO] [1795196581.363613773] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[planner_server-10] [INFO] [1795196581.363635009] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[planner_server-10] [INFO] [1795196581.364704336] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[planner_server-10] [INFO] [1795196581.368194201] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[planner_server-10] [INFO] [1795196581.368220391] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[planner_server-10] [INFO] [1795196581.368973639] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[gzserver-2] [1;32m[Msg] [0m[1;32mWaiting for master.[0m[1;32m
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mConnected to gazebo master @ [0m[1;32mhttp://127.0.0.1:11382[0m[1;32m
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mPublicized address: [0m[1;32m192.168.19.131[0m[1;32m
+[gzserver-2] [0m[1;33m[0m[1;33m[0m[1;31m[Err] [RenderEngine.cc:749] [0m[1;31mCan't open display: [0m[1;31m[0m[1;31m
+[gzserver-2] [0m[1;33m[Wrn] [RenderEngine.cc:89] [0m[1;33mUnable to create X window. Rendering will be disabled
+[gzserver-2] [0m[1;33m[Wrn] [RenderEngine.cc:292] [0m[1;33mCannot initialize render engine since [0m[1;33mrender path type is NONE. Ignore this warning if[0m[1;33mrendering has been turned off on purpose.
+[planner_server-10] [INFO] [1795196581.378493214] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 242 X 162 at 0.050000 m/pix
+[lifecycle_manager-7] [INFO] [1795196581.380992553] [lifecycle_manager_localization]: Server amcl connected with bond.
+[lifecycle_manager-7] [INFO] [1795196581.381026781] [lifecycle_manager_localization]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-7] [INFO] [1795196581.381035305] [lifecycle_manager_localization]: [34m[1mCreating bond timer...[0m[0m
+[planner_server-10] [INFO] [1795196581.381585682] [planner_server]: Created global planner plugin GridBased of type nav2_smac_planner/SmacPlannerHybrid
+[planner_server-10] [INFO] [1795196581.381642216] [planner_server]: Configuring GridBased of type SmacPlannerHybrid
+[planner_server-10] [INFO] [1795196581.384056948] [planner_server]: Even sized heuristic lookup table size set 400.000000, increasing size by 1 to make odd
+[gzserver-2] [0m[INFO] [1795196581.515865998] [gazebo.gazebo_ros_state]: Publishing states of gazebo models at [/gazebo/model_states]
+[gzserver-2] [INFO] [1795196581.517055939] [gazebo.gazebo_ros_state]: Publishing states of gazebo links at [/gazebo/link_states]
+[spawn_entity.py-4] [INFO] [1795196581.560232618] [spawn_entity]: Calling service /spawn_entity
+[spawn_entity.py-4] [INFO] [1795196582.558451418] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [smart_car]
+[gzserver-2] [INFO] [1795196582.668081524] [gazebo_ros2_control]: Loading gazebo_ros2_control plugin
+[gzserver-2] [INFO] [1795196582.676903550] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in namespace: /
+[gzserver-2] [INFO] [1795196582.676956891] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in ros 2 node: gazebo_ros2_control
+[gzserver-2] [INFO] [1795196582.684058996] [gazebo_ros2_control]: connected to service!! robot_state_publisher
+[gzserver-2] [INFO] [1795196582.684519563] [gazebo_ros2_control]: Received urdf from param server, parsing...
+[gzserver-2] [INFO] [1795196582.684568095] [gazebo_ros2_control]: Loading parameter files /home/ubuntu2204/smartcar-m3-opt/install_ros/smart_car_description/share/smart_car_description/config/ackermann_controllers.yaml
+[gzserver-2] [INFO] [1795196582.690637381] [gazebo_ros2_control]: Loading joint: front_left_steering_joint
+[gzserver-2] [INFO] [1795196582.690677230] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795196582.690683877] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795196582.690689526] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795196582.690693193] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795196582.690696604] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795196582.691604978] [gazebo_ros2_control]: Loading joint: front_right_steering_joint
+[gzserver-2] [INFO] [1795196582.691646723] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795196582.691652183] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795196582.691656668] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795196582.691660060] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795196582.691663928] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795196582.691956913] [gazebo_ros2_control]: Loading joint: front_left_wheel_joint
+[gzserver-2] [INFO] [1795196582.691965573] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795196582.691969202] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795196582.691973092] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795196582.691976396] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795196582.691980000] [gazebo_ros2_control]: Loading joint: front_right_wheel_joint
+[gzserver-2] [INFO] [1795196582.691983481] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795196582.691986467] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795196582.691989523] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795196582.691992446] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795196582.691996166] [gazebo_ros2_control]: Loading joint: rear_left_wheel_joint
+[gzserver-2] [INFO] [1795196582.691999228] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795196582.692002104] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795196582.692007953] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795196582.692011065] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795196582.692017147] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795196582.692479412] [gazebo_ros2_control]: Loading joint: rear_right_wheel_joint
+[gzserver-2] [INFO] [1795196582.692491551] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795196582.692495121] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795196582.692498658] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795196582.692501887] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795196582.692510289] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795196582.692977850] [resource_manager]: Initialize hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795196582.693071670] [resource_manager]: Successful initialization of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795196582.693168854] [resource_manager]: 'configure' hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795196582.693184820] [resource_manager]: Successful 'configure' of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795196582.693189489] [resource_manager]: 'activate' hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795196582.693251878] [resource_manager]: Successful 'activate' of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795196582.693308652] [gazebo_ros2_control]: Loading controller_manager
+[INFO] [spawn_entity.py-4]: process has finished cleanly [pid 42163]
+[INFO] [spawner-16]: process started with pid [42370]
+[gzserver-2] [WARN] [1795196582.711927408] [gazebo_ros2_control]:  Desired controller update period (0.02 s) is slower than the gazebo simulation period (0.002 s).
+[gzserver-2] [INFO] [1795196582.712259769] [gazebo_ros2_control]: Loaded gazebo_ros2_control.
+[spawner-16] [INFO] [1795196582.891150416] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[amcl-6] [INFO] [1795196584.312887401] [amcl]: Message Filter dropping message: frame 'lidar_link' at time 1.500 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[gzserver-2] [INFO] [1795196584.897824924] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-16] [INFO] [1795196584.929278837] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[gzserver-2] [INFO] [1795196584.931859056] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[gzserver-2] [INFO] [1795196584.932085316] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-16] [INFO] [1795196584.989547117] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[INFO] [spawner-16]: process has finished cleanly [pid 42370]
+[INFO] [spawner-17]: process started with pid [42385]
+[spawner-17] [INFO] [1795196585.331049174] [spawner_ackermann_steering_controller]: waiting for service /controller_manager/list_controllers to become available...
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mLoading world file [[0m[1;32m/home/ubuntu2204/smartcar-m3-opt/M3/M3-2/worlds/scene.world[0m[1;32m][0m[1;32m
+[gzserver-2] [INFO] [1795196586.336432590] [controller_manager]: Loading controller 'ackermann_steering_controller'
+[spawner-17] [INFO] [1795196586.374262027] [spawner_ackermann_steering_controller]: [94mLoaded [1mackermann_steering_controller[0m
+[gzserver-2] [INFO] [1795196586.376528194] [controller_manager]: Configuring controller 'ackermann_steering_controller'
+[gzserver-2] [INFO] [1795196586.376685338] [ackermann_steering_controller]: Ackermann odom configure successful
+[gzserver-2] [INFO] [1795196586.385336145] [ackermann_steering_controller]: configure successful
+[spawner-17] [INFO] [1795196586.434153686] [spawner_ackermann_steering_controller]: [92mConfigured and activated [1mackermann_steering_controller[0m
+[amcl-6] [INFO] [1795196586.510552436] [amcl]: createLaserObject
+[INFO] [spawner-17]: process has finished cleanly [pid 42385]
+[amcl-6] [INFO] [1795196586.814684215] [amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.000 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-10] [INFO] [1795196588.057541955] [planner_server]: Configured plugin GridBased of type SmacPlannerHybrid with maximum iterations 1000000, max on approach iterations 1000, and not allowing unknown traversal. Tolerance 0.25.Using motion model: Reeds-Shepp.
+[planner_server-10] [INFO] [1795196588.057601632] [planner_server]: Planner Server has GridBased  planners available.
+[lifecycle_manager-15] [INFO] [1795196588.066851118] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-11] [INFO] [1795196588.067457036] [behavior_server]: Configuring
+[behavior_server-11] [INFO] [1795196588.075542660] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-11] [INFO] [1795196588.076087985] [behavior_server]: Configuring backup
+[behavior_server-11] [INFO] [1795196588.080264057] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-11] [INFO] [1795196588.080605098] [behavior_server]: Configuring drive_on_heading
+[behavior_server-11] [INFO] [1795196588.083998813] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-11] [INFO] [1795196588.084260540] [behavior_server]: Configuring wait
+[lifecycle_manager-15] [INFO] [1795196588.088096930] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-12] [INFO] [1795196588.088333185] [bt_navigator]: Configuring
+[lifecycle_manager-15] [INFO] [1795196588.141626663] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m
+[waypoint_follower-13] [INFO] [1795196588.142260500] [waypoint_follower]: Configuring
+[waypoint_follower-13] [INFO] [1795196588.149561629] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[lifecycle_manager-15] [INFO] [1795196588.150551750] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m
+[velocity_smoother-14] [INFO] [1795196588.150795999] [velocity_smoother]: Configuring velocity smoother
+[lifecycle_manager-15] [INFO] [1795196588.156616817] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[controller_server-8] [INFO] [1795196588.156870386] [controller_server]: Activating
+[controller_server-8] [INFO] [1795196588.156902410] [local_costmap.local_costmap]: Activating
+[controller_server-8] [INFO] [1795196588.156910526] [local_costmap.local_costmap]: Checking transform
+[controller_server-8] [INFO] [1795196588.156975680] [local_costmap.local_costmap]: start
+[controller_server-8] [INFO] [1795196588.358114699] [controller_server]: Activating controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-8] [INFO] [1795196588.358185734] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795196588.463980940] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[lifecycle_manager-15] [INFO] [1795196588.464032875] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m
+[smoother_server-9] [INFO] [1795196588.464344385] [smoother_server]: Activating
+[smoother_server-9] [INFO] [1795196588.464406473] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795196588.568555325] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[lifecycle_manager-15] [INFO] [1795196588.568597367] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m
+[planner_server-10] [INFO] [1795196588.569071516] [planner_server]: Activating
+[planner_server-10] [INFO] [1795196588.569109614] [global_costmap.global_costmap]: Activating
+[planner_server-10] [INFO] [1795196588.569120125] [global_costmap.global_costmap]: Checking transform
+[planner_server-10] [INFO] [1795196588.569253755] [global_costmap.global_costmap]: start
+[planner_server-10] [INFO] [1795196589.620185883] [planner_server]: Activating plugin GridBased of type SmacPlannerHybrid
+[planner_server-10] [INFO] [1795196589.621869701] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795196589.726957488] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[lifecycle_manager-15] [INFO] [1795196589.727005365] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-11] [INFO] [1795196589.727450460] [behavior_server]: Activating
+[behavior_server-11] [INFO] [1795196589.727476546] [behavior_server]: Activating backup
+[behavior_server-11] [INFO] [1795196589.727485961] [behavior_server]: Activating drive_on_heading
+[behavior_server-11] [INFO] [1795196589.727492086] [behavior_server]: Activating wait
+[behavior_server-11] [INFO] [1795196589.727500989] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795196589.833817401] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[lifecycle_manager-15] [INFO] [1795196589.833859341] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-12] [INFO] [1795196589.834187577] [bt_navigator]: Activating
+[bt_navigator-12] [INFO] [1795196589.862349037] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[bt_navigator-12] [INFO] [1795196589.865530572] [bt_navigator]: Begin navigating from current location (0.00, -0.00) to (10.00, 4.00)
+[controller_server-8] [INFO] [1795196589.886429020] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795196589.886525434] [controller_server]: No goal checker was specified in parameter 'current_goal_checker'. Server will use only plugin loaded general_goal_checker . This warning will appear once.
+[lifecycle_manager-15] [INFO] [1795196589.966554068] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[lifecycle_manager-15] [INFO] [1795196589.966595783] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m
+[waypoint_follower-13] [INFO] [1795196589.967129640] [waypoint_follower]: Activating
+[waypoint_follower-13] [INFO] [1795196589.967165552] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795196590.072994259] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.
+[lifecycle_manager-15] [INFO] [1795196590.073048816] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m
+[velocity_smoother-14] [INFO] [1795196590.073389422] [velocity_smoother]: Activating
+[velocity_smoother-14] [INFO] [1795196590.073445740] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795196590.178828301] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[lifecycle_manager-15] [INFO] [1795196590.178875083] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-15] [INFO] [1795196590.178902768] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m
+[controller_server-8] [INFO] [1795196590.937149753] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196591.936654346] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196592.987128786] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196593.986806944] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196595.037049000] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196596.037174837] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196597.086670998] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196598.086895812] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196599.137037518] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196600.186777591] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196601.186778057] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196602.236663727] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196603.236811489] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196604.286766961] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196605.286981030] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196606.336646426] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196607.336731559] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196608.386727920] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196609.386767731] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196610.437082566] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196611.436859134] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795196612.486949086] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196612.487143769] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196613.487199129] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196613.487360760] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196614.537162147] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196614.537364136] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196615.537062620] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196615.537277913] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196616.586966692] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196616.587228654] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196617.586867911] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196617.587055891] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196618.636622874] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196618.636833483] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196619.637144092] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196619.637367945] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196619.686817363] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196620.686867383] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196620.687067843] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196620.736715602] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196621.686824369] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196621.687042257] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196621.737339088] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196622.736773355] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196622.737012648] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196622.786774845] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196623.736601660] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196623.736781513] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196623.786774659] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196624.786702319] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196624.786945959] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196624.837124161] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196625.786701540] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196625.786893470] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196625.836735208] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196626.836702452] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196626.836945183] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196626.886690814] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196627.836664340] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196627.836866249] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196627.886943700] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196628.886694116] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196628.887690363] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196628.936971315] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196628.987022005] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196629.887043660] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196629.887196774] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196629.936904506] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196629.986737486] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196630.936708885] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196630.936931115] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196630.986738976] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196631.037469866] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196631.937065131] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196631.937276307] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196631.986738683] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196632.036832024] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196632.986661761] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196632.986878871] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196633.036774019] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196633.086720892] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196633.986645194] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795196633.986859614] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196634.036670800] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [WARN] [1795196634.087223524] [controller_server]: Resulting plan has 0 poses in it.
+[controller_server-8] [INFO] [1795196635.036881741] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196635.451193199] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 53.100000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196635.451298348] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196635.451423734] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196635.451432011] [tf_help]: Data time: 53s 100000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196635.451438808] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196635.946436295] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 53.100000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196635.946546162] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196635.946719575] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196635.946881758] [tf_help]: Data time: 53s 100000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196635.946893718] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196636.443944119] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 53.100000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196636.444049652] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196636.444170931] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196636.444181002] [tf_help]: Data time: 53s 100000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196636.444187885] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196636.444198067] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196636.951655815] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 54.100000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196636.951762549] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196636.951857839] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196636.951865103] [tf_help]: Data time: 54s 100000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196636.951871240] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196637.451073930] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 54.100000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196637.451170100] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196637.451193993] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196637.451255995] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196637.451336030] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196637.946005339] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 55.100000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196637.946092466] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196637.946341737] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196637.946353284] [tf_help]: Data time: 55s 100000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196637.946359694] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196638.442625119] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 55.100000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196638.442727309] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196638.442896804] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196638.442916843] [tf_help]: Data time: 55s 100000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196638.442924300] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196638.442939072] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196638.949118857] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 56.200000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196638.949205780] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196638.949321442] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196638.949340187] [tf_help]: Data time: 56s 200000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196638.949346975] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196639.446441281] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 56.200000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196639.446530174] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196639.446610944] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196639.446617270] [tf_help]: Data time: 56s 200000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196639.446622321] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196639.446627968] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196639.944904956] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 57.200000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196639.944993732] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196639.945005607] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196639.945071172] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196639.955851557] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795196639.956555639] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [INFO] [1795196640.146701972] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196640.651001772] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 58.200000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196640.651112104] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196640.651206309] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196640.651216397] [tf_help]: Data time: 58s 200000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196640.651222887] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196641.150071035] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 58.200000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196641.150175495] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196641.150287243] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196641.150297293] [tf_help]: Data time: 58s 200000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196641.150304231] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196641.646260824] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 58.200000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196641.646364998] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196641.646461300] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196641.646470751] [tf_help]: Data time: 58s 200000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196641.646477181] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196641.646486793] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196642.151571078] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 59.200000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196642.151686015] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196642.151700648] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196642.151754573] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196642.168000751] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-10] [INFO] [1795196642.168336069] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[behavior_server-11] [INFO] [1795196642.168916459] [behavior_server]: Running wait
+[behavior_server-11] [INFO] [1795196643.169131837] [behavior_server]: wait completed successfully
+[controller_server-8] [INFO] [1795196643.216837612] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196643.649208824] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 61.300000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196643.649312630] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196643.649410990] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196643.649420584] [tf_help]: Data time: 61s 300000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196643.649427054] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196644.153541373] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 61.300000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196644.153657202] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196644.153786787] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196644.153797348] [tf_help]: Data time: 61s 300000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196644.153803498] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196644.649321951] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 61.300000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196644.649420203] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196644.649550403] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196644.649579114] [tf_help]: Data time: 61s 300000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196644.649589869] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196644.649602175] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196645.153407324] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 62.300000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196645.153512532] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196645.153628645] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196645.153640414] [tf_help]: Data time: 62s 300000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196645.153646947] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196645.658636743] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 62.300000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196645.658739649] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196645.658755021] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196645.658824161] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196645.658893950] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196646.154720462] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 63.300000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196646.154825719] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196646.154918323] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196646.155180189] [tf_help]: Data time: 63s 300000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196646.155197965] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196646.651999626] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 63.300000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196646.652095000] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196646.652220653] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196646.652232979] [tf_help]: Data time: 63s 300000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196646.652239406] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196646.652250196] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196647.149564778] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 64.400000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196647.149690269] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196647.149807388] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196647.149816414] [tf_help]: Data time: 64s 400000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196647.149822212] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196647.656102559] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 64.400000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196647.656183873] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196647.656255930] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196647.656260513] [tf_help]: Data time: 64s 400000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196647.656265376] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196647.656271283] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196648.154095931] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 65.400000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196648.154248722] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196648.154277001] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196648.154383036] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196648.166159035] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795196648.166826180] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [INFO] [1795196648.357225255] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196648.853059567] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 66.400000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196648.853168486] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196648.853304543] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196648.853313712] [tf_help]: Data time: 66s 400000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196648.853319835] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196649.351511019] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 66.400000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196649.351607710] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196649.351729559] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196649.351741402] [tf_help]: Data time: 66s 400000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196649.351748093] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196649.857920472] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 66.400000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196649.858006039] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196649.858132851] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196649.858138153] [tf_help]: Data time: 66s 400000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196649.858143111] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196649.858149845] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196650.354215649] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 67.500000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196650.354327936] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196650.354343496] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196650.354413568] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196650.366072589] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-10] [INFO] [1795196650.366365180] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[behavior_server-11] [INFO] [1795196650.366833408] [behavior_server]: Running wait
+[behavior_server-11] [INFO] [1795196651.367245896] [behavior_server]: wait completed successfully
+[controller_server-8] [INFO] [1795196651.416433836] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196651.860343926] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 69.500000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196651.860456888] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196651.860640730] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196651.860661014] [tf_help]: Data time: 69s 500000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196651.860668360] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196652.356875676] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 69.500000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196652.356955384] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196652.357062730] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196652.357069453] [tf_help]: Data time: 69s 500000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196652.357074808] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196652.851351193] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 69.500000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196652.851433557] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196652.851532194] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196652.851542890] [tf_help]: Data time: 69s 500000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196652.851549417] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196652.851559235] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196653.357486738] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 70.500000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196653.357581010] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196653.357695877] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196653.357704633] [tf_help]: Data time: 70s 500000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196653.357711725] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196653.854182711] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 70.500000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196653.854250885] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196653.854260779] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196653.854326234] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196653.854390605] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196654.351731840] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 71.500000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196654.351848585] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196654.351970277] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196654.351978438] [tf_help]: Data time: 71s 500000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196654.351984346] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196654.858263589] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 71.500000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196654.858354324] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196654.858485236] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196654.858493757] [tf_help]: Data time: 71s 500000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196654.858499736] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196654.858509033] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196655.354932257] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 72.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196655.355050532] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196655.355178170] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196655.355186866] [tf_help]: Data time: 72s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196655.355194558] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196655.860051497] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 72.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196655.860151724] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196655.860350115] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196655.860361113] [tf_help]: Data time: 72s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196655.860367364] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196655.860379140] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196656.354394797] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 73.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196656.354501443] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196656.354520230] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196656.354621474] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196656.365842867] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795196656.366375216] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196656.961735128] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 73.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196656.961832186] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196656.961929168] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196656.962110860] [tf_help]: Data time: 73s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196656.962126224] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196656.962140424] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196657.461007689] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 74.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196657.461111603] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196657.461252178] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196657.461260802] [tf_help]: Data time: 74s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196657.461266960] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196657.966203978] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 74.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196657.966302096] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196657.966393103] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196657.966400033] [tf_help]: Data time: 74s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196657.966406061] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196657.966414722] [controller_server]: Passing new path to controller.
+[bt_navigator-12] [WARN] [1795196658.182566300] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[controller_server-8] [ERROR] [1795196658.468568326] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 75.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196658.468685599] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196658.468714353] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196658.468969052] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196658.486795043] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-10] [INFO] [1795196658.487227697] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[behavior_server-11] [INFO] [1795196658.487815041] [behavior_server]: Running wait
+[behavior_server-11] [INFO] [1795196659.488422213] [behavior_server]: wait completed successfully
+[controller_server-8] [INFO] [1795196659.536504155] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196659.972345756] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 77.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196659.972437000] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196659.972553460] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196659.972562057] [tf_help]: Data time: 77s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196659.972567939] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196660.468140743] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 77.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196660.468236326] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196660.468363108] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196660.468370676] [tf_help]: Data time: 77s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196660.468376429] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196660.966768318] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 77.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196660.966851943] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196660.966928455] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196660.966948416] [tf_help]: Data time: 77s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196660.966954163] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196660.966961947] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196661.466657655] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 78.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196661.466762837] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196661.466855289] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196661.466864654] [tf_help]: Data time: 78s 600000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196661.466870830] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196661.975554328] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 78.600000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196661.976071638] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196661.976100337] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196661.976160208] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196661.976435108] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196662.471132461] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 79.700000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196662.471222353] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196662.471344406] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196662.471355343] [tf_help]: Data time: 79s 700000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196662.471362135] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196662.967686774] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 79.700000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196662.967774230] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196662.967887166] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196662.967900078] [tf_help]: Data time: 79s 700000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196662.967906642] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196662.967917967] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196663.472952620] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 80.700000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196663.473022579] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196663.473571254] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196663.473582396] [tf_help]: Data time: 80s 700000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196663.473587900] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196663.970901617] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 80.700000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196663.970996571] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196663.971120912] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196663.971148618] [tf_help]: Data time: 80s 700000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196663.971155024] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196663.971164721] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196664.467440151] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 81.700000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196664.467543965] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196664.467560030] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196664.467607964] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196664.485830725] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795196664.486364902] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [INFO] [1795196664.676839686] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196665.171860894] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 82.700000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196665.171979824] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196665.172281955] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196665.172292677] [tf_help]: Data time: 82s 700000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196665.172298998] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196665.669490186] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 82.700000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196665.669586671] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196665.669738137] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196665.669748766] [tf_help]: Data time: 82s 700000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196665.669755588] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196666.174247435] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 82.700000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196666.174330100] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196666.174783888] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196666.174803412] [tf_help]: Data time: 82s 700000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196666.174811036] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196666.174827237] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196666.668585206] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 83.800000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196666.668695608] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196666.668711590] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196666.668744517] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196666.686097690] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-10] [INFO] [1795196666.686432939] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[behavior_server-11] [INFO] [1795196666.686900323] [behavior_server]: Running wait
+[behavior_server-11] [INFO] [1795196667.688153641] [behavior_server]: wait completed successfully
+[controller_server-8] [INFO] [1795196667.736661009] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196668.171133481] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 85.800000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196668.171241453] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196668.171430726] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196668.171437420] [tf_help]: Data time: 85s 800000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196668.171442627] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196668.677949059] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 85.800000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196668.678018356] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196668.678089033] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196668.678093871] [tf_help]: Data time: 85s 800000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196668.678099073] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196669.176113475] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 85.800000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196669.176196569] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196669.176345070] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196669.176352146] [tf_help]: Data time: 85s 800000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196669.176357940] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196669.176366571] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196669.671270045] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 86.800000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196669.671349603] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196669.671442677] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196669.671447951] [tf_help]: Data time: 86s 800000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196669.671453215] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196670.179188906] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 86.800000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196670.179286330] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196670.179301990] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196670.179368112] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196670.179444192] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196670.672885963] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 87.900000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196670.672973622] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196670.673062007] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196670.673067189] [tf_help]: Data time: 87s 900000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196670.673072154] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196671.169341937] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 87.900000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196671.169425862] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196671.169518489] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196671.169536180] [tf_help]: Data time: 87s 900000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196671.169540613] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196671.169547589] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196671.677659531] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 88.900000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196671.677750233] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196671.677854490] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196671.677862313] [tf_help]: Data time: 88s 900000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196671.677868230] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196672.176522270] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 88.900000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196672.176619142] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196672.176801638] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196672.176819920] [tf_help]: Data time: 88s 900000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196672.176827121] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196672.176839974] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196672.671657235] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 89.900000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196672.671743460] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196672.671758830] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196672.671813192] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795196672.686021073] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795196672.686581870] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [ERROR] [1795196673.282680319] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 89.900000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196673.282806647] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196673.282906553] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196673.283045550] [tf_help]: Data time: 89s 900000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196673.283065133] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196673.283081980] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196673.778372033] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 90.900000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196673.778461867] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196673.778580860] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196673.778606109] [tf_help]: Data time: 90s 900000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196673.778615747] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [ERROR] [1795196674.283646192] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 90.900000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196674.283758782] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196674.283873643] [tf_help]: Transform data too old when converting from map to odom
+[controller_server-8] [ERROR] [1795196674.283882770] [tf_help]: Data time: 90s 900000000ns, Transform time: 52s 602000000ns
+[controller_server-8] [WARN] [1795196674.283889206] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [INFO] [1795196674.283900316] [controller_server]: Passing new path to controller.
+[controller_server-8] [ERROR] [1795196674.778859829] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 92.000000 but the latest data is at time 52.602000, when looking up transform from frame [map] to frame [odom]
+[controller_server-8] [WARN] [1795196674.778974790] [controller_server]: Goal transform unavailable; hold safely
+[controller_server-8] [ERROR] [1795196674.778990868] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795196674.779032701] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[bt_navigator-12] [WARN] [1795196674.806079509] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[bt_navigator-12] [ERROR] [1795196674.806297826] [bt_navigator]: Goal failed
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[lifecycle_manager-15] [INFO] [1795196676.652225445] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-15] [INFO] [1795196676.652399029] [lifecycle_manager_navigation]: [34m[1mTerminating bond timer...[0m[0m
+[lifecycle_manager-15] wn (lifecycle_manager_navigation)
+[waypoint_follower-13] [INFO] [1795196676.652295660] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[waypoint_follower-13] [INFO] [1795196676.652405742] [waypoint_follower]: Running Nav2 LifecycleNode rcl preshutdown (waypoint_follower)
+[waypoint_follower-13] [INFO] [1795196676.652462970] [waypoint_follower]: Deactivating
+[waypoint_follower-13] [INFO] [1795196676.652475562] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[bt_navigator-12] [INFO] [1795196676.652488242] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[bt_navigator-12] [INFO] [1795196676.652538333] [bt_navigator]: Running Nav2 LifecycleNode rcl preshutdown (bt_navigator)
+[bt_navigator-12] [INFO] [1795196676.652579732] [bt_navigator]: Deactivating
+[bt_navigator-12] [INFO] [1795196676.652595173] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[amcl-6] [INFO] [1795196676.652614456] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-6] [INFO] [1795196676.652713390] [amcl]: Running Nav2 LifecycleNode rcl preshutdown (amcl)
+[amcl-6] [INFO] [1795196676.652757943] [amcl]: Deactivating
+[amcl-6] [INFO] [1795196676.652771487] [amcl]: Destroying bond (amcl) to lifecycle manager.
+[lifecycle_manager-7] [INFO] [1795196676.652666008] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-7] [INFO] [1795196676.652732291] [lifecycle_manager_localization]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_localization)
+[lifecycle_manager-7] [INFO] [1795196676.652768460] [lifecycle_manager_localization]: [34m[1mTerminating bond timer...[0m[0m
+[robot_state_publisher-1] [INFO] [1795196676.652656333] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[behavior_server-11] [INFO] [1795196676.652684689] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[behavior_server-11] [INFO] [1795196676.652751034] [behavior_server]: Running Nav2 LifecycleNode rcl preshutdown (behavior_server)
+[behavior_server-11] [INFO] [1795196676.652807374] [behavior_server]: Deactivating
+[behavior_server-11] [INFO] [1795196676.652830543] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[velocity_smoother-14] [INFO] [1795196676.652824341] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[velocity_smoother-14] [INFO] [1795196676.652879199] [velocity_smoother]: Running Nav2 LifecycleNode rcl preshutdown (velocity_smoother)
+[velocity_smoother-14] [INFO] [1795196676.652932493] [velocity_smoother]: Deactivating
+[velocity_smoother-14] [INFO] [1795196676.652967955] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[planner_server-10] [INFO] [1795196676.652955514] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[planner_server-10] [INFO] [1795196676.653032971] [planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[planner_server-10] [INFO] [1795196676.653083840] [planner_server]: Deactivating
+[planner_server-10] [INFO] [1795196676.653105266] [global_costmap.global_costmap]: Deactivating
+[smoother_server-9] [INFO] [1795196676.653012447] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-9] [INFO] [1795196676.653109648] [smoother_server]: Running Nav2 LifecycleNode rcl preshutdown (smoother_server)
+[smoother_server-9] [INFO] [1795196676.653154572] [smoother_server]: Deactivating
+[smoother_server-9] [INFO] [1795196676.653168179] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[map_server-5] [INFO] [1795196676.653116137] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-5] [INFO] [1795196676.653200242] [map_server]: Running Nav2 LifecycleNode rcl preshutdown (map_server)
+[map_server-5] [INFO] [1795196676.653240566] [map_server]: Deactivating
+[map_server-5] [INFO] [1795196676.653250940] [map_server]: Destroying bond (map_server) to lifecycle manager.
+[controller_server-8] [INFO] [1795196676.653446128] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[controller_server-8] [INFO] [1795196676.653506693] [controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)
+[controller_server-8] [INFO] [1795196676.653539359] [controller_server]: Deactivating
+[controller_server-8] [INFO] [1795196676.653551857] [controller_server]: Deactivating controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-8] [INFO] [1795196676.653564994] [local_costmap.local_costmap]: Deactivating
+[INFO] [lifecycle_manager-15]: sending signal 'SIGINT' to process[lifecycle_manager-15]
+[INFO] [velocity_smoother-14]: sending signal 'SIGINT' to process[velocity_smoother-14]
+[INFO] [waypoint_follower-13]: sending signal 'SIGINT' to process[waypoint_follower-13]
+[INFO] [bt_navigator-12]: sending signal 'SIGINT' to process[bt_navigator-12]
+[INFO] [behavior_server-11]: sending signal 'SIGINT' to process[behavior_server-11]
+[INFO] [planner_server-10]: sending signal 'SIGINT' to process[planner_server-10]
+[INFO] [smoother_server-9]: sending signal 'SIGINT' to process[smoother_server-9]
+[INFO] [controller_server-8]: sending signal 'SIGINT' to process[controller_server-8]
+[INFO] [lifecycle_manager-7]: sending signal 'SIGINT' to process[lifecycle_manager-7]
+[INFO] [amcl-6]: sending signal 'SIGINT' to process[amcl-6]
+[INFO] [map_server-5]: sending signal 'SIGINT' to process[map_server-5]
+[INFO] [control_bridge-3]: sending signal 'SIGINT' to process[control_bridge-3]
+[INFO] [gzserver-2]: sending signal 'SIGINT' to process[gzserver-2]
+[INFO] [robot_state_publisher-1]: sending signal 'SIGINT' to process[robot_state_publisher-1]
+[waypoint_follower-13] [INFO] [1795196676.662789358] [waypoint_follower]: Cleaning up
+[behavior_server-11] [INFO] [1795196676.663038164] [behavior_server]: Cleaning up
+[amcl-6] [INFO] [1795196676.663213824] [amcl]: Cleaning up
+[velocity_smoother-14] [INFO] [1795196676.663281629] [velocity_smoother]: Cleaning up
+[velocity_smoother-14] [INFO] [1795196676.663306594] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[smoother_server-9] [INFO] [1795196676.663363516] [smoother_server]: Cleaning up
+[bt_navigator-12] [INFO] [1795196676.664745424] [bt_navigator]: Cleaning up
+[behavior_server-11] [INFO] [1795196676.664986588] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[map_server-5] [INFO] [1795196676.666229245] [map_server]: Cleaning up
+[map_server-5] [INFO] [1795196676.666257038] [map_server]: Destroying bond (map_server) to lifecycle manager.
+[velocity_smoother-14] [INFO] [1795196676.667007114] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[waypoint_follower-13] [INFO] [1795196676.668121284] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[behavior_server-11] [INFO] [1795196676.670033310] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[waypoint_follower-13] [INFO] [1795196676.670916772] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-9] [INFO] [1795196676.673925618] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[velocity_smoother-14] [INFO] [1795196676.675053571] [velocity_smoother]: Destroying
+[map_server-5] [INFO] [1795196676.675461337] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-5] [INFO] [1795196676.675858060] [map_server]: Destroying
+[control_bridge-3] Traceback (most recent call last):
+[control_bridge-3]   File "/home/ubuntu2204/smartcar-m3-opt/install_ros/smartcar_training/lib/smartcar_training/control_bridge", line 33, in <module>
+[control_bridge-3]     sys.exit(load_entry_point('smartcar-training', 'console_scripts', 'control_bridge')())
+[control_bridge-3]   File "/home/ubuntu2204/smartcar-m3-opt/build_ros/smartcar_training/smartcar_training/control_bridge.py", line 70, in main
+[control_bridge-3]     node.destroy_node()
+[control_bridge-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[control_bridge-3]     self.destroy_service(self._services[0])
+[control_bridge-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[control_bridge-3]     service.destroy()
+[control_bridge-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[control_bridge-3]     self.__service.destroy_when_not_in_use()
+[control_bridge-3] KeyboardInterrupt
+[smoother_server-9] [INFO] [1795196676.676684311] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[waypoint_follower-13] [INFO] [1795196676.678541775] [waypoint_follower]: Destroying
+[robot_state_publisher-1] [INFO] [1795196676.681920559] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-6] [INFO] [1795196676.684153445] [amcl]: Destroying bond (amcl) to lifecycle manager.
+[lifecycle_manager-7] [INFO] [1795196676.684952107] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-9] [INFO] [1795196676.687271875] [smoother_server]: Destroying
+[amcl-6] [INFO] [1795196676.689770778] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-7] [INFO] [1795196676.691199613] [lifecycle_manager_localization]: Destroying lifecycle_manager_localization
+[amcl-6] [INFO] [1795196676.693954466] [amcl]: Destroying
+[behavior_server-11] [INFO] [1795196676.701532912] [behavior_server]: Destroying
+[ERROR] [control_bridge-3]: process has died [pid 42161, exit code -2, cmd '/home/ubuntu2204/smartcar-m3-opt/install_ros/smartcar_training/lib/smartcar_training/control_bridge --ros-args --params-file /tmp/launch_params_x8vgc6w0'].
+[bt_navigator-12] [INFO] [1795196676.729396912] [bt_navigator]: Completed Cleaning up
+[bt_navigator-12] [INFO] [1795196676.729458232] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[bt_navigator-12] [INFO] [1795196676.729976217] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[bt_navigator-12] [INFO] [1795196676.734046862] [bt_navigator]: Destroying
+[lifecycle_manager-15] [INFO] [1795196676.750382075] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-15] [INFO] [1795196676.751580372] [lifecycle_manager_navigation]: Destroying lifecycle_manager_navigation
+[controller_server-8] [INFO] [1795196676.784341895] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 42157]
+[controller_server-8] [INFO] [1795196676.794595129] [controller_server]: Cleaning up
+[controller_server-8] [INFO] [1795196676.794663645] [controller_server]: Cleaning up controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-8] [INFO] [1795196676.794696150] [local_costmap.local_costmap]: Cleaning up
+[INFO] [smoother_server-9]: process has finished cleanly [pid 42181]
+[INFO] [velocity_smoother-14]: process has finished cleanly [pid 42233]
+[INFO] [lifecycle_manager-7]: process has finished cleanly [pid 42169]
+[INFO] [map_server-5]: process has finished cleanly [pid 42165]
+[INFO] [waypoint_follower-13]: process has finished cleanly [pid 42199]
+[INFO] [amcl-6]: process has finished cleanly [pid 42167]
+[INFO] [behavior_server-11]: process has finished cleanly [pid 42185]
+[INFO] [bt_navigator-12]: process has finished cleanly [pid 42187]
+[INFO] [lifecycle_manager-15]: process has finished cleanly [pid 42236]
+[INFO] [gzserver-2]: process has finished cleanly [pid 42159]
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;36m[0m[1;32m[0m
+[gzserver-2] [1;33m[0m[1;31m[0m
+[planner_server-10] [INFO] [1795196677.569998213] [planner_server]: Deactivating plugin GridBased of type SmacPlannerHybrid
+[planner_server-10] [INFO] [1795196677.570104946] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[planner_server-10] [INFO] [1795196677.580668562] [planner_server]: Cleaning up
+[planner_server-10] [INFO] [1795196677.587004530] [global_costmap.global_costmap]: Cleaning up
+[ERROR] [planner_server-10]: process[planner_server-10] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [controller_server-8]: process[controller_server-8] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [planner_server-10]: sending signal 'SIGTERM' to process[planner_server-10]
+[INFO] [controller_server-8]: sending signal 'SIGTERM' to process[controller_server-8]

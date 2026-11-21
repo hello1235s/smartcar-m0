@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "command": [
+    "/home/ubuntu2204/smartcar-m1-m3/.venv-ros/bin/python",
+    "M3/optimization/run_navigation_trial.py",
+    "--label",
+    "deployed_north_observer",
+    "--runs",
+    "1",
+    "--seed",
+    "602",
+    "--domain",
+    "191",
+    "--gui",
+    "--viewer",
+    "--hold-after",
+    "4",
+    "--params",
+    "M3/M3-4/config/planner_B_tuned_params.yaml",
+    "--obstacle-at",
+    "11.3,3.4"
+  ],
+  "source_run": "M3/optimization/results/20261121_133917_deployed_north_observer/run_01",
+  "strict_success": true,
+  "qualification_failures": [],
+  "captured_stages": 4,
+  "capture_events": [
+    {
+      "stage": 1,
+      "sim_t": 8.9,
+      "pose_map": [
+        0.10028025019314976,
+        -0.002685720974431023,
+        -0.036782260606820244
+      ],
+      "initial_plan_progress_m": 0.12528018723574372,
+      "scan_stamp_s": 8.936
+    },
+    {
+      "stage": 2,
+      "sim_t": 34.3,
+      "pose_map": [
+        8.047545276665915,
+        0.4542103951408453,
+        0.0005102861717870036
+      ],
+      "initial_plan_progress_m": 8.102997737609904,
+      "scan_stamp_s": 34.336
+    },
+    {
+      "stage": 3,
+      "sim_t": 41.5,
+      "pose_map": [
+        9.692582375237786,
+        1.495178133126175,
+        1.65920349034231
+      ],
+      "initial_plan_progress_m": 10.294060627947161,
+      "scan_stamp_s": 41.536
+    },
+    {
+      "stage": 4,
+      "sim_t": 46.9,
+      "pose_map": [
+        9.776021791298987,
+        3.1603258332538875,
+        1.3135787935439158
+      ],
+      "initial_plan_progress_m": 11.961999232030458,
+      "scan_stamp_s": 46.936
+    }
+  ],
+  "spawn_confirmation": {
+    "success": true,
+    "status": "SpawnEntity: Successfully spawned entity [temporary_obstacle]",
+    "sim_t": 10.9,
+    "confirmed_sim_t": 10.9,
+    "world_xy": "11.3,3.4",
+    "size": 0.6
+  },
+  "note": "Additional fixed northbound GUI observer regression, excluded from formal performance groups."
+}
