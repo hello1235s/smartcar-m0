@@ -150,8 +150,14 @@ class View(QWidget):
             p.drawText(30,600,'White: free | warm colors: increasing cost | black: lethal | gray: unknown')
             p.end(); return
         p.drawText(30,30,'ACTUAL ROS VIEW | map + /plan + /scan + map→base TF | %.2f s'%(self.node.get_clock().now().nanoseconds/1e9))
-        p.drawText(30,620,'C: live global/local costmaps | orange: TF trajectory | blue: plan | red: actual laser')
+        p.drawText(30,620,'C: costmaps | orange: TF trail | blue: plan | red: scan | amber dashed: spawn ROI')
         p.drawImage(40,70,self.map.scaled(self.map.width()*3,self.map.height()*3,Qt.IgnoreAspectRatio,Qt.FastTransformation))
+        if self.spawn_event:
+            left,top=self.project(self.obstacle[0]-self.obstacle_half,self.obstacle[1]+self.obstacle_half)
+            side=2*self.obstacle_half/self.resolution*3
+            p.setBrush(Qt.NoBrush); p.setPen(QPen(QColor('#c98300'),2,Qt.DashLine))
+            p.drawRect(int(left),int(top),int(side),int(side))
+            p.drawText(int(left),int(top)-7,'Spawn-confirmed ROI')
         for points,color in [(self.path,'#3d75d3'),([(x,y) for x,y,_ in self.trajectory],'#ed783d')]:
             p.setPen(QPen(QColor(color),2))
             for a,b in zip(points,points[1:]):
@@ -172,7 +178,10 @@ class View(QWidget):
                 p.setPen(QColor('#da424d'))
                 for i,r in enumerate(self.scan.ranges):
                     if math.isfinite(r) and self.scan.range_min<r<self.scan.range_max:
-                        angle=yaw+self.scan.angle_min+i*self.scan.angle_increment; sx,sy=self.project(x+r*math.cos(angle),y+r*math.sin(angle)); p.drawPoint(int(sx),int(sy))
+                        angle=yaw+self.scan.angle_min+i*self.scan.angle_increment; xx=x+r*math.cos(angle); yy=y+r*math.sin(angle); sx,sy=self.project(xx,yy)
+                        if self.spawn_event and abs(xx-self.obstacle[0])<self.obstacle_half+.08 and abs(yy-self.obstacle[1])<self.obstacle_half+.08:
+                            p.setBrush(QColor('#da424d')); p.drawEllipse(QPointF(sx,sy),2.,2.); p.setBrush(Qt.NoBrush)
+                        else: p.drawPoint(int(sx),int(sy))
         p.setPen(QColor('#e4eef4')); p.drawText(30,600,'Green: TF pose + configured footprint | dashed: %.2f m planning padding'%self.padding)
         p.end()
 
