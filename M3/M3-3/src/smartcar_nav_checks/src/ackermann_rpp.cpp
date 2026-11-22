@@ -50,7 +50,7 @@ public:
     Base::setPlan(tracking);
   }
   geometry_msgs::msg::TwistStamped computeVelocityCommands(const geometry_msgs::msg::PoseStamped & pose,
-      const geometry_msgs::msg::Twist & speed,nav2_core::GoalChecker *) override {
+      const geometry_msgs::msg::Twist & speed,nav2_core::GoalChecker * goal_checker) override {
     std::lock_guard<std::mutex> guard(mutex_);
     geometry_msgs::msg::PoseStamped goal_here;
     auto current_goal=goal_;
@@ -64,7 +64,19 @@ public:
     auto path=transformGlobalPlan(pose);
     double lookahead=getLookAheadDistance(speed);
     if(allow_reversing_) lookahead=std::min(lookahead,findVelocitySignChange(path));
-    auto carrot=getLookAheadPoint(lookahead,path); carrot_pub_->publish(createCarrotMsg(carrot));
+    auto carrot=getLookAheadPoint(lookahead,path);
+    geometry_msgs::msg::Pose tolerance;geometry_msgs::msg::Twist speed_tolerance;
+    if(goal_checker&&goal_checker->getTolerances(tolerance,speed_tolerance)) {
+      const auto & cq=pose.pose.orientation;const auto & gq=goal_here.pose.orientation;
+      const double current_yaw=std::atan2(2*(cq.w*cq.z+cq.x*cq.y),1-2*(cq.y*cq.y+cq.z*cq.z));
+      const double goal_yaw=std::atan2(2*(gq.w*gq.z+gq.x*gq.y),1-2*(gq.y*gq.y+gq.z*gq.z));
+      const double dx=goal_here.pose.position.x-pose.pose.position.x,dy=goal_here.pose.position.y-pose.pose.position.y;
+      const double yaw_tolerance=2*std::atan2(tolerance.orientation.z,tolerance.orientation.w);
+      const auto terminal=aligned_terminal_reference(std::cos(current_yaw)*dx+std::sin(current_yaw)*dy,
+        -std::sin(current_yaw)*dx+std::cos(current_yaw)*dy,goal_yaw-current_yaw,extension_,tolerance.position.x,std::abs(yaw_tolerance));
+      if(terminal.enabled){carrot.pose.position.x=terminal.x;carrot.pose.position.y=terminal.y;}
+    }
+    carrot_pub_->publish(createCarrotMsg(carrot));
     const double x=carrot.pose.position.x,y=carrot.pose.position.y,rr=x*x+y*y;
     const double curvature=rr>1e-6?std::clamp(2*y/rr,-1./radius_,1./radius_):0.;
     double direction=allow_reversing_&&x<0?-1.:1.;
