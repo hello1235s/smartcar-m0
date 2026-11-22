@@ -31,3 +31,8 @@ M1的60秒输入31.999Hz、输出32.000Hz、控制21.000Hz、P95 12.410ms。输�
 原生RViz使用官方VisualizationFrame、Map插件与渲染窗口内部截图；不重画地图。SLAM和导航2D查看器的视频是实际ROS应用窗口，不能说成Gazebo3D录像。临时新点由代理选定以模拟现场改题，不等于真实考官随机考核。10/10是有限样本；无法保证任何环境、任意目标都成功。
 
 [现场命令](现场展示入口.md)；[M1逐题](../M1/ACCEPTANCE.md)；[M3逐题](../M3/optimization/acceptance_matrix.md)。个人答辩手册与PDF单独本地保存，不进Git。
+
+
+## 实际交付工作区复核
+
+用户工作区已构建四个包并通过4项原生CTest、10项导航Python测试、M1根入口、单命令双组与5项语义检查；一键动态GUI实际通过并保留TF图，关键源码与冻结验证版一致，7个M0练习文件逐字节保留。来源：[部署](../evidence/M3-deployment/20261122_140717/verification.json)、[交付验证](../evidence/M1-M3-release/20261122_140959/validation.json)。

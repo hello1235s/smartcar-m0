@@ -1,0 +1,49 @@
+Starting >>> sensor_interfaces
+Starting >>> smartcar_nav_checks
+Finished <<< sensor_interfaces [0.76s]
+Starting >>> smartcar_training
+Finished <<< smartcar_training [1.72s]
+Starting >>> smart_car_description
+Finished <<< smart_car_description [0.12s]
+Finished <<< smartcar_nav_checks [23.0s]
+
+Summary: 4 packages finished [23.4s]
+Internal ctest changing into directory: /home/ubuntu2204/smartcar-m1-m3/build_ros/smartcar_nav_checks
+Test project /home/ubuntu2204/smartcar-m1-m3/build_ros/smartcar_nav_checks
+    Start 1: valid_pose_test
+1/4 Test #1: valid_pose_test ..................   Passed    0.00 sec
+    Start 2: ackermann_limits_test
+2/4 Test #2: ackermann_limits_test ............   Passed    0.00 sec
+    Start 3: plugin_loading_test
+3/4 Test #3: plugin_loading_test ..............   Passed    0.03 sec
+    Start 4: tf2_lock_order_test
+4/4 Test #4: tf2_lock_order_test ..............   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =   0.04 sec
+test_goal_transform_and_heading_wrap (test_evaluation.EvaluationTests) ... ok
+test_known_rectangular_gap (test_evaluation.EvaluationTests) ... ok
+test_overlap_and_contact_distinguished (test_evaluation.EvaluationTests) ... ok
+test_rear_axle_body_offset_and_rotation (test_evaluation.EvaluationTests) ... ok
+test_symmetric_clearance_including_diagonal (test_evaluation.EvaluationTests) ... ok
+test_closed_loop_with_actuator_lag_and_odometry_noise (test_path_tracking.TrackingTests) ... ok
+test_invalid_pose_rejected (test_path_tracking.TrackingTests) ... ok
+test_no_initial_false_success_at_closed_path_start (test_path_tracking.TrackingTests) ... ok
+test_reference_geometry_and_nontrivial_closed_path (test_path_tracking.TrackingTests) ... ok
+test_new_session_child_and_unrelated_process (test_process_cleanup.ProcessCleanupTests) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.154s
+
+OK
+ROOT_DEMO_ENTRY /home/ubuntu2204/smartcar-m1-m3/evidence/M1-demo-entry/20261122_140401 {"status": "running"}
+Traceback (most recent call last):
+  File "/home/ubuntu2204/smartcar-m1-m3/scripts/verify_m1_demo_entry.py", line 19, in <module>
+    parameters=node.create_client(GetParameters,'/node_b_filter/get_parameters');assert parameters.wait_for_service(timeout_sec=20)
+AssertionError
+
+FIRST PUBLIC ROOT ENTRY FAILED: empty namespace argument; corrected to namespace:=/. Native4 and Python10 above already passed. Resuming relevant M1 checks only.
+ROOT_DEMO_ENTRY /home/ubuntu2204/smartcar-m1-m3/evidence/M1-demo-entry/20261122_140559 {"status": "PASS", "entry_sha256": "78031fe66f1764a64c1f7c915739ae5f94f96b996ed759d05ea9b30831afa5da", "root_nodes": [["node_a_sensor", "/"], ["node_b_filter", "/"], ["node_c_alarm", "/"]], "root_topics": ["/parameter_events", "/processed_distance", "/rosout", "/sensor_data"], "manual_alarm_reply": true}
+DUAL_LAUNCH /home/ubuntu2204/smartcar-m1-m3/evidence/M1-dual-launch/20261122_140602 {"status": "PASS", "command": "ros2 launch smartcar_training dual_bringup.launch.py", "nodes": [["node_a_sensor", "/robot1"], ["node_a_sensor", "/robot2"], ["node_b_filter", "/robot1"], ["node_b_filter", "/robot2"], ["node_c_alarm", "/robot1"], ["node_c_alarm", "/robot2"]], "thresholds": [0.3, 0.5], "alpha_after_change": [0.9, 0.7], "endpoints": {"/robot1/sensor_data": [{"name": "node_a_sensor", "namespace": "/robot1"}, {"name": "node_b_filter", "namespace": "/robot1"}], "/robot2/sensor_data": [{"name": "node_a_sensor", "namespace": "/robot2"}, {"name": "node_b_filter", "namespace": "/robot2"}]}}
+{"pixel_exact": true, "header_exact": true, "encoding": "mono8", "sha256": "c4886ec4e1d94575ad43a245a804548e2fbd17c48a6401d1099b7acd57ac7055", "cases": [{"case": "random_bgr", "input_encoding": "bgr8", "pixel_exact": true, "header_exact": true, "sha256": "c4886ec4e1d94575ad43a245a804548e2fbd17c48a6401d1099b7acd57ac7055"}, {"case": "all_gray_levels", "input_encoding": "mono8", "pixel_exact": true, "header_exact": true, "sha256": "2b3b66c7124c58d0324569d66e3d22ce52241dde7b5125acc3e77f40f401895c"}, {"case": "black", "input_encoding": "bgr8", "pixel_exact": true, "header_exact": true, "sha256": "7818f5542a0404157573be6cffc0e0c8e68ce3c0f5d17d07ccdd9313fb700baf"}, {"case": "white", "input_encoding": "bgr8", "pixel_exact": true, "header_exact": true, "sha256": "a682fa570213181c0f6fd50f7da5ef6f263c855222c8f7441f19227d925383a3"}, {"case": "random_rgb", "input_encoding": "rgb8", "pixel_exact": true, "header_exact": true, "sha256": "c965e546bbdea42dd4d790e41145e0fc34d58b6bae615301b38b42422830f6e2"}]}
