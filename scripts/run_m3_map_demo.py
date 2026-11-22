@@ -12,7 +12,12 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'M3/common')
 from experiment_lock import acquire
 from process_cleanup import terminate_owned_tree
 from navigation_transport import configure
-configure(ROOT);lock=acquire()
+original_libraries=os.environ.get('LD_LIBRARY_PATH','').split(':')
+configure(ROOT)
+# dlopen's startup search path is fixed before Python modifies os.environ.
+if str(ROOT/'vendor/m3-dds/opt/ros/humble/lib') not in original_libraries:
+    os.execv(sys.executable,[sys.executable,str(Path(__file__).resolve()),*sys.argv[1:]])
+lock=acquire()
 p=argparse.ArgumentParser();p.add_argument('--seconds',type=float,default=90);p.add_argument('--domain',type=int,default=181);a=p.parse_args()
 os.environ['ROS_DOMAIN_ID']=str(a.domain)
 out=ROOT/'M3/M3-2/results'/(time.strftime('%Y%m%d_%H%M%S')+'_native_rviz_map');out.mkdir(parents=True)
@@ -51,6 +56,8 @@ try:
         time.sleep(.2)
     assert before=={str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in [mapfile,image]}
     record['status']='PASS'
+except BaseException as error:
+    record.update(status='FAIL',error=str(error));raise
 finally:
     for process in reversed(processes):terminate_owned_tree(process)
     for log in logs:log.close()
