@@ -42,3 +42,8 @@ bag 可由脚本重生成，不把大体积 db3 当作代码提交。原 `make_b
 ## 最新展示指南补齐
 
 2026-11-22已完整复测。单命令双组、两组实时投影、点击点查询原LaserScan距离与独立bag对应核验，以及60秒性能原始证据见[当前验收](../ACCEPTANCE.md)、[现场入口](../../docs/现场展示入口.md)和[工程补齐索引](../../docs/showcase_acceptance.md)。历史测量保留原日期。
+
+
+## 投影现场TF查询的通信域
+
+一键链路/双组使用ROS_DOMAIN_ID=71；一键投影脚本独立使用64。投影窗口运行时，另开终端依次执行source scripts/env.sh、export ROS_DOMAIN_ID=64，再执行ros2 run tf2_ros tf2_echo camera_link laser_link。两个外参运行之间会重启，TF查询可保留或重启；不要在71域查询64域的投影。
