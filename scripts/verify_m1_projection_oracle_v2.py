@@ -36,7 +36,7 @@ for variant in ['default','nondefault']:
     tl,tc=np.asarray(laser['xyz']),np.asarray(camera['xyz']);k=calibration['camera_intrinsics']
     for index,row in enumerate(records[:3],1):
         scan=scans[round(row['scan_s']*1e9)];message=images[round(row['image_s']*1e9)]
-        expected=bridge.imgmsg_to_cv2(message,'rgb8').copy();colored=0
+        expected=bridge.imgmsg_to_cv2(message,'rgb8').copy();colored=0;expected_points=[]
         for beam,distance in enumerate(scan.ranges):
             if not math.isfinite(distance) or not scan.range_min<=distance<=scan.range_max:continue
             angle=scan.angle_min+beam*scan.angle_increment
@@ -47,14 +47,27 @@ for variant in ['default','nondefault']:
             if not(0<=u<message.width and 0<=v<message.height):continue
             weight=min(1.,max(0.,(distance-scan.range_min)/(scan.range_max-scan.range_min)))
             cv2.circle(expected,(u,v),3,(int(255*(1-weight)),0,int(255*weight)),-1);colored+=1
+            expected_points.append(dict(beam_index=beam,distance_m=distance,pixel=[u,v],camera_body_xyz_m=point.tolist()))
         actual=cv2.cvtColor(cv2.imread(str(directory/f'projection_{index:03d}.png')),cv2.COLOR_BGR2RGB)
         assert colored==row['visible_points'] and np.array_equal(actual,expected),(variant,index,np.count_nonzero(actual!=expected))
         assert abs(row['scan_s']-row['image_s'])<=.05+1e-9
-        report.append(dict(variant=variant,image=index,visible_points=colored,pixel_exact=True,sha256=hashlib.sha256(actual.tobytes()).hexdigest()))
+        correspondences=json.loads((directory/f'projection_{index:03d}.points.json').read_text())
+        assert correspondences['scan_stamp_ns']==scan.header.stamp.sec*10**9+scan.header.stamp.nanosec
+        assert correspondences['image_stamp_ns']==message.header.stamp.sec*10**9+message.header.stamp.nanosec
+        assert len(correspondences['points'])==len(expected_points)
+        for actual_point,expected_point in zip(correspondences['points'],expected_points):
+            assert actual_point['beam_index']==expected_point['beam_index']
+            assert actual_point['pixel']==expected_point['pixel']
+            assert actual_point['distance_m']==expected_point['distance_m']
+            assert np.allclose(actual_point['camera_body_xyz_m'],expected_point['camera_body_xyz_m'],atol=1e-10,rtol=0)
+        report.append(dict(variant=variant,image=index,visible_points=colored,pixel_exact=True,
+                           point_distance_correspondences_verified=len(expected_points),
+                           sha256=hashlib.sha256(actual.tobytes()).hexdigest()))
+    viewer=json.loads((directory/'clock_switch_demo.json').read_text());assert viewer['received_debug_images']>=10
+    assert viewer['encodings']==['rgb8'] and viewer['image_shapes']==[[640,480]]
+    assert viewer['observed_clock_modes']==([False,True] if variant=='nondefault' else [True])
     if variant=='nondefault':
         assert k['fx']==420 and k['fy']==440 and laser['xyz'][2]==.45 and camera['xyz'][2]==.75
-        viewer=json.loads((directory/'clock_switch_demo.json').read_text());assert viewer['received_debug_images']>=10
-        assert viewer['observed_clock_modes']==[False,True] and viewer['encodings']==['rgb8'] and viewer['image_shapes']==[[640,480]]
         assert records[0]['median_projected_v']>k['cy']
 graphs=list(root.glob('*.gv'));assert graphs
 assert any(all(name in path.read_text() for name in ['map','odom','base_link','laser_link','camera_link']) for path in graphs)

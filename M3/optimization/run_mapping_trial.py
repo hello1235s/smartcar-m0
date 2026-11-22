@@ -19,6 +19,7 @@ tf2_runtime=configure_tf2(ROOT)
 experiment_lock=acquire()
 p=argparse.ArgumentParser(); p.add_argument('--seed',type=int,default=43); p.add_argument('--label',default='qualified_mapping')
 p.add_argument('--timeout',type=float,default=900.); p.add_argument('--promote',action=argparse.BooleanOptionalAction,default=True)
+p.add_argument('--viewer',action='store_true',help='Show and record actual live SLAM map and TF application')
 a=p.parse_args(); os.environ['ROS_DOMAIN_ID']='165'
 env=dict(os.environ,ROS_DOMAIN_ID='165',GAZEBO_MASTER_URI='http://127.0.0.1:11383',GAZEBO_MODEL_DATABASE_URI='')
 out=ROOT/'M3/M3-2/results'/(time.strftime('%Y%m%d_%H%M%S')+'_'+a.label); out.mkdir(parents=True)
@@ -38,6 +39,9 @@ def start(command,name):
 try:
     start(['ros2','launch','smart_car_description','sim.launch.py','world:='+str(ROOT/'M3/M3-2/worlds/scene.world'),'x:=1.0','y:=1.0','physics_seed:='+str(a.seed)],'simulation')
     start(['ros2','run','slam_toolbox','async_slam_toolbox_node','--ros-args','--params-file',str(out/'slam_params_used.yaml')],'slam')
+    if a.viewer:
+        start([str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/M3-2/scripts/live_mapping_view.py'),
+               '--out',str(out/'actual_operation')],'actual_operation_view')
     start(['ros2','bag','record','-o',str(out/'bag'),'/scan','/odom','/tf','/tf_static','/clock','/gazebo/model_states'],'bag')
     with (out/'route.log').open('w') as log:
         route=subprocess.run([str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/M3-2/scripts/drive_route.py'),'--out',str(out),'--timeout',str(a.timeout)],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=a.timeout+30)

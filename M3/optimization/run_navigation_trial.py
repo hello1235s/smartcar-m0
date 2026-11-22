@@ -23,6 +23,11 @@ p.add_argument('--params',type=Path); p.add_argument('--obstacle-at'); p.add_arg
 p.add_argument('--delay',type=float,default=3.); p.add_argument('--timeout',type=float,default=150.)
 p.add_argument('--seed',type=int,default=100); p.add_argument('--domain',type=int,default=180); p.add_argument('--port',default='11382')
 p.add_argument('--goal',default='10,4,1.5707963267948966')
+p.add_argument('--goal-source',choices=['coordinates','rviz'],default='coordinates')
+p.add_argument('--goal-wait-timeout',type=float,default=180.)
+p.add_argument('--injection-reference',choices=['accepted','motion'],default='accepted')
+p.add_argument('--rviz',action='store_true')
+p.add_argument('--record-view',action='store_true')
 p.add_argument('--gui',action='store_true'); p.add_argument('--viewer',action='store_true')
 p.add_argument('--hold-after',type=float,default=0.,help='GUI-only presentation pause after the saved result; excluded from measurements')
 a=p.parse_args()
@@ -55,6 +60,7 @@ versions=subprocess.run(['dpkg-query','-W','ros-humble-navigation2','ros-humble-
 for name in ['packages.txt','packages.sha256']:
     shutil.copy2(ROOT/'vendor/m3-dds'/name,folder/('dds_'+name))
 metadata=dict(label=a.label,runs_requested=a.runs,obstacle_at=a.obstacle_at,obstacle_size=a.obstacle_size,delay_s=a.delay,
+              injection_reference=a.injection_reference,goal_source=a.goal_source,rviz_enabled=a.rviz,
               gui=a.gui,live_view=a.viewer,presentation_hold_wall_s=a.hold_after if a.gui else 0.,
               base_seed=a.seed,goal_map=a.goal,params_source=str(params),params_sha256=hashlib.sha256(actual.read_bytes()).hexdigest(),
               code_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
@@ -73,12 +79,17 @@ for i in range(a.runs):
         process=subprocess.Popen(['ros2','launch',str(ROOT/'M3/M3-3/bringup.launch.py'),'params_file:='+str(actual),'physics_seed:='+str(a.seed+i)],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
         if a.gui:
             children.append(subprocess.Popen(['gzclient'],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True))
+        if a.rviz:
+            children.append(subprocess.Popen(['rviz2','-d',str(ROOT/'M3/M3-3/config/exam_navigation.rviz'),
+                '--ros-args','-p','use_sim_time:=true'],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True))
         if a.viewer:
             viewargs=[str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/M3-4/scripts/live_view.py'),'--out',str(directory/'screenshots'),'--obstacle-at',a.obstacle_at or '8.0,1.6','--obstacle-size',str(a.obstacle_size)]
             viewenv=dict(env)
+            if a.record_view:viewargs.append('--record')
             if not a.gui: viewenv['QT_QPA_PLATFORM']='offscreen'
             children.append(subprocess.Popen(viewargs,cwd=ROOT,env=viewenv,stdout=log,stderr=subprocess.STDOUT,start_new_session=True))
         command=[str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/M3-3/scripts/nav_trial.py'),'--out',str(directory),'--timeout',str(a.timeout),'--goal',a.goal]
+        command+=['--goal-source',a.goal_source,'--goal-wait-timeout',str(a.goal_wait_timeout),'--injection-reference',a.injection_reference]
         if a.obstacle_at: command+=['--obstacle-at',a.obstacle_at,'--delay',str(a.delay),'--obstacle-size',str(a.obstacle_size)]
         with (directory/'trial.log').open('w') as driver:
             completed=subprocess.run(command,cwd=ROOT,env=env,stdout=driver,stderr=subprocess.STDOUT,timeout=a.timeout*8+240)

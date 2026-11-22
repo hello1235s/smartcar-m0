@@ -9,9 +9,13 @@ if [ "$#" -gt 0 ]; then shift; fi
 case "$task_mode" in
   dynamic)
     exec .venv-ros/bin/python M3/optimization/run_navigation_trial.py \
-      --label live_dynamic --runs 1 --seed 900 --gui --viewer --hold-after 8 \
+      --label live_dynamic --runs 1 --seed 900 --gui --viewer --record-view --hold-after 8 \
       --params M3/M3-4/config/planner_B_tuned_params.yaml \
-      --obstacle-at 8.0,1.6 --delay 3 "$@" ;;
+      --obstacle-at 8.0,1.6 --delay 3 --injection-reference motion "$@" ;;
+  target)
+    exec .venv-ros/bin/python M3/optimization/run_navigation_trial.py \
+      --label live_exam_target --runs 1 --seed 901 --rviz --viewer --record-view \
+      --goal-source rviz --goal-wait-timeout 180 "$@" ;;
   static)
     exec .venv-ros/bin/python M3/optimization/run_navigation_trial.py \
       --label live_static --runs 1 --seed 900 --gui --viewer --hold-after 8 "$@" ;;
@@ -21,6 +25,6 @@ case "$task_mode" in
   mapping)
     exec .venv-ros/bin/python M3/optimization/run_mapping_trial.py "$@" ;;
   *)
-    printf 'Usage: bash scripts/run_m3_demo.sh {dynamic|static|square|mapping} [options]\n' >&2
+    printf 'Usage: bash scripts/run_m3_demo.sh {dynamic|static|target|square|mapping} [options]\n' >&2
     exit 2 ;;
 esac

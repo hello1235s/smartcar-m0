@@ -187,11 +187,27 @@ class View(QWidget):
 
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument('--out',required=True); p.add_argument('--obstacle-at',default='8.0,1.6'); p.add_argument('--obstacle-size',type=float,default=.6); p.add_argument('--seconds',type=float); p.add_argument('--confirmation-log'); a=p.parse_args(); out=Path(a.out); out.mkdir(parents=True,exist_ok=True); root=Path(__file__).resolve().parents[3]
+    p=argparse.ArgumentParser(); p.add_argument('--out',required=True); p.add_argument('--obstacle-at',default='8.0,1.6'); p.add_argument('--obstacle-size',type=float,default=.6); p.add_argument('--seconds',type=float); p.add_argument('--confirmation-log');p.add_argument('--record',action='store_true'); a=p.parse_args(); out=Path(a.out); out.mkdir(parents=True,exist_ok=True); root=Path(__file__).resolve().parents[3]
     rclpy.init(); app=QApplication(sys.argv); signal.signal(signal.SIGTERM,lambda *args:app.quit()); signal.signal(signal.SIGINT,lambda *args:app.quit()); view=View(root,out,tuple(map(float,a.obstacle_at.split(','))),a.obstacle_size,a.confirmation_log); view.show()
     if a.seconds: QTimer.singleShot(int(a.seconds*1000),app.quit)
+    recording=None
+    if a.record:
+        import cv2
+        import numpy as np
+        from PyQt5.QtGui import QImage
+        recording=cv2.VideoWriter(str(out/'actual_navigation.avi'),cv2.VideoWriter_fourcc(*'MJPG'),4,(900,650))
+        if not recording.isOpened():raise RuntimeError('Actual navigation application video writer failed')
+        view.stats['recorded_video_frames']=0
+        def record_frame():
+            capture=view.grab().toImage().convertToFormat(QImage.Format_RGBA8888)
+            data=capture.bits();data.setsize(capture.byteCount())
+            pixels=np.frombuffer(data,dtype=np.uint8).reshape(650,900,4)
+            recording.write(cv2.cvtColor(pixels,cv2.COLOR_RGBA2BGR));view.stats['recorded_video_frames']+=1
+        record_timer=QTimer();record_timer.timeout.connect(record_frame);record_timer.start(250)
     try: app.exec_()
-    finally: view.save_status(); view.node.destroy_node(); rclpy.try_shutdown()
+    finally:
+        if recording is not None:recording.release()
+        view.save_status(); view.node.destroy_node(); rclpy.try_shutdown()
 
 
 if __name__=='__main__': main()

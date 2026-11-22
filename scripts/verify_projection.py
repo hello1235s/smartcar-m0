@@ -68,12 +68,10 @@ try:
         if variant == 'nondefault':
             command('sweep', [python, str(TASK/'sweep_sync.py'), str(bag), '--out', str(directory/'sync_sweep.csv')])
         project = start('projection_'+variant, [python, str(TASK/'projection_node.py'), '--ros-args', '-p', 'use_sim_time:=true', '-p', 'extrinsics_file:='+str(extrinsics), '-p', 'output_dir:='+str(directory)])
-        viewer = None
-        if variant == 'nondefault':
-            viewer = start('viewer', ['/usr/bin/python3', str(TASK/'clock_viewer.py'), '--seconds', '23', '--out', str(directory/'clock_switch_demo.avi'), '--ros-args', '-p', 'use_sim_time:=true'])
+        viewer = start('viewer_'+variant, ['/usr/bin/python3', str(TASK/'clock_viewer.py'), '--seconds', '23', '--out', str(directory/'clock_switch_demo.avi'), '--ros-args', '-p', 'use_sim_time:=true'])
         time.sleep(3)
         play = start('play_'+variant, ['ros2', 'bag', 'play', str(bag), '--clock', '--rate', '0.5' if viewer else '1.0'])
-        if viewer:
+        if variant == 'nondefault':
             time.sleep(4)
             for name in ['laser_camera_projection', 'projection_clock_viewer']:
                 set_clock(name, False)
@@ -83,14 +81,14 @@ try:
         play.wait(timeout=40)
         if viewer:
             viewer.wait(timeout=15)
-            assert viewer.returncode == 0, (OUT/'viewer.log').read_text()[-1500:]
+            assert viewer.returncode == 0, (OUT/('viewer_'+variant+'.log')).read_text()[-1500:]
             command('tf_tree', ['ros2', 'run', 'tf2_tools', 'view_frames'], timeout=20)
         stop(project)
         images = list(directory.glob('projection_*.png'))
         records = [json.loads(line) for line in (directory/'clock_observations.jsonl').read_text().splitlines()]
         assert len(images) == 3 and records and min(row['visible_points'] for row in records) > 0
         report[variant] = {'paired_frames': len(records), 'images': [p.name for p in images], 'clock_modes': sorted(set(row['use_sim_time'] for row in records)), 'median_v_first': records[0]['median_projected_v']}
-        if viewer:
+        if variant == 'nondefault':
             assert report[variant]['clock_modes'] == [False, True], report
             assert (directory/'clock_switch_demo.avi').stat().st_size > 10000
     report['result'] = 'PASS'

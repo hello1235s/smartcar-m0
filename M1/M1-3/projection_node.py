@@ -104,17 +104,28 @@ class Projection(Node):
         v = np.rint(k['fy'] * (-points[:, 2]) / points[:, 0] + k['cy']).astype(int)
         image = self.bridge.imgmsg_to_cv2(message, desired_encoding='rgb8').copy()
         colored = 0
-        for x, y, distance in zip(u, v, distances):
+        point_records = []
+        beam_indices = np.flatnonzero(valid)[forward]
+        for x, y, distance, beam, camera_point in zip(u, v, distances, beam_indices, points):
             if 0 <= x < message.width and 0 <= y < message.height:
                 weight = float(np.clip((distance - scan.range_min) / (scan.range_max - scan.range_min), 0, 1))
                 cv2.circle(image, (int(x), int(y)), 3, (int(255*(1-weight)), 0, int(255*weight)), -1)
                 colored += 1
+                point_records.append(dict(beam_index=int(beam), distance_m=float(distance),
+                                          pixel=[int(x), int(y)], camera_body_xyz_m=camera_point.tolist()))
         output = self.bridge.cv2_to_imgmsg(image, encoding='rgb8')
         output.header = message.header
         self.publisher.publish(output)
         self.count += 1
         if self.count <= self.get_parameter('max_images').value:
             cv2.imwrite(str(self.directory / ('projection_%03d.png' % self.count)), cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
+            correspondence = dict(image='projection_%03d.png' % self.count,
+                                  scan_stamp_ns=Time.from_msg(scan.header.stamp).nanoseconds,
+                                  image_stamp_ns=Time.from_msg(message.header.stamp).nanoseconds,
+                                  source_frame=scan.header.frame_id, target_frame='camera_link',
+                                  points=point_records)
+            (self.directory / ('projection_%03d.points.json' % self.count)).write_text(
+                json.dumps(correspondence, indent=2), encoding='utf-8')
         self.clock_log.write(json.dumps({'pair': self.count, 'scan_s': Time.from_msg(scan.header.stamp).nanoseconds / 1e9,
                                          'image_s': Time.from_msg(message.header.stamp).nanoseconds / 1e9,
                                          'node_s': self.get_clock().now().nanoseconds / 1e9,

@@ -16,7 +16,7 @@ from rclpy.qos import qos_profile_sensor_data
 from nav2_msgs.action import NavigateToPose
 from nav2_msgs.msg import BehaviorTreeLog
 from nav_msgs.msg import Odometry,Path as NavPath,OccupancyGrid
-from geometry_msgs.msg import TwistStamped,Twist
+from geometry_msgs.msg import TwistStamped,Twist,PoseStamped
 from gazebo_msgs.msg import ModelStates
 from gazebo_msgs.srv import SpawnEntity
 from lifecycle_msgs.srv import GetState
@@ -32,6 +32,10 @@ def main():
     p.add_argument('--out',required=True); p.add_argument('--goal',default='10,4,1.5707963267948966')
     p.add_argument('--timeout',type=float,default=150.); p.add_argument('--obstacle-at')
     p.add_argument('--delay',type=float,default=3.); p.add_argument('--obstacle-size',type=float,default=.6)
+    p.add_argument('--injection-reference',choices=['accepted','motion'],default='accepted')
+    p.add_argument('--goal-source',choices=['coordinates','rviz'],default='coordinates')
+    p.add_argument('--goal-topic',default='/smartcar/exam_goal')
+    p.add_argument('--goal-wait-timeout',type=float,default=180.)
     p.add_argument('--world-origin',default='1,1,0'); p.add_argument('--rear-reference',choices=['true','false'],default='true')
     p.add_argument('--position-limit',type=float,default=.15); p.add_argument('--yaw-limit',type=float,default=.20)
     p.add_argument('--minimum-path-length',type=float,default=5.)
@@ -41,13 +45,19 @@ def main():
     if len(goal)!=3 or len(origin)!=3: p.error('goal and world-origin require x,y,yaw')
     if not all(math.isfinite(v) for v in goal+origin): p.error('goal/origin must be finite')
     if min(a.timeout,a.obstacle_size,a.position_limit,a.yaw_limit)<=0 or a.delay<0: p.error('timeouts, dimensions and tolerances must be positive; delay cannot be negative')
+    if not math.isfinite(a.goal_wait_timeout) or a.goal_wait_timeout<=0:p.error('goal-wait-timeout must be positive and finite')
     rclpy.init(); node=Node('navigation_trial',parameter_overrides=[Parameter('use_sim_time',value=True)])
     buffer=Buffer(); listener=TransformListener(buffer,node)
     trajectory=[]; commands=[]; plans=[]; truth=[]; estimates=[]; scan_times=[]; events=[]; measured_speeds=[]; costmaps={}; controller_commands=[]
+    first_motion=None;pose_goal=[];start=None
     def seconds(): return node.get_clock().now().nanoseconds/1e9
     def odom(m):
+        nonlocal first_motion
         trajectory.append([seconds(),m.pose.pose.position.x,m.pose.pose.position.y,yaw(m.pose.pose.orientation)])
         measured_speeds.append([seconds(),m.twist.twist.linear.x,m.twist.twist.angular.z])
+        if start is not None and first_motion is None and (abs(m.twist.twist.linear.x)>.02 or abs(m.twist.twist.angular.z)>.02):
+            first_motion=seconds()
+            print('NAV_MOTION_STARTED '+json.dumps(dict(sim_t=first_motion,source='/odom twist',threshold=.02)),flush=True)
     def cmd(m):
         v,w=m.twist.linear.x,m.twist.angular.z
         commands.append([seconds(),v,w,math.atan(.28*w/v) if abs(v)>.005 else 0.])
@@ -64,6 +74,18 @@ def main():
     node.create_subscription(NavPath,'/plan',plan,10)
     node.create_subscription(ModelStates,'/gazebo/model_states',ground_truth,qos_profile_sensor_data)
     node.create_subscription(LaserScan,'/scan',lambda m:scan_times.append(seconds()),qos_profile_sensor_data)
+    def receive_pose_goal(message):
+        if pose_goal or a.goal_source!='rviz':return
+        position=message.pose.position;q=message.pose.orientation
+        components=[position.x,position.y,q.x,q.y,q.z,q.w]
+        if message.header.frame_id!='map' or not all(math.isfinite(v) for v in components) or abs(q.x*q.x+q.y*q.y+q.z*q.z+q.w*q.w-1.)>1e-3:
+            node.get_logger().warning('Rejected RViz goal: expected map frame and finite normalized quaternion')
+            return
+        pose_goal.append(dict(frame_id=message.header.frame_id,x=position.x,y=position.y,yaw=yaw(q),
+                              header_stamp=dict(sec=message.header.stamp.sec,nanosec=message.header.stamp.nanosec),
+                              received_sim_t=seconds(),topic=a.goal_topic))
+        (out/'rviz_goal_received.json').write_text(json.dumps(pose_goal[0],indent=2))
+    node.create_subscription(PoseStamped,a.goal_topic,receive_pose_goal,10)
     def behavior_log(message):
         # Event timestamps inside Humble's BT logger use another clock; receipt is ROS sim time.
         for event in message.event_log:
@@ -98,6 +120,12 @@ def main():
             state=lifecycle.call_async(GetState.Request()); rclpy.spin_until_future_complete(node,state,timeout_sec=2)
             if state.done() and state.result().current_state.id==3: break
         else: raise RuntimeError('BT navigator failed to become active')
+        if a.goal_source=='rviz':
+            print('WAITING_FOR_RVIZ_GOAL '+a.goal_topic,flush=True)
+            deadline=time.monotonic()+a.goal_wait_timeout
+            while not pose_goal and time.monotonic()<deadline:spin()
+            if not pose_goal:raise RuntimeError('RViz goal not received before wait timeout')
+            goal=(pose_goal[0]['x'],pose_goal[0]['y'],pose_goal[0]['yaw'])
         message=NavigateToPose.Goal(); message.pose.header.frame_id='map'; message.pose.header.stamp=node.get_clock().now().to_msg()
         message.pose.pose.position.x,message.pose.pose.position.y=goal[:2]
         message.pose.pose.orientation.z,message.pose.pose.orientation.w=math.sin(goal[2]/2),math.cos(goal[2]/2)
@@ -109,7 +137,8 @@ def main():
         print('NAV_TARGET_ACCEPTED '+json.dumps(dict(goal_map=goal,world_goal_for_evaluation=world_goal(goal,origin))),flush=True)
         while not result.done() and seconds()-start<a.timeout and time.monotonic()-wall_start<a.timeout*8:
             spin()
-            if a.obstacle_at and injection is None and seconds()-start>=a.delay:
+            injection_origin=first_motion if a.injection_reference=='motion' else start
+            if a.obstacle_at and injection is None and injection_origin is not None and seconds()-injection_origin>=a.delay:
                 client=node.create_client(SpawnEntity,'/spawn_entity')
                 if not client.wait_for_service(timeout_sec=2): raise RuntimeError('Gazebo spawn service unavailable')
                 request=SpawnEntity.Request(); request.name='temporary_obstacle'
@@ -118,7 +147,9 @@ def main():
                 request.xml='<sdf version="1.6"><model name="temporary_obstacle"><static>true</static><link name="body"><collision name="c"><geometry><box><size>%s %s 1</size></box></geometry></collision><visual name="v"><geometry><box><size>%s %s 1</size></box></geometry></visual></link></model></sdf>'%(size,size,size,size)
                 spawn=client.call_async(request); injection=seconds()
             if spawn and spawn.done() and obstacle is None:
-                obstacle=dict(success=spawn.result().success,status=spawn.result().status_message,sim_t=injection,confirmed_sim_t=seconds(),world_xy=a.obstacle_at,size=a.obstacle_size)
+                obstacle=dict(success=spawn.result().success,status=spawn.result().status_message,sim_t=injection,confirmed_sim_t=seconds(),world_xy=a.obstacle_at,size=a.obstacle_size,
+                              timing_reference=a.injection_reference,reference_sim_t=injection_origin,
+                              delay_from_reference_s=injection-injection_origin)
                 print('DYNAMIC_OBSTACLE_INSERTED '+json.dumps(obstacle),flush=True)
                 if not obstacle['success']: raise RuntimeError('Obstacle injection failed')
         if result.done(): status=result.result().status
@@ -175,6 +206,8 @@ def main():
                 failure_replans.append(dict(failure_received_sim_t=event['received_sim_t'],next_plan_delay_s=subsequent['t']-event['received_sim_t'] if subsequent else None))
         report=dict(success=not reasons,action_success=status==4,status=status,goal_accepted=accepted,failure_reason=failure,
                     qualification_failures=reasons,goal_map=goal,world_goal_for_evaluation=reference_goal,map_world_origin=origin,
+                    goal_source=a.goal_source,rviz_goal=pose_goal[0] if pose_goal else None,
+                    first_motion_sim_t=first_motion,injection_reference=a.injection_reference,
                     endpoint_error_world_truth=truth_error,endpoint_error_map_estimate=estimate_error,
                     truth_pose_final=truth[-1][1:] if truth else None,estimated_pose_final=estimates[-1][1:] if estimates else None,
                     qualification_thresholds=dict(position_m=a.position_limit,yaw_rad=a.yaw_limit,minimum_path_m=a.minimum_path_length),
