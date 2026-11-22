@@ -36,7 +36,9 @@ class Desktop:
             window=pending.pop();name=C.c_char_p()
             if self.x.XFetchName(self.display,window,C.byref(name)) and name.value:
                 value=name.value.decode('utf-8',errors='replace');self.x.XFree(name)
-                if title.casefold() in value.casefold():matches.append((window,value))
+                if title.casefold() in value.casefold():
+                    geometry=self.geometry(window)
+                    if geometry['width']>=300 and geometry['height']>=200:matches.append((window,value))
             root,parent=C.c_ulong(),C.c_ulong();children=C.POINTER(C.c_ulong)();count=C.c_uint()
             if self.x.XQueryTree(self.display,window,C.byref(root),C.byref(parent),C.byref(children),C.byref(count)):
                 if children:

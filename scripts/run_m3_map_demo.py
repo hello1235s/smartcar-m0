@@ -24,9 +24,9 @@ out=ROOT/'M3/M3-2/results'/(time.strftime('%Y%m%d_%H%M%S')+'_native_rviz_map');o
 mapfile=ROOT/'M3/M3-2/maps/map.yaml';image=ROOT/'M3/M3-2/maps/map.pgm'
 before={str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in [mapfile,image]}
 processes=[];logs=[];record=dict(status='running',map_hashes=before,domain=a.domain)
-def start(command,name):
+def start(command,name,env=None):
     log=(out/(name+'.log')).open('w');logs.append(log)
-    process=subprocess.Popen(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,start_new_session=True);processes.append(process);return process
+    process=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True);processes.append(process);return process
 try:
     server=start(['ros2','run','nav2_map_server','map_server','--ros-args','-r','__node:=guide_map_server',
                   '-p','yaml_filename:='+str(mapfile),'-p','use_sim_time:=false'],'map_server')
@@ -46,7 +46,8 @@ try:
     assert counts==dict(occupied=1600,free=24784,unknown=12820),counts
     record.update(native_getmap_counts=counts,width=message.info.width,height=message.info.height)
     node.destroy_node();rclpy.shutdown()
-    rviz=start(['rviz2','-d',str(ROOT/'M3/M3-3/config/exam_navigation.rviz'),'--ros-args','-p','use_sim_time:=false'],'rviz')
+    rviz=start(['rviz2','-d',str(ROOT/'M3/M3-3/config/exam_navigation.rviz'),'--ros-args','-p','use_sim_time:=false'],'rviz',dict(os.environ,LIBGL_ALWAYS_SOFTWARE='1'))
+    record['rviz_rendering']='Mesa software rendering for RViz only; simulation/control environment unchanged'
     time.sleep(12)
     capture=subprocess.run([sys.executable,str(ROOT/'M3/common/x11_app_window.py'),'--out',str(out/'actual_rviz_map.png')],cwd=ROOT,capture_output=True,text=True,timeout=20)
     (out/'capture.log').write_text(capture.stdout+capture.stderr);assert capture.returncode==0
