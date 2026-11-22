@@ -80,7 +80,8 @@ for i in range(a.runs):
         if a.gui:
             children.append(subprocess.Popen(['gzclient'],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True))
         if a.rviz:
-            children.append(subprocess.Popen(['rviz2','-d',str(ROOT/'M3/M3-3/config/exam_navigation.rviz'),
+            children.append(subprocess.Popen(['ros2','run','smartcar_nav_checks','rviz_showcase','--config',str(ROOT/'M3/M3-3/config/exam_navigation.rviz'),
+                '--out',str(directory/'rviz'),
                 '--ros-args','-p','use_sim_time:=true'],cwd=ROOT,env=dict(env,LIBGL_ALWAYS_SOFTWARE='1'),stdout=log,stderr=subprocess.STDOUT,start_new_session=True))
         if a.viewer:
             viewargs=[str(ROOT/'.venv-ros/bin/python'),str(ROOT/'M3/M3-4/scripts/live_view.py'),'--out',str(directory/'screenshots'),'--obstacle-at',a.obstacle_at or '8.0,1.6','--obstacle-size',str(a.obstacle_size)]

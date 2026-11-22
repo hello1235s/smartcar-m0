@@ -46,11 +46,16 @@ try:
     assert counts==dict(occupied=1600,free=24784,unknown=12820),counts
     record.update(native_getmap_counts=counts,width=message.info.width,height=message.info.height)
     node.destroy_node();rclpy.shutdown()
-    rviz=start(['rviz2','-d',str(ROOT/'M3/M3-3/config/exam_navigation.rviz'),'--ros-args','-p','use_sim_time:=false'],'rviz',dict(os.environ,LIBGL_ALWAYS_SOFTWARE='1'))
+    rviz=start(['ros2','run','smartcar_nav_checks','rviz_showcase','--config',str(ROOT/'M3/M3-3/config/exam_navigation.rviz'),
+                '--out',str(out),'--ros-args','-p','use_sim_time:=false'],'rviz',dict(os.environ,LIBGL_ALWAYS_SOFTWARE='1'))
     record['rviz_rendering']='Mesa software rendering for RViz only; simulation/control environment unchanged'
     time.sleep(12)
-    capture=subprocess.run([sys.executable,str(ROOT/'M3/common/x11_app_window.py'),'--out',str(out/'actual_rviz_map.png')],cwd=ROOT,capture_output=True,text=True,timeout=20)
-    (out/'capture.log').write_text(capture.stdout+capture.stderr);assert capture.returncode==0
+    render=out/'native_rviz_render.png'
+    import cv2
+    pixels=cv2.imread(str(render))
+    assert pixels is not None and float(pixels.std())>5,'RViz internal framebuffer is missing or blank'
+    record['native_rviz_capture']=json.loads((out/'native_rviz_render.json').read_text())
+    record['capture_method']='RViz internal render window, not an XWayland screen readback'
     deadline=time.monotonic()+max(0,a.seconds-12)
     while time.monotonic()<deadline:
         if rviz.poll() is not None or server.poll() is not None:raise RuntimeError('Map/RViz closed during display')
