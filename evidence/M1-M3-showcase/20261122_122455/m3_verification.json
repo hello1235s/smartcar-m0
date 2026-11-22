@@ -1,0 +1,168 @@
+{
+  "status": "PASS_except_interactive_rviz_targets",
+  "m1_state": "evidence/M1-M3-showcase/20261122_122455",
+  "steps": [
+    {
+      "name": "native_rviz_map",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "scripts/run_m3_map_demo.py",
+        "--seconds",
+        "20"
+      ],
+      "returncode": 0,
+      "result_dirs": [
+        "M3/M3-2/results/20261122_123217_native_rviz_map"
+      ]
+    },
+    {
+      "name": "actual_slam_operation",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "M3/optimization/run_mapping_trial.py",
+        "--no-promote",
+        "--viewer",
+        "--label",
+        "showcase_recording"
+      ],
+      "returncode": 0,
+      "result_dirs": [
+        "M3/M3-2/results/20261122_123240_showcase_recording"
+      ]
+    },
+    {
+      "name": "nominal_motion",
+      "command": [
+        "bash",
+        "scripts/run_m3_demo.sh",
+        "dynamic",
+        "--label",
+        "showcase_nominal_motion",
+        "--runs",
+        "1",
+        "--seed",
+        "710"
+      ],
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_123520_showcase_nominal_motion"
+      ]
+    },
+    {
+      "name": "new_obstacle_twice",
+      "command": [
+        "bash",
+        "scripts/run_m3_demo.sh",
+        "dynamic",
+        "--label",
+        "showcase_new_obstacle_twice",
+        "--runs",
+        "2",
+        "--seed",
+        "720",
+        "--obstacle-at",
+        "9.2,1.3"
+      ],
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_123625_showcase_new_obstacle_twice"
+      ]
+    },
+    {
+      "name": "blocked_goal_boundary",
+      "command": [
+        "bash",
+        "scripts/run_m3_demo.sh",
+        "dynamic",
+        "--label",
+        "showcase_blocked_goal_boundary",
+        "--runs",
+        "1",
+        "--seed",
+        "730",
+        "--obstacle-at",
+        "11,5",
+        "--obstacle-size",
+        "0.8",
+        "--timeout",
+        "90"
+      ],
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_123835_showcase_blocked_goal_boundary"
+      ]
+    }
+  ],
+  "new_obstacle_world": [
+    9.2,
+    1.3
+  ],
+  "note": "Agent-selected new test location simulates examiner input; it is not actual examiner randomness.",
+  "previous_attempts": [
+    {
+      "status": "FAIL",
+      "m1_state": "evidence/M1-M3-showcase/20261122_122455",
+      "steps": [
+        {
+          "name": "native_rviz_map",
+          "command": [
+            "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+            "scripts/run_m3_map_demo.py",
+            "--seconds",
+            "20"
+          ],
+          "returncode": 1,
+          "result_dirs": [
+            "M3/M3-2/results/20261122_122951_native_rviz_map"
+          ]
+        }
+      ],
+      "new_obstacle_world": [
+        9.2,
+        1.3
+      ],
+      "note": "Agent-selected new test location simulates examiner input; it is not actual examiner randomness.",
+      "error": "native_rviz_map"
+    },
+    {
+      "status": "FAIL",
+      "m1_state": "evidence/M1-M3-showcase/20261122_122455",
+      "steps": [
+        {
+          "name": "native_rviz_map",
+          "command": [
+            "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+            "scripts/run_m3_map_demo.py",
+            "--seconds",
+            "20"
+          ],
+          "returncode": 1,
+          "result_dirs": [
+            "M3/M3-2/results/20261122_123106_native_rviz_map"
+          ]
+        }
+      ],
+      "new_obstacle_world": [
+        9.2,
+        1.3
+      ],
+      "note": "Agent-selected new test location simulates examiner input; it is not actual examiner randomness.",
+      "error": "native_rviz_map"
+    }
+  ],
+  "nominal_motion": {
+    "attempts": 1,
+    "successes": 1,
+    "result_dir": "M3/optimization/results/20261122_123520_showcase_nominal_motion"
+  },
+  "new_obstacle_twice": {
+    "attempts": 2,
+    "successes": 2,
+    "result_dir": "M3/optimization/results/20261122_123625_showcase_new_obstacle_twice"
+  },
+  "blocked_goal_boundary": {
+    "attempts": 1,
+    "successes": 0,
+    "result_dir": "M3/optimization/results/20261122_123835_showcase_blocked_goal_boundary"
+  }
+}

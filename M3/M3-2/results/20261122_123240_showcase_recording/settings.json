@@ -1,0 +1,61 @@
+{
+  "tf2_core_version": "0.25.24",
+  "tf2_core_library": "/home/ubuntu2204/smartcar-m3-opt/vendor/m3-dds/opt/ros/humble/lib/libtf2.so",
+  "tf2_core_library_sha256": "bf1196057a188f43647e167f2626a4af2d07feae376adadc8ab780d47ad21a80",
+  "tf2_scope": "Project-local M3 only; system TF2 and M1 unchanged",
+  "seed": 43,
+  "label": "showcase_recording",
+  "promote_requested": false,
+  "started": 1795321960.4096267,
+  "truth_input_to_slam": false,
+  "code_head": "74fb791b620b31ea4a87df9af80316d2bc071d4c",
+  "finished": 1795322120.3080606,
+  "qualification": {
+    "status": "PASS",
+    "failures": [],
+    "quality": {
+      "resolution_m": 0.05,
+      "wall_points": 191,
+      "wall_fit_slope": -0.00016195206218981453,
+      "wall_rms_m": 0.0035806709688356647,
+      "wall_max_deviation_m": 0.04897700216486906,
+      "loop_wall_columns": 190,
+      "loop_wall_double_clusters": 0,
+      "loop_wall_observed_thickness_max_m": 0.1,
+      "ghost_separation_detection_limit_m": 0.1,
+      "gate_free_cells": 19,
+      "gate_measured_free_width_m": 0.9500000000000001,
+      "unknown_fraction": 0.32621671258034896,
+      "method": "Quantities from actual occupancy image. Zero double clusters does not prove sub-grid zero drift."
+    },
+    "graph": {
+      "vertices": 276,
+      "edges": 296,
+      "historic_constraints": 21
+    },
+    "map_sha256": "60ba81e6cc55ce3dbd63d548b6c41af7a422ff93f27d3a8d2acd46e21855de3a",
+    "promoted": false,
+    "map_yaml_sha256": "ff9fad8c1c9c2678cd6d5cdf3dfe7c702b84af1c33d71315469cf303967f625f",
+    "semantic_roundtrip": {
+      "status": "PASS",
+      "source_yaml": "M3/M3-2/results/20261122_123240_showcase_recording/map.yaml",
+      "source_image_sha256": "60ba81e6cc55ce3dbd63d548b6c41af7a422ff93f27d3a8d2acd46e21855de3a",
+      "source_yaml_sha256": "ff9fad8c1c9c2678cd6d5cdf3dfe7c702b84af1c33d71315469cf303967f625f",
+      "expected_from_actual_pgm": {
+        "occupied": 1558,
+        "unknown": 12789,
+        "free": 24857
+      },
+      "observed_from_native_nav2_getmap": {
+        "occupied": 1558,
+        "unknown": 12789,
+        "free": 24857
+      },
+      "other_values": {},
+      "normalization": null,
+      "native_getmap_service": "/semantic_map_server/map",
+      "free_thresh": 0.196,
+      "image_pixels_unchanged": true
+    }
+  }
+}

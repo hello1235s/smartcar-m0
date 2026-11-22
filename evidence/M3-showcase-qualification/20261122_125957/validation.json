@@ -1,0 +1,94 @@
+{
+  "status": "completed",
+  "frozen_source": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+  "injection_reference": "motion",
+  "external_truth_limits": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2
+  },
+  "groups": [
+    {
+      "label": "formal_static_B_tuned",
+      "profile": "B_tuned",
+      "runs": 10,
+      "seed": 200,
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned"
+      ],
+      "completed": 10,
+      "successes": 10
+    },
+    {
+      "label": "formal_static_A",
+      "profile": "A",
+      "runs": 3,
+      "seed": 200,
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_130916_showcase_qualified_formal_static_A"
+      ],
+      "completed": 3,
+      "successes": 3
+    },
+    {
+      "label": "formal_static_B",
+      "profile": "B",
+      "runs": 3,
+      "seed": 200,
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_131218_showcase_qualified_formal_static_B"
+      ],
+      "completed": 3,
+      "successes": 3
+    },
+    {
+      "label": "formal_dynamic_A",
+      "profile": "A",
+      "runs": 10,
+      "seed": 200,
+      "obstacle": "8.0,1.6",
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A"
+      ],
+      "completed": 10,
+      "successes": 10
+    },
+    {
+      "label": "formal_dynamic_B",
+      "profile": "B",
+      "runs": 10,
+      "seed": 200,
+      "obstacle": "8.0,1.6",
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B"
+      ],
+      "completed": 10,
+      "successes": 8
+    },
+    {
+      "label": "formal_dynamic_B_tuned",
+      "profile": "B_tuned",
+      "runs": 10,
+      "seed": 200,
+      "obstacle": "8.0,1.6",
+      "returncode": 0,
+      "result_dirs": [
+        "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned"
+      ],
+      "completed": 10,
+      "successes": 10
+    }
+  ],
+  "results_directory": "evidence/M3-showcase-qualification/20261122_125957",
+  "prior_release": "4d7db577bc18a8ce0ae4500994eb012d0e7ecf84",
+  "note": "New six primary/reference groups use the same frozen controller and motion-relative injection. Historical speed/lookahead diagnostics are retained separately, not called freshly repeated.",
+  "error": null,
+  "guard_stop_explanation": "Initial runner stopped on an actual aggressive-B overlap. B failed strict qualification and remains 8/10; this is comparison performance, not infrastructure. Only the previously unrun adopted B_tuned group continues. No source/threshold change or reroll.",
+  "analysis_manifest": "evidence/M3-showcase-qualification/20261122_125957/main_manifest.json",
+  "all_primary_runs_recorded": true,
+  "historical_diagnostics_manifest": "evidence/M3-showcase-qualification/20261122_125957/historical_diagnostics_manifest.json"
+}

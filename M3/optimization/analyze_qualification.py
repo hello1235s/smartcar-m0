@@ -106,7 +106,9 @@ def main():
         randomization='Gazebo seeds recorded; AMCL scheduling and random sampling are not bitwise deterministic',
         means='Time, detour, smoothness and endpoint means use qualified successes only. All failures remain in denominator and CSV. Negative distance differences are retained, including run-to-run path/localization variation.',
         profile_internal_xy_goal_tolerance_m={label:config['controller_server']['ros__parameters']['general_goal_checker']['xy_goal_tolerance'] for label,config in profile_configs.items()},
-        comparison='Same physical goal, map, control libraries and external .15m/.20rad validator. Internal stop tolerance is an explicit tuning variable; current B_tuned is .02m, historical A/B/intermediate profiles .05m. Each profile uses a matching static reference.'),indent=2))
+        injection_reference_by_group={g['label']:m.get('injection_reference','accepted') for g,m in experiment_metadata},
+        source_head_by_group={g['label']:m.get('code_head') for g,m in experiment_metadata},
+        comparison='Every supplied group shares the checked map, control libraries and external .15m/.20rad validator. Internal XY tolerance is an explicit profile setting. Each profile uses its matching static reference when present; historical diagnostics belong in a separate manifest.'),indent=2))
     dynamic=[s for s in summaries if s['group'].startswith('formal_dynamic_')]
     if dynamic:
         fig,axes=plt.subplots(2,2,figsize=(10,7)); labels=[s['profile'] for s in dynamic]

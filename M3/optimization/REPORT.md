@@ -1,74 +1,55 @@
-# M3优化实测总报告
+# M3当前优化与现场验证报告
 
-本轮在Ubuntu 22.04、ROS2 Humble、Gazebo Classic 11、VMware 6 vCPU中实际运行。结果对应当前后轴TF与M3-2新建地图；历史2026-11-16结果单独保留。源码、逐次参数、运行库、地图哈希和完整成败记录可独立核对。不是实车验收，也不把有限样本称为“完美”。
+2026-11-22，Ubuntu22.04 / ROS2 Humble / Gazebo Classic11 / VMware6vCPU。冻结控制源码1b2e64ac8e39e7704654daf251d5cdf605532210；46次当前主对照/无障碍参考全部新采集，另有当前版5次新场景。旧版52条与6条中间诊断保留在独立历史入口，不混入当前控制内核。
 
-## 结果
+## 当前主对照
 
-- 方形反馈闭环10次：后轴真值位置误差0.018285±0.005359m，朝向1.637736±0.191802°，±为样本标准差。
-- 当前SLAM图：0.05m栅格、0.95m地图窄门、268节点/284边/17条历史非邻接约束。北墙共线只反映栅格尺度，不是零误差声明。
-- 默认静态导航：严格10/10，成功平均57.350仿真秒，最大真值位置/朝向误差0.0991m/0.0697rad。
-- 标称动态B_tuned：严格10/10；完整参数对照如下。
-
-|配置|严格成功|成功平均耗时|实际额外路径|指令转向TV|
+|方案|成功/10|成功耗时s|额外路径m|指令转向TV rad/m|
 |---|---:|---:|---:|---:|
-|A|10/10|49.350 s|0.148 m|0.990 rad/m|
-|B|9/10|36.556 s|0.125 m|1.410 rad/m|
-|B_tuned|10/10|47.450 s|-0.230 m|0.871 rad/m|
+|A|10/10|48.8300|0.1356|0.8745|
+|B|8/10|37.7250|0.4499|1.4670|
+|B_tuned|10/10|44.2900|0.1293|0.7610|
 
-依据与限制见[完整CSV](report/all_attempts.csv)、[分组统计与置信区间](report/summary.json)、[口径定义](report/method.json)、[四指标图](report/metrics.png)、[全部轨迹图](report/trajectories.png)、[真实代价地图](report/costmaps.png)和[控制曲线](report/commands.png)。每组10次，10/10的Wilson 95%区间下限仍约72.2%，不是任意环境成功保证。
 
-## 实现变化与因果边界
+默认静态B_tuned严格10/10，成功耗时43.7400仿真秒，最大真值位置0.0697m、朝向0.0562rad。A/B各有3次同内核无障碍参考，B_tuned有10次；全部46次见[CSV](report/all_attempts.csv)、[统计](report/summary.json)、[四指标](report/metrics.png)、[动态30次全部轨迹](report/trajectories.png)。
 
-1. 修正参考点：后轴中点与控制器积分点一致，base_link固定向前0.14m。物理尺寸不变，规划footprint同步平移，SLAM实际重建。
-2. 定时巡航改为odom反馈、加减速、单调路径进度和终点联合判定；真值仅记录。新速度较慢，因此不能把新旧闭合改善全算作反馈收益。新后轴误差统一到车体中心后约0.02156±0.00468m，历史0.2843±0.0408m，两者采用同一物理参考点才可对照。
-3. 同速参考点/控制方式消融的单次探索全部保留：原参考定时约0.1314m、后轴参考定时约0.1415m、原参考反馈约0.0200m、后轴参考反馈约0.0185m。单次不作为显著性检验，只说明主要收益与反馈相关，不能把它归功于移动坐标原点。
-4. Nav2使用SmacHybrid/Reeds-Shepp、AckermannRPP、有界倒车平滑链，关闭原地旋转。控制器在碰撞预测之前限制曲率，并用0.45m虚拟末端参考引导朝向；请求目标不移动，近端按路径终点距离减速。当前默认xy/yaw容差0.02m/0.10rad，外部真值验收仍≤0.15m/0.20rad；A/B历史基线保持0.05m内部停车。收紧余量用于容纳已观测的栅格终点偏移、跟踪余量与定位误差，不靠放宽验收过关。
-5. 默认0.08m规划padding、0.45m软膨胀，给定位、栅格和跟踪误差留余量。早期内岛拐角包络越界失败保留，规划余量不用于缩小独立评价车身。
-6. 修复Humble目标检查路径的TF失败假成功：无效目标四元数被新增插件拒绝。原错误曾在仅行驶约0.24m时返回Action成功，被独立真值门槛拦截。10项Python测试与4项C++回归（位姿有效性、车辆曲率/末端速度约束、标准/扩展插件加载、TF2回调锁顺序）通过。
-7. Fast DDS候选静态8/10，换CycloneDDS后动态仍9/10。进一步发现系统TF2 0.25.23具有上游确认的回调锁反转，与所见TF缓存停滞现象一致：本机两线程回归旧库稳定超时、官方0.25.24核心库通过，见[锁顺序回归](report/tf2_lock_regression.json)和[官方修复PR990](https://github.com/ros2/geometry2/pull/990)。仅在M3进程内加载修复，不修改M1系统环境；各次保存控制器、规划器和AMCL实际加载的TF2库路径。最终对照在修复后全部重采，旧失败完整保留，不把DDS切换独立宣称为根因修复。原故障未取得GDB线程栈，对原现场机制的判断是结合现象、官方修复与本地回归的推断。
+## 本轮实际修复
 
-地图序列化还通过原生Nav2回验：保留原SLAM像素，仅修正free_thresh 0.25→0.196，使12820个灰色未知格不再错误变成自由格。原生map_server加载后1600占据/12820未知/24784自由与原PGM完全一致。当前正式统计均使用修正后的同一PGM与YAML哈希，修正前候选单列保留。
+原临时RViz目标第一次成功，第二次150秒超时；虽然真值已接近1.46cm，Action没有成功，仍保留为失败。末端全局路径出现厘米级倒车再前进折返，车辆反复换向，最小估计路径终点误差2.676cm，未进入2cm目标范围。原始[失败结果](results/20261122_124502_showcase_rviz_goal/run_02/result.json)与[路径](results/20261122_124502_showcase_rviz_goal/run_02/plans.json)保留。
 
-## 新位置、新目标与边界
+修复仅在距实际路径目标20cm内、朝向已满足目标检查器、横向误差小于其XY容差75%时，沿真实目标朝向构造局部末端参考，避免追踪微型折返。未更换目标、不喂真值、不改变碰撞检查或物理尺寸。内部B_tuned仍2cm/0.10rad，A/B仍5cm/0.10rad，外部独立验收仍15cm/0.20rad。先导、正式批次、现场GUI分别保存，不用先导替代十次分母。
 
-|独立场景|严格到达次数|全部尝试最小几何间距(m)|
-|---|---:|---:|
-|heldout_obstacle_east|2/2|0.2549|
-|heldout_obstacle_gate_exit|2/2|0.1572|
-|heldout_goal_northeast|2/2|0.2023|
-|heldout_goal_far_northwest|2/2|0.1567|
-|boundary_blocked_goal|0/1|0.1143|
-|boundary_close_front|0/1|0.1314|
+## 最新展示入口与证据
 
-目标被0.8m箱体占据的场景预期不可达；应检查Action失败/超时、最终速度和几何间距，不把“正确拒绝”混进到达成功率。独立场景的原始CSV、具体坐标/目标/尺寸和失败原因见`extended_report/`及对应实验快照。这些固定额外位置仅提供有限覆盖，不是盲测或随机采样的泛化保证；未测高速移动障碍或真实道路，不扩展结论。
+- 原PGM经原生map_server加载，1600占据/12820未知/24784自由不变；RViz原生渲染内部截图可见原地图。[工程验收索引](../../docs/showcase_acceptance.md)。
+- 真实SLAM巡场录制154次地图更新、471次TF采样与487帧视频；新图通过检查但不晋级，正式导航PGM/YAML不变。
+- RViz原生工具真实鼠标拖选新地图目标，修复后重新跑两次，严格2/2，最大真值位置误差0.0646m。代理选点模拟临时考题，不冒充真实考官随机考核。
+- 新障碍世界(9.2,1.3)当前版2/2；实体在首次/odom运动超过0.02之后3秒生成，激光观测更新代价地图。当前正式三组也使用这个运动起点口径；旧批次从目标接受计时，另存历史。
+- 目标世界(11,5)被0.8m箱覆盖：90秒试验器看门狗取消并停车，未收到Action终态，原始Action状态None，结束原因simulation_timeout，末速度0.0001m/s，最小几何间距0.0996m，重叠采样0。预期不可达，不能计为到达成功；Action失败与试验器超时要分开。
 
-## 指标与证据
+## 四指标与取舍
 
-严格成功同时要求Action成功、独立世界真值终点合格、有效路径超过5m、激光/真值样本充分、保守轮组包络没有与已知方盒重叠，动态场景还要求实体注入成功。碰撞项是基于采样世界位姿和已知几何的独立包络检查，不是Gazebo接触传感器认证。
+成功率使用全部尝试；耗时仅平均严格成功样本，从接受目标到Action结束，展示停留不计时；额外路径为实际世界真值积分减同配置成功无障碍参考均值，负值保留并解释路径与定位波动；平滑度为底盘reference指令转向角总变化/真实里程，非轮胎关节磨损实测。10/10的Wilson95%下限约72.2%，有限样本不能保证任意现场成功。
 
-主路径长度为世界真值积分，额外路径减同一配置成功无障碍参考均值；无成功参考时为N/A。耗时是接受目标到Action结束的仿真时间，不包含停车等待。转向TV来自底盘桥reference的`atan(0.28*omega/v)`，除以真值距离，不冒充转向关节实测。
+## 失败、重规划与历史
 
-保存实际/plan、odom、world_truth、map估计、指令、几何间距、行为树事件和全局/局部OccupancyGrid数组。周期性注入后下一条plan与FollowPath失败后有效新plan分别记录；没有失败或没有后续有效plan时保留空值。全部失败在成功率分母，不只挑成功截图。
+[失败逐例](report/failure_cases.md)包含当前全部未到达数据；[完整候选审计](report/experiment_audit.json)包含旧失败、被拒方案和本次修复前超时。FollowPath错误到后续有效plan的墙钟配对见[主对照](report/replanning_detail.json)与[新场景](extended_report/replanning_detail.json)；无事件留空，不把周期1Hz更新冒称故障恢复。主对照出现错误6次，新场景1次。有新路径不代表最后一定到达。
+
+旧版参数消融仍可从[历史报告快照](../../evidence/M3-showcase-qualification/20261122_125957/previous_release_report)回看，包括速度、前视、预测时域与内部停车余量。它们不与本次新内核样本拼成单因素因果链。本次三组参数比较共享新的同一内核和相同地图、目标、尺寸与运动起点计时。
+
+## 其他已验证基础与限制
+
+方形巡航十次、同速定时/反馈对照和正式SLAM地图仍使用原合格来源；本轮未改该控制路径或地图。TF2官方项目级修复与CycloneDDS保持，真实controller/planner/AMCL加载路径逐次通过核验。几何安全为已知方盒与采样位姿包络，不是实车或连续接触认证；另按相机前突1cm重算[前包络审计](report/camera_margin_audit.json)，本次状态为REVIEW。激进B包含独立保守包络重叠，因此该比较方案不能宣称安全通过；默认采用B_tuned没有前包络重叠。审计的REVIEW与原返回码保留，不改成全部安全PASS。
 
 ## 复现
 
 ```bash
-bash scripts/build_ros.sh
-bash scripts/install_m3_runtime.sh
 source scripts/env.sh
-.venv-ros/bin/python -m unittest discover -s M3/tests -v
-ctest --test-dir build_ros/smartcar_nav_checks --output-on-failure
 bash scripts/run_m3_demo.sh square
-bash scripts/run_m3_demo.sh static
+.venv-ros/bin/python scripts/run_m3_map_demo.py
+bash scripts/run_m3_demo.sh mapping --no-promote --viewer
+bash scripts/run_m3_demo.sh target
 bash scripts/run_m3_demo.sh dynamic
+# 当前完整三组与匹配参考（耗时较长，不与现场演示同时起）
+.venv-ros/bin/python M3/M3-4/scripts/run_benchmark.py --runs 10
 ```
-
-Gazebo实验依次运行，自动入口会锁定同机M3实验并创建新目录。完整批次：`run_qualification.py --suite main`和`--suite extended`；重新建图用`verify_mapping.py`，只有通过才晋级，已有正式结果的地图快照不被改写。大型bag/完整运行日志在Ubuntu和本地交付包，Git保留关键原始CSV/JSON与图。答辩准备和PDF只保留本地。
-
-## 来源
-
-题面与原始车：[Blake-John/22SmartCar](https://github.com/Blake-John/22SmartCar)。后轴里程计依据[Humble steering_odometry.cpp](https://github.com/ros-controls/ros2_controllers/blob/humble/steering_controllers_library/src/steering_odometry.cpp)。目标TF失败链路核对[Humble ControllerServer](https://github.com/ros-navigation/navigation2/blob/humble/nav2_controller/src/controller_server.cpp)及[tf_help.cpp](https://github.com/ros-navigation/navigation2/blob/humble/nav2_dwb_controller/nav_2d_utils/src/tf_help.cpp)。UDP配置核对[Fast DDS 2.6环境变量文档](https://fast-dds.docs.eprosima.com/en/2.6.x/fastdds/env_vars/env_vars.html)。AI参与范围、本人研究状态和软件来源另见根目录说明。
-
-## 同速十次重复消融
-
-定时与odom反馈均用后轴参考、0.28/0.18m/s和同一2m圆角轨迹，各10次。定时真值闭合 0.079965±0.027714m，反馈 0.018285±0.005359m，均为均值±样本标准差；本样本位置均值降低约77.1%。两批噪声时序不同，不冒充成对显著性检验。时间代价与角度见square_matched_speed.json/图。

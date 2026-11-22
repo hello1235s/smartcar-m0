@@ -1,0 +1,151 @@
+{
+  "success": false,
+  "action_success": false,
+  "status": 6,
+  "goal_accepted": true,
+  "failure_reason": null,
+  "qualification_failures": [
+    "navigation_action_status_6",
+    "world_position_error_exceeds_limit",
+    "world_heading_error_exceeds_limit"
+  ],
+  "goal_map": [
+    10.0,
+    4.0,
+    1.5707963267948966
+  ],
+  "world_goal_for_evaluation": [
+    11.0,
+    5.0,
+    1.5707963267948966
+  ],
+  "map_world_origin": [
+    1.0,
+    1.0,
+    0.0
+  ],
+  "goal_source": "coordinates",
+  "rviz_goal": null,
+  "first_motion_sim_t": 8.5,
+  "injection_reference": "motion",
+  "endpoint_error_world_truth": {
+    "position_m": 0.9932188211433378,
+    "yaw_rad": 0.3355582116854534
+  },
+  "endpoint_error_map_estimate": {
+    "position_m": 0.9516078836194627,
+    "yaw_rad": 0.3332967341554107
+  },
+  "truth_pose_final": [
+    11.556553607554811,
+    4.177362954523025,
+    1.2352381151094431
+  ],
+  "estimated_pose_final": [
+    10.541780176752317,
+    3.2176753843544605,
+    1.2374995926394858
+  ],
+  "qualification_thresholds": {
+    "position_m": 0.15,
+    "yaw_rad": 0.2,
+    "minimum_path_m": 5.0
+  },
+  "minimum_geometric_clearance_m": 0.15699135321094185,
+  "geometric_overlap_samples": 0,
+  "collision_metric": "Independent world-pose polygon overlap with known world boxes; not a Gazebo contact sensor",
+  "truth_is_evaluation_only": true,
+  "sim_seconds": 66.4,
+  "post_action_settle_seconds": 0.7999999999999972,
+  "wall_seconds": 67.93223745299997,
+  "maximum_truth_sample_gap_s": 0.10000000000000853,
+  "path_length_m": 12.237155505631476,
+  "path_length_source": "world truth integral, evaluation only",
+  "odom_path_length_m": 12.23326348100744,
+  "steering_variation_rad_per_m": 0.8727537333571271,
+  "steering_source": "Ackermann bridge reference command",
+  "plans": 58,
+  "obstacle": {
+    "success": true,
+    "status": "SpawnEntity: Successfully spawned entity [temporary_obstacle]",
+    "sim_t": 11.5,
+    "confirmed_sim_t": 11.5,
+    "world_xy": "11,5",
+    "size": 0.8,
+    "timing_reference": "motion",
+    "reference_sim_t": 8.5,
+    "delay_from_reference_s": 3.0
+  },
+  "final_measured_speed": [
+    5.70852607805097e-09,
+    7.564136055262157e-12
+  ],
+  "controller_command_samples": 1227,
+  "controller_curvature_violation_samples": 0,
+  "maximum_requested_curvature_1_per_m": 1.6666666666666667,
+  "obstacle_distance_to_initial_path_m": 0.029154519561254595,
+  "controller_failure_replans": [
+    {
+      "failure_received_sim_t": 50.8,
+      "next_plan_delay_s": 0.7000000000000028
+    },
+    {
+      "failure_received_sim_t": 52.9,
+      "next_plan_delay_s": 1.2000000000000028
+    },
+    {
+      "failure_received_sim_t": 52.9,
+      "next_plan_delay_s": 1.2000000000000028
+    },
+    {
+      "failure_received_sim_t": 56.2,
+      "next_plan_delay_s": 0.29999999999999716
+    },
+    {
+      "failure_received_sim_t": 58.3,
+      "next_plan_delay_s": 1.2000000000000028
+    },
+    {
+      "failure_received_sim_t": 58.3,
+      "next_plan_delay_s": 1.2000000000000028
+    },
+    {
+      "failure_received_sim_t": 61.6,
+      "next_plan_delay_s": 0.19999999999999574
+    },
+    {
+      "failure_received_sim_t": 63.7,
+      "next_plan_delay_s": 1.0999999999999943
+    },
+    {
+      "failure_received_sim_t": 63.7,
+      "next_plan_delay_s": 1.0999999999999943
+    },
+    {
+      "failure_received_sim_t": 67.0,
+      "next_plan_delay_s": 0.20000000000000284
+    },
+    {
+      "failure_received_sim_t": 69.1,
+      "next_plan_delay_s": 1.2000000000000028
+    },
+    {
+      "failure_received_sim_t": 69.1,
+      "next_plan_delay_s": 1.2000000000000028
+    },
+    {
+      "failure_received_sim_t": 72.4,
+      "next_plan_delay_s": 0.19999999999998863
+    },
+    {
+      "failure_received_sim_t": 74.5,
+      "next_plan_delay_s": null
+    },
+    {
+      "failure_received_sim_t": 74.5,
+      "next_plan_delay_s": null
+    }
+  ],
+  "laser_samples": 671,
+  "first_plan_after_injection_delay_s": 0.6999999999999993
+}

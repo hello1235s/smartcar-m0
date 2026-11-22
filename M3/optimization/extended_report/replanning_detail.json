@@ -1,191 +1,93 @@
 {
   "summary": {
-    "runs": 10,
-    "runs_with_controller_error": 4,
-    "runs_with_later_valid_plan": 4,
-    "wall_delay_median_s": 0.7706357644999999,
-    "wall_delay_min_s": 0.412907909,
-    "wall_delay_max_s": 1.265330703,
+    "runs": 5,
+    "runs_with_controller_error": 1,
+    "runs_with_later_valid_plan": 1,
+    "wall_delay_median_s": 1.140960851,
+    "wall_delay_min_s": 1.140960851,
+    "wall_delay_max_s": 1.140960851,
     "method": "Earliest collision/progress/patience log from controller_server -> next /plan receipt wall_ns. BT failures retain separate received simulation-time pairs. Periodic injection latency is not a recovery metric."
   },
   "runs": [
     {
-      "group": "heldout_obstacle_east",
-      "run": "M3/optimization/results/20261121_034938_ak_final_heldout_obstacle_east/run_01",
+      "group": "heldout_new_obstacle",
+      "run": "M3/optimization/results/20261122_134650_showcase_fixed_new_obstacle_twice/run_01",
       "strict_success": true,
       "first_controller_error": null,
       "controller_error_count": 0,
       "next_valid_plan_after_controller_error_wall_s": null,
       "bt_followpath_failure_events": [],
-      "periodic_next_plan_after_injection_sim_s": 0.0
+      "periodic_next_plan_after_injection_sim_s": 0.5999999999999996
     },
     {
-      "group": "heldout_obstacle_east",
-      "run": "M3/optimization/results/20261121_034938_ak_final_heldout_obstacle_east/run_02",
+      "group": "heldout_new_obstacle",
+      "run": "M3/optimization/results/20261122_134650_showcase_fixed_new_obstacle_twice/run_02",
       "strict_success": true,
       "first_controller_error": null,
       "controller_error_count": 0,
       "next_valid_plan_after_controller_error_wall_s": null,
       "bt_followpath_failure_events": [],
-      "periodic_next_plan_after_injection_sim_s": 0.09999999999999964
-    },
-    {
-      "group": "heldout_obstacle_gate_exit",
-      "run": "M3/optimization/results/20261121_035132_ak_final_heldout_obstacle_gate_exit/run_01",
-      "strict_success": true,
-      "first_controller_error": "[controller_server-8] [WARN] [1795204318.160971113] [controller_server]: AckermannRPP detected collision on feasible chassis arc",
-      "controller_error_count": 5,
-      "next_valid_plan_after_controller_error_wall_s": 0.412907909,
-      "bt_followpath_failure_events": [],
-      "periodic_next_plan_after_injection_sim_s": 0.09999999999999964
-    },
-    {
-      "group": "heldout_obstacle_gate_exit",
-      "run": "M3/optimization/results/20261121_035132_ak_final_heldout_obstacle_gate_exit/run_02",
-      "strict_success": true,
-      "first_controller_error": null,
-      "controller_error_count": 0,
-      "next_valid_plan_after_controller_error_wall_s": null,
-      "bt_followpath_failure_events": [],
-      "periodic_next_plan_after_injection_sim_s": 0.0
-    },
-    {
-      "group": "heldout_goal_northeast",
-      "run": "M3/optimization/results/20261121_035323_ak_final_heldout_goal_northeast/run_01",
-      "strict_success": true,
-      "first_controller_error": null,
-      "controller_error_count": 0,
-      "next_valid_plan_after_controller_error_wall_s": null,
-      "bt_followpath_failure_events": [],
-      "periodic_next_plan_after_injection_sim_s": null
-    },
-    {
-      "group": "heldout_goal_northeast",
-      "run": "M3/optimization/results/20261121_035323_ak_final_heldout_goal_northeast/run_02",
-      "strict_success": true,
-      "first_controller_error": null,
-      "controller_error_count": 0,
-      "next_valid_plan_after_controller_error_wall_s": null,
-      "bt_followpath_failure_events": [],
-      "periodic_next_plan_after_injection_sim_s": null
-    },
-    {
-      "group": "heldout_goal_far_northwest",
-      "run": "M3/optimization/results/20261121_035543_ak_final_heldout_goal_far_northwest/run_01",
-      "strict_success": true,
-      "first_controller_error": "[controller_server-8] [WARN] [1795204574.696469048] [controller_server]: AckermannRPP detected collision on feasible chassis arc",
-      "controller_error_count": 7,
-      "next_valid_plan_after_controller_error_wall_s": 0.700990268,
-      "bt_followpath_failure_events": [],
-      "periodic_next_plan_after_injection_sim_s": null
-    },
-    {
-      "group": "heldout_goal_far_northwest",
-      "run": "M3/optimization/results/20261121_035543_ak_final_heldout_goal_far_northwest/run_02",
-      "strict_success": true,
-      "first_controller_error": null,
-      "controller_error_count": 0,
-      "next_valid_plan_after_controller_error_wall_s": null,
-      "bt_followpath_failure_events": [],
-      "periodic_next_plan_after_injection_sim_s": null
+      "periodic_next_plan_after_injection_sim_s": 0.6999999999999993
     },
     {
       "group": "boundary_blocked_goal",
-      "run": "M3/optimization/results/20261121_035724_ak_final_boundary_blocked_goal/run_01",
+      "run": "M3/optimization/results/20261122_134854_showcase_fixed_blocked_goal_boundary/run_01",
       "strict_success": false,
-      "first_controller_error": "[controller_server-8] [WARN] [1795204693.203329911] [controller_server]: AckermannRPP detected collision on feasible chassis arc",
-      "controller_error_count": 245,
-      "next_valid_plan_after_controller_error_wall_s": 0.840281261,
+      "first_controller_error": "[controller_server-8] [WARN] [1795326581.327025629] [controller_server]: AckermannRPP detected collision on feasible chassis arc",
+      "controller_error_count": 422,
+      "next_valid_plan_after_controller_error_wall_s": 1.140960851,
       "bt_followpath_failure_events": [
         {
-          "failure_received_sim_t": 68.4,
-          "next_plan_delay_s": 1.0
+          "failure_received_sim_t": 47.3,
+          "next_plan_delay_s": 0.30000000000000426
         },
         {
-          "failure_received_sim_t": 70.5,
+          "failure_received_sim_t": 52.0,
+          "next_plan_delay_s": 1.2000000000000028
+        },
+        {
+          "failure_received_sim_t": 52.0,
+          "next_plan_delay_s": 1.2000000000000028
+        },
+        {
+          "failure_received_sim_t": 55.3,
+          "next_plan_delay_s": 0.20000000000000284
+        },
+        {
+          "failure_received_sim_t": 82.3,
           "next_plan_delay_s": 0.0
         },
         {
-          "failure_received_sim_t": 70.5,
+          "failure_received_sim_t": 82.3,
           "next_plan_delay_s": 0.0
-        },
-        {
-          "failure_received_sim_t": 74.4,
-          "next_plan_delay_s": 0.6999999999999886
         }
       ],
-      "periodic_next_plan_after_injection_sim_s": 0.29999999999999893
+      "periodic_next_plan_after_injection_sim_s": 0.9000000000000004
     },
     {
-      "group": "boundary_close_front",
-      "run": "M3/optimization/results/20261121_035905_ak_final_boundary_close_front/run_01",
-      "strict_success": false,
-      "first_controller_error": "[controller_server-8] [WARN] [1795204758.479042463] [controller_server]: AckermannRPP detected collision on feasible chassis arc",
-      "controller_error_count": 488,
-      "next_valid_plan_after_controller_error_wall_s": 1.265330703,
+      "group": "heldout_rviz_goal",
+      "run": "M3/optimization/results/20261122_135046_showcase_fixed_rviz_goal/run_01",
+      "strict_success": true,
+      "first_controller_error": null,
+      "controller_error_count": 0,
+      "next_valid_plan_after_controller_error_wall_s": null,
       "bt_followpath_failure_events": [
         {
-          "failure_received_sim_t": 23.1,
-          "next_plan_delay_s": 0.6999999999999993
-        },
-        {
-          "failure_received_sim_t": 25.2,
-          "next_plan_delay_s": 1.0
-        },
-        {
-          "failure_received_sim_t": 25.2,
-          "next_plan_delay_s": 1.0
-        },
-        {
-          "failure_received_sim_t": 28.3,
-          "next_plan_delay_s": 0.0
-        },
-        {
-          "failure_received_sim_t": 30.4,
-          "next_plan_delay_s": 1.0
-        },
-        {
-          "failure_received_sim_t": 30.4,
-          "next_plan_delay_s": 1.0
-        },
-        {
-          "failure_received_sim_t": 33.5,
-          "next_plan_delay_s": 0.0
-        },
-        {
-          "failure_received_sim_t": 35.6,
-          "next_plan_delay_s": 1.0
-        },
-        {
-          "failure_received_sim_t": 35.6,
-          "next_plan_delay_s": 1.0
-        },
-        {
-          "failure_received_sim_t": 38.8,
-          "next_plan_delay_s": 0.9000000000000057
-        },
-        {
-          "failure_received_sim_t": 40.9,
-          "next_plan_delay_s": 1.0
-        },
-        {
-          "failure_received_sim_t": 40.9,
-          "next_plan_delay_s": 1.0
-        },
-        {
-          "failure_received_sim_t": 44.0,
-          "next_plan_delay_s": 0.0
-        },
-        {
-          "failure_received_sim_t": 46.1,
-          "next_plan_delay_s": null
-        },
-        {
-          "failure_received_sim_t": 46.1,
-          "next_plan_delay_s": null
+          "failure_received_sim_t": 124.7,
+          "next_plan_delay_s": 0.7999999999999972
         }
       ],
-      "periodic_next_plan_after_injection_sim_s": 0.0
+      "periodic_next_plan_after_injection_sim_s": null
+    },
+    {
+      "group": "heldout_rviz_goal",
+      "run": "M3/optimization/results/20261122_135046_showcase_fixed_rviz_goal/run_02",
+      "strict_success": true,
+      "first_controller_error": null,
+      "controller_error_count": 0,
+      "next_valid_plan_after_controller_error_wall_s": null,
+      "bt_followpath_failure_events": [],
+      "periodic_next_plan_after_injection_sim_s": null
     }
   ]
 }

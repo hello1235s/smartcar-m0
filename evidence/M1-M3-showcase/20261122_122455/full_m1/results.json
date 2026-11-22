@@ -1,0 +1,208 @@
+{
+  "status": "PASS",
+  "source_commit": "4d7db577bc18a8ce0ae4500994eb012d0e7ecf84",
+  "rmw_implementation": "rmw_fastrtps_cpp",
+  "steps": [
+    {
+      "name": "message_filter_timeout_contracts",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "scripts/verify_m1_contracts_v2.py",
+        "--out",
+        "/home/ubuntu2204/smartcar-m3-opt/evidence/M1-M3-showcase/20261122_122455/full_m1/contracts"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "three_nodes_namespaces_readiness",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "scripts/verify_m1_chain.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "projection_two_calibrations_clock_video",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "scripts/verify_projection.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "projection_bag_pixel_and_tf_oracle",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "scripts/verify_m1_projection_oracle_v2.py",
+        "--directory",
+        "/home/ubuntu2204/smartcar-m3-opt/M1/M1-3/results/20261122_122516"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "image_pixels_headers_all_gray_levels",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "M1/M1-4/semantic_check.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "performance_four_way_comparison",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "M1/M1-4/measure_chain.py",
+        "--seconds",
+        "24"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "performance_optimized_long_window",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "M1/M1-4/measure_chain.py",
+        "--variants",
+        "optimized",
+        "--seconds",
+        "60"
+      ],
+      "returncode": 0
+    }
+  ],
+  "tasks": {
+    "M1-1": {
+      "status": "PASS",
+      "source": "evidence/M1-M3-showcase/20261122_122455/full_m1/contracts/results.json",
+      "sensor_hz": 10.000183162050275,
+      "processed_hz": 9.784454418117186
+    },
+    "M1-2": {
+      "status": "PASS",
+      "namespaced_nodes": [
+        "/robot1/node_a_sensor",
+        "/robot1/node_b_filter",
+        "/robot1/node_c_alarm",
+        "/robot2/node_a_sensor",
+        "/robot2/node_b_filter",
+        "/robot2/node_c_alarm"
+      ],
+      "thresholds": {
+        "robot1": 0.3,
+        "robot2": 0.5
+      },
+      "missing_yaml_error": true,
+      "isolated_alpha": {
+        "robot1": 0.9,
+        "robot2": 0.7
+      },
+      "topic_endpoints_namespace_isolated": true,
+      "readiness_before_alarm_verified": true
+    },
+    "M1-3": {
+      "status": "PASS",
+      "source": "M1/M1-3/results/20261122_122516",
+      "measurements": {
+        "default": {
+          "paired_frames": 40,
+          "images": [
+            "projection_003.png",
+            "projection_002.png",
+            "projection_001.png"
+          ],
+          "clock_modes": [
+            true
+          ],
+          "median_v_first": 249.0
+        },
+        "nondefault": {
+          "paired_frames": 79,
+          "images": [
+            "projection_003.png",
+            "projection_002.png",
+            "projection_001.png"
+          ],
+          "clock_modes": [
+            false,
+            true
+          ],
+          "median_v_first": 263.0
+        },
+        "result": "PASS"
+      },
+      "exact_pixel_oracle": "M1/M1-3/results/20261122_122516/pixel_oracle.json"
+    },
+    "M1-4": {
+      "status": "PASS",
+      "comparison_source": "M1/M1-4/results/20261122_122635",
+      "comparison": [
+        {
+          "variant": "baseline",
+          "measurement_s": 24.0,
+          "output_hz": 3.632788732191013,
+          "control_hz": 3.632768636828963,
+          "p50_ms": 1913.281798362732,
+          "p95_ms": 2088.2670640945435,
+          "output_count": 88,
+          "output_stamps_unique": true,
+          "input_hz_self_reported": 18.09
+        },
+        {
+          "variant": "publisher_only",
+          "measurement_s": 24.0,
+          "output_hz": 3.976625559946291,
+          "control_hz": 3.9766569618687413,
+          "p50_ms": 1172.7678775787354,
+          "p95_ms": 1204.8525094985962,
+          "output_count": 95,
+          "output_stamps_unique": true,
+          "input_hz_self_reported": 31.998
+        },
+        {
+          "variant": "processor_only",
+          "measurement_s": 24.0,
+          "output_hz": 11.10123587039925,
+          "control_hz": 20.99992877524157,
+          "p50_ms": 4.693388938903809,
+          "p95_ms": 13.016617298126219,
+          "output_count": 262,
+          "output_stamps_unique": true,
+          "input_hz_self_reported": 19.49
+        },
+        {
+          "variant": "optimized",
+          "measurement_s": 24.0,
+          "output_hz": 32.00205974636021,
+          "control_hz": 20.999671240521813,
+          "p50_ms": 5.173087120056152,
+          "p95_ms": 12.396228313446043,
+          "output_count": 768,
+          "output_stamps_unique": true,
+          "input_hz_self_reported": 31.998
+        }
+      ],
+      "long_window_source": "M1/M1-4/results/20261122_122837",
+      "long_window": {
+        "variant": "optimized",
+        "measurement_s": 60.0,
+        "output_hz": 32.00000789173525,
+        "control_hz": 20.999894298675088,
+        "p50_ms": 5.570173263549805,
+        "p95_ms": 12.409687042236328,
+        "output_count": 1921,
+        "output_stamps_unique": true,
+        "input_hz_self_reported": 31.999
+      },
+      "pixel_header_cases": 5,
+      "faults_document_entries_at_least_four": true
+    }
+  },
+  "limits": "Task-defined tests in this VM and measurement windows, not a proof of zero defects under all inputs or loads.",
+  "all_four_tasks_pass": true,
+  "source_sha256": {
+    "M1/M1-1/src/smartcar_training/smartcar_training/sensor_chain.py": "8bb41adc6466f33efe5dd609a681bac0d56e9b6375699b6925395155cf0d4cd7",
+    "M1/M1-3/projection_node.py": "f44b60ec45cdf8119ee25d335904a348eff178e490543d81b67e35ab5fad8131",
+    "M1/M1-4/camera_pub.py": "f5f8c2ce90458750867f76aa630d1b2762678af5f613085df557197cf2e34d20",
+    "M1/M1-4/image_proc.py": "be4701940660993030be481a9f9b06948bc9559fb65d59f04e18ddded1f465ca"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "status": "PASS",
+  "status": "REVIEW",
   "rear_frame_bounds_m": {
     "x_min": -0.085,
     "x_max": 0.375,
@@ -7,380 +7,314 @@
     "y_max": 0.13
   },
   "additional_front_margin_m": 0.01,
-  "runs": 62,
-  "minimum_clearance_m": 0.0256512641164246,
+  "runs": 51,
+  "minimum_clearance_m": -0.021509979615580432,
   "note": "Camera front extent derived from each archived actual URDF: .14+.22+.03/2=.375m, 1cm beyond the body. Extra front-bound audit only; original body/wheel scores and denominators are not rewritten. Known-box geometry at recorded pose samples, not continuous contact certification.",
   "cases": [
     {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_01",
-      "samples": 4509,
-      "minimum_clearance_m": 0.31558747748442834,
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_01",
+      "samples": 2205,
+      "minimum_clearance_m": 0.2841775263262516,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_02",
-      "samples": 2575,
-      "minimum_clearance_m": 0.2703686357021367,
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_02",
+      "samples": 2204,
+      "minimum_clearance_m": 0.28257479457162066,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_03",
-      "samples": 2235,
-      "minimum_clearance_m": 0.27110633305622855,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_04",
-      "samples": 2526,
-      "minimum_clearance_m": 0.28700764057946215,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_05",
-      "samples": 2272,
-      "minimum_clearance_m": 0.27977314011401777,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_06",
-      "samples": 2514,
-      "minimum_clearance_m": 0.3003569141137001,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_07",
-      "samples": 5323,
-      "minimum_clearance_m": 0.26232361356953726,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_08",
-      "samples": 2466,
-      "minimum_clearance_m": 0.28647877574006897,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_09",
-      "samples": 2415,
-      "minimum_clearance_m": 0.2672134105399222,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_153426_terminal_v2_formal_static_B_tuned/run_10",
-      "samples": 2209,
-      "minimum_clearance_m": 0.2844379594578126,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031140_tf2q_formal_static_A/run_01",
-      "samples": 2468,
-      "minimum_clearance_m": 0.2726206740624236,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031140_tf2q_formal_static_A/run_02",
-      "samples": 2499,
-      "minimum_clearance_m": 0.292696561338683,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031140_tf2q_formal_static_A/run_03",
-      "samples": 2490,
-      "minimum_clearance_m": 0.2820767814023379,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031442_tf2q_formal_static_B/run_01",
-      "samples": 1672,
-      "minimum_clearance_m": 0.18806799451248687,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031442_tf2q_formal_static_B/run_02",
-      "samples": 1544,
-      "minimum_clearance_m": 0.21106647365665032,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031442_tf2q_formal_static_B/run_03",
-      "samples": 1890,
-      "minimum_clearance_m": 0.1386123339580012,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_01",
-      "samples": 2492,
-      "minimum_clearance_m": 0.28862518981777546,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_02",
-      "samples": 2573,
-      "minimum_clearance_m": 0.2973584273641138,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_03",
-      "samples": 2489,
-      "minimum_clearance_m": 0.2912364352380418,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_04",
-      "samples": 2481,
-      "minimum_clearance_m": 0.29622339154131727,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_05",
-      "samples": 2472,
-      "minimum_clearance_m": 0.29011774220690467,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_06",
-      "samples": 2502,
-      "minimum_clearance_m": 0.2777596380736494,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_07",
-      "samples": 2599,
-      "minimum_clearance_m": 0.2699655590705868,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_08",
-      "samples": 2470,
-      "minimum_clearance_m": 0.2766777638873762,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_09",
-      "samples": 2484,
-      "minimum_clearance_m": 0.2811881469631767,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_031656_tf2q_formal_dynamic_A/run_10",
-      "samples": 2487,
-      "minimum_clearance_m": 0.30080102799367264,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_01",
-      "samples": 1404,
-      "minimum_clearance_m": 0.0894371418172296,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_02",
-      "samples": 1796,
-      "minimum_clearance_m": 0.1456977289146062,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_03",
-      "samples": 924,
-      "minimum_clearance_m": 0.0256512641164246,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_04",
-      "samples": 2598,
-      "minimum_clearance_m": 0.2028524545883419,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_05",
-      "samples": 1389,
-      "minimum_clearance_m": 0.26104029464928424,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_06",
-      "samples": 2258,
-      "minimum_clearance_m": 0.062255122307045774,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_07",
-      "samples": 1970,
-      "minimum_clearance_m": 0.272280473502779,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_08",
-      "samples": 1452,
-      "minimum_clearance_m": 0.12077756342661566,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_09",
-      "samples": 2117,
-      "minimum_clearance_m": 0.3033612487920793,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_032708_tf2q_formal_dynamic_B/run_10",
-      "samples": 1804,
-      "minimum_clearance_m": 0.1451017687196396,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_01",
-      "samples": 2466,
-      "minimum_clearance_m": 0.29120043262811285,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_02",
-      "samples": 2463,
-      "minimum_clearance_m": 0.2902230927502595,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_03",
-      "samples": 2420,
-      "minimum_clearance_m": 0.3123708079836773,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_04",
-      "samples": 2444,
-      "minimum_clearance_m": 0.3027247036420458,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_05",
-      "samples": 2288,
-      "minimum_clearance_m": 0.2976197529922786,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_06",
-      "samples": 2247,
-      "minimum_clearance_m": 0.2964810694079692,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_07",
-      "samples": 2418,
-      "minimum_clearance_m": 0.2781238722121335,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_08",
-      "samples": 2468,
-      "minimum_clearance_m": 0.2854985831631257,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_09",
-      "samples": 2626,
-      "minimum_clearance_m": 0.2976891995343155,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_152430_terminal_v2_formal_dynamic_B_tuned/run_10",
-      "samples": 2258,
-      "minimum_clearance_m": 0.28651210572889807,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_034403_tf2q_tuning_speed_only/run_01",
-      "samples": 2186,
-      "minimum_clearance_m": 0.25761402322958776,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_034403_tf2q_tuning_speed_only/run_02",
-      "samples": 2319,
-      "minimum_clearance_m": 0.2768049457856136,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_034403_tf2q_tuning_speed_only/run_03",
-      "samples": 2221,
-      "minimum_clearance_m": 0.2688550722502017,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_034652_qualified_tuning_lookahead/run_01",
-      "samples": 2191,
-      "minimum_clearance_m": 0.2875611808258437,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_034652_qualified_tuning_lookahead/run_02",
-      "samples": 2196,
-      "minimum_clearance_m": 0.26593294927849104,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_034652_qualified_tuning_lookahead/run_03",
-      "samples": 2173,
-      "minimum_clearance_m": 0.2969973352104343,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_034938_ak_final_heldout_obstacle_east/run_01",
-      "samples": 2314,
-      "minimum_clearance_m": 0.2626983322014092,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_034938_ak_final_heldout_obstacle_east/run_02",
-      "samples": 2297,
-      "minimum_clearance_m": 0.254858261865313,
-      "overlap_samples": 0
-    },
-    {
-      "source": "M3/optimization/results/20261121_035132_ak_final_heldout_obstacle_gate_exit/run_01",
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_03",
       "samples": 2215,
-      "minimum_clearance_m": 0.1551217428893831,
+      "minimum_clearance_m": 0.2821261225506123,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_035132_ak_final_heldout_obstacle_gate_exit/run_02",
-      "samples": 2189,
-      "minimum_clearance_m": 0.19245311989873157,
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_04",
+      "samples": 2227,
+      "minimum_clearance_m": 0.26241099894203873,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_035323_ak_final_heldout_goal_northeast/run_01",
-      "samples": 3011,
-      "minimum_clearance_m": 0.19229468768740965,
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_05",
+      "samples": 2249,
+      "minimum_clearance_m": 0.2862579740544379,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_035323_ak_final_heldout_goal_northeast/run_02",
-      "samples": 2884,
-      "minimum_clearance_m": 0.19707955675066202,
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_06",
+      "samples": 2245,
+      "minimum_clearance_m": 0.28890497641276564,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_035543_ak_final_heldout_goal_far_northwest/run_01",
-      "samples": 1586,
-      "minimum_clearance_m": 0.15216846464652986,
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_07",
+      "samples": 2211,
+      "minimum_clearance_m": 0.2804642174647219,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_035543_ak_final_heldout_goal_far_northwest/run_02",
-      "samples": 2381,
-      "minimum_clearance_m": 0.2128627969526036,
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_08",
+      "samples": 2261,
+      "minimum_clearance_m": 0.29277639317490745,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_035724_ak_final_boundary_blocked_goal/run_01",
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_09",
+      "samples": 2233,
+      "minimum_clearance_m": 0.2871230532989635,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_125957_showcase_qualified_formal_static_B_tuned/run_10",
+      "samples": 2190,
+      "minimum_clearance_m": 0.2617865009126778,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_130916_showcase_qualified_formal_static_A/run_01",
+      "samples": 2440,
+      "minimum_clearance_m": 0.2237393461078004,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_130916_showcase_qualified_formal_static_A/run_02",
+      "samples": 2481,
+      "minimum_clearance_m": 0.28829490700636484,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_130916_showcase_qualified_formal_static_A/run_03",
+      "samples": 2466,
+      "minimum_clearance_m": 0.27373943709642506,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131218_showcase_qualified_formal_static_B/run_01",
+      "samples": 1495,
+      "minimum_clearance_m": 0.21170378827079306,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131218_showcase_qualified_formal_static_B/run_02",
+      "samples": 1866,
+      "minimum_clearance_m": 0.16686304624517917,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131218_showcase_qualified_formal_static_B/run_03",
+      "samples": 1886,
+      "minimum_clearance_m": 0.21146927042412433,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_01",
+      "samples": 2498,
+      "minimum_clearance_m": 0.293079765675234,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_02",
+      "samples": 2447,
+      "minimum_clearance_m": 0.3204525918279588,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_03",
+      "samples": 2489,
+      "minimum_clearance_m": 0.3073050416940825,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_04",
+      "samples": 2483,
+      "minimum_clearance_m": 0.2907403119386012,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_05",
+      "samples": 2470,
+      "minimum_clearance_m": 0.2957530516104867,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_06",
+      "samples": 2469,
+      "minimum_clearance_m": 0.30346343807870074,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_07",
+      "samples": 2456,
+      "minimum_clearance_m": 0.3054117714335029,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_08",
+      "samples": 2505,
+      "minimum_clearance_m": 0.2752563193054401,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_09",
+      "samples": 2495,
+      "minimum_clearance_m": 0.29120943478149747,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_131437_showcase_qualified_formal_dynamic_A/run_10",
+      "samples": 2474,
+      "minimum_clearance_m": 0.2868657310501546,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_01",
+      "samples": 1307,
+      "minimum_clearance_m": 0.28917899039862816,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_02",
+      "samples": 2372,
+      "minimum_clearance_m": 0.14852158676578436,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_03",
+      "samples": 2044,
+      "minimum_clearance_m": -0.021509979615580432,
+      "overlap_samples": 38
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_04",
+      "samples": 1516,
+      "minimum_clearance_m": 0.10465819362249218,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_05",
+      "samples": 1727,
+      "minimum_clearance_m": 0.15826293554460047,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_06",
+      "samples": 2244,
+      "minimum_clearance_m": 0.16784137036018887,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_07",
+      "samples": 1622,
+      "minimum_clearance_m": 0.12619801285176457,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_08",
+      "samples": 2549,
+      "minimum_clearance_m": 0.2710836336440556,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_09",
+      "samples": 1981,
+      "minimum_clearance_m": 0.13737428224912135,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_132446_showcase_qualified_formal_dynamic_B/run_10",
+      "samples": 1693,
+      "minimum_clearance_m": 0.05386671182361678,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_01",
+      "samples": 2239,
+      "minimum_clearance_m": 0.28110471371453233,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_02",
+      "samples": 2256,
+      "minimum_clearance_m": 0.30353724151066336,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_03",
+      "samples": 2255,
+      "minimum_clearance_m": 0.2947220306372132,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_04",
+      "samples": 2259,
+      "minimum_clearance_m": 0.2956778337229176,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_05",
+      "samples": 2266,
+      "minimum_clearance_m": 0.3185671908149291,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_06",
+      "samples": 2234,
+      "minimum_clearance_m": 0.29762411575354797,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_07",
+      "samples": 2248,
+      "minimum_clearance_m": 0.2705831105079047,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_08",
+      "samples": 2274,
+      "minimum_clearance_m": 0.3121349568760182,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_09",
+      "samples": 2235,
+      "minimum_clearance_m": 0.30272898057907177,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_133725_showcase_qualified_formal_dynamic_B_tuned/run_10",
+      "samples": 2251,
+      "minimum_clearance_m": 0.29686292503831924,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_134650_showcase_fixed_new_obstacle_twice/run_01",
+      "samples": 2294,
+      "minimum_clearance_m": 0.2339654026063122,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_134650_showcase_fixed_new_obstacle_twice/run_02",
+      "samples": 2325,
+      "minimum_clearance_m": 0.20425608027745765,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_134854_showcase_fixed_blocked_goal_boundary/run_01",
       "samples": 4537,
-      "minimum_clearance_m": 0.10534164583958905,
+      "minimum_clearance_m": 0.09382647464602291,
       "overlap_samples": 0
     },
     {
-      "source": "M3/optimization/results/20261121_035905_ak_final_boundary_close_front/run_01",
-      "samples": 1954,
-      "minimum_clearance_m": 0.12142389082090155,
+      "source": "M3/optimization/results/20261122_135046_showcase_fixed_rviz_goal/run_01",
+      "samples": 2480,
+      "minimum_clearance_m": 0.2684405447541833,
+      "overlap_samples": 0
+    },
+    {
+      "source": "M3/optimization/results/20261122_135046_showcase_fixed_rviz_goal/run_02",
+      "samples": 2468,
+      "minimum_clearance_m": 0.2792742587631471,
       "overlap_samples": 0
     }
   ]

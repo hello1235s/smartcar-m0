@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "display": ":0",
+  "steps": [
+    {
+      "name": "full_m1",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "scripts/verify_m1_acceptance_v2.py",
+        "--out",
+        "/home/ubuntu2204/smartcar-m3-opt/evidence/M1-M3-showcase/20261122_122455/full_m1"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "one_command_dual",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "scripts/verify_dual_launch.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "point_click_default",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "M1/M1-3/inspect_point.py",
+        "/home/ubuntu2204/smartcar-m3-opt/M1/M1-3/results/20261122_122516/default/projection_001.points.json",
+        "--verify-click",
+        "--out",
+        "/home/ubuntu2204/smartcar-m3-opt/evidence/M1-M3-showcase/20261122_122455/point_click_default"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "point_click_nondefault",
+      "command": [
+        "/home/ubuntu2204/smartcar-m3-opt/.venv-ros/bin/python",
+        "M1/M1-3/inspect_point.py",
+        "/home/ubuntu2204/smartcar-m3-opt/M1/M1-3/results/20261122_122516/nondefault/projection_001.points.json",
+        "--verify-click",
+        "--out",
+        "/home/ubuntu2204/smartcar-m3-opt/evidence/M1-M3-showcase/20261122_122455/point_click_nondefault"
+      ],
+      "returncode": 0
+    }
+  ],
+  "directory": "evidence/M1-M3-showcase/20261122_122455",
+  "full_m1_report": "evidence/M1-M3-showcase/20261122_122455/full_m1/results.json",
+  "projection": "M1/M1-3/results/20261122_122516"
+}

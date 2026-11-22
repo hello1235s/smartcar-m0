@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/ubuntu2204/smartcar-m3-opt/tmp/resume_showcase_qualification.py", line 24, in <module>
+    folder=next(iter(new));rows=json.loads((folder/'runs.json').read_text());g.update(returncode=r.returncode,result_dirs=[str(folder.relative_to(ROOT))],completed=len(rows),successes=sum(x['success'] for x in rows));save()
+  File "/usr/lib/python3.10/pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/usr/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ubuntu2204/smartcar-m3-opt/M3/optimization/results/20261122_133629_showcase_qualified_formal_dynamic_B_tuned/runs.json'

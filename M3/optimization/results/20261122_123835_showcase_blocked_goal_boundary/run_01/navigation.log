@@ -1,0 +1,995 @@
+[INFO] [launch]: All log files can be found below /home/ubuntu2204/.ros/log/2026-11-22-12-38-36-053496-ros2humble-7284
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [robot_state_publisher-1]: process started with pid [7320]
+[INFO] [gzserver-2]: process started with pid [7322]
+[INFO] [control_bridge-3]: process started with pid [7324]
+[INFO] [spawn_entity.py-4]: process started with pid [7326]
+[INFO] [map_server-5]: process started with pid [7328]
+[INFO] [amcl-6]: process started with pid [7332]
+[INFO] [lifecycle_manager-7]: process started with pid [7342]
+[INFO] [controller_server-8]: process started with pid [7345]
+[INFO] [smoother_server-9]: process started with pid [7347]
+[INFO] [planner_server-10]: process started with pid [7366]
+[INFO] [behavior_server-11]: process started with pid [7371]
+[INFO] [bt_navigator-12]: process started with pid [7374]
+[INFO] [waypoint_follower-13]: process started with pid [7397]
+[INFO] [velocity_smoother-14]: process started with pid [7405]
+[INFO] [lifecycle_manager-15]: process started with pid [7409]
+[robot_state_publisher-1] [INFO] [1795322316.328553899] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-1] [INFO] [1795322316.328619550] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1795322316.328624113] [robot_state_publisher]: got segment camera_link
+[robot_state_publisher-1] [INFO] [1795322316.328626605] [robot_state_publisher]: got segment camera_optical_link
+[robot_state_publisher-1] [INFO] [1795322316.328628912] [robot_state_publisher]: got segment front_left_steering_link
+[robot_state_publisher-1] [INFO] [1795322316.328631364] [robot_state_publisher]: got segment front_left_wheel
+[robot_state_publisher-1] [INFO] [1795322316.328633597] [robot_state_publisher]: got segment front_right_steering_link
+[robot_state_publisher-1] [INFO] [1795322316.328635849] [robot_state_publisher]: got segment front_right_wheel
+[robot_state_publisher-1] [INFO] [1795322316.328637999] [robot_state_publisher]: got segment lidar_link
+[robot_state_publisher-1] [INFO] [1795322316.328640170] [robot_state_publisher]: got segment rear_left_wheel
+[robot_state_publisher-1] [INFO] [1795322316.328642336] [robot_state_publisher]: got segment rear_right_wheel
+[map_server-5] [INFO] [1795322316.345077498] [map_server]: 
+[map_server-5] 	map_server lifecycle node launched. 
+[map_server-5] 	Waiting on external lifecycle transitions to activate
+[map_server-5] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-5] [INFO] [1795322316.345172695] [map_server]: Creating
+[amcl-6] [INFO] [1795322316.336060935] [amcl]: 
+[amcl-6] 	amcl lifecycle node launched. 
+[amcl-6] 	Waiting on external lifecycle transitions to activate
+[amcl-6] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-6] [INFO] [1795322316.336422104] [amcl]: Creating
+[lifecycle_manager-7] [INFO] [1795322316.346527310] [lifecycle_manager_localization]: Creating
+[lifecycle_manager-7] [INFO] [1795322316.347289993] [lifecycle_manager_localization]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[smoother_server-9] [INFO] [1795322316.362546665] [smoother_server]: 
+[smoother_server-9] 	smoother_server lifecycle node launched. 
+[smoother_server-9] 	Waiting on external lifecycle transitions to activate
+[smoother_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[smoother_server-9] [INFO] [1795322316.364618060] [smoother_server]: Creating smoother server
+[lifecycle_manager-7] [INFO] [1795322316.367514545] [lifecycle_manager_localization]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-7] [INFO] [1795322316.367558156] [lifecycle_manager_localization]: [34m[1mConfiguring map_server[0m[0m
+[planner_server-10] [INFO] [1795322316.369078198] [planner_server]: 
+[planner_server-10] 	planner_server lifecycle node launched. 
+[planner_server-10] 	Waiting on external lifecycle transitions to activate
+[planner_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-10] [INFO] [1795322316.371269435] [planner_server]: Creating
+[map_server-5] [INFO] [1795322316.372430947] [map_server]: Configuring
+[map_server-5] [INFO] [1795322316.372479347] [map_io]: Loading yaml file: /home/ubuntu2204/smartcar-m3-opt/M3/M3-2/maps/map.yaml
+[map_server-5] [INFO] [1795322316.372597818] [map_io]: resolution: 0.05
+[map_server-5] [INFO] [1795322316.372601067] [map_io]: origin[0]: -1.05
+[map_server-5] [INFO] [1795322316.372602653] [map_io]: origin[1]: -1.04
+[map_server-5] [INFO] [1795322316.372604143] [map_io]: origin[2]: 0
+[map_server-5] [INFO] [1795322316.372605924] [map_io]: free_thresh: 0.196
+[map_server-5] [INFO] [1795322316.372607517] [map_io]: occupied_thresh: 0.65
+[map_server-5] [INFO] [1795322316.372609254] [map_io]: mode: trinary
+[map_server-5] [INFO] [1795322316.372611521] [map_io]: negate: 0
+[map_server-5] [INFO] [1795322316.372737627] [map_io]: Loading image_file: /home/ubuntu2204/smartcar-m3-opt/M3/M3-2/maps/map.pgm
+[map_server-5] [INFO] [1795322316.374250860] [map_io]: Read map /home/ubuntu2204/smartcar-m3-opt/M3/M3-2/maps/map.pgm: 242 X 162 map @ 0.05 m/cell
+[lifecycle_manager-15] [INFO] [1795322316.374835317] [lifecycle_manager_navigation]: Creating
+[controller_server-8] [INFO] [1795322316.376802629] [controller_server]: 
+[controller_server-8] 	controller_server lifecycle node launched. 
+[controller_server-8] 	Waiting on external lifecycle transitions to activate
+[controller_server-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[lifecycle_manager-15] [INFO] [1795322316.379945148] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[controller_server-8] [INFO] [1795322316.380099918] [controller_server]: Creating controller server
+[planner_server-10] [INFO] [1795322316.383962869] [global_costmap.global_costmap]: 
+[planner_server-10] 	global_costmap lifecycle node launched. 
+[planner_server-10] 	Waiting on external lifecycle transitions to activate
+[planner_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-10] [INFO] [1795322316.384289616] [global_costmap.global_costmap]: Creating Costmap
+[controller_server-8] [INFO] [1795322316.387146456] [local_costmap.local_costmap]: 
+[controller_server-8] 	local_costmap lifecycle node launched. 
+[controller_server-8] 	Waiting on external lifecycle transitions to activate
+[controller_server-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[controller_server-8] [INFO] [1795322316.390510566] [local_costmap.local_costmap]: Creating Costmap
+[lifecycle_manager-7] [INFO] [1795322316.394381778] [lifecycle_manager_localization]: [34m[1mConfiguring amcl[0m[0m
+[amcl-6] [INFO] [1795322316.394595432] [amcl]: Configuring
+[amcl-6] [INFO] [1795322316.394703660] [amcl]: initTransforms
+[velocity_smoother-14] [INFO] [1795322316.398974131] [velocity_smoother]: 
+[velocity_smoother-14] 	velocity_smoother lifecycle node launched. 
+[velocity_smoother-14] 	Waiting on external lifecycle transitions to activate
+[velocity_smoother-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[waypoint_follower-13] [INFO] [1795322316.399043926] [waypoint_follower]: 
+[waypoint_follower-13] 	waypoint_follower lifecycle node launched. 
+[waypoint_follower-13] 	Waiting on external lifecycle transitions to activate
+[waypoint_follower-13] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[waypoint_follower-13] [INFO] [1795322316.405268387] [waypoint_follower]: Creating
+[behavior_server-11] [INFO] [1795322316.409769026] [behavior_server]: 
+[behavior_server-11] 	behavior_server lifecycle node launched. 
+[behavior_server-11] 	Waiting on external lifecycle transitions to activate
+[behavior_server-11] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-12] [INFO] [1795322316.423275967] [bt_navigator]: 
+[bt_navigator-12] 	bt_navigator lifecycle node launched. 
+[bt_navigator-12] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-12] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-12] [INFO] [1795322316.423388108] [bt_navigator]: Creating
+[amcl-6] [INFO] [1795322316.425144229] [amcl]: initPubSub
+[amcl-6] [INFO] [1795322316.433488030] [amcl]: Subscribed to map topic.
+[lifecycle_manager-7] [INFO] [1795322316.438899483] [lifecycle_manager_localization]: [34m[1mActivating map_server[0m[0m
+[map_server-5] [INFO] [1795322316.439095289] [map_server]: Activating
+[map_server-5] [INFO] [1795322316.439293213] [map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-6] [INFO] [1795322316.439672459] [amcl]: Received a 242 X 162 map @ 0.050 m/pix
+[gzserver-2] Gazebo multi-robot simulator, version 11.10.2
+[gzserver-2] Copyright (C) 2012 Open Source Robotics Foundation.
+[gzserver-2] Released under the Apache 2 License.
+[gzserver-2] http://gazebosim.org
+[gzserver-2] 
+[lifecycle_manager-15] [INFO] [1795322316.514994254] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-15] [INFO] [1795322316.515068545] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-8] [INFO] [1795322316.515271224] [controller_server]: Configuring controller interface
+[controller_server-8] [INFO] [1795322316.515427795] [controller_server]: getting goal checker plugins..
+[controller_server-8] [INFO] [1795322316.515477564] [controller_server]: Controller frequency set to 20.0000Hz
+[controller_server-8] [INFO] [1795322316.515502004] [local_costmap.local_costmap]: Configuring
+[controller_server-8] [INFO] [1795322316.520935766] [local_costmap.local_costmap]: Using plugin "obstacle_layer"
+[controller_server-8] [INFO] [1795322316.535771038] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[lifecycle_manager-7] [INFO] [1795322316.543588714] [lifecycle_manager_localization]: Server map_server connected with bond.
+[lifecycle_manager-7] [INFO] [1795322316.543621297] [lifecycle_manager_localization]: [34m[1mActivating amcl[0m[0m
+[amcl-6] [INFO] [1795322316.543778915] [amcl]: Activating
+[amcl-6] [INFO] [1795322316.543818401] [amcl]: initialPoseReceived
+[amcl-6] [INFO] [1795322316.543917478] [amcl]: Setting pose (0.000000): 0.000 0.000 0.000
+[amcl-6] [INFO] [1795322316.544105051] [amcl]: Creating bond (amcl) to lifecycle manager.
+[controller_server-8] [INFO] [1795322316.544779180] [local_costmap.local_costmap]: Initialized plugin "obstacle_layer"
+[controller_server-8] [INFO] [1795322316.544804341] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[controller_server-8] [INFO] [1795322316.550459782] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[controller_server-8] [INFO] [1795322316.565146495] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[controller_server-8] [INFO] [1795322316.565697688] [controller_server]: Created goal checker : general_goal_checker of type smartcar_nav_checks::ValidPoseGoalChecker
+[controller_server-8] [INFO] [1795322316.565924577] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[controller_server-8] [INFO] [1795322316.566396046] [controller_server]: Created controller : FollowPath of type smartcar_nav_checks::AckermannRPP
+[controller_server-8] [INFO] [1795322316.573800233] [controller_server]: Controller Server has FollowPath  controllers available.
+[lifecycle_manager-15] [INFO] [1795322316.579313319] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[smoother_server-9] [INFO] [1795322316.579528943] [smoother_server]: Configuring smoother server
+[smoother_server-9] [INFO] [1795322316.586862334] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[smoother_server-9] [INFO] [1795322316.588089159] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[lifecycle_manager-15] [INFO] [1795322316.594224120] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-10] [INFO] [1795322316.594443904] [planner_server]: Configuring
+[planner_server-10] [INFO] [1795322316.594478198] [global_costmap.global_costmap]: Configuring
+[planner_server-10] [INFO] [1795322316.602751124] [global_costmap.global_costmap]: Using plugin "static_layer"
+[planner_server-10] [INFO] [1795322316.606354454] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[planner_server-10] [INFO] [1795322316.607281407] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[planner_server-10] [INFO] [1795322316.607311276] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[planner_server-10] [INFO] [1795322316.608688117] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[planner_server-10] [INFO] [1795322316.610714235] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[planner_server-10] [INFO] [1795322316.610747092] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[planner_server-10] [INFO] [1795322316.611170688] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[planner_server-10] [INFO] [1795322316.616088445] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 242 X 162 at 0.050000 m/pix
+[planner_server-10] [INFO] [1795322316.619687979] [planner_server]: Created global planner plugin GridBased of type nav2_smac_planner/SmacPlannerHybrid
+[planner_server-10] [INFO] [1795322316.619736566] [planner_server]: Configuring GridBased of type SmacPlannerHybrid
+[planner_server-10] [INFO] [1795322316.623495011] [planner_server]: Even sized heuristic lookup table size set 400.000000, increasing size by 1 to make odd
+[gzserver-2] [1;33m[Wrn] [gazebo_ros_init.cpp:178] [0m[1;33m
+[gzserver-2] #     # ####### ####### ###  #####  #######
+[gzserver-2] ##    # #     #    #     #  #     # #
+[gzserver-2] # #   # #     #    #     #  #       #
+[gzserver-2] #  #  # #     #    #     #  #       #####
+[gzserver-2] #   # # #     #    #     #  #       #
+[gzserver-2] #    ## #     #    #     #  #     # #
+[gzserver-2] #     # #######    #    ###  #####  #######
+[gzserver-2] 
+[gzserver-2] This version of Gazebo, now called Gazebo classic, reaches end-of-life
+[gzserver-2] in January 2025. Users are highly encouraged to migrate to the new Gazebo
+[gzserver-2] using our migration guides (https://gazebosim.org/docs/latest/gazebo_classic_migration?utm_source=gazebo_ros_pkgs&utm_medium=cli)
+[gzserver-2] 
+[gzserver-2] [0m[1;33m
+[lifecycle_manager-7] [INFO] [1795322316.651321655] [lifecycle_manager_localization]: Server amcl connected with bond.
+[lifecycle_manager-7] [INFO] [1795322316.651365230] [lifecycle_manager_localization]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-7] [INFO] [1795322316.651373437] [lifecycle_manager_localization]: [34m[1mCreating bond timer...[0m[0m
+[spawn_entity.py-4] [INFO] [1795322316.694990512] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-4] [INFO] [1795322316.695231904] [spawn_entity]: Loading entity published on topic robot_description
+[spawn_entity.py-4] [INFO] [1795322316.696823769] [spawn_entity]: Waiting for entity xml on robot_description
+[spawn_entity.py-4] [INFO] [1795322316.699006596] [spawn_entity]: Waiting for service /spawn_entity, timeout = 60
+[spawn_entity.py-4] [INFO] [1795322316.699254019] [spawn_entity]: Waiting for service /spawn_entity
+[gzserver-2] [0m[1;33m[0m[1;33m[0m[INFO] [1795322316.919750638] [gazebo.gazebo_ros_state]: Publishing states of gazebo models at [/gazebo/model_states]
+[gzserver-2] [INFO] [1795322316.920371469] [gazebo.gazebo_ros_state]: Publishing states of gazebo links at [/gazebo/link_states]
+[spawn_entity.py-4] [INFO] [1795322316.953471958] [spawn_entity]: Calling service /spawn_entity
+[spawn_entity.py-4] [INFO] [1795322317.192996007] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [smart_car]
+[gzserver-2] [INFO] [1795322317.305342506] [gazebo_ros2_control]: Loading gazebo_ros2_control plugin
+[gzserver-2] [INFO] [1795322317.310969881] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in namespace: /
+[gzserver-2] [INFO] [1795322317.311000378] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in ros 2 node: gazebo_ros2_control
+[gzserver-2] [INFO] [1795322317.315553986] [gazebo_ros2_control]: connected to service!! robot_state_publisher
+[gzserver-2] [INFO] [1795322317.316016759] [gazebo_ros2_control]: Received urdf from param server, parsing...
+[gzserver-2] [INFO] [1795322317.318843710] [gazebo_ros2_control]: Loading parameter files /home/ubuntu2204/smartcar-m3-opt/install_ros/smart_car_description/share/smart_car_description/config/ackermann_controllers.yaml
+[gzserver-2] [INFO] [1795322317.325812038] [gazebo_ros2_control]: Loading joint: front_left_steering_joint
+[gzserver-2] [INFO] [1795322317.325838655] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795322317.325847371] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795322317.325855054] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795322317.325860949] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795322317.325865981] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795322317.326173581] [gazebo_ros2_control]: Loading joint: front_right_steering_joint
+[gzserver-2] [INFO] [1795322317.326184239] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795322317.326190017] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795322317.326195436] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795322317.326200414] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795322317.326205363] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795322317.326459933] [gazebo_ros2_control]: Loading joint: front_left_wheel_joint
+[gzserver-2] [INFO] [1795322317.326469596] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795322317.326486706] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795322317.326495133] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795322317.326500209] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795322317.326506020] [gazebo_ros2_control]: Loading joint: front_right_wheel_joint
+[gzserver-2] [INFO] [1795322317.326511149] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795322317.326515838] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795322317.326520742] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795322317.326525578] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795322317.326531074] [gazebo_ros2_control]: Loading joint: rear_left_wheel_joint
+[gzserver-2] [INFO] [1795322317.326535956] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795322317.326540678] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795322317.326545714] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795322317.326550547] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795322317.326558749] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795322317.326794221] [gazebo_ros2_control]: Loading joint: rear_right_wheel_joint
+[gzserver-2] [INFO] [1795322317.326802882] [gazebo_ros2_control]: 	State:
+[gzserver-2] [INFO] [1795322317.326807892] [gazebo_ros2_control]: 		 position
+[gzserver-2] [INFO] [1795322317.326812930] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795322317.326817624] [gazebo_ros2_control]: 	Command:
+[gzserver-2] [INFO] [1795322317.326825277] [gazebo_ros2_control]: 		 velocity
+[gzserver-2] [INFO] [1795322317.327074380] [resource_manager]: Initialize hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795322317.327179302] [resource_manager]: Successful initialization of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795322317.327242001] [resource_manager]: 'configure' hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795322317.327248587] [resource_manager]: Successful 'configure' of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795322317.327253586] [resource_manager]: 'activate' hardware 'SmartCarSystem' 
+[gzserver-2] [INFO] [1795322317.327257407] [resource_manager]: Successful 'activate' of hardware 'SmartCarSystem'
+[gzserver-2] [INFO] [1795322317.327322344] [gazebo_ros2_control]: Loading controller_manager
+[gzserver-2] [WARN] [1795322317.353584003] [gazebo_ros2_control]:  Desired controller update period (0.02 s) is slower than the gazebo simulation period (0.002 s).
+[gzserver-2] [INFO] [1795322317.354131385] [gazebo_ros2_control]: Loaded gazebo_ros2_control.
+[INFO] [spawn_entity.py-4]: process has finished cleanly [pid 7326]
+[INFO] [spawner-16]: process started with pid [7589]
+[gzserver-2] [INFO] [1795322317.637155677] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-16] [INFO] [1795322317.677153231] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[gzserver-2] [INFO] [1795322317.689850172] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[gzserver-2] [INFO] [1795322317.690100199] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-16] [INFO] [1795322317.752838353] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[INFO] [spawner-16]: process has finished cleanly [pid 7589]
+[INFO] [spawner-17]: process started with pid [7603]
+[gzserver-2] [INFO] [1795322318.157194169] [controller_manager]: Loading controller 'ackermann_steering_controller'
+[spawner-17] [INFO] [1795322318.202975832] [spawner_ackermann_steering_controller]: [94mLoaded [1mackermann_steering_controller[0m
+[gzserver-2] [INFO] [1795322318.205439968] [controller_manager]: Configuring controller 'ackermann_steering_controller'
+[gzserver-2] [INFO] [1795322318.205596189] [ackermann_steering_controller]: Ackermann odom configure successful
+[gzserver-2] [INFO] [1795322318.210269189] [ackermann_steering_controller]: configure successful
+[spawner-17] [INFO] [1795322318.255692465] [spawner_ackermann_steering_controller]: [92mConfigured and activated [1mackermann_steering_controller[0m
+[amcl-6] [INFO] [1795322318.315904528] [amcl]: createLaserObject
+[INFO] [spawner-17]: process has finished cleanly [pid 7603]
+[gzserver-2] [1;32m[Msg] [0m[1;32mWaiting for master.[0m[1;32m
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mConnected to gazebo master @ [0m[1;32mhttp://127.0.0.1:11382[0m[1;32m
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mPublicized address: [0m[1;32m192.168.19.131[0m[1;32m
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;32m[Msg] [0m[1;32mLoading world file [[0m[1;32m/home/ubuntu2204/smartcar-m3-opt/M3/M3-2/worlds/scene.world[0m[1;32m][0m[1;32m
+[planner_server-10] [INFO] [1795322323.614164818] [planner_server]: Configured plugin GridBased of type SmacPlannerHybrid with maximum iterations 1000000, max on approach iterations 1000, and not allowing unknown traversal. Tolerance 0.25.Using motion model: Reeds-Shepp.
+[planner_server-10] [INFO] [1795322323.614226316] [planner_server]: Planner Server has GridBased  planners available.
+[lifecycle_manager-15] [INFO] [1795322323.620680553] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-11] [INFO] [1795322323.620915901] [behavior_server]: Configuring
+[behavior_server-11] [INFO] [1795322323.627899046] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-11] [INFO] [1795322323.629260762] [behavior_server]: Configuring backup
+[behavior_server-11] [INFO] [1795322323.635054419] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-11] [INFO] [1795322323.635621259] [behavior_server]: Configuring drive_on_heading
+[behavior_server-11] [INFO] [1795322323.640058688] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-11] [INFO] [1795322323.640668948] [behavior_server]: Configuring wait
+[lifecycle_manager-15] [INFO] [1795322323.645262005] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-12] [INFO] [1795322323.645767231] [bt_navigator]: Configuring
+[lifecycle_manager-15] [INFO] [1795322323.692448410] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m
+[waypoint_follower-13] [INFO] [1795322323.692630588] [waypoint_follower]: Configuring
+[waypoint_follower-13] [INFO] [1795322323.701393338] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[lifecycle_manager-15] [INFO] [1795322323.702066484] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m
+[velocity_smoother-14] [INFO] [1795322323.702283197] [velocity_smoother]: Configuring velocity smoother
+[lifecycle_manager-15] [INFO] [1795322323.706186372] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[controller_server-8] [INFO] [1795322323.706349042] [controller_server]: Activating
+[controller_server-8] [INFO] [1795322323.706385594] [local_costmap.local_costmap]: Activating
+[controller_server-8] [INFO] [1795322323.706397648] [local_costmap.local_costmap]: Checking transform
+[controller_server-8] [INFO] [1795322323.706502886] [local_costmap.local_costmap]: start
+[controller_server-8] [INFO] [1795322323.957135865] [controller_server]: Activating controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-8] [INFO] [1795322323.957191084] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795322324.060372733] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[lifecycle_manager-15] [INFO] [1795322324.060431685] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m
+[smoother_server-9] [INFO] [1795322324.060748430] [smoother_server]: Activating
+[smoother_server-9] [INFO] [1795322324.060784898] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795322324.164159085] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[lifecycle_manager-15] [INFO] [1795322324.164221032] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m
+[planner_server-10] [INFO] [1795322324.164580557] [planner_server]: Activating
+[planner_server-10] [INFO] [1795322324.164628704] [global_costmap.global_costmap]: Activating
+[planner_server-10] [INFO] [1795322324.164640035] [global_costmap.global_costmap]: Checking transform
+[planner_server-10] [INFO] [1795322324.164753003] [global_costmap.global_costmap]: start
+[planner_server-10] [INFO] [1795322325.215515202] [planner_server]: Activating plugin GridBased of type SmacPlannerHybrid
+[planner_server-10] [INFO] [1795322325.216020346] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795322325.320086929] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[lifecycle_manager-15] [INFO] [1795322325.320162355] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-11] [INFO] [1795322325.320473672] [behavior_server]: Activating
+[behavior_server-11] [INFO] [1795322325.320504903] [behavior_server]: Activating backup
+[behavior_server-11] [INFO] [1795322325.320516271] [behavior_server]: Activating drive_on_heading
+[behavior_server-11] [INFO] [1795322325.320524723] [behavior_server]: Activating wait
+[behavior_server-11] [INFO] [1795322325.320536276] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795322325.423927364] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[lifecycle_manager-15] [INFO] [1795322325.423991567] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-12] [INFO] [1795322325.424181113] [bt_navigator]: Activating
+[bt_navigator-12] [INFO] [1795322325.441772534] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[bt_navigator-12] [INFO] [1795322325.444144219] [bt_navigator]: Begin navigating from current location (-0.00, 0.00) to (10.00, 4.00)
+[controller_server-8] [INFO] [1795322325.466310152] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322325.466366689] [controller_server]: No goal checker was specified in parameter 'current_goal_checker'. Server will use only plugin loaded general_goal_checker . This warning will appear once.
+[lifecycle_manager-15] [INFO] [1795322325.544724884] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[lifecycle_manager-15] [INFO] [1795322325.544767079] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m
+[waypoint_follower-13] [INFO] [1795322325.545004046] [waypoint_follower]: Activating
+[waypoint_follower-13] [INFO] [1795322325.545048223] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795322325.650287048] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.
+[lifecycle_manager-15] [INFO] [1795322325.650339413] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m
+[velocity_smoother-14] [INFO] [1795322325.650651586] [velocity_smoother]: Activating
+[velocity_smoother-14] [INFO] [1795322325.650728281] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1795322325.754248549] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[lifecycle_manager-15] [INFO] [1795322325.754307384] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-15] [INFO] [1795322325.754317270] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m
+[controller_server-8] [INFO] [1795322326.516941609] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322327.566611968] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322328.566494216] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322329.616660494] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322330.616875289] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322331.666567779] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322332.666516466] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322333.666584171] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322334.716563924] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322335.717130626] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322336.766579632] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322337.766903812] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322338.816510467] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322339.817266001] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322340.866580747] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322341.866669163] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322342.916576758] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322343.966844176] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322344.966561749] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322346.016563138] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322347.016526663] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322348.016635484] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322349.066627274] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322350.116771177] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322351.116614100] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322352.166757101] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322353.166896129] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322354.516555427] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322355.867176865] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322357.117099876] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322358.316884463] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322359.516783853] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322360.666755390] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322361.816684852] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322362.966772648] [controller_server]: Passing new path to controller.
+[controller_server-8] [INFO] [1795322364.066480937] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322364.066887890] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.116686442] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.166970508] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.216939591] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.266871719] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.316865031] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.366706230] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.416693528] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.466694289] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.516882273] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.566666421] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.616791209] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.666801017] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.716744054] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.766636994] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.816717035] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.867068020] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.916791460] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322364.966928412] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322365.016772816] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322365.066958678] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322365.116686271] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322365.167001736] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322365.216835140] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322365.266523633] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322366.116775036] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.166662099] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.217053939] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.267262729] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.316708204] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.366705010] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.416909542] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322366.466613657] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322366.466976638] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.516872255] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.566698881] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.616639844] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.667093880] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.716732291] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.766694867] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.816780486] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.866751671] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.916793451] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322366.966933627] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.016780319] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.066917033] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.116721916] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.166695750] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.216796844] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.266709809] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.316735827] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.366754905] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.416992088] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.466965408] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.516804383] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.566854787] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.616962257] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322367.666786829] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322367.667175045] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.716890024] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.766677424] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.816970690] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.867235362] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.916976578] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322367.966865585] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.017041560] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.067202236] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.116775816] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.167050831] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322368.167105895] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322368.167169853] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322368.186058877] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795322368.186751582] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322368.317057033] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.317166219] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [WARN] [1795322368.317265051] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.367770554] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.418174717] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.468919374] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.519634461] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.570487547] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.621108160] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.671653639] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.722510188] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.773337156] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.824336384] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322368.874584218] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322368.874904691] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.925279289] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322368.975635018] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.026515761] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.077089194] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.127936861] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.179271355] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.229850681] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.281113027] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.331489438] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.382100719] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.432659418] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.483120933] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.533559810] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.584362174] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.634790527] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.685417879] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.736036547] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.786549468] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.837362321] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.887810594] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.938407002] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322369.988994053] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322370.039516163] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322370.089738323] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322370.090110909] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322370.140813983] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322370.191500494] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322370.241854745] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322370.241909815] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322370.241974193] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322370.256585475] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-10] [INFO] [1795322370.256898114] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[behavior_server-11] [INFO] [1795322370.257404596] [behavior_server]: Running wait
+[behavior_server-11] [INFO] [1795322371.257955567] [behavior_server]: wait completed successfully
+[controller_server-8] [INFO] [1795322371.456285852] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322371.456555396] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.507008045] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.556776560] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.606766164] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.656943994] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.706702242] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.756871234] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.806848762] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.856940286] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.906676107] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322371.956588412] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.007009109] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.056598814] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.106697870] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.156758014] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.206736628] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.257054987] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.306700882] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.356738093] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.406722556] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.456865696] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.507277627] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.556978968] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.606880563] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322372.656405481] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322372.656749365] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.707382621] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.756766001] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.807510282] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.856811301] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.907273858] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322372.956782830] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.006727576] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.057454860] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.106702864] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.156754226] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.206735147] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.257155845] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.307055677] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.357638680] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.406636919] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.456793667] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.507018165] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.557280590] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322373.557337768] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322373.557458220] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322373.576396505] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795322373.576832666] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322373.707579595] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.707705523] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [WARN] [1795322373.707854064] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.758288155] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.808944012] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.860021432] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322373.910739898] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322373.911079875] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322373.961415323] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.011830649] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.062621550] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.113165468] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.163909613] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.214726442] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.265459770] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.315908460] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.366420302] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.416859408] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.467548339] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.518039530] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.568787958] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.622967166] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.673374125] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.724362713] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.775376942] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.825969354] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.876387222] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.926959751] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322374.977389038] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.027791770] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322375.078170249] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322375.078541982] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.128862795] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.179518790] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.230032571] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.281068738] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.332121378] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.382864100] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.433738057] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.484252102] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.534619988] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.585551100] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322375.636011212] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322375.636064756] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322375.636131281] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322375.656505987] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-10] [INFO] [1795322375.656828631] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[behavior_server-11] [INFO] [1795322375.657273875] [behavior_server]: Running wait
+[behavior_server-11] [INFO] [1795322376.657524089] [behavior_server]: wait completed successfully
+[controller_server-8] [INFO] [1795322376.856422655] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322376.856692851] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322376.907288352] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322376.957007928] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.006888465] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.056846773] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.107053083] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.157165039] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.206864531] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.256989763] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.306829774] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.356935125] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.407038822] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.457217559] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.507126872] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.557392375] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.607082116] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.657229488] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.706969143] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.756997372] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.807038229] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.856977424] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.908793690] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322377.956998228] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.007016050] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322378.057137612] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322378.057531129] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.107501522] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.157311922] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.206818499] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.257130908] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.307232229] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.357282346] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.406851382] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.457204570] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.507153784] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.557106016] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.607280642] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.657362673] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.707814232] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.757236098] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.807033335] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.857093565] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.907565332] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322378.957231649] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322378.957297559] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322378.957396412] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322378.976238612] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795322378.976826363] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322379.117172217] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.117392562] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [WARN] [1795322379.118077753] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.168867676] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322379.219129873] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322379.219446962] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.269824759] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.320393810] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.371159955] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.422012705] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.472533495] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.523075240] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.573505904] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.623985369] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.674939925] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.725454398] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.776003164] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.826435555] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.877193405] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.927801493] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322379.978729245] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.030095216] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.080567015] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.131390932] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.182113992] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.233460896] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.284124600] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.334692750] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.385191611] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322380.435755100] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322380.436162206] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.486739376] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.537226508] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.587829582] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.638296233] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.688687669] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.739390134] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.789926563] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.840382901] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.890874546] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.941222838] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322380.992613319] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322381.042905030] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322381.042958090] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322381.043020077] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322381.056492046] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-10] [INFO] [1795322381.056817310] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[behavior_server-11] [INFO] [1795322381.057294604] [behavior_server]: Running wait
+[behavior_server-11] [INFO] [1795322382.057602930] [behavior_server]: wait completed successfully
+[controller_server-8] [INFO] [1795322382.246141771] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322382.246385887] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.296974068] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.346588526] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.396755360] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.446530736] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.496686928] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.546590767] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.596688564] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.646817005] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.697127009] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.746895742] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.797178458] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.846720799] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.896988132] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.946652633] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322382.996583633] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.046528457] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.096696139] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.146973757] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.196979099] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.246517127] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.297096700] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.347687459] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.396543332] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322383.447634242] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322383.448026499] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.497154868] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.547667045] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.597048262] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.646467068] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.696861828] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.746835089] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.796549037] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.847112341] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.896880331] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.946537343] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322383.996546248] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.046516321] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.096601028] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.146664121] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.196888635] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.246563719] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.297192585] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.346798254] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322384.346848088] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322384.346892446] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322384.366198967] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795322384.367029377] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322384.517467676] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.517619351] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [WARN] [1795322384.517725266] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.568678406] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322384.619065223] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322384.619517271] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.670820703] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.721246823] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.771806761] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.822506547] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.873022885] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.923686563] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322384.974329909] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.024792543] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.075711827] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.126261401] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.176924302] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.227593290] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.278777992] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.329487349] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.380717887] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.431388713] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.482224752] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.532847757] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.583580629] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.633965416] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.684490373] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.735040557] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322385.785336004] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322385.785661766] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.836164871] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.886542405] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.937201962] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322385.987613909] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.038350478] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.088692576] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.139398616] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.190164139] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.240638676] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.291185331] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.341552231] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.391970844] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.442374158] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322386.492771258] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322386.492817353] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322386.492879945] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322386.506310440] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-10] [INFO] [1795322386.506597894] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[behavior_server-11] [INFO] [1795322386.506930052] [behavior_server]: Running wait
+[behavior_server-11] [INFO] [1795322387.507828738] [behavior_server]: wait completed successfully
+[controller_server-8] [INFO] [1795322387.746376623] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322387.746654144] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322387.796879998] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322387.846833168] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322387.897097374] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322387.946753462] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322387.996726561] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.047317195] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.097228284] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.146767158] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.196848201] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.247773117] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.296782153] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.346699500] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.397112612] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.447018755] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.496831730] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.547140950] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.597029083] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.647027036] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.697117358] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.746979528] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.797209969] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.846856976] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322388.897023381] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322388.897309635] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.946716481] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322388.997052780] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.047012006] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.096665410] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.146949836] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.196750414] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.247028022] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.296846368] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.347402552] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.396867191] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.447059910] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.496689050] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.546694594] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.596934653] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.647149715] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.697717626] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.748011764] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322389.748056193] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322389.748112031] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-8] [INFO] [1795322389.766222861] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-8] [INFO] [1795322389.766775531] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-8] [WARN] [1795322389.907224329] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.907379125] [controller_server]: Control loop missed its desired rate of 20.0000Hz
+[controller_server-8] [WARN] [1795322389.907519134] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322389.958248682] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.008734664] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322390.059182005] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322390.059516718] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.110273675] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.160788560] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.211228181] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.262033699] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.313241277] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.363902468] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.414348492] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.465012933] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.516094085] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.566839090] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.617220915] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.667742771] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.718443802] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.769118312] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.820097750] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.870812858] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.921600763] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322390.972561453] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.023217934] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.073574393] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.124144014] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.174799043] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [INFO] [1795322391.225050287] [controller_server]: Passing new path to controller.
+[controller_server-8] [WARN] [1795322391.225523224] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.275929332] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.327006453] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.377535215] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.429039993] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.480440288] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.531127693] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.581587252] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.632503792] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.683211258] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.733721503] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.784593457] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.835153932] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [WARN] [1795322391.885639679] [controller_server]: AckermannRPP detected collision on feasible chassis arc
+[controller_server-8] [ERROR] [1795322391.885704524] [controller_server]: Controller patience exceeded
+[controller_server-8] [WARN] [1795322391.885794159] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[bt_navigator-12] [WARN] [1795322391.905788101] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[bt_navigator-12] [ERROR] [1795322391.905985964] [bt_navigator]: Goal failed
+context mismatch in svga_surface_destroy
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[waypoint_follower-13] [INFO] [1795322402.205236084] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[bt_navigator-12] [INFO] [1795322402.205253887] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[bt_navigator-12] [INFO] [1795322402.205302738] [bt_navigator]: Running Nav2 LifecycleNode rcl preshutdown (bt_navigator)
+[bt_navigator-12] [INFO] [1795322402.205356187] [bt_navigator]: Deactivating
+[bt_navigator-12] [INFO] [1795322402.205372283] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[behavior_server-11] [INFO] [1795322402.205295049] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[behavior_server-11] [INFO] [1795322402.205332917] [behavior_server]: Running Nav2 LifecycleNode rcl preshutdown (behavior_server)
+[controller_server-8] [INFO] [1795322402.205395327] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[controller_server-8] [INFO] [1795322402.205449976] [controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)
+[controller_server-8] [INFO] [1795322402.205527222] [controller_server]: Deactivating
+[controller_server-8] [INFO] [1795322402.205538868] [controller_server]: Deactivating controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-8] [INFO] [1795322402.205551039] [local_costmap.local_costmap]: Deactivating
+[planner_server-10] [INFO] [1795322402.205401658] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[planner_server-10] [INFO] [1795322402.205454225] [planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[planner_server-10] [INFO] [1795322402.205502548] [planner_server]: Deactivating
+[planner_server-10] [INFO] [1795322402.205536748] [global_costmap.global_costmap]: Deactivating
+[amcl-6] [INFO] [1795322402.205447046] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-6] [INFO] [1795322402.205521893] [amcl]: Running Nav2 LifecycleNode rcl preshutdown (amcl)
+[amcl-6] [INFO] [1795322402.205561127] [amcl]: Deactivating
+[amcl-6] [INFO] [1795322402.205571055] [amcl]: Destroying bond (amcl) to lifecycle manager.
+[lifecycle_manager-7] [INFO] [1795322402.205446980] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-7] [INFO] [1795322402.205504663] [lifecycle_manager_localization]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_localization)
+[lifecycle_manager-7] [INFO] [1795322402.205548447] [lifecycle_manager_localization]: [34m[1mTerminating bond timer...[0m[0m
+[smoother_server-9] [INFO] [1795322402.205583622] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-9] [INFO] [1795322402.205633031] [smoother_server]: Running Nav2 LifecycleNode rcl preshutdown (smoother_server)
+[map_server-5] [INFO] [1795322402.205674066] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-5] [INFO] [1795322402.205733230] [map_server]: Running Nav2 LifecycleNode rcl preshutdown (map_server)
+[map_server-5] [INFO] [1795322402.205772485] [map_server]: Deactivating
+[map_server-5] [INFO] [1795322402.205781922] [map_server]: Destroying bond (map_server) to lifecycle manager.
+[robot_state_publisher-1] [INFO] [1795322402.205895531] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-9] [INFO] [1795322402.206384832] [smoother_server]: Deactivating
+[smoother_server-9] [INFO] [1795322402.206402055] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[velocity_smoother-14] [INFO] [1795322402.206514883] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[velocity_smoother-14] [INFO] [1795322402.206613293] [velocity_smoother]: Running Nav2 LifecycleNode rcl preshutdown (velocity_smoother)
+[velocity_smoother-14] [INFO] [1795322402.206665038] [velocity_smoother]: Deactivating
+[velocity_smoother-14] [INFO] [1795322402.206682865] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[behavior_server-11] [INFO] [1795322402.206998191] [behavior_server]: Deactivating
+[behavior_server-11] [INFO] [1795322402.207060509] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[waypoint_follower-13] [INFO] [1795322402.207003806] [waypoint_follower]: Running Nav2 LifecycleNode rcl preshutdown (waypoint_follower)
+[waypoint_follower-13] [INFO] [1795322402.207046541] [waypoint_follower]: Deactivating
+[waypoint_follower-13] [INFO] [1795322402.207056208] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[INFO] [lifecycle_manager-15]: sending signal 'SIGINT' to process[lifecycle_manager-15]
+[INFO] [velocity_smoother-14]: sending signal 'SIGINT' to process[velocity_smoother-14]
+[INFO] [waypoint_follower-13]: sending signal 'SIGINT' to process[waypoint_follower-13]
+[INFO] [bt_navigator-12]: sending signal 'SIGINT' to process[bt_navigator-12]
+[INFO] [behavior_server-11]: sending signal 'SIGINT' to process[behavior_server-11]
+[INFO] [planner_server-10]: sending signal 'SIGINT' to process[planner_server-10]
+[INFO] [smoother_server-9]: sending signal 'SIGINT' to process[smoother_server-9]
+[INFO] [controller_server-8]: sending signal 'SIGINT' to process[controller_server-8]
+[INFO] [lifecycle_manager-7]: sending signal 'SIGINT' to process[lifecycle_manager-7]
+[INFO] [amcl-6]: sending signal 'SIGINT' to process[amcl-6]
+[INFO] [map_server-5]: sending signal 'SIGINT' to process[map_server-5]
+[INFO] [control_bridge-3]: sending signal 'SIGINT' to process[control_bridge-3]
+[INFO] [gzserver-2]: sending signal 'SIGINT' to process[gzserver-2]
+[INFO] [robot_state_publisher-1]: sending signal 'SIGINT' to process[robot_state_publisher-1]
+[amcl-6] [INFO] [1795322402.215759671] [amcl]: Cleaning up
+[bt_navigator-12] [INFO] [1795322402.215759212] [bt_navigator]: Cleaning up
+[map_server-5] [INFO] [1795322402.216024857] [map_server]: Cleaning up
+[map_server-5] [INFO] [1795322402.216120339] [map_server]: Destroying bond (map_server) to lifecycle manager.
+[velocity_smoother-14] [INFO] [1795322402.216943807] [velocity_smoother]: Cleaning up
+[velocity_smoother-14] [INFO] [1795322402.216976657] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[behavior_server-11] [INFO] [1795322402.217363431] [behavior_server]: Cleaning up
+[smoother_server-9] [INFO] [1795322402.217653627] [smoother_server]: Cleaning up
+[waypoint_follower-13] [INFO] [1795322402.218128457] [waypoint_follower]: Cleaning up
+[velocity_smoother-14] [INFO] [1795322402.222719900] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-6] [INFO] [1795322402.223336773] [amcl]: Destroying bond (amcl) to lifecycle manager.
+[waypoint_follower-13] [INFO] [1795322402.225813262] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[behavior_server-11] [INFO] [1795322402.230150477] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[waypoint_follower-13] [INFO] [1795322402.230776364] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[behavior_server-11] [INFO] [1795322402.234015961] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-9] [INFO] [1795322402.242086652] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[lifecycle_manager-7] [INFO] [1795322402.242394437] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-9] [INFO] [1795322402.242633312] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-6] [INFO] [1795322402.243004709] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-5] [INFO] [1795322402.243873960] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-1] [INFO] [1795322402.245973959] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[controller_server-8] [INFO] [1795322402.306874536] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[controller_server-8] [INFO] [1795322402.317212292] [controller_server]: Cleaning up
+[controller_server-8] [INFO] [1795322402.317262331] [controller_server]: Cleaning up controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-8] [INFO] [1795322402.317299816] [local_costmap.local_costmap]: Cleaning up
+[bt_navigator-12] [INFO] [1795322402.327717500] [bt_navigator]: Completed Cleaning up
+[bt_navigator-12] [INFO] [1795322402.327769240] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[bt_navigator-12] [INFO] [1795322402.328721549] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[bt_navigator-12] [INFO] [1795322402.338796846] [bt_navigator]: Destroying
+[controller_server-8] [INFO] [1795322402.339329674] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[controller_server-8] [INFO] [1795322402.342563893] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[behavior_server-11] [INFO] [1795322402.356111244] [behavior_server]: Destroying
+[map_server-5] [INFO] [1795322402.375916946] [map_server]: Destroying
+[lifecycle_manager-7] [INFO] [1795322402.377620406] [lifecycle_manager_localization]: Destroying lifecycle_manager_localization
+[waypoint_follower-13] [INFO] [1795322402.379677938] [waypoint_follower]: Destroying
+[amcl-6] [INFO] [1795322402.381681564] [amcl]: Destroying
+[velocity_smoother-14] [INFO] [1795322402.383695633] [velocity_smoother]: Destroying
+[smoother_server-9] [INFO] [1795322402.394384155] [smoother_server]: Destroying
+[controller_server-8] [INFO] [1795322402.408448995] [local_costmap.local_costmap]: Destroying
+[control_bridge-3] Traceback (most recent call last):
+[control_bridge-3]   File "/home/ubuntu2204/smartcar-m3-opt/install_ros/smartcar_training/lib/smartcar_training/control_bridge", line 33, in <module>
+[control_bridge-3]     sys.exit(load_entry_point('smartcar-training', 'console_scripts', 'control_bridge')())
+[control_bridge-3]   File "/home/ubuntu2204/smartcar-m3-opt/build_ros/smartcar_training/smartcar_training/control_bridge.py", line 70, in main
+[control_bridge-3]     node.destroy_node()
+[control_bridge-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1696, in destroy_node
+[control_bridge-3]     self.__node.destroy_when_not_in_use()
+[control_bridge-3] KeyboardInterrupt
+[controller_server-8] [INFO] [1795322402.436746591] [controller_server]: Destroying
+[lifecycle_manager-15] [INFO] [1795322402.205165824] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-15] [INFO] [1795322402.438230494] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-15] av2 LifecycleManager rcl preshutdown (lifecycle_manager_navigation)
+[lifecycle_manager-15] [INFO] [1795322402.205340461] [lifecycle_manager_navigation]: [34m[1mTerminating bond timer...[0m[0m
+[ERROR] [control_bridge-3]: process has died [pid 7324, exit code -2, cmd '/home/ubuntu2204/smartcar-m3-opt/install_ros/smartcar_training/lib/smartcar_training/control_bridge --ros-args --params-file /tmp/launch_params_lo9ohdyh'].
+[INFO] [lifecycle_manager-7]: process has finished cleanly [pid 7342]
+[lifecycle_manager-15] [INFO] [1795322402.515855786] [lifecycle_manager_navigation]: Destroying lifecycle_manager_navigation
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 7320]
+[INFO] [map_server-5]: process has finished cleanly [pid 7328]
+[INFO] [velocity_smoother-14]: process has finished cleanly [pid 7405]
+[INFO] [smoother_server-9]: process has finished cleanly [pid 7347]
+[INFO] [bt_navigator-12]: process has finished cleanly [pid 7374]
+[INFO] [waypoint_follower-13]: process has finished cleanly [pid 7397]
+[INFO] [behavior_server-11]: process has finished cleanly [pid 7371]
+[INFO] [controller_server-8]: process has finished cleanly [pid 7345]
+[INFO] [amcl-6]: process has finished cleanly [pid 7332]
+[INFO] [lifecycle_manager-15]: process has finished cleanly [pid 7409]
+[INFO] [gzserver-2]: process has finished cleanly [pid 7322]
+[gzserver-2] [0m[1;32m[0m[1;32m[0m[1;36m[0m[1;32m[0m
+[gzserver-2] [1;33m[0m[1;31m[0m
+[planner_server-10] [INFO] [1795322403.165030088] [planner_server]: Deactivating plugin GridBased of type SmacPlannerHybrid
+[planner_server-10] [INFO] [1795322403.165107620] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[planner_server-10] [INFO] [1795322403.176024303] [planner_server]: Cleaning up
+[planner_server-10] [INFO] [1795322403.177727404] [global_costmap.global_costmap]: Cleaning up
+[planner_server-10] [INFO] [1795322403.178765235] [planner_server]: Cleaning up plugin GridBased of type SmacPlannerHybrid
+[planner_server-10] [INFO] [1795322403.179431956] [planner_server]: Destroying plugin GridBased of type SmacPlannerHybrid
+[planner_server-10] [INFO] [1795322403.183115841] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[planner_server-10] [INFO] [1795322403.183650548] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[planner_server-10] [INFO] [1795322403.185311545] [global_costmap.global_costmap]: Destroying
+[planner_server-10] [INFO] [1795322403.188950422] [planner_server]: Destroying
+[INFO] [planner_server-10]: process has finished cleanly [pid 7366]

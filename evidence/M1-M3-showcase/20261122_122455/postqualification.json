@@ -1,0 +1,57 @@
+{
+  "status": "PASS_waiting_actual_rviz",
+  "frozen_source": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+  "steps": [
+    {
+      "name": "new_obstacle_twice",
+      "command": [
+        "bash",
+        "scripts/run_m3_demo.sh",
+        "dynamic",
+        "--label",
+        "showcase_fixed_new_obstacle_twice",
+        "--runs",
+        "2",
+        "--seed",
+        "720",
+        "--obstacle-at",
+        "9.2,1.3"
+      ],
+      "returncode": 0,
+      "result_dir": "M3/optimization/results/20261122_134650_showcase_fixed_new_obstacle_twice"
+    },
+    {
+      "name": "blocked_goal_boundary",
+      "command": [
+        "bash",
+        "scripts/run_m3_demo.sh",
+        "dynamic",
+        "--label",
+        "showcase_fixed_blocked_goal_boundary",
+        "--runs",
+        "1",
+        "--seed",
+        "730",
+        "--obstacle-at",
+        "11,5",
+        "--obstacle-size",
+        ".8",
+        "--timeout",
+        "90"
+      ],
+      "returncode": 0,
+      "result_dir": "M3/optimization/results/20261122_134854_showcase_fixed_blocked_goal_boundary"
+    }
+  ],
+  "qualification": "evidence/M3-showcase-qualification/20261122_125957",
+  "new_obstacle_twice": {
+    "attempts": 2,
+    "successes": 2,
+    "result_dir": "M3/optimization/results/20261122_134650_showcase_fixed_new_obstacle_twice"
+  },
+  "blocked_goal_boundary": {
+    "attempts": 1,
+    "successes": 0,
+    "result_dir": "M3/optimization/results/20261122_134854_showcase_fixed_blocked_goal_boundary"
+  }
+}

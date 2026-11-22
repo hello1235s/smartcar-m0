@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/ubuntu2204/smartcar-m3-opt/M3/common/x11_app_window.py", line 88, in <module>
+    if __name__=='__main__':main()
+  File "/home/ubuntu2204/smartcar-m3-opt/M3/common/x11_app_window.py", line 77, in main
+    desktop=Desktop();window,title=desktop.find(a.title)
+  File "/home/ubuntu2204/smartcar-m3-opt/M3/common/x11_app_window.py", line 44, in find
+    if len(matches)!=1:raise RuntimeError('Expected one application window: '+str(matches))
+RuntimeError: Expected one application window: [(20971782, '/home/ubuntu2204/smartcar-m3-opt/M3/M3-3/config/exam_navigation.rviz - RViz'), (20971528, 'rviz2'), (20971524, 'Qt Selection Owner for rviz2')]

@@ -1,0 +1,17 @@
+已生成 rosbag : /home/ubuntu2204/smartcar-m3-opt/M1/M1-3/results/20261122_122516/nondefault/bag
+已生成外参    : /home/ubuntu2204/smartcar-m3-opt/M1/M1-3/results/20261122_122516/nondefault/extrinsics.yaml
+  时长      : 8.0 s
+  激光帧数  : 80  (10.0 Hz, 抖动 ±3.0 ms)
+  相机帧数  : 216  (27.0 Hz, 抖动 ±2.0 ms)
+
+  ★ 两个话题的时间戳**独立**（频率不同 + 抖动），
+    精确同步(TimeSynchronizer)配不上，必须用 ApproximateTimeSynchronizer。
+  话题      : /scan  /camera/image_raw  /camera/camera_info
+  激光      : 180 线, -90° ~ 90°, frame_id=laser_link
+  图像      : 640x480 rgb8, frame_id=camera_link
+  安装      : laser_link xyz=[0.15, 0.0, 0.45]  camera_link xyz=[0.1, 0.0, 0.75] rpy=[0.0, 0.0, 0.0]
+  内参      : fx=420.0 fy=440.0 cx=320.0 cy=240.0
+
+回放（务必带 --clock，并在节点上设 use_sim_time:=true）:
+  ros2 bag play /home/ubuntu2204/smartcar-m3-opt/M1/M1-3/results/20261122_122516/nondefault/bag --clock
+[INFO] [1795321551.918117994] [rosbag2_storage]: Opened database '/home/ubuntu2204/smartcar-m3-opt/M1/M1-3/results/20261122_122516/nondefault/bag/bag_0.db3' for READ_WRITE.

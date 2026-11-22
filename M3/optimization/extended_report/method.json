@@ -1,10 +1,24 @@
 {
-  "manifest": "M3/optimization/results/20261121_034938_qualification_extended/manifest.json",
+  "manifest": "evidence/M3-showcase-qualification/20261122_125957/extended_manifest.json",
   "success": "Action success AND truth endpoint <=0.15m/0.20rad AND >=5m AND no conservative-envelope overlap AND sufficient scan/truth samples AND requested obstacle inserted",
   "distance": "world truth integral minus mean successful no-obstacle integral for the same profile; unavailable if no successful reference",
   "time": "simulated action duration; excludes post-action settling",
   "smoothness": "TV of bridge commanded steering atan(0.28*omega/v) when abs(v)>.005m/s, otherwise0, divided by truth distance; command proxy, not steering-joint measurement",
   "safety": "Known world-box geometry against conservative body/wheel envelope sampled from ModelStates; not contact-sensor certification",
   "randomization": "Gazebo seeds recorded; AMCL scheduling and random sampling are not bitwise deterministic",
-  "means": "Time, detour, smoothness and endpoint means use qualified successes only. All failures remain in denominator and CSV. Negative distance differences are retained, including run-to-run path/localization variation."
+  "means": "Time, detour, smoothness and endpoint means use qualified successes only. All failures remain in denominator and CSV. Negative distance differences are retained, including run-to-run path/localization variation.",
+  "profile_internal_xy_goal_tolerance_m": {
+    "B_tuned": 0.02
+  },
+  "injection_reference_by_group": {
+    "heldout_new_obstacle": "motion",
+    "boundary_blocked_goal": "motion",
+    "heldout_rviz_goal": "accepted"
+  },
+  "source_head_by_group": {
+    "heldout_new_obstacle": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+    "boundary_blocked_goal": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+    "heldout_rviz_goal": "1b2e64ac8e39e7704654daf251d5cdf605532210"
+  },
+  "comparison": "Every supplied group shares the checked map, control libraries and external .15m/.20rad validator. Internal XY tolerance is an explicit profile setting. Each profile uses its matching static reference when present; historical diagnostics belong in a separate manifest."
 }

@@ -1,5 +1,5 @@
 {
-  "manifest": "M3/optimization/results/20261121_152430_terminal_refinement/analysis_manifest.json",
+  "manifest": "evidence/M3-showcase-qualification/20261122_125957/main_manifest.json",
   "success": "Action success AND truth endpoint <=0.15m/0.20rad AND >=5m AND no conservative-envelope overlap AND sufficient scan/truth samples AND requested obstacle inserted",
   "distance": "world truth integral minus mean successful no-obstacle integral for the same profile; unavailable if no successful reference",
   "time": "simulated action duration; excludes post-action settling",
@@ -10,9 +10,23 @@
   "profile_internal_xy_goal_tolerance_m": {
     "B_tuned": 0.02,
     "A": 0.05,
-    "B": 0.05,
-    "B_speed": 0.05,
-    "B_lookahead": 0.05
+    "B": 0.05
   },
-  "comparison": "Same physical goal, map, control libraries and external .15m/.20rad validator. Internal stop tolerance is an explicit tuning variable; current B_tuned is .02m, historical A/B/intermediate profiles .05m. Each profile uses a matching static reference."
+  "injection_reference_by_group": {
+    "formal_static_B_tuned": "motion",
+    "formal_static_A": "motion",
+    "formal_static_B": "motion",
+    "formal_dynamic_A": "motion",
+    "formal_dynamic_B": "motion",
+    "formal_dynamic_B_tuned": "motion"
+  },
+  "source_head_by_group": {
+    "formal_static_B_tuned": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+    "formal_static_A": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+    "formal_static_B": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+    "formal_dynamic_A": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+    "formal_dynamic_B": "1b2e64ac8e39e7704654daf251d5cdf605532210",
+    "formal_dynamic_B_tuned": "1b2e64ac8e39e7704654daf251d5cdf605532210"
+  },
+  "comparison": "Every supplied group shares the checked map, control libraries and external .15m/.20rad validator. Internal XY tolerance is an explicit profile setting. Each profile uses its matching static reference when present; historical diagnostics belong in a separate manifest."
 }

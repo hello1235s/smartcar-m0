@@ -11,3 +11,8 @@
 本轮增加本仓库C++插件smartcar_nav_checks（Apache-2.0），使用Nav2 GoalChecker和RPP公开/受保护接口；未修改apt安装的Nav2二进制。后轴运动学、Humble目标转换失败链路及通信配置的官方链接见M3/optimization/REPORT.md。
 
 M3导航的本地依赖来自官方ROS apt软件包：[CycloneDDS 0.10.5](https://github.com/eclipse-cyclonedds/cyclonedds/tree/0.10.5)（EPL-2.0或EDL-1.0）、[rmw_cyclonedds](https://github.com/ros2/rmw_cyclonedds/tree/humble)（Apache-2.0）、[iceoryx 2.0.5](https://github.com/eclipse-iceoryx/iceoryx/tree/v2.0.5)（Apache-2.0）、[TF2 core0.25.24](https://github.com/ros2/geometry2/tree/0.25.24/tf2)（BSD，官方锁顺序修复见geometry2 PR990）。版本锁在M3/runtime/navigation-packages.lock；实际包版本和SHA256随实验dds_packages文件保存。未修改这些依赖；Git只提交安装脚本/配置，离线包保留原.deb及其中的版权材料。
+
+
+## 最新指南补齐
+
+最新展示要求另参考教师仓库dbfd7cf6cbfaec4380e7f5a24654e38c24292732。原生RViz窗口使用ROS官方rviz_common::VisualizationFrame、rviz_rendering::RenderWindow及其插件，不以自绘图替代RViz；运行另需qtbase5-dev、ros-humble-rviz-common、ros-humble-rviz-rendering。 结果索引：[工程验收](docs/showcase_acceptance.md)。

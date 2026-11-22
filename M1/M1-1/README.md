@@ -30,3 +30,8 @@ ros2 service call /trigger_alarm sensor_interfaces/srv/TriggerAlarm '{distance: 
 ## 本轮完整复测
 
 本轮已重新执行题面检查，任务内容、逐项结果和原始总报告见[完整验收](../ACCEPTANCE.md)。历史测量保留原日期，不冒充本轮成绩。
+
+
+## 最新展示指南补齐
+
+2026-11-22已完整复测。单命令双组、两组实时投影、点击点查询原LaserScan距离与独立bag对应核验，以及60秒性能原始证据见[当前验收](../ACCEPTANCE.md)、[现场入口](../../docs/现场展示入口.md)和[工程补齐索引](../../docs/showcase_acceptance.md)。历史测量保留原日期。

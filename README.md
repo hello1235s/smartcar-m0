@@ -4,7 +4,7 @@
 
 本分支 `codex/m1-m3-training` 提交 M1 四题和 M3 四题，沿用 M0 作业作为基础。实际环境为 Ubuntu 22.04、ROS 2 Humble、Gazebo Classic 11、VMware 6 vCPU。M1 使用题目合成传感器/图像数据，M3 使用 Gazebo 物理仿真；本次运行不依赖开发板、K230、麦克风或训练模型。
 
-M1代码与历史测量来自开发提交2bf7fb0，保留2026-11-16的测量日期。M3本轮在2026-11-21继续优化并实际重新采集；旧M3记录单独保留，当前结论以M3/optimization/REPORT.md为准。本分支新增验证记录可从evidence/和验收索引追溯，整理日期不代替实验日期。
+M1基础代码与早期历史测量来自开发提交2bf7fb0，保留2026-11-16的测量日期。M1/M3在2026-11-22按最新指南继续补齐并重新实际采集；末端微折返修复后的46次主对照单独统计；旧M3记录单独保留，当前结论以M3/optimization/REPORT.md为准。本分支新增验证记录可从evidence/和验收索引追溯，整理日期不代替实验日期。
 
 **AI 使用：** Codex 参与 M1/M3 实现、调参、运行验证和文档整理。已执行的验证见下表及原始结果；作者本人逐行研究、独立复现和答辩准备程度尚待本人确认，不能用自动验收代替。完整披露见 [AI_USAGE.md](AI_USAGE.md)。
 
@@ -15,11 +15,11 @@ M1代码与历史测量来自开发提交2bf7fb0，保留2026-11-16的测量日�
 | M1-1 | 实际滤波数值、无效数据、动态参数与非阻塞超时重新核验；10.00Hz发布 | [说明](M1/M1-1/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
 | M1-2 | 双命名空间六节点、动态隔离与就绪顺序重新验证 | [说明](M1/M1-2/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
 | M1-3 | 两组外参六图逐像素对照、实际TF、真实时钟切换录像重新验证 | [说明](M1/M1-3/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
-| M1-4 | 新60秒测量：输入32.00/输出32.00/控制21.00Hz，P95 13.48ms | [说明](M1/M1-4/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
+| M1-4 | 新60秒测量：输入32.00/输出32.00/控制21.00Hz，P95 12.41ms | [说明](M1/M1-4/README.md) · [本轮完整验收](M1/ACCEPTANCE.md) |
 | M3-1 | odom反馈十次；真值闭合0.0183±0.0054m、1.64±0.19° | [说明](M3/M3-1/README.md) · [优化实测](M3/optimization/REPORT.md) |
 | M3-2 | 后轴TF修正后真实重建SLAM；0.95m门，268节点/284边/17历史约束 | [说明](M3/M3-2/README.md) · [地图与来源](M3/M3-2/maps/) |
 | M3-3 | AMCL、阿克曼Nav2、有效位姿检查；严格10/10 | [说明](M3/M3-3/README.md) · [全部成败](M3/optimization/report/all_attempts.csv) |
-| M3-4 | 动态实体障碍，A/B/B_tuned各10次：10/9/10次通过；另有独立位置/目标与边界 | [说明](M3/M3-4/README.md) · [分析](M3/M3-4/report.md) · [当前对照](M3/optimization/report/) |
+| M3-4 | 动态实体障碍，A/B/B_tuned各10次：10/8/10次通过；另有独立位置/目标与边界 | [说明](M3/M3-4/README.md) · [分析](M3/M3-4/report.md) · [当前对照](M3/optimization/report/) |
 
 当前M3使用严格真值终点验收与实际轨迹积分，见[优化总报告](M3/optimization/REPORT.md)；旧66.7%、8/3/7等成绩保留为历史，不能与新口径直接混算。验收边界见[清单](docs/M1_M3_验收清单.md)。
 
@@ -31,12 +31,13 @@ M1代码与历史测量来自开发提交2bf7fb0，保留2026-11-16的测量日�
 sudo apt update
 sudo apt install -y build-essential cmake git python3-venv python3-pip \
   python3-colcon-common-extensions python3-numpy python3-opencv python3-pyqt5 \
-  libboost-serialization-dev libeigen3-dev libtbb-dev nlohmann-json3-dev \
+  libboost-serialization-dev libeigen3-dev libtbb-dev nlohmann-json3-dev qtbase5-dev \
   ros-humble-desktop ros-humble-gazebo-ros-pkgs ros-humble-gazebo-ros2-control \
   ros-humble-ros2-control ros-humble-ros2-controllers \
   ros-humble-ackermann-steering-controller ros-humble-navigation2 \
   ros-humble-nav2-bringup ros-humble-slam-toolbox ros-humble-tf2-tools \
-  ros-humble-cv-bridge ros-humble-message-filters ros-humble-xacro
+  ros-humble-cv-bridge ros-humble-message-filters ros-humble-xacro \
+  ros-humble-rviz-common ros-humble-rviz-rendering
 python3 -m venv --system-site-packages .venv-ros
 .venv-ros/bin/python -m pip install -r requirements-m1-m3.txt
 bash scripts/build_ros.sh
@@ -86,3 +87,7 @@ ros2 launch ./M3/M3-3/bringup.launch.py
 ## 终点修正与M1全项复测
 
 优化B内部停车余量收紧至2cm，外部15cm不变；动态和静态均新采完整十次。旧9/10与超差案例保留。M1四题本轮完整重测，当前结论见[M1验收](M1/ACCEPTANCE.md)，历史数据不混算。
+
+## 2026-11-22最新展示指南补齐
+
+已补齐逐点原始距离查询、单命令双组、原生RViz载图、真实SLAM录像、实际RViz新目标两次、运动起点后3秒新障碍两次和当前控制版本的失败边界。见[逐项工程验收](docs/showcase_acceptance.md)与[现场运行命令](docs/现场展示入口.md)。原RViz1/2超时已保留，末端修复后主对照46次全部使用同一新内核；历史中间消融另存，不跨内核混算。

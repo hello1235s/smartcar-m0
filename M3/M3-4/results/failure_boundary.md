@@ -1,12 +1,3 @@
-# 额外场景与失败边界
+# 当前2cm版本的目标占据边界
 
-|场景|到达/次数|Action状态|最后线速度m/s|几何重叠采样|
-|---|---:|---|---|---:|
-|heldout_obstacle_east|2/2|4,4|0.0000,-0.0001|0|
-|heldout_obstacle_gate_exit|2/2|4,4|0.0000,0.0000|0|
-|heldout_goal_northeast|2/2|4,4|0.0003,-0.0000|0|
-|heldout_goal_far_northwest|2/2|4,4|-0.0000,0.0000|0|
-|boundary_blocked_goal|0/1|None|-0.0000|0|
-|boundary_close_front|0/1|6|0.0001|0|
-
-目标被0.8m实体箱覆盖时预期不可达，不能把退出停车当作到达成功。Action状态为None表示未取得终态；若原始failure_reason为simulation_timeout，则由试验器90秒看门狗触发取消与停车，不冒称Nav2主动判定无解。近前方突发箱测试局部阻挡、重规划与停车；其结果单独报告，不能从单次推断“所有近障都必失败”。原始位置/目标/尺寸/时机见每组快照。
+实体世界(11,5)、边长0.8m，首次运动后3秒注入。90秒试验器看门狗取消并停车，未收到Action终态；原始Action状态None，failure_reason=simulation_timeout，末速度0.0001m/s，最小几何间距0.0996m，重叠0。原始来源：M3/optimization/results/20261122_134854_showcase_fixed_blocked_goal_boundary/run_01。它是预期不可达，不计入到达成功率；旧版本的试验器取消与本轮修复前Action中止分别另存，不覆盖。

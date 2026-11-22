@@ -1,34 +1,15 @@
-# M3-4：动态实体障碍、三组实测与分步调优
-
-导航开始3秒后通过Gazebo SpawnEntity生成0.6m实体箱，默认世界坐标(8.0,1.6)。雷达实际观测、物理模型可碰撞，同时由局部/全局障碍层更新；没有直接往代价地图画障碍。初始路径到箱子中心距离随每次结果保存，用于确认箱子确实挡路。位置、时机、尺寸和目标均可命令行修改。
-
-|配置|严格成功/10|成功耗时(仿真s)|真值绕行额外(m)|指令转向TV(rad/m)|
-|---|---:|---:|---:|---:|
-|A|10/10|49.350|0.148|0.990|
-|B|9/10|36.556|0.125|1.410|
-|B_tuned|10/10|47.450|-0.230|0.871|
-
-
-正式A/B/B_speed/B_lookahead/B_tuned共用AckermannRPP、曲率约束和末端跟踪，A/B是保守/激进两套参数，符合题面允许的两套极端参数方案。B_speed只降低B速度；B_lookahead只再改变前视策略；B_horizon保留上一版只把碰撞预测0.5s改为2s的阶段；最终B_tuned再只将内部停车0.05m收紧为0.02m，外部0.15m不变。标准RPP候选静态9/10与一次外墙包络越界作为根因证据另存，不混入正式参数对照。三组正式动态每组10次，不自动丢弃失败重抽。具体配置与结果见[分析报告](report.md)及[原始CSV](../optimization/report/all_attempts.csv)。
+# M3-4当前动态障碍现场入口
 
 ```bash
-source scripts/m3_nav_env.sh
-# 图形桌面：一个命令完整演示，自行起栈、发目标、延迟注入并清理
 bash scripts/run_m3_demo.sh dynamic
-# 考官指定另一个位置；可修改目标、delay、size
-bash scripts/run_m3_demo.sh dynamic --obstacle-at 9.5,1.4 --delay 2.5
-# 从头采集各组无障碍参考，再各跑10次动态对照并生成四指标
+bash scripts/run_m3_demo.sh dynamic --obstacle-at 9.2,1.3 --runs 2
+bash scripts/run_m3_demo.sh dynamic --obstacle-at 11,5 --obstacle-size .8 --timeout 90
+# 当前完整三组各10次与匹配无障碍参考
 .venv-ros/bin/python M3/M3-4/scripts/run_benchmark.py --runs 10
-# 本轮固定正式计划（包含10次默认静态）
-.venv-ros/bin/python M3/optimization/run_qualification.py --suite main
 ```
 
-严格成功判据与M3-3相同，并要求请求的障碍确实注入。时间只统计严格成功样本，从接受目标到Action结束，停车等待另列；绕行为真值轨迹积分减同配置成功无障碍参考均值，不能把失败半程当基线。转向TV为底盘桥reference计算的指令转向角总变化/真值距离，不冒充轮胎实测转角。所有失败保留在成功率分母，某组没有成功参考时绕行标N/A并解释。
+默认世界(8,1.6)、0.6m实体箱，首次/odom实际运动后3秒生成，激光真实观测更新代价地图；坐标是世界坐标，导航goal是map坐标，不混用。原生中间件/TF2、曲率、footprint、目标与外部验收一致。A/B允许同一规划器两套极端参数，三组当前同内核各10次，失败不重抽。
 
-四阶段截图来自实时ROS map/plan/scan/TF窗口，另有全部真值轨迹叠加图、四指标柱图、真实代价地图数组/图和控制曲线。已知静态方盒场景的几何间距是独立保守包络检查，不等同Gazebo接触传感器认证。额外固定位置、不同目标和目标占据的边界实测见`../optimization/`，不承诺任意动态目标都能避开。旧2026-11-16各10次数据和当时规划距离估计保留在历史results目录。
+当前[30次动态CSV](results/benchmark.csv)、[四指标](results/metrics.png)、[真值轨迹](results/trajectories.png)、[四问](report.md)、[调参/历史](results/tuning_log.md)、[失败边界](results/failure_boundary.md)均可追溯。当前运行的真实ROS应用窗口AVI与四阶段图见[现场证据索引](../../docs/showcase_acceptance.md)；查看器只读，不写代价地图或控制，不把2D应用窗口说成Gazebo3D录像。
 
-发布查看器补充按初始参考路径弧长触发四阶段，适用于向东、向北等不同路段；检测帧需实体注入确认与后续真实scan区域命中。绿色为该次配置footprint、虚线为padding，位置来自TF。图形回归演示单独保存并排除于性能分母；四帧取自同一次成功演示，来源、时间与原PNG哈希见results/process_sequence/source_manifest.json。查看器不发布控制或代价地图。
-
-## 来源、AI参与与现场边界
-
-使用题面车辆与历史文件，物理尺寸未缩小。Codex参与实现、调参、真实进程验证和文档整理；本人独立复现与逐行理解程度需本人确认。见[AI使用说明](../../AI_USAGE.md)和[验收清单](../../docs/M1_M3_验收清单.md)。全部M3结果为Gazebo仿真，不宣称实车道路性能；旧结果和失败样本保留，不代表任意目标都能成功。
+本轮代理选择新点模拟考官临时改题，不能冒充实际考官随机考核。旧版目标接受+3秒批次另存，不混入当前运动起点+3秒统计。有限样本与已测场景不能保证任意位置成功。

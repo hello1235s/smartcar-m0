@@ -1,0 +1,9 @@
+{
+  "status": "INFRASTRUCTURE_FAILURE_BEFORE_PHYSICS",
+  "reason": "First resume was invoked without sourcing scripts/env.sh, so subprocess xacro was not found on PATH. No Gazebo run or accepted navigation goal occurred.",
+  "trial_attempts": 0,
+  "excluded_from_performance_denominator": true,
+  "correction": "Source scripts/env.sh, then execute the previously unrun ten attempts. See the later 20261122_133725 group.",
+  "original_controller_unchanged": true,
+  "note": "The underlying xacro exception was observed in the terminal; the wrapper traceback remains in the copied log. This metadata is an explanatory record, not a reconstructed raw xacro log."
+}
