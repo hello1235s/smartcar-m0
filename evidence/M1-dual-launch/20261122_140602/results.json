@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "command": "ros2 launch smartcar_training dual_bringup.launch.py",
+  "nodes": [
+    [
+      "node_a_sensor",
+      "/robot1"
+    ],
+    [
+      "node_a_sensor",
+      "/robot2"
+    ],
+    [
+      "node_b_filter",
+      "/robot1"
+    ],
+    [
+      "node_b_filter",
+      "/robot2"
+    ],
+    [
+      "node_c_alarm",
+      "/robot1"
+    ],
+    [
+      "node_c_alarm",
+      "/robot2"
+    ]
+  ],
+  "thresholds": [
+    0.3,
+    0.5
+  ],
+  "alpha_after_change": [
+    0.9,
+    0.7
+  ],
+  "endpoints": {
+    "/robot1/sensor_data": [
+      {
+        "name": "node_a_sensor",
+        "namespace": "/robot1"
+      },
+      {
+        "name": "node_b_filter",
+        "namespace": "/robot1"
+      }
+    ],
+    "/robot2/sensor_data": [
+      {
+        "name": "node_a_sensor",
+        "namespace": "/robot2"
+      },
+      {
+        "name": "node_b_filter",
+        "namespace": "/robot2"
+      }
+    ]
+  }
+}

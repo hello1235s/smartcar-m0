@@ -1,4 +1,5 @@
 """Check that the public shell entry exposes the exact root M1 interfaces."""
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -14,7 +15,7 @@ from rcl_interfaces.srv import GetParameters
 from sensor_interfaces.srv import TriggerAlarm
 out=ROOT/'evidence/M1-demo-entry'/time.strftime('%Y%m%d_%H%M%S');out.mkdir(parents=True)
 log=(out/'chain.log').open('w');process=subprocess.Popen(['bash','scripts/run_m1_demo.sh','chain'],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-rclpy.init();node=Node('root_demo_observer');record=dict(status='running')
+rclpy.init();node=Node('root_demo_observer');record=dict(status='running',entry_sha256=hashlib.sha256((ROOT/'scripts/run_m1_demo.sh').read_bytes()).hexdigest())
 try:
     parameters=node.create_client(GetParameters,'/node_b_filter/get_parameters');assert parameters.wait_for_service(timeout_sec=20)
     request=GetParameters.Request(names=['alpha']);future=parameters.call_async(request)
@@ -27,6 +28,8 @@ try:
     assert expected.issubset(set(node.get_node_names_and_namespaces()))
     names={name for name,_ in node.get_topic_names_and_types()};assert {'/sensor_data','/processed_distance'}.issubset(names)
     record.update(status='PASS',root_nodes=sorted(expected),root_topics=sorted(names),manual_alarm_reply=True)
+except BaseException as error:
+    record.update(status='FAIL',error=type(error).__name__+': '+str(error));raise
 finally:
     terminate_owned_tree(process);log.close();node.destroy_node();rclpy.shutdown()
     (out/'results.json').write_text(json.dumps(record,indent=2));print('ROOT_DEMO_ENTRY',out,json.dumps(record),flush=True)
